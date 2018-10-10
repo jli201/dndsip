@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>D&D SIP</title>
+  <style>
+	  body{
+		  background-color: rgb(153,50,204);
+	  }
+	  #signupForm{
+		  padding-top: 200px;
+		  text-align: center;
+		  font-size: 30px;
+		  color: orange;
+	  }
+	  .registerText{
+		  width: 240px;
+		  font-size: 30px;
+	  }
+	  #register{
+		  width: 100px;
+		  background-color: lightgreen;
+	  }
+  </style>
+</head>
+<body>
+	<form id="signupForm" method="POST" action="register.php">
+		Username: <input class="registerText" type="text" name="username">
+		<br>
+		<br>
+		Password: <input class="registerText" type="password" name="password">
+		<br>
+		<br>
+		<input id="register" type="submit" value="Register">
+	</form>
+</body>
+</html>
