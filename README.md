@@ -15,3 +15,5 @@ Goal: Create a Simple, Intuitive, Paperless (SIP) web app that lets players crea
 
 Goal: Help DMs track information and fluidly run combat scenarios with an initiative tracker and note-taking space.
 
+
+Trello Scrum Link: https://trello.com/invite/b/OeQgZNzT/9716d2fcb8868076107a986b01f61213/dnd-sprints
