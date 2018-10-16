@@ -1,5 +1,20 @@
-div {
-	
+/* Clear out some hot garbage. A mini 'reset.css'
+If we want to do a true reset, we should include an actual resetting file...
+For example, we might want to change the 8px margin on 'body' elements.*/
+textarea {
+	padding:0px;
+} 
+
+
+/* DICEROLLER.CSS */
+/*This is a global var. New in CSS. Not supported in IE, Opera, or Android Browser.*/
+:root {
+	--h: 50px;
+	--w: 50px;
+}
+
+#diceroll {
+	margin-bottom:10px;
 }
 
 .logotext {
@@ -46,17 +61,22 @@ div {
 }
 
 .rollbox textarea, input, select {
-	height:50px;
-	min-height: 50px;
-	max-height: 50px;
-	width:50px;
-	min-width: 50px;
-	max-width: 50px;
-	padding:8px 0px 8px 0px;
+	line-height:var(--h)-2;
+	height:var(--h);
+	min-height: var(--h);
+	max-height: var(--h);
+	width:var(--w);
+	min-width: var(--w);
+	max-width: var(--w);
+	/*padding:8px 0px 8px 0px;*/
 }
 
 .rollbox textarea, select {
 	font-size:25px;
+}
+
+.rollbox textarea {
+	box-sizing: border-box;
 }
 
 .rollbox input {
