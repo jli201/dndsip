@@ -1,17 +1,31 @@
 <html>
 <head>
 	<link rel="stylesheet" href="diceroller.css">
+	<link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
 </head>
 <body>
 	<div class="bigbox">
-		<ul>
-			<li><textarea id="ndice" name="numdice"></textarea></li>
-			<li class="simpletext">d</li>
-			<li><textarea id="tdice" name="typedice"></textarea></li>
-			<li class="simpletext">=</li>
-			<li><textarea id="resultdice" name="rollresult" readonly></textarea></li>
-			<li><input type="submit" name="rollcalculate" value="Roll!"></li>
-		</ul>
+		<div class="logotext">DNDSIP - Simple, Intuitive, Paperless</div>
+		<div class="rollbox">
+			<ul>
+				<li><textarea id="ndice" name="numdice"></textarea></li>
+				<li class="simpletext">d</li>
+				<!-- <li><textarea id="tdice" name="typedice"></textarea></li> -->
+				<li><select name="typedice">
+					<option value="4">4</option>
+					<option value="6">6</option>
+					<option value="8">8</option>
+					<option value="10">10</option>
+					<option value="12">12</option>
+					<option value="20">20</option>
+					<option value="100">100</option>
+				</select></li>
+				<li class="simpletext">=</li>
+				<li><textarea id="resultdice" name="rollresult" readonly></textarea></li>
+				<li><input type="submit" name="rollcalculate" value="Roll!"></li>
+			</ul>
+		</div>
+		<div style="float:clear"></div>
 	</div>
 </body>
 </html>

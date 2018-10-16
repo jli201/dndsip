@@ -2,22 +2,40 @@ div {
 	
 }
 
-.bigbox ul {
+.logotext {
+	border-top: 2px dashed black;
+	border-left: 2px dashed black;
+	font-size:25px;
+	vertical-align: middle;
+	line-height:74px;
+	font-family: 'Cutive Mono', monospace;
+	float:left;
+	min-width:60%;
+	padding-left:5px;
+}
+
+.rollbox {
+	border-left:2px solid black;
+	float:right;
+	background-color:rgba(255,0,0,.2);
+	height: 74px;
+	max-height: 74px;
+	margin:auto;
+	max-width:40%;
+	width:auto;
+	padding:0px 10px;
+}
+
+.rollbox ul {
+	float:right;
+	text-align: right;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
 }
 
-.bigbox {
-	background-color:rgba(255,0,0,.2);
-	min-width:100%;
-	height: 74px;
-	max-height: 74px;
-	margin:auto;
-}
-
-.bigbox li {
+.rollbox li {
 	float:left;
 	vertical-align: middle;
 	height:50px;
@@ -27,7 +45,7 @@ div {
 	display:inline-block;
 }
 
-.bigbox textarea, input {
+.rollbox textarea, input, select {
 	height:50px;
 	min-height: 50px;
 	max-height: 50px;
@@ -37,11 +55,11 @@ div {
 	padding:8px 0px 8px 0px;
 }
 
-.bigbox textarea {
+.rollbox textarea, select {
 	font-size:25px;
 }
 
-.bigbox input {
+.rollbox input {
 	font-size:18px;
 }
 
