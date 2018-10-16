@@ -1,8 +1,9 @@
 function calculateRoll() {
-	console.log("Calculating roll.");
+	var debugflag = false; //turn this on to debug!
+	if (debugflag) console.log("Calculating roll.");
 	try {
 		var dice = parseInt($('#tdice').val()); //'value', not inner html
-		console.log("Dice type = " + dice);
+		if (debugflag) console.log("Dice type = " + dice);
 
 
 		//things to catch.
@@ -12,13 +13,13 @@ function calculateRoll() {
 		var num = $('#ndice').val(); //inner html b/c text area
 		//Case 1.
 		if (num.length == 0 ) { //typeof b/c if num dne, doesn't throw an error
-			console.log('no dice val entered');
+			if (debugflag) console.log('no dice val entered');
 			$('#resultdice').text('0');
 			return;
 		} //clears case of empty text box "" value
 		//Case 2.
 		if (isNaN(num)) { //can't parse int
-			console.log('ParseInt failed.');
+			if (debugflag) console.log('ParseInt failed.');
 			throw("Bad num dice.");
 		}
 		//Clears test cases "a", "12a", "efc", "12 ", and "12   3"
@@ -28,15 +29,22 @@ function calculateRoll() {
 		num = parseInt(num);
 		//ParseInt takes a string and returns the first num.
 		//So if your string is "12abef" it returns 12.
-		console.log("Num dice = " + num);
+		if (debugflag) console.log("Num dice = " + num);
 
 		var sum = 0;
 		for (var i = 0; i < num; i++ ) {
-			console.log('Rolling 1 die.');
+			if (debugflag) console.log('Rolling 1 die.');
 			sum += Math.ceil(Math.random() * dice); //should return 1, 2, ..., dice integer.
 		}
+		if (debugflag) console.log("Sum is " + sum);
 
+		//use editing guards.
+		//Why? B/c a user who edits the 'textarea' result line causes a bug
+		//This bug prevents the new value from displaying on screen, even if it's in the actual html
+		//e.g. it can be <textarea>3</textarea> but on screen 3 will not show up!
+		$('#resultdice').prop('readonly', false);
 		$('#resultdice').html(sum);
+		$('#resultdice').prop('readonly', true);
 		
 	}
 

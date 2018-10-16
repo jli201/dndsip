@@ -61,7 +61,7 @@ textarea {
 }
 
 .rollbox textarea, input, select {
-	line-height:var(--h)-2;
+	line-height:48px; /*var(--h)-2*, can't do that math in css properties though.*/
 	height:var(--h);
 	min-height: var(--h);
 	max-height: var(--h);
