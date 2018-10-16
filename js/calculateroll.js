@@ -50,7 +50,7 @@ function calculateRoll() {
 
 	catch(err) {
 		$('#resultdice').text('ERR');
-		console.log(err); //tells us what the error is.
+		if (debugflag) console.log(err); //tells us what the error is.
 	}
 
 }
