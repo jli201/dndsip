@@ -22,6 +22,10 @@
 		  width: 100px;
 		  background-color: lightgreen;
 	  }
+	  #redText{
+		  color: red;
+		  font-size: 3em;
+	  }
   </style>
 </head>
 <body>
@@ -76,6 +80,7 @@
 		<br>
 		<br>
 		<input id="register" type="submit" value="Register">
+		<p id="redText"><?php echo($data);?></p>
 	</form>
 </body>
 </html>
