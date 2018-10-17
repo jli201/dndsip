@@ -1,0 +1,33 @@
+<html>
+<head>
+	<link rel="stylesheet" href="diceroller.css">
+	<link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- include this before any js file that uses jquery -->
+	<script type="text/javascript" src="/js/calculateroll.js"></script>
+</head>
+<body>
+	<div class="bigbox">
+		<div class="logotext">DNDSIP - Simple, Intuitive, Paperless</div>
+		<div class="rollbox">
+			<ul>
+				<li><textarea id="ndice" name="numdice"></textarea></li>
+				<li class="simpletext">d</li>
+				<!-- <li><textarea id="tdice" name="typedice"></textarea></li> -->
+				<li><select id ="tdice" name="typedice">
+					<option value="4">4</option>
+					<option value="6">6</option>
+					<option value="8">8</option>
+					<option value="10">10</option>
+					<option value="12">12</option>
+					<option value="20">20</option>
+					<option value="100">100</option>
+				</select></li>
+				<li class="simpletext">=</li>
+				<li><textarea id="resultdice" name="rollresult" readonly></textarea></li>
+				<li><input type="submit" name="rollcalculate" value="Roll!" onclick="calculateRoll();"></li>
+			</ul>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+</body>
+</html>

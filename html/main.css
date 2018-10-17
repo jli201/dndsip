@@ -1,0 +1,8 @@
+html h1 {
+	font-size: 2em;
+	font-weight: bold; /*Standard.*/
+}
+
+html body {
+	margin:8px; /*We probably want to change this.*/
+}

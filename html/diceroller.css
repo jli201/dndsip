@@ -1,0 +1,95 @@
+/* Clear out some hot garbage. A mini 'reset.css'
+If we want to do a true reset, we should include an actual resetting file...
+For example, we might want to change the 8px margin on 'body' elements.*/
+textarea {
+	padding:0px;
+} 
+
+
+/* DICEROLLER.CSS */
+/*This is a global var. New in CSS. Not supported in IE, Opera, or Android Browser.*/
+:root {
+	--h: 50px;
+	--w: 50px;
+}
+
+#diceroll {
+	margin-bottom:10px;
+}
+
+.logotext {
+	border-top: 2px dashed black;
+	border-left: 2px dashed black;
+	font-size:25px;
+	vertical-align: middle;
+	line-height:74px;
+	font-family: 'Cutive Mono', monospace;
+	float:left;
+	min-width:60%;
+	padding-left:5px;
+}
+
+.rollbox {
+	border-left:2px solid black;
+	float:right;
+	background-color:rgba(255,0,0,.2);
+	height: 74px;
+	max-height: 74px;
+	margin:auto;
+	max-width:40%;
+	width:auto;
+	padding:0px 10px;
+}
+
+.rollbox ul {
+	float:right;
+	text-align: right;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.rollbox li {
+	float:left;
+	vertical-align: middle;
+	height:50px;
+	width:50px;
+	margin:11px 0px 11px 13px;
+	border:1px solid black;
+	display:inline-block;
+}
+
+.rollbox textarea, input, select {
+	line-height:48px; /*var(--h)-2*, can't do that math in css properties though.*/
+	height:var(--h);
+	min-height: var(--h);
+	max-height: var(--h);
+	width:var(--w);
+	min-width: var(--w);
+	max-width: var(--w);
+	/*padding:8px 0px 8px 0px;*/
+}
+
+.rollbox textarea, select {
+	font-size:25px;
+}
+
+.rollbox textarea {
+	box-sizing: border-box;
+}
+
+.rollbox input {
+	font-size:18px;
+}
+
+#resultdice {
+
+}
+
+li.simpletext {
+	padding:0;
+	font-size:25px;
+	text-align: center;
+	line-height: 50px;
+}
