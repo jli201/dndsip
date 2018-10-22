@@ -19,8 +19,30 @@
     border: 3px solid black;
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-top:10px;
 
 }
+
+.charSelectBorderClicked{
+    text-align: center;
+    border: 3px solid blueviolet;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top:10px;
+
+}
+
+.createChar{
+    text-align: center;
+    border: 3px dotted black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top:10px;
+
+}
+
+
+
 .numberCircle {
     border-radius: 100%;
     behavior: url(PIE.htc);
@@ -32,5 +54,6 @@
     border: 2px solid #666;
     color: #666;
     text-align: center;
-    font: 14px Arial, sans-serif;
+    font: 14px;
   }
+  
