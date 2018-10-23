@@ -1,3 +1,15 @@
+//
+
+
+//'open' and 'close' dice roller.
+function openClose() {
+	;
+}
+
+
+
+//calculates roll based on <num> 'd' <dicetype> + <mod>
+//individual rolls calculated via Math.random
 function calculateRoll() {
 	var debugflag = false; //turn this on to debug!
 	if (debugflag) console.log("Calculating roll.");
