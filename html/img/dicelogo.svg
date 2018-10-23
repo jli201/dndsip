@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="dicelogo.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="320.14465"
+     inkscape:cy="611.7863"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="1432"
+     inkscape:window-y="684"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="star"
+       id="path3723"
+       sodipodi:sides="6"
+       sodipodi:cx="102.43155"
+       sodipodi:cy="133.3363"
+       sodipodi:r1="83.155624"
+       sodipodi:r2="72.014877"
+       sodipodi:arg1="-0.0045454232"
+       sodipodi:arg2="0.51905335"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 185.58631,132.95833 144.33627,205.16145 61.181503,205.53943 19.276784,133.71428 60.526829,61.511153 143.68159,61.133176 Z"
+       style="fill:none;stroke:#000000;stroke-width:3.56500006;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+       transform="rotate(90,48.985568,158.34102)"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:3.16499996;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 73.61231,128.63224 51.59042,50.45414 20.99068,73.95066 -72.17493,15.64108 -71.8533455,-14.9864 19.8567525,-74.13634 z"
+       id="path6606"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       sodipodi:type="star"
+       id="path3723-8-4"
+       sodipodi:sides="3"
+       sodipodi:cx="102.43155"
+       sodipodi:cy="133.3363"
+       sodipodi:r1="76.503174"
+       sodipodi:r2="66.253685"
+       sodipodi:arg1="-0.0045454232"
+       sodipodi:arg2="1.0426521"
+       inkscape:flatsided="true"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 178.93393,132.98857 64.481507,199.76318 63.879207,67.257165 Z"
+       style="fill:none;stroke:#000000;stroke-width:4.61031866;stroke-miterlimit:4;stroke-dasharray:none"
+       transform="matrix(0,0.73514056,-0.74832899,0,173.2758,134.6585)"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot6631"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'MS UI Gothic';-inkscape-font-specification:'MS UI Gothic';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-19.747808,82.230464)"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><flowRegion
+         id="flowRegion6633"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'MS UI Gothic';-inkscape-font-specification:'MS UI Gothic'"><rect
+           id="rect6635"
+           width="218.57143"
+           height="150"
+           x="265.71429"
+           y="428.23398"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'MS UI Gothic';-inkscape-font-specification:'MS UI Gothic'" /></flowRegion><flowPara
+         id="flowPara6637"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:96px;font-family:Batang;-inkscape-font-specification:Batang">d20</flowPara></flowRoot>  </g>
+</svg>
