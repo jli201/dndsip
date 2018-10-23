@@ -1,9 +1,29 @@
-//
+// //
+// $(document).ready(function(){
+   
+//    $("#clickdie, .dicelogo, .dicelogo svg, .dicelogo img").click(function(){
+// 		console.log("Hi.");
+// 	});
+
+// });
+
 
 
 //'open' and 'close' dice roller.
 function openClose() {
-	;
+	var debugflag = false;
+
+	if ( $(".rollbox").hasClass("rollsmall") ) {
+		console.log("Small box.");
+		$(".rollbox").removeClass("rollsmall").addClass("rollbig");
+	}
+	else if ( $(".rollbox").hasClass("rollbig") ) {
+		console.log("Big box.");
+		$(".rollbox").removeClass("rollbig").addClass("rollsmall");
+	}
+	else {
+		console.log("Bad box.");
+	}
 }
 
 
@@ -11,7 +31,7 @@ function openClose() {
 //calculates roll based on <num> 'd' <dicetype> + <mod>
 //individual rolls calculated via Math.random
 function calculateRoll() {
-	var debugflag = false; //turn this on to debug!
+	var debugflag = true; //turn this on to debug!
 	if (debugflag) console.log("Calculating roll.");
 	try {
 		var dice = parseInt($('#tdice').val()); //'value', not inner html
