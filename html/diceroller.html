@@ -17,16 +17,16 @@
 		</div>
 		<ul>
 			<!-- <li><textarea id="ndice" name="numdice"></textarea></li> -->
-			<li><input type="number" name="numdice" value="0" min="0"></li>
+			<li><input type="number" id="ndice" name="numdice" value="0" min="0"></li>
 			<li class="simpletext">d</li>
 			<!-- <li><textarea id="tdice" name="typedice"></textarea></li> -->
-			<li><input type="number" name="typedice" value="4" min="0"></li>
+			<li><input type="number" id="tdice" name="typedice" value="4" min="0"></li>
 			<li>
 				<select id ="plusminus" name="typemod">
 				<option value="+">+</option>
 				<option value="-">-</option>
 			</select></li>
-			<li><input type="number" name="modval" value="0" min="0"></li>
+			<li><input type="number" id = "modval" name="modval" value="0" min="0"></li>
 			<li class="simpletext">=</li>
 			<li><textarea id="resultdice" name="rollresult" readonly></textarea></li>
 			<li><input type="submit" name="rollcalculate" value="Roll!" onclick="calculateRoll();"></li>
