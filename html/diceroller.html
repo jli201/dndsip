@@ -3,31 +3,35 @@
 	<link rel="stylesheet" href="diceroller.css">
 	<link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- include this before any js file that uses jquery -->
-	<script type="text/javascript" src="/js/calculateroll.js"></script>
+	<script type="text/javascript" src="/js/diceroller.js"></script>
 </head>
 <body>
-	<div class="bigbox">
-		<div class="logotext">DNDSIP - Simple, Intuitive, Paperless</div>
-		<div class="rollbox">
-			<ul>
-				<li><textarea id="ndice" name="numdice"></textarea></li>
-				<li class="simpletext">d</li>
-				<!-- <li><textarea id="tdice" name="typedice"></textarea></li> -->
-				<li><select id ="tdice" name="typedice">
-					<option value="4">4</option>
-					<option value="6">6</option>
-					<option value="8">8</option>
-					<option value="10">10</option>
-					<option value="12">12</option>
-					<option value="20">20</option>
-					<option value="100">100</option>
-				</select></li>
-				<li class="simpletext">=</li>
-				<li><textarea id="resultdice" name="rollresult" readonly></textarea></li>
-				<li><input type="submit" name="rollcalculate" value="Roll!" onclick="calculateRoll();"></li>
-			</ul>
+	<!-- <div class="logotext">DNDSIP - Simple, Intuitive, Paperless</div> -->
+	<div class="rollbox rollsmall">
+		<!-- <div id="clickdie" style="overflow:hidden;" onclick="openClose()"><object data="/img/dicelogo.svg" type="image/svg+xml" class="dicelogo">
+			<img src="/img/dicelogo.png" alt="Click me!">
+		</object></div> -->
+		<!-- svg causing issues with click events. -->
+		<div id="clickdie" onclick="openClose()">
+			<img src="/img/dicelogo.png" alt="Click me!" class="dicelogo">
 		</div>
-		<div style="clear:both"></div>
+		<ul>
+			<!-- <li><textarea id="ndice" name="numdice"></textarea></li> -->
+			<li><input type="number" id="ndice" name="numdice" value="0" min="0"></li>
+			<li class="simpletext">d</li>
+			<!-- <li><textarea id="tdice" name="typedice"></textarea></li> -->
+			<li><input type="number" id="tdice" name="typedice" value="4" min="0"></li>
+			<li>
+				<select id ="plusminus" name="typemod">
+				<option value="+">+</option>
+				<option value="-">-</option>
+			</select></li>
+			<li><input type="number" id = "modval" name="modval" value="0" min="0"></li>
+			<li class="simpletext">=</li>
+			<li><textarea id="resultdice" name="rollresult" readonly></textarea></li>
+			<li><input type="submit" name="rollcalculate" value="Roll!" onclick="calculateRoll();"></li>
+		</ul>
 	</div>
+	<!-- <div style="clear:both"></div> -->
 </body>
 </html>
