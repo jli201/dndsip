@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width">
   <title>Character Sheet</title>
   <style>
-	  
+	  <link rel="stylesheet" href="character_sheet.css">	  
   </style>
 </head>
 <body>
