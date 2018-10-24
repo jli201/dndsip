@@ -15,8 +15,37 @@ textarea {
 
 #diceroll {
 	margin-bottom:10px;
+	/*position:absolute;*/
+	float:right;
+	width:100%;
 }
 
+object.dicelogo {
+	float:right;
+	vertical-align: middle;
+	clear:both;
+	height:75px;
+	width:75px;
+	position:relative;
+	top:-25px;
+	right:-25px;
+}
+
+img.dicelogo {
+	float:right;
+	vertical-align: middle;
+	/*clear:both;*/
+	height:50px;
+	width:50px;
+	margin:auto;
+	padding: 5px 5px;
+}
+
+#clickdie {
+	overflow:hidden;
+}
+
+/*
 .logotext {
 	border-top: 2px dashed black;
 	border-left: 2px dashed black;
@@ -28,24 +57,40 @@ textarea {
 	min-width:60%;
 	padding-left:5px;
 }
+*/
 
 .rollbox {
-	border-left:2px solid black;
+	/*border-left:2px solid black;*/
 	float:right;
 	background-color:rgba(255,0,0,.2);
-	height: 74px;
-	max-height: 74px;
+	/*height: 74px;
+	max-height: 74px;*/
 	margin:auto;
-	max-width:40%;
+	/*max-width:40%;*/
 	width:auto;
-	padding:0px 10px;
+	/*padding:0px 10px;*/
+	overflow:hidden;
+}
+
+.rollsmall {
+	height:60px;
+	width:60px;
+	border:3px solid black;
+
+}
+
+.rollbig {
+	height:134px;
+	max-height: 134px;
+	max-width: 40%;
+	border-left:2px solid black;
 }
 
 .rollbox ul {
 	float:right;
 	text-align: right;
 	list-style-type: none;
-	margin: 0;
+	margin: 0 5px 0 0;
 	padding: 0;
 	overflow: hidden;
 }
