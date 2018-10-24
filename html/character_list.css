@@ -1,3 +1,9 @@
+html{
+    background-color: #8f9491;
+}
+
+
+
 .borderSize{
     margin-left: 100px;
     margin-right: 100px;
@@ -12,14 +18,17 @@
     text-align: center;
     border: 3px solid black;
     border-radius: 50px;
+    background-color:#2ec4b6;
 }
 
 .charSelectBorder{
+    background-color: #cbf3f0;
     text-align: center;
     border: 3px solid black;
     padding-top: 10px;
     padding-bottom: 10px;
     margin-top:10px;
+    
 
 }
 
@@ -33,6 +42,7 @@
 }
 
 .createChar{
+    background-color: #cbf3f0;
     text-align: center;
     border: 3px dotted black;
     padding-top: 10px;
@@ -50,7 +60,7 @@
     width: 36px;
     height: 36px;
     padding: 6px;
-    background: #fff;
+    background: #cbf3f;
     border: 2px solid #666;
     color: #666;
     text-align: center;
