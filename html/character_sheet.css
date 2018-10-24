@@ -1,0 +1,33 @@
+body{
+	background-color: #F49349;
+}
+
+#namePlate{
+	display: block;
+	padding: 1%;
+	margin: .5%;
+	height: 5vh;
+	background-color: #CBF3F0;
+}
+
+.column{
+	display: block;
+	height: 89vh; 
+	padding: 1%;
+	margin: .5%;
+	float: left;
+	width: 30.3333%;
+	background-color: #CBF3F0;
+}
+
+#stats{
+	background-color: #2EC4B6;
+	padding: 5px;
+	height: 66%;
+}
+
+#passiveWisdom{
+	background-color: #8f9491;
+	padding: 5px;
+	height: 10%;
+}
