@@ -4,6 +4,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- include this before any js file that uses jquery -->
 	<script type="text/javascript" src="/js/diceroller.js"></script>
+	<link rel="preload" href="/img/dicelogo_hollow.png">
 </head>
 <body>
 	<!-- <div class="logotext">DNDSIP - Simple, Intuitive, Paperless</div> -->
@@ -13,8 +14,8 @@
 		</object></div> -->
 		<!-- svg causing issues with click events. -->
 		<ul>
-			<li id="clickdie"><div onclick="openClose()">
-				<img src="/img/dicelogo.png" alt="Click me!" class="dicelogo">
+			<li id="clickdie"><div onclick="openClose()" class="dicelogo">
+				
 			</div></li>
 			<!-- <li><textarea id="ndice" name="numdice"></textarea></li> -->
 			<li><input type="number" id="ndice" name="numdice" value="0" min="0"></li>

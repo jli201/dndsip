@@ -31,7 +31,7 @@ object.dicelogo {
 	right:-25px;
 }
 
-img.dicelogo {
+div.dicelogo {
 	float:right;
 	vertical-align: middle;
 	/*clear:both;*/
@@ -39,12 +39,31 @@ img.dicelogo {
 	width:50px;
 	margin:auto;
 	/*padding: 5px 5px;*/
+	background-image:url("/img/dicelogo.png");
+	background-size:50px 50px;
+	background-repeat: no-repeat;
+
+	line-height: 50px;
+	font-size:25px;
+	text-align:center;
+	cursor:default;
+
 }
 
 #clickdie {
 	overflow:hidden;
 	border:none;
 	float: right;
+}
+
+#clickdie .dicelogohollow {
+	/*more specificity wins!*/
+	background-image:url("/img/dicelogo_hollow.png");
+}
+
+#clickdie .largevalue {
+	/*good up to 5 digits*/
+	font-size:15px; 
 }
 
 /*

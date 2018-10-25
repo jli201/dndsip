@@ -14,15 +14,15 @@ function openClose() {
 	var debugflag = false;
 
 	if ( $(".rollbox").hasClass("rollsmall") ) {
-		console.log("Small box.");
+		if(debugflag) console.log("Small box.");
 		$(".rollbox").removeClass("rollsmall").addClass("rollbig");
 	}
 	else if ( $(".rollbox").hasClass("rollbig") ) {
-		console.log("Big box.");
+		if(debugflag) console.log("Big box.");
 		$(".rollbox").removeClass("rollbig").addClass("rollsmall");
 	}
 	else {
-		console.log("Bad box.");
+		if(debugflag) console.log("Bad box.");
 	}
 }
 
@@ -69,6 +69,18 @@ function calculateRoll() {
 		$('#resultdice').prop('readonly', false);
 		$('#resultdice').html(sum);
 		$('#resultdice').prop('readonly', true);
+
+		//make dice logo change!
+		$("#clickdie div").addClass("dicelogohollow");
+		//less than 3 digits (usual case in d&d.)
+		if (sum/100 < 1) {
+			$("#clickdie div").removeClass("largevalue");
+		}
+		if (sum/100 > 1) { //looks good up to 5 digits
+			$("#clickdie div").addClass("largevalue");
+		}
+
+		$("#clickdie div").html(sum);
 
 
 	}
