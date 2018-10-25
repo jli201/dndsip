@@ -10,6 +10,28 @@ body{
 	background-color: #CBF3F0;
 }
 
+#innerbox {
+	background-color: #2EC4B6;
+	padding: 8px;
+	height: 66%;
+}
+
+#nameform {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+#nameform label {
+	white-space: nowrap;
+	margin-right: .2%;
+	margin-left: .5%;
+}
+
+#nameform input {
+	padding: 2px;
+}
+
 .column{
 	display: block;
 	height: 89vh; 
