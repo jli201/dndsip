@@ -38,11 +38,13 @@ img.dicelogo {
 	height:50px;
 	width:50px;
 	margin:auto;
-	padding: 5px 5px;
+	/*padding: 5px 5px;*/
 }
 
 #clickdie {
 	overflow:hidden;
+	border:none;
+	float: right;
 }
 
 /*
@@ -73,17 +75,19 @@ img.dicelogo {
 }
 
 .rollsmall {
-	height:60px;
+	height:62px;
 	width:60px;
 	border:3px solid black;
 
 }
 
 .rollbig {
-	height:134px;
-	max-height: 134px;
-	max-width: 40%;
+	height:62px;
+	max-height: 62px;
+	/*max-width: 40%;*/
 	border-left:2px solid black;
+	border-top:3px solid transparent;
+	border-right:3px solid transparent;
 }
 
 .rollbox ul {
@@ -100,7 +104,7 @@ img.dicelogo {
 	vertical-align: middle;
 	height:50px;
 	width:50px;
-	margin:11px 0px 11px 13px;
+	margin:5px 0px 17px 13px;
 	border:1px solid black;
 	display:inline-block;
 }

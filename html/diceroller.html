@@ -12,10 +12,10 @@
 			<img src="/img/dicelogo.png" alt="Click me!">
 		</object></div> -->
 		<!-- svg causing issues with click events. -->
-		<div id="clickdie" onclick="openClose()">
-			<img src="/img/dicelogo.png" alt="Click me!" class="dicelogo">
-		</div>
 		<ul>
+			<li id="clickdie"><div onclick="openClose()">
+				<img src="/img/dicelogo.png" alt="Click me!" class="dicelogo">
+			</div></li>
 			<!-- <li><textarea id="ndice" name="numdice"></textarea></li> -->
 			<li><input type="number" id="ndice" name="numdice" value="0" min="0"></li>
 			<li class="simpletext">d</li>
