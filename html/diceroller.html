@@ -1,6 +1,6 @@
 <html>
 <head>
-
+	<!-- this file loads into an element with id 'diceroll' via jquery. Mandatory. -->
 	<!-- include this before any js file that uses jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 	
@@ -11,24 +11,27 @@
 	<link rel="stylesheet" href="diceroller.css">
 </head>
 <body>
-	<div class="rollbox rollbig">
-		<ul>
-			<li id="clickdie"><div onclick="openClose()" class="dicelogo">
-			</div></li>
-			<li><input type="number" id="ndice" value="0" min="0"></li>
-			<li class="simpletext">d</li>
-			<li><input type="number" id="tdice" value="4" min="0"></li>
-			<li>
-				<select id ="plusminus">
-				<option value="+">+</option>
-				<option value="-">-</option>
-			</select></li>
-			<li><input type="number" id="modval" value="0" min="0"></li>
-			<li class="simpletext">=</li>
-			<li><textarea id="resultdice" readonly></textarea></li>
-			<li><input type="submit" value="Roll!" onclick="calculateRoll();"></li>
-		</ul>
+	<div class="rollbox rollboxCompact">
+
+		<!-- roll calculation partials -->
+		<div class="diceRollerElem"><input type="number" id="numdice" value="0" min="0"></div>
+		<div class="diceRollerElem">d</div>
+		<div class="diceRollerElem"><input type="number" id="typedice" value="4" min="0"></div>
+		<div class="diceRollerElem">
+			<select id ="plusminus">
+			<option value="+">+</option>
+			<option value="-">-</option>
+		</select></div>
+		<div class="diceRollerElem"><input type="number" id="modval" value="0" min="0"></div>
+		<div class="diceRollerElem">=</div>
+		<div class="diceRollerElem"><textarea id="rollResult" readonly></textarea></div>
+
+		<!-- dice roll button -->
+		<div class="diceRollerElem" style="overflow:hidden;"><input type="submit" id="rollSubmit" value="Roll!" onclick="calculateRoll();"></div>
+
+		<!-- clickable d20 logo. Shifts to containing last roll result. -->
+		<div onclick="openClose()" id="dicelogo" class="diceRollerElem"></div>
+		
 	</div>
-	<!-- <div style="clear:both"></div> -->
 </body>
 </html>
