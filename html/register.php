@@ -5,39 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Register</title>
-  <style>
-	  body{
-		  background-color: #2ec4b6;
-	  }
-	  #signup{
-	  	  margin-top: 150px;
-		  margin-left: 30%;
-		  width: 40%;
-		  border: 2px solid black;
-		  text-align: center;
-		  background-color: #CBF3F0;
-		  padding: 1%;
-  	  }
-	  #signupForm{
-		  font-size: 30px;
-	  }
-	  .registerText{
-		  magin-right: 10px;
-		  width: 240px;
-		  font-size: 30px;
-	  }
-	  #register{
-		  width: 100px;
-		  font-size: 20px;
-	  }
-	  #errorText{
-		  text-align: center;
-		  color: red;
-	  }
-  </style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Register</title>
+	<link rel="stylesheet" type="text/css" href="register.css">
 </head>
 <body>
 	<?php
