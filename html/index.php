@@ -8,40 +8,12 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<title>Login</title>
-	<style>
-		body{
-			background-color: #2EC4B6;
-		}
-		#login{
-			margin-top: 9%;
-			margin-left: 30%;
-			padding: 1%;
-			width: 40%;
-			height: 60%;
-			background-color: #CBF3F0;
-			text-align: center;
-			
-		}
-		
-		.loginText{
-			font-size: .5em;
-		}
-		
-		#loginForm{
-			font-size: 2em;
-		}
-		
-		#submit{
-			width: 33.333%;
-		}
-		
-		#errorText{
-			color: red;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="index.css">
+</script>
 </head>
 <body>
 	<?php
+	//Runs when the user clicks login
 	if($_SERVER["REQUEST_METHOD"] == "POST") {
 		$username = parse_input($_POST["username"]);
 		$password = parse_input($_POST["password"]);
@@ -69,6 +41,7 @@
 		$conn->close();
 	}
 
+	//If the user created an account on the register page, ask them to log in.
 	if(strcmp($_SESSION["accountCreated"], "true") == 0) {
 		$registeredMessage = "New account registered. Login below.";
 	}
@@ -82,6 +55,7 @@
 	}
 	?>
 
+	<div id="diceroll"></div>
 	<div id="login">
 		<p id="errorText"><?php echo($submitError);?></p>
 		<p><?php echo($registeredMessage);?>
@@ -90,7 +64,7 @@
 			<br>
 			Password: <input class="loginText" type="password" name="password">
 			<br>
-			<input id="submit" type="Submit" value="Login">
+			<input id="submit" type="submit" value="Login">
 		</form>
 		<br>
 		<a id="register" href="register.php">Sign-up for an account</a>
