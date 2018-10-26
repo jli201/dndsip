@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Character Sheet</title>
-  <link rel="stylesheet" href="character_sheet.css">	  
+  <link rel="stylesheet" href="character_sheet.css">
+  <link rel="stylesheet" href="stupid.css">
 </head>
 <body>
 	<div id="namePlate">
@@ -36,7 +37,69 @@
 		</div>
 	</div>
 	<div class="column">
-		<p>Content here</p>
+		<div class = "container">
+			<!--AC/Initiative/Speed Block -->
+			<div class = "third">
+				<img class = "center three-quarter" src="img/Sheild.png"/>
+			</div>
+			
+			<div class = "third">
+				<img class = "center three-quarter" src="img/Sheild.png"/>
+			</div>
+			
+			<div class = "third">
+				<img class = "center three-quarter" src="img/Sheild.png"/>
+			</div>
+		</div>
+		
+		<div id="stats">
+			<!--HP Block-->
+			<!-- This peice of code from https://www.dummies.com/web-design-development/site-development/how-to-put-text-boxes-in-an-html5-form/ -->
+			Maximum Hp
+			<p>
+				<input type = "text"
+					id = "myText"
+					class = "center"/>
+			</p>
+			
+			Current Hp
+			<p>
+				<input type = "text"
+					id = "myText"
+					class = "center"/>
+			</p>
+		
+			<!--Temp HP Block-->
+			Temp Hp
+			<p>
+				<input type = "text"
+					id = "myText"
+					class = "center"/>
+			</p>
+			<!--Hit Dice/Death Saves Block-->
+			<!--This code from W3Schools-->
+			<div class = "container">
+				<div class = "half">
+					Hit Dice
+					<p>
+						<input type = "text"
+							id = "myText"
+							class = "center"/>
+					</p>
+				</div>
+				<div class = "half">
+					<form action="/action_page.php">
+						Successes	<input type="checkbox">
+									<input type="checkbox">
+									<input type="checkbox">
+						<br>    
+						Failures  	<input type="checkbox">
+									<input type="checkbox">
+									<input type="checkbox">
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="column">
 		<p>Content here</p>
