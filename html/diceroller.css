@@ -137,6 +137,7 @@ div.dicelogo {
 	min-width: var(--w);
 	max-width: var(--w);
 	/*padding:8px 0px 8px 0px;*/
+	text-align: center;
 }
 
 .rollbox textarea, select {
