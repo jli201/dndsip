@@ -1,38 +1,37 @@
 <html>
 <head>
-	<link rel="stylesheet" href="diceroller.css">
-	<link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- include this before any js file that uses jquery -->
+	<!-- this file loads into an element with id 'diceroll' via jquery. Mandatory. -->
+	<!-- include this before any js file that uses jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+	
+	<!-- JS file, preloaded image, and css. -->
+	<!-- Why preload? If not, the first 'roll' causes the image to stutter. -->
 	<script type="text/javascript" src="/js/diceroller.js"></script>
-	<link rel="preload" href="/img/dicelogo_hollow.png">
+	<link rel="preload" href="/img/dicelogo_hollow.png" as="image">
+	<link rel="stylesheet" href="diceroller.css">
 </head>
 <body>
-	<!-- <div class="logotext">DNDSIP - Simple, Intuitive, Paperless</div> -->
-	<div class="rollbox rollsmall">
-		<!-- <div id="clickdie" style="overflow:hidden;" onclick="openClose()"><object data="/img/dicelogo.svg" type="image/svg+xml" class="dicelogo">
-			<img src="/img/dicelogo.png" alt="Click me!">
-		</object></div> -->
-		<!-- svg causing issues with click events. -->
-		<ul>
-			<li id="clickdie"><div onclick="openClose()" class="dicelogo">
-				
-			</div></li>
-			<!-- <li><textarea id="ndice" name="numdice"></textarea></li> -->
-			<li><input type="number" id="ndice" name="numdice" value="0" min="0"></li>
-			<li class="simpletext">d</li>
-			<!-- <li><textarea id="tdice" name="typedice"></textarea></li> -->
-			<li><input type="number" id="tdice" name="typedice" value="4" min="0"></li>
-			<li>
-				<select id ="plusminus" name="typemod">
-				<option value="+">+</option>
-				<option value="-">-</option>
-			</select></li>
-			<li><input type="number" id = "modval" name="modval" value="0" min="0"></li>
-			<li class="simpletext">=</li>
-			<li><textarea id="resultdice" name="rollresult" readonly></textarea></li>
-			<li><input type="submit" name="rollcalculate" value="Roll!" onclick="calculateRoll();"></li>
-		</ul>
+	<div class="rollbox rollboxCompact">
+
+		<!-- roll calculation partials -->
+		<div class="diceRollerElem"><input type="number" id="numdice" value="0" min="0"></div>
+		<div class="diceRollerElem">d</div>
+		<div class="diceRollerElem"><input type="number" id="typedice" value="4" min="0"></div>
+		<div class="diceRollerElem">
+			<select id ="plusminus">
+			<option value="+">+</option>
+			<option value="-">-</option>
+		</select></div>
+		<div class="diceRollerElem"><input type="number" id="modval" value="0" min="0"></div>
+		<div class="diceRollerElem">=</div>
+		<div class="diceRollerElem"><textarea id="rollResult" readonly></textarea></div>
+
+		<!-- dice roll button -->
+		<div class="diceRollerElem" style="overflow:hidden;"><input type="submit" id="rollSubmit" value="Roll!" onclick="calculateRoll();"></div>
+
+		<!-- clickable d20 logo. Shifts to containing last roll result. -->
+		<div onclick="openClose()" id="dicelogo" class="diceRollerElem"></div>
+		
 	</div>
-	<!-- <div style="clear:both"></div> -->
 </body>
 </html>
