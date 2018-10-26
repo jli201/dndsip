@@ -1,7 +1,7 @@
 /* Clear out some hot garbage. A mini 'reset.css'
 If we want to do a true reset, we should include an actual resetting file...
 For example, we might want to change the 8px margin on 'body' elements.*/
-textarea {
+.rollbox textarea {
 	padding:0px;
 } 
 
@@ -16,22 +16,11 @@ textarea {
 #diceroll {
 	margin-bottom:10px;
 	/*position:absolute;*/
-	float:right;
+	/*float:right;*/
 	width:100%;
 }
 
-object.dicelogo {
-	float:right;
-	vertical-align: middle;
-	clear:both;
-	height:75px;
-	width:75px;
-	position:relative;
-	top:-25px;
-	right:-25px;
-}
-
-div.dicelogo {
+.dicelogo {
 	float:right;
 	vertical-align: middle;
 	/*clear:both;*/
@@ -65,20 +54,6 @@ div.dicelogo {
 	/*good up to 5 digits*/
 	font-size:15px; 
 }
-
-/*
-.logotext {
-	border-top: 2px dashed black;
-	border-left: 2px dashed black;
-	font-size:25px;
-	vertical-align: middle;
-	line-height:74px;
-	font-family: 'Cutive Mono', monospace;
-	float:left;
-	min-width:60%;
-	padding-left:5px;
-}
-*/
 
 .rollbox {
 	/*border-left:2px solid black;*/
@@ -128,7 +103,7 @@ div.dicelogo {
 	display:inline-block;
 }
 
-.rollbox textarea, input, select {
+.rollbox textarea, .rollbox input, .rollbox select {
 	line-height:48px; /*var(--h)-2*, can't do that math in css properties though.*/
 	height:var(--h);
 	min-height: var(--h);
@@ -140,7 +115,7 @@ div.dicelogo {
 	text-align: center;
 }
 
-.rollbox textarea, select {
+.rollbox textarea, .rollbox select {
 	font-size:25px;
 }
 
@@ -156,7 +131,7 @@ div.dicelogo {
 
 }
 
-li.simpletext {
+.simpletext {
 	padding:0;
 	font-size:25px;
 	text-align: center;

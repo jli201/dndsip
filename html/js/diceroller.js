@@ -1,14 +1,3 @@
-// //
-// $(document).ready(function(){
-   
-//    $("#clickdie, .dicelogo, .dicelogo svg, .dicelogo img").click(function(){
-// 		console.log("Hi.");
-// 	});
-
-// });
-
-
-
 //'open' and 'close' dice roller.
 function openClose() {
 	var debugflag = false;
@@ -29,13 +18,14 @@ function openClose() {
 
 function calculateRoll() {
 	try {
-		debugflag=true;
+		debugflag=false;
 
-		//Step 1. Validate data.
 		var ndice = $('#ndice').val();
 		var tdice = $('#tdice').val();
 		var sign = $('#plusminus').val();
 		var mod = $('#modval').val();
+
+		//////// VALIDATE DATA ///////////////
 
 		//Treating 'no input' as bad.
 		//Different from '0'.
@@ -62,10 +52,8 @@ function calculateRoll() {
 
 		if(debugflag) console.log("Final sum is " + sum);
 
-		//use editing guards.
-		//Why? B/c a user who edits the 'textarea' result line causes a bug
-		//This bug prevents the new value from displaying on screen, even if it's in the actual html
-		//e.g. it can be <textarea>3</textarea> but on screen 3 will not show up!
+		/////// PRINT RESULT /////////////////
+
 		$('#resultdice').prop('readonly', false);
 		$('#resultdice').html(sum);
 		$('#resultdice').prop('readonly', true);
