@@ -16,71 +16,63 @@
     </head>
 
     <body>
-        <div class="borderSize">
+        <div class="heading_div">
             <h1 class="charHeadingBorder"> Characters:</h1>
 
         </div>
 
-        <div class="charborderSize">
+        <div class="char_div">
             <div class="charSelectBorder">
                 <div style="float: left; width: 25%;">
                     Level:  <span class="numberCircle">13</span>
                 </div>
-                <div style="float: left; width: 25%;">Name: Bob </div>
-                <div style="float: left; width: 25%;">Race: Elf</div>
-                <div style="float: left; width: 25%;">Class: Mage</div>
-                <br style="clear: left;" />
+                <div class="char_info"> Name: Bob </div>
+                <div class="char_info"> Race: Elf</div>
+                <div class="char_info"> Class: Mage</div>
+               <br>
             </div>
-
+        </div>
+        <div class="char_div">
             <div class="charSelectBorder">
-                    <div style="float: left; width: 25%;">
-                        Level:  <span class="numberCircle">5</span>
-                    </div>
-                    <div style="float: left; width: 25%;">Name: Bill </div>
-                    <div style="float: left; width: 25%;">Race: Orc</div>
-                    <div style="float: left; width: 25%;">Class: Fighter</div>
-                    <br style="clear: left;" />
+                <div style="float: left; width: 25%;">
+                    Level:  <span class="numberCircle">13</span>
+                </div>
+                <div class="char_info"> Name: Bob </div>
+                <div class="char_info"> Race: Elf</div>
+                <div class="char_info"> Class: Mage</div>
+               <br>
             </div>
-
+        </div>
+        <div class="char_div">
             <div class="charSelectBorder">
-                    <div style="float: left; width: 25%;">
-                        Level:  <span class="numberCircle">20</span>
-                    </div>
-                    <div style="float: left; width: 25%;">Name: Bilbo </div>
-                    <div style="float: left; width: 25%;">Race: Hobbit</div>
-                    <div style="float: left; width: 25%;">Class: Thief</div>
-                    <br style="clear: left;" />
+                <div style="float: left; width: 25%;">
+                    Level:  <span class="numberCircle">13</span>
+                </div>
+                <div class="char_info"> Name: Bob </div>
+                <div class="char_info"> Race: Elf</div>
+                <div class="char_info"> Class: Mage</div>
+               <br>
             </div>
-
+        </div>
+        <div class="char_div">
             <div class="charSelectBorder">
-                    <div style="float: left; width: 25%;">
-                        Level:  <span class="numberCircle">20</span>
-                    </div>
-                    <div style="float: left; width: 25%;">Name: Bilbo </div>
-                    <div style="float: left; width: 25%;">Race: Hobbit</div>
-                    <div style="float: left; width: 25%;">Class: Thief</div>
-                    <br style="clear: left;" />
-            </div>
-
-
-            <div class="charSelectBorder">
-                    <div style="float: left; width: 25%;">
-                        Level:  <span class="numberCircle">20</span>
-                    </div>
-                    <div style="float: left; width: 25%;">Name: Bilbo </div>
-                    <div style="float: left; width: 25%;">Race: Hobbit</div>
-                    <div style="float: left; width: 25%;">Class: Thief</div>
-                    <br style="clear: left;" />
+                <div style="float: left; width: 25%;">
+                    Level:  <span class="numberCircle">13</span>
+                </div>
+                <div class="char_info"> Name: Bob </div>
+                <div class="char_info"> Race: Elf</div>
+                <div class="char_info"> Class: Mage</div>
+               <br>
             </div>
         </div>
 
-        <div class="charborderSize">
+        <div class="char_div">
             <div class="createChar">
                 + Create
             </div>
         </div>
 
-        <div class="borderSize">
+        <div class="heading_div">
                 <h1 class="charHeadingBorder"> DM Tools</h1>
     
         </div>

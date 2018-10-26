@@ -2,14 +2,12 @@ html{
     background-color: #8f9491;
 }
 
-
-
-.borderSize{
+.heading_div{
     margin-left: 100px;
     margin-right: 100px;
 }
 
-.charborderSize{
+.char_div{
     margin-left: 350px;
     margin-right: 350px;
 }
@@ -34,7 +32,7 @@ html{
 
 .charSelectBorderClicked{
     text-align: center;
-    border: 3px solid blueviolet;
+    border: 3px solid green;
     padding-top: 10px;
     padding-bottom: 10px;
     margin-top:10px;
@@ -67,3 +65,7 @@ html{
     font: 14px;
   }
   
+  .char_info{
+    float: left; 
+    width: 25%;
+  }
