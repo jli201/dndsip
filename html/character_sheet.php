@@ -24,51 +24,52 @@
 				<label style="font-size: 14px;"> Alignment: </label>
 				<input type="text" placeholder="Alignment">
 				<label style="font-size: 14px;"> Experience Points: </label>
-				<input type="text" placeholder="Experience Points">
+				<input type="number" placeholder="Experience Points">
 			</form>
 		</div>
 	</div>
 	<div class="column">
-		<div id="stats">
-		
-			<!-- inspiration and proficiency bonus -->
+<!-- inspiration and proficiency bonus -->
+		<div id="topLeftBackground">
 			<div id="insp-prof"> 
-				<input type="number" style="margin-bottom: 2px;">
+				<input type="number">
 				<label style="font-size: 20px;">Inspiration</label>
 			</div>
 			<div id="insp-prof"> 
 				<input type="number">
 				<label style="font-size: 20px;">Proficiency Bonus</label>
 			</div>
+		</div>
+		<div id="stats">
 			
 			<!-- stats boxes -->
 			<div id="statsboxLeftCol">
-				<h2> Strength </h2>
+				<h4> Strength </h4>
 				<input type="number">
 				<input type="number" style="width: 50px; margin-top: 2px;">
 			</div>
 			<div id="statsboxLeftCol">
-				<h2> Dexterity </h2>
+				<h4> Dexterity </h4>
 				<input type="number">
 				<input type="number" style="width: 50px; margin-top: 2px;">
 			</div>
 			<div id="statsboxLeftCol">
-				<h2> Constitution </h2>
+				<h4> Constitution </h4>
 				<input type="number">
 				<input type="number" style="width: 50px; margin-top: 2px;">
 			</div>
 			<div id="statsboxLeftCol">
-				<h2> Intelligence </h2>
+				<h4> Intelligence </h4>
 				<input type="number">
 				<input type="number" style="width: 50px; margin-top: 2px;">
 			</div>
 			<div id="statsboxLeftCol">
-				<h2> Wisdom </h2>
+				<h4> Wisdom </h4>
 				<input type="number">
 				<input type="number" style="width: 50px; margin-top: 2px;">
 			</div>
 			<div id="statsboxLeftCol">
-				<h2> Charisma </h2>
+				<h4> Charisma </h4>
 				<input type="number">
 				<input type="number" style="width: 50px; margin-top: 2px;">
 			</div>

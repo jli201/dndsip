@@ -14,12 +14,14 @@ input[type=number]::-webkit-outer-spin-button {
 	margin: .5%;
 	height: 5vh;
 	background-color: #CBF3F0;
+	box-sizing: content-box;
 }
 
 #innerbox {
 	background-color: #2EC4B6;
 	padding: 8px;
 	height: 66%;
+	box-sizing: content-box;
 }
 
 #nameform {
@@ -46,6 +48,7 @@ input[type=number]::-webkit-outer-spin-button {
 	float: left;
 	width: 30.3333%;
 	background-color: #CBF3F0;
+	box-sizing: content-box;
 }
 
 #stats{
@@ -54,11 +57,28 @@ input[type=number]::-webkit-outer-spin-button {
 	height: 66%;
 }
 
-#insp-prof input{ /* for inspiration and proficiency bonus*/
+#topLeftBackground{
+	background-color: #2EC4B6;
+	padding: 5px;
+	height: 15%;
+}
+
+#insp-prof {
+	display: block;
+	height: 6vh; 
+	width: 96.5%;
+	margin: 3px;
+	background-color: #8f9491;
+	border: 2px black solid;
+}
+
+#insp-prof input{ /* for inspiration and proficiency bonus inputs*/
 	width: 40px; 
-	height: 35px; 
+	height: 30px; 
 	margin-left: 40px;
 	border-color: black;
+	padding: 2px;
+	margin-top: 6px;
 }
 
 #statsboxLeftCol { /*stats box CSS for the left column*/
@@ -67,19 +87,22 @@ input[type=number]::-webkit-outer-spin-button {
 	float: left;
 	width: 30.3333%;
 	margin: 3px;
-	background-color: white;
+	background-color: #8f9491;
 	border: 2px black solid;
 }
 
-#statsboxLeftCol h2{
+#statsboxLeftCol h4{
 	text-align: center; 
+	font-size: 150%;
 	margin-top: 5px; 
-	margin-bottom: 5px
+	margin-bottom: 5px;
+	color: white;
 }
 
 #statsboxLeftCol input{ 
 	display: block; 
 	margin: 0 auto;
+	padding: 2px;
 	height: 20px;
 	width: 70px; 
 	text-align: center;
@@ -94,10 +117,16 @@ input[type=number]::-webkit-outer-spin-button {
 	margin: 3px;
 	background-color: white;
 	border: 2px black solid;
+	background-color: #8f9491;
 }
 
 #ST-form { /*the form CSS for saving throws for styling later if needed*/
 	font-size: 15px;
+	color: white;
+}
+
+#ST-form input {
+	padding: 2px;
 }
 
 #ST-form-checkbox {
@@ -105,6 +134,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #ST-form-spacing {
+	margin-top: 2px;
 	margin-bottom: 2px;
 }
 
