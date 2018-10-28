@@ -54,10 +54,10 @@ input[type=number]::-webkit-outer-spin-button {
 #stats{
 	background-color: #2EC4B6;
 	padding: 5px;
-	height: 66%;
+	height: 26.8%;
 }
 
-#topLeftBackground{
+#insp-prof-background {
 	background-color: #2EC4B6;
 	padding: 5px;
 	height: 15%;
@@ -106,6 +106,12 @@ input[type=number]::-webkit-outer-spin-button {
 	height: 20px;
 	width: 70px; 
 	text-align: center;
+}
+
+#savingThrowsBackground{
+	background-color: #2EC4B6;
+	padding: 5px;
+	height: 23.5%;
 }
 
 #savingThrows { /*saving throws box sizing*/

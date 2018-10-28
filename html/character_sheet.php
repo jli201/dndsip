@@ -29,8 +29,9 @@
 		</div>
 	</div>
 	<div class="column">
-<!-- inspiration and proficiency bonus -->
-		<div id="topLeftBackground">
+	
+		<!-- inspiration and proficiency bonus -->
+		<div id="insp-prof-background">
 			<div id="insp-prof"> 
 				<input type="number">
 				<label style="font-size: 20px;">Inspiration</label>
@@ -40,8 +41,9 @@
 				<label style="font-size: 20px;">Proficiency Bonus</label>
 			</div>
 		</div>
+		
+		<!-- stats left column -->
 		<div id="stats">
-			
 			<!-- stats boxes -->
 			<div id="statsboxLeftCol">
 				<h4> Strength </h4>
@@ -73,8 +75,10 @@
 				<input type="number">
 				<input type="number" style="width: 50px; margin-top: 2px;">
 			</div>
-			
-			<!-- saving throws -->
+		</div>
+		
+		<!-- saving throws -->
+		<div id="savingThrowsBackground">
 			<div id="savingThrows">
 				<form id="ST-form">
 					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Strength <br>
@@ -85,8 +89,8 @@
 					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Charisma <br>
 				</form>
 			</div>
-
 		</div>
+		
 		<div id="passiveWisdom">
 			<p>This is the last color in the color pallete that I had generated. I think it is neat too.</p>
 		</div>
