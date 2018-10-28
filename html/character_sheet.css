@@ -2,6 +2,12 @@ body{
 	background-color: #F49349;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 #namePlate{
 	display: block;
 	padding: 1%;
@@ -46,6 +52,60 @@ body{
 	background-color: #2EC4B6;
 	padding: 5px;
 	height: 66%;
+}
+
+#insp-prof input{ /* for inspiration and proficiency bonus*/
+	width: 40px; 
+	height: 35px; 
+	margin-left: 40px;
+	border-color: black;
+}
+
+#statsboxLeftCol { /*stats box CSS for the left column*/
+	display: block;
+	height: 11vh; 
+	float: left;
+	width: 30.3333%;
+	margin: 3px;
+	background-color: white;
+	border: 2px black solid;
+}
+
+#statsboxLeftCol h2{
+	text-align: center; 
+	margin-top: 5px; 
+	margin-bottom: 5px
+}
+
+#statsboxLeftCol input{ 
+	display: block; 
+	margin: 0 auto;
+	height: 20px;
+	width: 70px; 
+	text-align: center;
+}
+
+#savingThrows { /*saving throws box sizing*/
+	display: block;
+	height: 18vh; 
+	float: left;
+	width: 30%;
+	padding: 5px;
+	margin: 3px;
+	background-color: white;
+	border: 2px black solid;
+}
+
+#ST-form { /*the form CSS for saving throws for styling later if needed*/
+	font-size: 15px;
+}
+
+#ST-form-checkbox {
+	margin-left: 10px;
+}
+
+#ST-form-spacing {
+	margin-bottom: 2px;
 }
 
 #passiveWisdom{
