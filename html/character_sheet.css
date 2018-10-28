@@ -113,3 +113,16 @@ input[type=number]::-webkit-outer-spin-button {
 	padding: 5px;
 	height: 10%;
 }
+
+/*Middle Column CSS*/
+#genericHpBox {
+	display: block;
+	height: 11vh; 
+	float: center;
+	width: 100%;
+	margin-bottom: 3px;
+	background-color: white;
+	border: 2px black solid;
+}
+
+/*End of Middle Colum CSS*/
