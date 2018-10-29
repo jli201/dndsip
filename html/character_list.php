@@ -74,7 +74,7 @@
 
         <div class="heading_div">
                 <h1 class="charHeadingBorder"> 
-                        <a href="index.php"> DM Tools </a> 
+                     <a href="index.php"> DM Tools </a> 
                 </h1>
         </div>
 
