@@ -33,7 +33,7 @@
 
         <div class="char_div">
             <div class="charSelectBorder">
-                <div style="float: left; width: 25%;">
+                <div class="char_info">
                     Level:  <span class="numberCircle">13</span>
                 </div>
                 <div class="char_info"> Name: Bob </div>
@@ -44,7 +44,7 @@
         </div>
         <div class="char_div">
             <div class="charSelectBorder">
-                <div style="float: left; width: 25%;">
+                <div class="char_info">
                     Level:  <span class="numberCircle">13</span>
                 </div>
                 <div class="char_info"> Name: Bob </div>
@@ -55,7 +55,7 @@
         </div>
         <div class="char_div">
             <div class="charSelectBorder">
-                <div style="float: left; width: 25%;">
+                <div class="char_info">
                     Level:  <span class="numberCircle">13</span>
                 </div>
                 <div class="char_info"> Name: Bob </div>
@@ -66,7 +66,7 @@
         </div>
         <div class="char_div">
             <div class="charSelectBorder">
-                <div style="float: left; width: 25%;">
+                <div class="char_info">
                     Level:  <span class="numberCircle">13</span>
                 </div>
                 <div class="char_info"> Name: Bob </div>
@@ -83,8 +83,9 @@
         </div>
 
         <div class="heading_div">
-                <h1 class="charHeadingBorder"> DM Tools</h1>
-    
+                <h1 class="charHeadingBorder"> 
+                     <a href="index.php"> DM Tools </a> 
+                </h1>
         </div>
 
     </body>
