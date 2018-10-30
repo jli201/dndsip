@@ -9,7 +9,6 @@
 	<meta name="viewport" content="width=device-width">
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
-</script>
 </head>
 <body>
 	<?php
@@ -32,7 +31,8 @@
 			$checkLogin = "SELECT * FROM Users WHERE Username='$username' AND Password='$password'";
 			$result = $conn->query($checkLogin);
 			if($result->num_rows) {
-				echo("Found match!");
+				$_SESSION["user"] = $username;
+				header("Location:character_list.php");
 			} else {
 				$submitError = "Invalid username or password.";
 				$registeredMessage = "";
@@ -42,8 +42,12 @@
 	}
 
 	//If the user created an account on the register page, ask them to log in.
-	if(strcmp($_SESSION["accountCreated"], "true") == 0) {
+	if($_SESSION["accountCreated"]) {
 		$registeredMessage = "New account registered. Login below.";
+	}
+
+	if($_SESSION["notLoggedIn"]){
+		$submitError = "Please log in first.";
 	}
 
 	//Making it harder to hack us with SQL
@@ -71,6 +75,7 @@
 	</div>
 	<?php
 		unset($_SESSION["accountCreated"]);
+		unset($_SESSION["notLoggedIn"]);
 	?>
 </body>
 </html>

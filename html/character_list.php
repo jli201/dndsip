@@ -1,3 +1,13 @@
+<?php
+	session_start();
+	if($_SESSION["user"]) {
+		echo($_SESSION["user"]);
+	} else {
+		$_SESSION["notLoggedIn"] = True;
+		header("Location:index.php");
+	}
+?>
+
 <!DOCTYPE html>
 <html>
     <head>

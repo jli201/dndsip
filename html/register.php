@@ -1,5 +1,8 @@
 <?php
 	session_start();
+	if($_SESSION["user"]) {
+		unset($_SESSION["user"]);
+	}
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +38,7 @@
 				if (checkInput($username, $password, $confirmPassword, $conn)) {
 					$newUser = "INSERT INTO Users values ('$username', '$password')";
 					if ($conn->query($newUser)){
-						$_SESSION["accountCreated"] = "true";
+						$_SESSION["accountCreated"] = True;
 						header("Location:index.php");
 					} else {
 						echo("Error: " . $newUser . " " . $conn->error);
@@ -91,19 +94,16 @@
 		}
 	?>
 
-	<div id="signup">
+	<div id="registerDiv">
 		<p id="errorText"><?php echo($submitError);?></p>
-		<form id="signupForm" method="post" action="<?php echo(htmlspecialchars($_SERVER["PHP_SELF"]));?>">
+		<form id="registerForm" method="post" action="<?php echo(htmlspecialchars($_SERVER["PHP_SELF"]));?>">
 			Username: <input class="registerText" type="text" name="username">
-			<br>
 			<br>
 			Password: <input class="registerText" type="password" name="password">
 			<br>
-			<br>
 			Confirm Password: <input class="registerText" type="password" name="confirmPassword">
 			<br>
-			<br>
-			<input id="register" type="submit" value="Register">
+			<input id="registerButton" type="submit" value="Register">
 		</form>
 	</div>
 </body>
