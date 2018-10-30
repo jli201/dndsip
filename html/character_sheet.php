@@ -33,8 +33,8 @@
 		<!-- inspiration and proficiency bonus -->
 		<div id="insp-prof-background">
 			<div id="insp-prof"> 
-				<input type="number">
-				<label style="font-size: 20px;">Inspiration</label>
+				<input for="inspiration" type="checkbox">
+				<label style="font-size: 20px">Inspiration</label>
 			</div>
 			<div id="insp-prof"> 
 				<input type="number">

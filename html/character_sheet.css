@@ -74,7 +74,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 #insp-prof input{ /* for inspiration and proficiency bonus inputs*/
 	width: 40px; 
-	height: 30px; 
+	height: 27px; 
 	margin-left: 40px;
 	border-color: black;
 	padding: 2px;
@@ -102,8 +102,8 @@ input[type=number]::-webkit-outer-spin-button {
 #statsboxLeftCol input{ 
 	display: block; 
 	margin: 0 auto;
-	padding: 2px;
-	height: 20px;
+	padding: 1px;
+	height: 18px;
 	width: 70px; 
 	text-align: center;
 }
@@ -116,7 +116,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 #savingThrows { /*saving throws box sizing*/
 	display: block;
-	height: 18vh; 
+	height: 18.4vh; 
 	float: left;
 	width: 30%;
 	padding: 5px;
@@ -127,7 +127,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #ST-form { /*the form CSS for saving throws for styling later if needed*/
-	font-size: 15px;
+	font-size: 14px;
 	color: white;
 }
 
