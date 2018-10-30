@@ -219,7 +219,6 @@ labels and text areas and tables, should all display vertical*/
 }
 
 #col3 .input-label {
-	/*height:30%;*/
 	color: black;
 	font-size:14px;
 	text-align:center;
@@ -284,13 +283,59 @@ labels and text areas and tables, should all display vertical*/
 	background-color:#8F9491;
 }
 
-#col3 .inventory-box .input-field {
-	height:85%;
-}
-
 #col3 .inventory-box .input-label {
 	height:10%;
 }
+
+/*Table styling.*/
+
+#col3 #inventory-table-wrapper {
+	height:85%;
+	width:96%;
+	overflow: auto;
+	margin-left:2%;
+	margin-right:2%;
+}
+
+#col3 #inventory-table {
+	width:100%;
+	display:table;
+	background-color:white;
+}
+
+#col3 #inventory-table td {
+	border: 1px solid black;
+}
+
+/*first row (legend)*/
+#col3 #inventory-table tr:nth-child(1) {
+	border-bottom:2px solid black;
+}
+
+/*first row (legend)'s first col*/
+#col3 #inventory-table tr:nth-child(1) td:nth-child(1) {
+	padding: 5px;
+}
+
+/*column 1*/
+#col3 #inventory-table td:nth-child(1) {
+	width:10%;
+	padding:0;
+	height:100%;
+}
+
+/*column 2*/
+#col3 #inventory-table td:nth-child(2) {
+	width:90%;
+}
+
+/*input stylings for input number in table*/
+#col3 #inventory-table input[type=number] {
+	padding:3px;
+	height: 30px;
+	box-sizing:border-box;
+}
+
 
 
 

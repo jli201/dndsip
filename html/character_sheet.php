@@ -220,8 +220,41 @@
 		<!-- Inventory Table -->
 		<div class="inventory-wrapper">
 			<div class="inventory-box">
-				<label class="input-label">Ideals</label>
-
+				<label class="input-label">Inventory</label>
+				<div id="inventory-table-wrapper"><table id="inventory-table">
+					<tr>
+						<td>#</td>
+						<td>Item</td>
+					</tr>
+					<tr>
+						<td><input type="number" value="0"></input></td>
+						<td><input type="text" value="item"></input></td>
+					</tr>
+					<tr>
+						<td>#</td>
+						<td>Item</td>
+					</tr>
+					<tr>
+						<td>#</td>
+						<td>Item</td>
+					</tr>
+					<tr>
+						<td>#</td>
+						<td>Item</td>
+					</tr>
+					<tr>
+						<td>#</td>
+						<td>Item</td>
+					</tr>
+					<tr>
+						<td>#</td>
+						<td>Item</td>
+					</tr>
+					<tr>
+						<td>#</td>
+						<td>Item</td>
+					</tr>
+				</table></div>
 			</div>
 		</div>
 	</div>
