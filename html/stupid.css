@@ -81,11 +81,11 @@ input:invalid, input.error, textarea:invalid, textarea.error {background: #ffdfd
 
 @media all and (min-width:800px) {
   .max900 {max-width:900px}
-  .quarter {width:25%; margin-right:-5px}
-  .half {width:50%; margin-right:-10px}
-  .third {width:33.33%; margin-right:-6.66px}
-  .twothirds {width:66.66%; margin-right:-13.33px}
-  .threequarters {width:75%; margin-right:-15px}
+  .quarter {width:21%; margin-right:.5% }
+  .half {width:45.6%; margin-right:0%}
+  .third {width:28.33%; margin-right: .5%}
+  .twothirds {width:50%; margin-right: .5%}
+  .threequarters {width:63%; margin-right:.5%}
 }
 @media all and (min-width:600px) and (max-width:799px) {
   .quarter.compressible {width:25%; margin-right:-5px}

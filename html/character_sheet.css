@@ -74,7 +74,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 #insp-prof input{ /* for inspiration and proficiency bonus inputs*/
 	width: 40px; 
-	height: 30px; 
+	height: 27px; 
 	margin-left: 40px;
 	border-color: black;
 	padding: 2px;
@@ -102,8 +102,8 @@ input[type=number]::-webkit-outer-spin-button {
 #statsboxLeftCol input{ 
 	display: block; 
 	margin: 0 auto;
-	padding: 2px;
-	height: 20px;
+	padding: 1px;
+	height: 18px;
 	width: 70px; 
 	text-align: center;
 }
@@ -116,7 +116,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 #savingThrows { /*saving throws box sizing*/
 	display: block;
-	height: 18vh; 
+	height: 18.4vh; 
 	float: left;
 	width: 30%;
 	padding: 5px;
@@ -127,7 +127,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #ST-form { /*the form CSS for saving throws for styling later if needed*/
-	font-size: 15px;
+	font-size: 14px;
 	color: white;
 }
 
@@ -156,10 +156,33 @@ input[type=number]::-webkit-outer-spin-button {
 	height: 11vh; 
 	float: center;
 	width: 100%;
-	margin-bottom: 3px;
+	margin: -2px;
+	margin-bottom: 8px;
 	background-color: white;
 	border: 2px black solid;
 }
+.shortenAndCenter{
+		width: 92.5%;
+		margin-left: .5%;
+		margin-right: .5%;
+		text-align: center;
+}
+.shortenAndCenter2{
+		width: 88%;
+		margin-left: .5%;
+		margin-right: .5%;
+		text-align: center;
+}
+
+.halvesBoxes{
+	display: block;
+	padding: 1%;
+	margin: .5%;
+	float: left;
+	width: 47%;
+	box-sizing: content-box;
+}
+
 
 /*End of Middle Colum CSS*/
 
@@ -340,3 +363,55 @@ labels and text areas and tables, should all display vertical*/
 
 
 /* Third Column CSS End */
+
+#stats2{
+	background-color: #2EC4B6;
+	padding: 5px;
+}
+.imgTextOverlay {
+    position: relative;
+    text-align: center;
+}
+/*Auto margins idea from https://stackoverflow.com/questions/8508275/how-to-center-a-position-absolute-element*/
+.imgTextBot{
+    position: absolute;
+    top: 66%;
+    margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+}
+.imgTextBot2{
+	position: absolute;
+    top: 80%;
+    margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+}
+input[type=sheildTextBox] {
+    background-color: #c1b8b8;
+	font-size: 25px;
+	position: absolute;
+	top: 20%;
+	margin-left: auto;
+	margin-right: auto;
+	left: 34px;
+	right: 0;
+}
+input[type=speedBox] {
+	font-size: 25px;
+	position: absolute;
+	top: 20%;
+	margin-left: auto;
+	margin-right: auto;
+	left: 34px;
+	right: 0;
+}
+table{
+		display: table;
+		border-collapse: separate;
+		border-spacing: 2px;
+		border-color: gray;
+}
+/*End of Middle Colum CSS*/

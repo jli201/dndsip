@@ -7,6 +7,7 @@
   <title>Character Sheet</title>
   <link rel="stylesheet" href="character_sheet.css">
   <link rel="stylesheet" href="stupid.css">
+  <script type = "text/javascript" src="character_sheet.js"></script>
 </head>
 <body>
 	<div id="namePlate">
@@ -33,8 +34,8 @@
 		<!-- inspiration and proficiency bonus -->
 		<div id="insp-prof-background">
 			<div id="insp-prof"> 
-				<input type="number">
-				<label style="font-size: 20px;">Inspiration</label>
+				<input for="inspiration" type="checkbox">
+				<label style="font-size: 20px">Inspiration</label>
 			</div>
 			<div id="insp-prof"> 
 				<input type="number">
@@ -99,19 +100,36 @@
 		<div class = "container">
 			<!--AC/Initiative/Speed Block -->
 			<div class = "third">
-				<img class = "center three-quarter" src="img/Sheild2.png"/>
+				<div class = "imgTextOverlay">
+					<img class = "center" src="img/Sheild2.png"/>
+					<input type="sheildTextBox" placeholder="AC" style="width:30px; text-align: center;">
+					<div class = "imgTextBot">
+						<b>Armor<br>
+						Class</b>
+					</div>
+				</div>
+			</div>
+			<div class = "third">
+				<div class = "imgTextOverlay">
+					<img class = "center" src="img/TextBox.png"/>
+					<input type="speedBox" style="width:30px; text-align: center;">
+					<div class = "imgTextBot2">
+						<b>Initiative</b>
+					</div>
+				</div>
 			</div>
 			
 			<div class = "third">
-				<img class = "center three-quarter" src="img/Sheild2.png"/>
-			</div>
-			
-			<div class = "third">
-				<img class = "center three-quarter" src="img/Sheild2.png"/>
+				<div class = "imgTextOverlay">
+					<img class = "center" src="img/TextBox.png"/>
+					<input type="speedBox" style="width:30px; text-align: center;">
+					<div class = "imgTextBot2">
+						<b>Speed</b>
+					</div>
+				</div>
 			</div>
 		</div>
-		
-		<div id="stats">
+		<div id="stats2">
 			<!--HP Block-->
 			<div id="genericHpBox">
 				<div class = "container">
@@ -122,17 +140,20 @@
 						<input type="number" margin-top: 2px;>
 					</div>
 				</div>
-				<input type="number">
+				<div class = "shortenAndCenter">
+					<input type="number" style="text-align: center;">
+				</div>
 				<div class = "center">
 					<h6><font size = "-1"> Current Hitpoints </font></h6>
 				</div>
 			</div>
-		
 			<!--Temp HP Block-->
 			<div id="genericHpBox">
 				<br>
 				<br>
-				<input type="number">
+				<div class="shortenAndCenter">
+					<input type="number" style="text-align: center;">
+				</div>
 				<div class = "center">
 					<h6><font size = "-1"> Temporary Hitpoints </font></h6>
 				</div>
@@ -148,7 +169,9 @@
 						<div class = "twothirds">
 							<input type="number" margin-top: 2px;>
 						</div>
-						<input type="number" margin-top: 2px;>
+						<div class = "shortenAndCenter2">
+							<input type="number" style="text-align: center; margin-top: 2px;">
+						</div>
 						<div class="center">
 							<h6><font size = "-1"> Current Hit Dice </font></h6>
 						</div>
@@ -156,30 +179,52 @@
 				</div>
 				<div class = "half">
 					<div id="genericHpBox">
+						<br>
 						<div class = "container">
-							<br>
-							<div class = "half right">
+							<div class = "halvesBoxes">
 								Successes
 							</div>
-							<div class = "half center">
+							<div class = "halvesBoxes">
 								<form action="/action_page.php">
 									<input type="checkbox">
 									<input type="checkbox">
 									<input type="checkbox">
 							</div>
+							<div class = "halvesBoxes">
 							<br>
-							<br>
-							<div class = "half right">
 								Failures
 							</div>
-							<div class = "half center">
+							<div class = "halvesBoxes">
 								<form action="/action_page.php">
+								<br>
 									<input type="checkbox">
 									<input type="checkbox">
 									<input type="checkbox">
 							</div>
 						</div>
 					</div>
+				</div>
+				<!-- Weapon/Attack Table -->
+				<div class = "shortenAndCenter">
+					<table id="weaponTable">
+						<tr>
+							<th>Name</th>
+							<th>Atk Bonus</th>
+							<th>Damage/Type</th>
+						</tr>
+						<tr>
+							<td><input></td>
+							<td><input></td>
+							<td><input></td>
+						</tr>
+						<tr>
+							<td><input></td>
+							<td><input></td>
+							<td><input></td>
+						</tr>
+					</table>
+					<button onclick="addRow()">Add Row</button>
+					<button onclick="deleteRow()">Delete Row</button>
 				</div>
 			</div>
 		</div>
