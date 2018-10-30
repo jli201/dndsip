@@ -24,56 +24,61 @@
 				<label style="font-size: 14px;"> Alignment: </label>
 				<input type="text" placeholder="Alignment">
 				<label style="font-size: 14px;"> Experience Points: </label>
-				<input type="text" placeholder="Experience Points">
+				<input type="number" placeholder="Experience Points">
 			</form>
 		</div>
 	</div>
 	<div class="column">
-		<div id="stats">
-		
-			<!-- inspiration and proficiency bonus -->
+	
+		<!-- inspiration and proficiency bonus -->
+		<div id="insp-prof-background">
 			<div id="insp-prof"> 
-				<input type="number" style="margin-bottom: 2px;">
+				<input type="number">
 				<label style="font-size: 20px;">Inspiration</label>
 			</div>
 			<div id="insp-prof"> 
 				<input type="number">
 				<label style="font-size: 20px;">Proficiency Bonus</label>
 			</div>
-			
+		</div>
+		
+		<!-- stats left column -->
+		<div id="stats">
 			<!-- stats boxes -->
 			<div id="statsboxLeftCol">
-				<h2> Strength </h2>
+				<h4> Strength </h4>
 				<input type="number">
 				<input type="number" style="width: 50px; margin-top: 2px;">
 			</div>
 			<div id="statsboxLeftCol">
-				<h2> Dexterity </h2>
+				<h4> Dexterity </h4>
 				<input type="number">
 				<input type="number" style="width: 50px; margin-top: 2px;">
 			</div>
 			<div id="statsboxLeftCol">
-				<h2> Constitution </h2>
+				<h4> Constitution </h4>
 				<input type="number">
 				<input type="number" style="width: 50px; margin-top: 2px;">
 			</div>
 			<div id="statsboxLeftCol">
-				<h2> Intelligence </h2>
+				<h4> Intelligence </h4>
 				<input type="number">
 				<input type="number" style="width: 50px; margin-top: 2px;">
 			</div>
 			<div id="statsboxLeftCol">
-				<h2> Wisdom </h2>
+				<h4> Wisdom </h4>
 				<input type="number">
 				<input type="number" style="width: 50px; margin-top: 2px;">
 			</div>
 			<div id="statsboxLeftCol">
-				<h2> Charisma </h2>
+				<h4> Charisma </h4>
 				<input type="number">
 				<input type="number" style="width: 50px; margin-top: 2px;">
 			</div>
-			
-			<!-- saving throws -->
+		</div>
+		
+		<!-- saving throws -->
+		<div id="savingThrowsBackground">
 			<div id="savingThrows">
 				<form id="ST-form">
 					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Strength <br>
@@ -84,8 +89,8 @@
 					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Charisma <br>
 				</form>
 			</div>
-
 		</div>
+		
 		<div id="passiveWisdom">
 			<p>This is the last color in the color pallete that I had generated. I think it is neat too.</p>
 		</div>
@@ -94,19 +99,36 @@
 		<div class = "container">
 			<!--AC/Initiative/Speed Block -->
 			<div class = "third">
-				<img class = "center three-quarter" src="img/Sheild2.png"/>
+				<div class = "imgTextOverlay">
+					<img class = "center" src="img/Sheild2.png"/>
+					<input type="sheildTextBox" placeholder="AC" style="width:30px; text-align: center;">
+					<div class = "imgTextBot">
+						<b>Armor<br>
+						Class</b>
+					</div>
+				</div>
+			</div>
+			<div class = "third">
+				<div class = "imgTextOverlay">
+					<img class = "center" src="img/TextBox.png"/>
+					<input type="speedBox" style="width:30px; text-align: center;">
+					<div class = "imgTextBot2">
+						<b>Initiative</b>
+					</div>
+				</div>
 			</div>
 			
 			<div class = "third">
-				<img class = "center three-quarter" src="img/Sheild2.png"/>
-			</div>
-			
-			<div class = "third">
-				<img class = "center three-quarter" src="img/Sheild2.png"/>
+				<div class = "imgTextOverlay">
+					<img class = "center" src="img/TextBox.png"/>
+					<input type="speedBox" style="width:30px; text-align: center;">
+					<div class = "imgTextBot2">
+						<b>Speed</b>
+					</div>
+				</div>
 			</div>
 		</div>
-		
-		<div id="stats">
+		<div id="stats2">
 			<!--HP Block-->
 			<div id="genericHpBox">
 				<div class = "container">
@@ -117,17 +139,20 @@
 						<input type="number" margin-top: 2px;>
 					</div>
 				</div>
-				<input type="number">
+				<div class = "shortenAndCenter">
+					<input type="number" style="text-align: center;">
+				</div>
 				<div class = "center">
 					<h6><font size = "-1"> Current Hitpoints </font></h6>
 				</div>
 			</div>
-		
 			<!--Temp HP Block-->
 			<div id="genericHpBox">
 				<br>
 				<br>
-				<input type="number">
+				<div class="shortenAndCenter">
+					<input type="number" style="text-align: center;">
+				</div>
 				<div class = "center">
 					<h6><font size = "-1"> Temporary Hitpoints </font></h6>
 				</div>
@@ -143,7 +168,9 @@
 						<div class = "twothirds">
 							<input type="number" margin-top: 2px;>
 						</div>
-						<input type="number" margin-top: 2px;>
+						<div class = "shortenAndCenter2">
+							<input type="number" style="text-align: center; margin-top: 2px;">
+						</div>
 						<div class="center">
 							<h6><font size = "-1"> Current Hit Dice </font></h6>
 						</div>
@@ -151,24 +178,24 @@
 				</div>
 				<div class = "half">
 					<div id="genericHpBox">
+						<br>
 						<div class = "container">
-							<br>
-							<div class = "half right">
+							<div class = "halvesBoxes">
 								Successes
 							</div>
-							<div class = "half center">
+							<div class = "halvesBoxes">
 								<form action="/action_page.php">
 									<input type="checkbox">
 									<input type="checkbox">
 									<input type="checkbox">
 							</div>
+							<div class = "halvesBoxes">
 							<br>
-							<br>
-							<div class = "half right">
 								Failures
 							</div>
-							<div class = "half center">
+							<div class = "halvesBoxes">
 								<form action="/action_page.php">
+								<br>
 									<input type="checkbox">
 									<input type="checkbox">
 									<input type="checkbox">
