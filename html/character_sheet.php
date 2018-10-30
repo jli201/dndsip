@@ -7,6 +7,7 @@
   <title>Character Sheet</title>
   <link rel="stylesheet" href="character_sheet.css">
   <link rel="stylesheet" href="stupid.css">
+  <script type = "text/javascript" src="character_sheet.js"></script>
 </head>
 <body>
 	<div id="namePlate">
@@ -202,6 +203,28 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<!-- Weapon/Attack Table -->
+				<div class = "shortenAndCenter">
+					<table id="weaponTable">
+						<tr>
+							<th>Name</th>
+							<th>Atk Bonus</th>
+							<th>Damage/Type</th>
+						</tr>
+						<tr>
+							<td><input></td>
+							<td><input></td>
+							<td><input></td>
+						</tr>
+						<tr>
+							<td><input></td>
+							<td><input></td>
+							<td><input></td>
+						</tr>
+					</table>
+					<button onclick="addRow()">Add Row</button>
+					<button onclick="deleteRow()">Delete Row</button>
 				</div>
 			</div>
 		</div>

@@ -227,4 +227,10 @@ input[type=speedBox] {
 	left: 34px;
 	right: 0;
 }
+table{
+		display: table;
+		border-collapse: separate;
+		border-spacing: 2px;
+		border-color: gray;
+}
 /*End of Middle Colum CSS*/
