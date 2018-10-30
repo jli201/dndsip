@@ -184,8 +184,20 @@
 			</div>
 		</div>
 	</div>
-	<div class="column">
-		<p>Content here</p>
+
+
+
+	<div class="column" id="col3">
+		<div class="personality-wrapper">
+			<div class="personality-box"></div>
+			<div class="personality-box"></div>
+			<div class="personality-box"></div>
+			<div class="personality-box"></div>
+		</div>
+		<div class="features-traits"></div>
+		<div class="inventory"></div>
 	</div>
+
+
 </body>
 </html>
