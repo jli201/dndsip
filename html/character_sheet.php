@@ -188,14 +188,42 @@
 
 
 	<div class="column" id="col3">
+		<!-- Structure: Wrapper contains N boxes -->
+		<!-- Each box has a label and input/textarea -->
+		<!-- It is possible to have only 1 box (only personality has more) -->
+		<!-- Personality Traits -->
 		<div class="personality-wrapper">
-			<div class="personality-box"></div>
-			<div class="personality-box"></div>
-			<div class="personality-box"></div>
-			<div class="personality-box"></div>
+			<div class="personality-box">
+				<label class="input-label">Traits</label>
+				<textarea class="input-field"></textarea>
+			</div>
+			<div class="personality-box">
+				<label class="input-label">Ideals</label>
+				<textarea class="input-field"></textarea>
+			</div>
+			<div class="personality-box">
+				<label class="input-label">Bonds</label>
+				<textarea class="input-field"></textarea>
+			</div>
+			<div class="personality-box">
+				<label class="input-label">Flaws</label>
+				<textarea class="input-field"></textarea>
+			</div>
 		</div>
-		<div class="features-traits"></div>
-		<div class="inventory"></div>
+		<!-- Features / Special Traits -->
+		<div class="features-traits-wrapper">
+			<div class="features-traits-box">
+				<label class="input-label">Features & Traits</label>
+				<textarea class="input-field"></textarea>
+			</div>
+		</div>
+		<!-- Inventory Table -->
+		<div class="inventory-wrapper">
+			<div class="inventory-box">
+				<label class="input-label">Ideals</label>
+
+			</div>
+		</div>
 	</div>
 
 

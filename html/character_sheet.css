@@ -170,6 +170,11 @@ Dark Green: #2EC4B6 (inner box);
 Light Green: #CBF3F0; (column box);
 Dark Gray: #8f9491; (Sub-box);
 
+Structure:
+Each section in a column has a wrapper, which contains N boxes;
+Each of N boxes has a label and some kind of input field (textarea, input, etc)
+1 Box is possible (features/traits, inventory), as is many (personality)
+
 Flexbox Guide: https://css-tricks.com/snippets/css/a-guide-to-flexbox/;
 */
 
@@ -180,21 +185,59 @@ Flexbox Guide: https://css-tricks.com/snippets/css/a-guide-to-flexbox/;
 }
 
 
-/*children of col3*/
+/*children of col3 (the wrappers)*/
 #col3 > div {
 	background-color: #2EC4B6;
 	border:2px solid black;
 	padding:2%;
+
+	/*as a container, generic*/
+	/*flex-basis needs to be done individually*/
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
 }
+
+
+/*this ensures vertical stacking for both label
+and text area
+Meaning: Col3's child (wrapper)'s child (box)'s children
+labels and text areas and tables, should all display vertical*/
+#col3 > div > div > * {
+	display: block;
+}
+
+/*generic text areas and labels*/
+#col3 .input-field {
+	box-sizing:border-box;
+
+	margin-left:2%;
+	margin-right:2%;
+
+	width:96%;
+	resize: none;
+}
+
+#col3 .input-label {
+	/*height:30%;*/
+	color: black;
+	font-size:14px;
+	text-align:center;
+
+	/*text-shadow:
+	-1px -1px 0 white,
+	-1px  1px 0 white,
+	 1px -1px 0 white,
+	 1px  1px 0 white;*/
+}
+
+
+/*Personality Elements*/
 
 #col3 .personality-wrapper {
 	/*as an item*/
 	flex-basis: 30%;
 
-	/*as a container*/
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
 }
 
 #col3 .personality-box {
@@ -202,14 +245,52 @@ Flexbox Guide: https://css-tricks.com/snippets/css/a-guide-to-flexbox/;
 	background-color:#8F9491;
 }
 
-#col3 .features-traits {
+#col3 .personality-box .input-field {
+	height:60%;
+}
+
+#col3 .personality-box .input-label {
+	height:30%;
+}
+
+/*Features/Traits*/
+
+#col3 .features-traits-wrapper {
 	flex-basis: 30%;
 }
 
-#col3 .inventory {
+#col3 .features-traits-box {
+	flex-basis: 95%;
+	background-color:#8F9491;
+}
+
+#col3 .features-traits-box .input-field {
+	height:85%;
+}
+
+#col3 .features-traits-box .input-label {
+	height:10%;
+}
+
+
+/*Inventory*/
+
+#col3 .inventory-wrapper {
 	flex-basis: 30%;
 }
 
+#col3 .inventory-box {
+	flex-basis: 95%;
+	background-color:#8F9491;
+}
+
+#col3 .inventory-box .input-field {
+	height:85%;
+}
+
+#col3 .inventory-box .input-label {
+	height:10%;
+}
 
 
 
