@@ -229,8 +229,81 @@
 			</div>
 		</div>
 	</div>
-	<div class="column">
-		<p>Content here</p>
+
+
+
+	<div class="column" id="col3">
+		<!-- Structure: Wrapper contains N boxes -->
+		<!-- Each box has a label and input/textarea -->
+		<!-- It is possible to have only 1 box (only personality has more) -->
+		<!-- Personality Traits -->
+		<div class="personality-wrapper">
+			<div class="personality-box">
+				<label class="input-label">Traits</label>
+				<textarea class="input-field"></textarea>
+			</div>
+			<div class="personality-box">
+				<label class="input-label">Ideals</label>
+				<textarea class="input-field"></textarea>
+			</div>
+			<div class="personality-box">
+				<label class="input-label">Bonds</label>
+				<textarea class="input-field"></textarea>
+			</div>
+			<div class="personality-box">
+				<label class="input-label">Flaws</label>
+				<textarea class="input-field"></textarea>
+			</div>
+		</div>
+		<!-- Features / Special Traits -->
+		<div class="features-traits-wrapper">
+			<div class="features-traits-box">
+				<label class="input-label">Features & Traits</label>
+				<textarea class="input-field"></textarea>
+			</div>
+		</div>
+		<!-- Inventory Table -->
+		<div class="inventory-wrapper">
+			<div class="inventory-box">
+				<label class="input-label">Inventory</label>
+				<div id="inventory-table-wrapper"><table id="inventory-table">
+					<tr>
+						<td>#</td>
+						<td>Item</td>
+					</tr>
+					<tr>
+						<td><input type="number" value="0"></input></td>
+						<td><input type="text" value="item"></input></td>
+					</tr>
+					<tr>
+						<td>#</td>
+						<td>Item</td>
+					</tr>
+					<tr>
+						<td>#</td>
+						<td>Item</td>
+					</tr>
+					<tr>
+						<td>#</td>
+						<td>Item</td>
+					</tr>
+					<tr>
+						<td>#</td>
+						<td>Item</td>
+					</tr>
+					<tr>
+						<td>#</td>
+						<td>Item</td>
+					</tr>
+					<tr>
+						<td>#</td>
+						<td>Item</td>
+					</tr>
+				</table></div>
+			</div>
+		</div>
 	</div>
+
+
 </body>
 </html>

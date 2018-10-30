@@ -183,6 +183,187 @@ input[type=number]::-webkit-outer-spin-button {
 	box-sizing: content-box;
 }
 
+
+/*End of Middle Colum CSS*/
+
+
+/* Third (Right) Column CSS Begin 
+References:
+Dark Green: #2EC4B6 (inner box);
+Light Green: #CBF3F0; (column box);
+Dark Gray: #8f9491; (Sub-box);
+
+Structure:
+Each section in a column has a wrapper, which contains N boxes;
+Each of N boxes has a label and some kind of input field (textarea, input, etc)
+1 Box is possible (features/traits, inventory), as is many (personality)
+
+Flexbox Guide: https://css-tricks.com/snippets/css/a-guide-to-flexbox/;
+*/
+
+#col3 {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+
+/*children of col3 (the wrappers)*/
+#col3 > div {
+	background-color: #2EC4B6;
+	border:2px solid black;
+	padding:2%;
+
+	/*as a container, generic*/
+	/*flex-basis needs to be done individually*/
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+
+/*this ensures vertical stacking for both label
+and text area
+Meaning: Col3's child (wrapper)'s child (box)'s children
+labels and text areas and tables, should all display vertical*/
+#col3 > div > div > * {
+	display: block;
+}
+
+/*generic text areas and labels*/
+#col3 .input-field {
+	box-sizing:border-box;
+
+	margin-left:2%;
+	margin-right:2%;
+
+	width:96%;
+	resize: none;
+}
+
+#col3 .input-label {
+	color: black;
+	font-size:14px;
+	text-align:center;
+
+	/*text-shadow:
+	-1px -1px 0 white,
+	-1px  1px 0 white,
+	 1px -1px 0 white,
+	 1px  1px 0 white;*/
+}
+
+
+/*Personality Elements*/
+
+#col3 .personality-wrapper {
+	/*as an item*/
+	flex-basis: 30%;
+
+}
+
+#col3 .personality-box {
+	flex-basis: 23%;
+	background-color:#8F9491;
+}
+
+#col3 .personality-box .input-field {
+	height:60%;
+}
+
+#col3 .personality-box .input-label {
+	height:30%;
+}
+
+/*Features/Traits*/
+
+#col3 .features-traits-wrapper {
+	flex-basis: 30%;
+}
+
+#col3 .features-traits-box {
+	flex-basis: 95%;
+	background-color:#8F9491;
+}
+
+#col3 .features-traits-box .input-field {
+	height:85%;
+}
+
+#col3 .features-traits-box .input-label {
+	height:10%;
+}
+
+
+/*Inventory*/
+
+#col3 .inventory-wrapper {
+	flex-basis: 30%;
+}
+
+#col3 .inventory-box {
+	flex-basis: 95%;
+	background-color:#8F9491;
+}
+
+#col3 .inventory-box .input-label {
+	height:10%;
+}
+
+/*Table styling.*/
+
+#col3 #inventory-table-wrapper {
+	height:85%;
+	width:96%;
+	overflow: auto;
+	margin-left:2%;
+	margin-right:2%;
+}
+
+#col3 #inventory-table {
+	width:100%;
+	display:table;
+	background-color:white;
+}
+
+#col3 #inventory-table td {
+	border: 1px solid black;
+}
+
+/*first row (legend)*/
+#col3 #inventory-table tr:nth-child(1) {
+	border-bottom:2px solid black;
+}
+
+/*first row (legend)'s first col*/
+#col3 #inventory-table tr:nth-child(1) td:nth-child(1) {
+	padding: 5px;
+}
+
+/*column 1*/
+#col3 #inventory-table td:nth-child(1) {
+	width:10%;
+	padding:0;
+	height:100%;
+}
+
+/*column 2*/
+#col3 #inventory-table td:nth-child(2) {
+	width:90%;
+}
+
+/*input stylings for input number in table*/
+#col3 #inventory-table input[type=number] {
+	padding:3px;
+	height: 30px;
+	box-sizing:border-box;
+}
+
+
+
+
+/* Third Column CSS End */
+
 #stats2{
 	background-color: #2EC4B6;
 	padding: 5px;
