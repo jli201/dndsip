@@ -1,41 +1,30 @@
-// //
-// $(document).ready(function(){
-   
-//    $("#clickdie, .dicelogo, .dicelogo svg, .dicelogo img").click(function(){
-// 		console.log("Hi.");
-// 	});
-
-// });
-
-
-
 //'open' and 'close' dice roller.
 function openClose() {
 	var debugflag = false;
 
-	if ( $(".rollbox").hasClass("rollsmall") ) {
-		console.log("Small box.");
-		$(".rollbox").removeClass("rollsmall").addClass("rollbig");
-	}
-	else if ( $(".rollbox").hasClass("rollbig") ) {
-		console.log("Big box.");
-		$(".rollbox").removeClass("rollbig").addClass("rollsmall");
+	if ( $(".rollbox").hasClass("rollboxCompact") ) {
+		if(debugflag) console.log("Small box going big.");
+		$(".rollbox").removeClass("rollboxCompact")
+		$("#diceroller").css("width", "495px");
 	}
 	else {
-		console.log("Bad box.");
+		if(debugflag) console.log("Big box going small.");
+		$(".rollbox").addClass("rollboxCompact");
+		$("#diceroller").css("width", "60px");
 	}
 }
 
 
 function calculateRoll() {
 	try {
-		debugflag=true;
+		debugflag=false;
 
-		//Step 1. Validate data.
-		var ndice = $('#ndice').val();
-		var tdice = $('#tdice').val();
+		var ndice = $('#numdice').val();
+		var tdice = $('#typedice').val();
 		var sign = $('#plusminus').val();
 		var mod = $('#modval').val();
+
+		//////// VALIDATE DATA ///////////////
 
 		//Treating 'no input' as bad.
 		//Different from '0'.
@@ -62,18 +51,28 @@ function calculateRoll() {
 
 		if(debugflag) console.log("Final sum is " + sum);
 
-		//use editing guards.
-		//Why? B/c a user who edits the 'textarea' result line causes a bug
-		//This bug prevents the new value from displaying on screen, even if it's in the actual html
-		//e.g. it can be <textarea>3</textarea> but on screen 3 will not show up!
-		$('#resultdice').prop('readonly', false);
-		$('#resultdice').html(sum);
-		$('#resultdice').prop('readonly', true);
+		/////// PRINT RESULT /////////////////
+
+		$('#rollResult').prop('readonly', false);
+		$('#rollResult').html(sum);
+		$('#rollResult').prop('readonly', true);
+
+		//make dice logo change!
+		$("#dicelogo").addClass("rollCompleted");
+		//less than 3 digits (usual case in d&d.)
+		if (sum/100 < 1) {
+			$("#dicelogo").removeClass("largeRoll");
+		}
+		if (sum/100 > 1) { //looks good up to 5 digits
+			$("#dicelogo").addClass("largeRoll");
+		}
+
+		$("#dicelogo").html(sum);
 
 
 	}
 	catch(err) {
-		$('#resultdice').text('ERR');
+		$('#rollResult').text('ERR');
 		if (debugflag) console.log(err); //tells us what the error is.
 	}
 		

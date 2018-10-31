@@ -1,9 +1,13 @@
-.borderSize{
+html{
+    background-color: #2EC4B6;
+}
+
+.heading_div{
     margin-left: 100px;
     margin-right: 100px;
 }
 
-.charborderSize{
+.char_div{
     margin-left: 350px;
     margin-right: 350px;
 }
@@ -12,20 +16,23 @@
     text-align: center;
     border: 3px solid black;
     border-radius: 50px;
+    background-color:#cbf3f0;
 }
 
 .charSelectBorder{
+    background-color: #cbf3f0;
     text-align: center;
     border: 3px solid black;
     padding-top: 10px;
     padding-bottom: 10px;
     margin-top:10px;
+    
 
 }
 
 .charSelectBorderClicked{
     text-align: center;
-    border: 3px solid blueviolet;
+    border: 3px solid green;
     padding-top: 10px;
     padding-bottom: 10px;
     margin-top:10px;
@@ -33,6 +40,7 @@
 }
 
 .createChar{
+    background-color: #cbf3f0;
     text-align: center;
     border: 3px dotted black;
     padding-top: 10px;
@@ -50,10 +58,14 @@
     width: 36px;
     height: 36px;
     padding: 6px;
-    background: #fff;
+    background: #cbf3f;
     border: 2px solid #666;
     color: #666;
     text-align: center;
     font: 14px;
   }
   
+  .char_info{
+    float: left; 
+    width: 25%;
+  }

@@ -1,0 +1,29 @@
+body{
+	background-color: #2EC4B6;
+}
+#login{
+	margin-top: 9%;
+	margin-left: 30%;
+	padding: 1%;
+	width: 40%;
+	height: 60%;
+	background-color: #CBF3F0;
+	text-align: center;
+
+}
+
+.loginText{
+	font-size: .5em;
+}
+
+#loginForm{
+	font-size: 2em;
+}
+
+#submit{
+	width: 33.333%;
+}
+
+#errorText{
+	color: red;
+}

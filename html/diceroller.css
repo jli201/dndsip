@@ -1,140 +1,159 @@
 /* Clear out some hot garbage. A mini 'reset.css'
 If we want to do a true reset, we should include an actual resetting file...
 For example, we might want to change the 8px margin on 'body' elements.*/
-textarea {
+.rollbox textarea {
 	padding:0px;
 } 
 
+/* Dice roller specifications:
+Two forms. Open & Closed.
 
-/* DICEROLLER.CSS */
-/*This is a global var. New in CSS. Not supported in IE, Opera, or Android Browser.*/
-:root {
-	--h: 50px;
-	--w: 50px;
-}
-
-#diceroll {
-	margin-bottom:10px;
-	/*position:absolute;*/
-	float:right;
-	width:100%;
-}
-
-object.dicelogo {
-	float:right;
-	vertical-align: middle;
-	clear:both;
-	height:75px;
-	width:75px;
-	position:relative;
-	top:-25px;
-	right:-25px;
-}
-
-img.dicelogo {
-	float:right;
-	vertical-align: middle;
-	/*clear:both;*/
-	height:50px;
-	width:50px;
-	margin:auto;
-	padding: 5px 5px;
-}
-
-#clickdie {
-	overflow:hidden;
-}
-
-/*
-.logotext {
-	border-top: 2px dashed black;
-	border-left: 2px dashed black;
-	font-size:25px;
-	vertical-align: middle;
-	line-height:74px;
-	font-family: 'Cutive Mono', monospace;
-	float:left;
-	min-width:60%;
-	padding-left:5px;
-}
+Open: Variable width, 60px height.;
+Closed: 60px width, 60px height;
 */
 
+
+
+/* DICEROLLER.CSS */
+
+/*//////////////////////////////////*/
+/*Entire Container.*/
+/*//////////////////////////////////*/
+
+#diceroller {
+	margin-bottom:10px;
+
+	/*dice roller will scroll with page.*/
+	position:fixed; 
+	right: 0;
+	top: 0;
+	width: 60px;
+
+	/*position highest*/
+	z-index: 10;
+
+}
+
+/*//////////////////////////////////*/
+/*Visibly transforming container.*/
+/*//////////////////////////////////*/
+
 .rollbox {
-	/*border-left:2px solid black;*/
+	position: absolute;
 	float:right;
-	background-color:rgba(255,0,0,.2);
-	/*height: 74px;
-	max-height: 74px;*/
-	margin:auto;
-	/*max-width:40%;*/
-	width:auto;
-	/*padding:0px 10px;*/
-	overflow:hidden;
-}
+	background-color: #cbf3f0;
+	width: auto;
 
-.rollsmall {
-	height:60px;
-	width:60px;
-	border:3px solid black;
+	/*ensure edges are ok*/
+	/*padding-left: 3px;*/
+	/*padding-right: 3px;*/
 
-}
-
-.rollbig {
-	height:134px;
-	max-height: 134px;
-	max-width: 40%;
-	border-left:2px solid black;
-}
-
-.rollbox ul {
-	float:right;
-	text-align: right;
-	list-style-type: none;
-	margin: 0 5px 0 0;
-	padding: 0;
 	overflow: hidden;
 }
 
-.rollbox li {
-	float:left;
-	vertical-align: middle;
+/*Special collapse rules.
+This is 'closed' form.
+All non-logo elements are not displayed.*/
+
+.rollboxCompact {
+	width: 60px;
+}
+
+.rollboxCompact .diceRollerElem {
+	display: none;
+}
+
+/*This rule wins because ids are more specific.*/
+.rollboxCompact #dicelogo {
+	display: inline-block;
+}
+
+
+/*//////////////////////////////////*/
+/*Singular elements.*/
+/*//////////////////////////////////*/
+
+
+/*Every element.*/
+.diceRollerElem {
+	/*Flow.*/
 	height:50px;
 	width:50px;
-	margin:11px 0px 11px 13px;
-	border:1px solid black;
 	display:inline-block;
-}
 
-.rollbox textarea, input, select {
-	line-height:48px; /*var(--h)-2*, can't do that math in css properties though.*/
-	height:var(--h);
-	min-height: var(--h);
-	max-height: var(--h);
-	width:var(--w);
-	min-width: var(--w);
-	max-width: var(--w);
-	/*padding:8px 0px 8px 0px;*/
-}
-
-.rollbox textarea, select {
-	font-size:25px;
-}
-
-.rollbox textarea {
-	box-sizing: border-box;
-}
-
-.rollbox input {
-	font-size:18px;
-}
-
-#resultdice {
-
-}
-
-li.simpletext {
-	padding:0;
-	font-size:25px;
 	text-align: center;
+	vertical-align: middle;
+	font-size: 20px;
 	line-height: 50px;
+
+	/*Create spacing.*/
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+/*Internal inputs, text areas, submit button, dropdowns, etc.*/
+.diceRollerElem textarea, .diceRollerElem input, .diceRollerElem select {
+	line-height:48px;
+	height: 50px;
+	width: 50px;
+
+	/*textarea safety*/
+	min-height: 50px;
+	max-height: 50px;
+	min-width: 50px;
+	max-width: 50px;
+
+	/*does not inherit from div*/
+	text-align: center;
+	font-size: 20px;
+
+	box-sizing: border-box;
+	/*You can change the default borders.*/
+}
+
+/*JS positioning hack.*/
+.diceRollerElem:first-child {
+	margin-left: 3px;
+}
+
+
+/*Special input box rules*/
+.diceRollerElem input[type=number]::-webkit-inner-spin-button,
+.diceRollerElem input[type=number]::-webkit-outer-spin-button {
+	/*get rid of the arrows on number inputs
+	This centers text properly.
+	Chrome only. Edge doesn't have by default.*/
+	-webkit-appearance: none;
+	margin:0;
+}
+
+/*Special submit box rule.*/
+#rollSubmit {
+	font-size: 18px;
+
+	/*Special anti-shift rule*/
+	float: right;
+}
+
+/*clickable dice logo*/
+#dicelogo {
+	/*displays the dice icon*/
+	background-image:url("/img/dicelogo.png");
+	background-size:50px 50px;
+	background-repeat: no-repeat;
+
+	margin-right: 5px;
+	margin-left: 5px;
+
+	cursor:default;
+
+}
+
+#dicelogo.rollCompleted {
+	/*more specificity wins!*/
+	background-image:url("/img/dicelogo_hollow.png");
+}
+
+#dicelogo.largeRoll {
+	font-size: 15px;
 }
