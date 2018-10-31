@@ -273,42 +273,24 @@
 				<textarea class="input-field"></textarea>
 			</div>
 		</div>
-		<!-- Inventory Table -->
+		<!-- Inventory Table Need to add Gold & Add/Delete Rows-->
 		<div class="inventory-wrapper">
 			<div class="inventory-box">
 				<label class="input-label">Inventory</label>
 				<div id="inventory-table-wrapper"><table id="inventory-table">
+					<!-- Table Entry Format:
+					<tr>
+						<td><input type="number" value="0" id="inv-num-#"></input></td>
+						<td><input type="text" value="item" id="inv-obj-#"></input></td>
+					</tr> 
+					Each new row must have an iterating #-->
 					<tr>
 						<td>#</td>
 						<td>Item</td>
 					</tr>
 					<tr>
-						<td><input type="number" value="0"></input></td>
-						<td><input type="text" value="item"></input></td>
-					</tr>
-					<tr>
-						<td>#</td>
-						<td>Item</td>
-					</tr>
-					<tr>
-						<td>#</td>
-						<td>Item</td>
-					</tr>
-					<tr>
-						<td>#</td>
-						<td>Item</td>
-					</tr>
-					<tr>
-						<td>#</td>
-						<td>Item</td>
-					</tr>
-					<tr>
-						<td>#</td>
-						<td>Item</td>
-					</tr>
-					<tr>
-						<td>#</td>
-						<td>Item</td>
+						<td><input type="number" value="0" id="inv-num-1"></input></td>
+						<td><input type="text" value="item" id="inv-obj-1"></input></td>
 					</tr>
 				</table></div>
 			</div>
