@@ -20,3 +20,13 @@ function deleteRow() {
     	table.deleteRow(table.rows.length - 1);
     }
 }
+
+
+function addProfsLanguages(){
+    var li = document.createElement("li");  
+    var input = document.getElementById("addProfLanguagesArea");
+    li.innerHTML = input.value;
+    input.value = "";
+
+    document.getElementById("ProfsLanguages").appendChild(li);
+}

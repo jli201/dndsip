@@ -415,3 +415,19 @@ table{
 		border-color: gray;
 }
 /*End of Middle Colum CSS*/
+
+/* For Other Proficiences and Languages */
+#addProfLanguagesArea{
+	outline: none;
+    padding: 0.5em 1em;
+    margin: 0.5px;
+	border-bottom: 1px solid #ddd;
+	width: 80%;
+
+}
+
+#ProfsLanguages li{
+	list-style-type: disc;
+	margin-left: 5%;
+}
+/* For Other Proficiences and Languages */

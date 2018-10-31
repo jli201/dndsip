@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="character_sheet.css">
   <link rel="stylesheet" href="stupid.css">
   <script type = "text/javascript" src="character_sheet.js"></script>
+
 </head>
 <body>
 	<div id="namePlate">
@@ -94,6 +95,16 @@
 		
 		<div id="passiveWisdom">
 			<p>This is the last color in the color pallete that I had generated. I think it is neat too.</p>
+		</div>
+		
+		<!-- Other Proficiencies and Languages -->
+		<div id="otherProfLanguages">
+			<label>Other Proficiencies & Languages</label>
+			<ul id="ProfsLanguages">
+				<li>Test</li>
+			</ul>
+			<input type="text" id="addProfLanguagesArea" size ="50"/>
+			<input type="button" id="btnProfLanguages" value="Add" onclick="addProfsLanguages()"/>
 		</div>
 	</div>
 	<div class="column">
