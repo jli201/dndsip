@@ -1,5 +1,5 @@
 body{
-	background-color: #F49349;
+	background-color: #8f9491;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -13,7 +13,7 @@ input[type=number]::-webkit-outer-spin-button {
 	padding: 1%;
 	margin: .5%;
 	height: 5vh;
-	background-color: #CBF3F0;
+	background-color: #2EC4B6;
 	box-sizing: content-box;
 }
 
@@ -47,7 +47,7 @@ input[type=number]::-webkit-outer-spin-button {
 	margin: .5%;
 	float: left;
 	width: 30.3333%;
-	background-color: #CBF3F0;
+	background-color: #2EC4B6;
 	box-sizing: content-box;
 }
 
@@ -68,7 +68,7 @@ input[type=number]::-webkit-outer-spin-button {
 	height: 6vh; 
 	width: 96.5%;
 	margin: 3px;
-	background-color: #8f9491;
+	background-color: #CBF3F0;
 	border: 2px black solid;
 }
 
@@ -87,7 +87,7 @@ input[type=number]::-webkit-outer-spin-button {
 	float: left;
 	width: 30.3333%;
 	margin: 3px;
-	background-color: #8f9491;
+	background-color: #CBF3F0;
 	border: 2px black solid;
 }
 
@@ -96,7 +96,7 @@ input[type=number]::-webkit-outer-spin-button {
 	font-size: 150%;
 	margin-top: 5px; 
 	margin-bottom: 5px;
-	color: white;
+	color: black;
 }
 
 #statsboxLeftCol input{ 
@@ -121,14 +121,13 @@ input[type=number]::-webkit-outer-spin-button {
 	width: 30%;
 	padding: 5px;
 	margin: 3px;
-	background-color: white;
 	border: 2px black solid;
-	background-color: #8f9491;
+	background-color: #CBF3F0;
 }
 
 #ST-form { /*the form CSS for saving throws for styling later if needed*/
 	font-size: 14px;
-	color: white;
+	color: black;
 }
 
 #ST-form input {
