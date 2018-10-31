@@ -100,11 +100,12 @@
 		<!-- Other Proficiencies and Languages -->
 		<div id="otherProfLanguages">
 			<label>Other Proficiencies & Languages</label>
-			<ul id="ProfsLanguages">
+			<!-- <ul id="ProfsLanguages">
 				<li>Test</li>
-			</ul>
-			<input type="text" id="addProfLanguagesArea" size ="50"/>
-			<input type="button" id="btnProfLanguages" value="Add" onclick="addProfsLanguages()"/>
+			</ul> -->
+			<textarea class="input-field"></textarea>
+			<!-- <input type="text" id="addProfLanguagesArea" size ="50"/> -->
+			<!-- <input type="button" id="btnProfLanguages" value="Add" onclick="addProfsLanguages()"/> -->
 		</div>
 	</div>
 	<div class="column">
