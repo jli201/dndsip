@@ -67,6 +67,9 @@ function addInvRow() {
     // HTML adds a tbody if there is at least one tr, doesn't need to be explicit
     $('#inventory-table tbody').append(markdown);
     if (debug) console.log("Adding row " + numRows + " to table.");
+
+    //Then focus on the newest # column's input.
+    $('#inventory-table tr:last td:first input').focus();
 }
 
 // Deletes a row in the inventory table, does not delete top 2 rows.
