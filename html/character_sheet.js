@@ -22,14 +22,6 @@ function deleteRow() {
 }
 
 
-function addProfsLanguages(){
-    var li = document.createElement("li");  
-    var input = document.getElementById("addProfLanguagesArea");
-    li.innerHTML = input.value;
-    input.value = "";
-
-    document.getElementById("ProfsLanguages").appendChild(li);
-}
 
 /* 
 There are always at minimum two rows:
@@ -90,3 +82,4 @@ function delInvRow() {
     $('#inventory-table tr:last').remove();
 
 }
+
