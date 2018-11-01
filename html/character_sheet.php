@@ -273,7 +273,7 @@
 				<textarea class="input-field"></textarea>
 			</div>
 		</div>
-		<!-- Inventory Table Need to add Gold & Add/Delete Rows-->
+		<!-- Inventory Table Need to add Add/Delete Rows & Update colors.-->
 		<div class="inventory-wrapper">
 			<div class="inventory-box">
 				<label class="input-label">Inventory</label>
@@ -287,6 +287,11 @@
 					<tr>
 						<td>#</td>
 						<td>Item</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<input type="text" value="Gold!" id="inv-gold"></input>
+						</td>
 					</tr>
 					<tr>
 						<td><input type="number" value="0" id="inv-num-1"></input></td>
