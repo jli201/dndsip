@@ -30,3 +30,60 @@ function addProfsLanguages(){
 
     document.getElementById("ProfsLanguages").appendChild(li);
 }
+
+/* 
+There are always at minimum two rows:
+A 'gold' row and the 'header' row. Don't delete those!
+Inventory Table Entry Format:
+<tr>
+    <td><input type="number" value="0" id="inv-num-#"></input></td>
+    <td><input type="text" value="Item" id="inv-obj-#"></input></td>
+</tr> */
+function addInvRow() {
+    var debug = false;
+    
+    // Get number of rows so we can append a proper id.
+    var table = $('#inventory-table');
+    var numRows = table[0].rows.length;
+    if (debug) console.log("Adding inventory row.");
+    if (debug) console.log("Num rows is " + numRows);
+
+    // sanity check
+    if (numRows > 1000 ) {
+        if (debug) console.log("You don't need 1000+ inventory rows. Stop that.");
+        return;
+    }
+
+    // CREATE MARKDOWN 
+    // Remember, row 3 is the 1st numbered row. (only 2 rows = adding 1st row)
+    numRows -= 1;
+
+    // See table entry format in comments before function
+    var markdown = '<tr><td><input type="number" value="0" id="inv-num-' + numRows
+        + '"></input></td><td><input type="text" value="Item" id="inv-obj-' 
+        + numRows + '"></input></td></tr>';
+
+    // We will always have a tbody, because we have 2 default rows!
+    // HTML adds a tbody if there is at least one tr, doesn't need to be explicit
+    $('#inventory-table tbody').append(markdown);
+    if (debug) console.log("Adding row " + numRows + " to table.");
+}
+
+// Deletes a row in the inventory table, does not delete top 2 rows.
+function delInvRow() {
+    var debug = false;
+
+    // Determine whether # of rows is enough to del.
+    var table = $('#inventory-table');
+    var numRows = table[0].rows.length;
+    if (debug) console.log("Deleting inventory row.");
+    if (debug) console.log("Num rows is " + numRows);
+
+    if (numRows <= 2 ) {
+        if (debug) console.log("No rows to delete.");
+        return;
+    }
+
+    $('#inventory-table tr:last').remove();
+
+}

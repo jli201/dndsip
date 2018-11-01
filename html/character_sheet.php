@@ -7,6 +7,10 @@
   <title>Character Sheet</title>
   <link rel="stylesheet" href="character_sheet.css">
   <link rel="stylesheet" href="stupid.css">
+
+  <!-- include this before any js file that uses jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+
   <script type = "text/javascript" src="character_sheet.js"></script>
 
 </head>
@@ -273,7 +277,7 @@
 				<textarea class="input-field"></textarea>
 			</div>
 		</div>
-		<!-- Inventory Table Need to add Add/Delete Rows.-->
+		<!-- Inventory Table -->
 		<div class="inventory-wrapper">
 			<div class="inventory-box">
 				<label class="input-label">Inventory</label>
@@ -282,10 +286,10 @@
 					<!-- Table Entry Format:
 					<tr>
 						<td><input type="number" value="0" id="inv-num-#"></input></td>
-						<td><input type="text" value="item" id="inv-obj-#"></input></td>
+						<td><input type="text" value="Item" id="inv-obj-#"></input></td>
 					</tr> 
-					Each new row must have an iterating #
-					There is nothing stopping #/Item from being th instead-->
+					Each new row must have an iterating # - check character_sheet.js
+					If changing format, you must change the related js.-->
 					<tr>
 						<td colspan="2">
 							<input type="text" value="Gold!" id="inv-gold"></input>
@@ -295,15 +299,11 @@
 						<td>#</td>
 						<td>Item</td>
 					</tr>
-					<tr>
-						<td><input type="number" value="0" id="inv-num-1"></input></td>
-						<td><input type="text" value="Item" id="inv-obj-1"></input></td>
-					</tr>
 				</table></div>
 
 				<div class="inv-buttons">
-					<input type="button" onclick="foo()" value="+"></input>
-					<input type="button" onclick="bar()" value="-"></input>
+					<input type="button" onclick="addInvRow()" value="+"></input>
+					<input type="button" onclick="delInvRow()" value="-"></input>
 				</div>
 			</div>
 		</div>

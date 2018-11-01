@@ -296,12 +296,18 @@ labels and text areas and tables, should all display vertical*/
 
 /*Inventory*/
 
+/*We have to turn flex off for this.
+Otherwise, flex doesn't respect max-height.
+Flex boxes are -made- to stretch.*/
 #col3 .inventory-wrapper {
-	flex-basis: 30%;
+	/*flex-basis: 30%;*/
+	height: 30%;
+	display: block;
 }
 
 #col3 .inventory-box {
-	flex-basis: 95%;
+	/*flex-basis: 95%;*/
+	height: 100%;
 	background-color:#CBF3F0;
 }
 
@@ -315,11 +321,13 @@ labels and text areas and tables, should all display vertical*/
 /*Table styling.*/
 
 #col3 #inventory-table-wrapper {
-	height:77%;
+	height:76%;
+	max-height:76%;
 	width:96%;
 	overflow: auto;
 	margin-left:2%;
 	margin-right:2%;
+	margin-bottom:2%;
 }
 
 #col3 #inventory-table {
