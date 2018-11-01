@@ -341,7 +341,7 @@ labels and text areas and tables, should all display vertical*/
 
 /*second row (legend)'s columns*/
 #col3 #inventory-table tr:nth-child(2) td {
-	padding: 5px;
+	padding: 3px;
 }
 
 /*column 1*/

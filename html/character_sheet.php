@@ -196,7 +196,7 @@
 								Successes
 							</div>
 							<div class = "halvesBoxes">
-								<form action="/action_page.php">
+								<form>
 									<input type="checkbox">
 									<input type="checkbox">
 									<input type="checkbox">
@@ -206,7 +206,7 @@
 								Failures
 							</div>
 							<div class = "halvesBoxes">
-								<form action="/action_page.php">
+								<form>
 								<br>
 									<input type="checkbox">
 									<input type="checkbox">
@@ -302,8 +302,8 @@
 				</table></div>
 
 				<div class="inv-buttons">
-					<button onclick="foo()">+</button>
-					<button onclick="bar()">-</button>
+					<input type="button" onclick="foo()" value="+"></input>
+					<input type="button" onclick="bar()" value="-"></input>
 				</div>
 			</div>
 		</div>
