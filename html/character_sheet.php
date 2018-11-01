@@ -102,9 +102,13 @@
 		</div>
 		
 		<!-- Other Proficiencies and Languages -->
-		<div id="otherProfLanguages">
-			<label>Other Proficiencies & Languages</label>
-			<textarea class="profLanguagesInput"></textarea>
+		<div id="otherProfLanguagesWrapper">
+			<div> 
+			<label class="otherProfLanguagesHeading">Other Proficiencies & Languages</label>
+			</div>
+			<div>
+				<textarea class="profLanguagesInput"></textarea>
+			</div>
 		</div>
 	</div>
 	<div class="column">

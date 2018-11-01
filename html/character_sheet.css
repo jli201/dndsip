@@ -428,15 +428,30 @@ table{
 /*End of Middle Colum CSS*/
 
 /* For Other Proficiences and Languages */
-#otherProfLanguages{
-	display: flex;
-	flex-direction: column;
+#otherProfLanguagesWrapper{
+	border: 2px solid black;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 130px;
+	background-color: #CBF3F0;
 	
 }
 
-#otherProfLanguages .profLanguagesInput{
-	height: 90px;
-    width: 96%;
+#otherProfLanguagesWrapper > div{
+	display: flex;
+	flex-direction: column;
+}
+
+#otherProfLanguagesWrapper .otherProfLanguagesHeading{
+	text-align: center;
+
+}
+.profLanguagesInput{
+	width: 92%;
+	margin-left: 2%;
+	resize: none;
+	height: 80px;
+
 }
 
 /* For Other Proficiences and Languages */
