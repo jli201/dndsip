@@ -273,10 +273,11 @@
 				<textarea class="input-field"></textarea>
 			</div>
 		</div>
-		<!-- Inventory Table Need to add Add/Delete Rows & Update colors.-->
+		<!-- Inventory Table Need to add Add/Delete Rows.-->
 		<div class="inventory-wrapper">
 			<div class="inventory-box">
 				<label class="input-label">Inventory</label>
+				
 				<div id="inventory-table-wrapper"><table id="inventory-table">
 					<!-- Table Entry Format:
 					<tr>
@@ -299,6 +300,11 @@
 						<td><input type="text" value="Item" id="inv-obj-1"></input></td>
 					</tr>
 				</table></div>
+
+				<div class="inv-buttons">
+					<button onclick="foo()">+</button>
+					<button onclick="bar()">-</button>
+				</div>
 			</div>
 		</div>
 	</div>

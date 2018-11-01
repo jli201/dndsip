@@ -263,7 +263,7 @@ labels and text areas and tables, should all display vertical*/
 
 #col3 .personality-box {
 	flex-basis: 23%;
-	background-color:#8F9491;
+	background-color:#CBF3F0;
 }
 
 #col3 .personality-box .input-field {
@@ -282,7 +282,7 @@ labels and text areas and tables, should all display vertical*/
 
 #col3 .features-traits-box {
 	flex-basis: 95%;
-	background-color:#8F9491;
+	background-color:#CBF3F0;
 }
 
 #col3 .features-traits-box .input-field {
@@ -302,17 +302,20 @@ labels and text areas and tables, should all display vertical*/
 
 #col3 .inventory-box {
 	flex-basis: 95%;
-	background-color:#8F9491;
+	background-color:#CBF3F0;
 }
 
-#col3 .inventory-box .input-label {
+#col3 .inventory-box .input-label,
+#col3 .inventory-box .inv-buttons {
 	height:10%;
+	/*redundant for input-label, needed for inv buttons*/
+	text-align: center; 
 }
 
 /*Table styling.*/
 
 #col3 #inventory-table-wrapper {
-	height:85%;
+	height:77%;
 	width:96%;
 	overflow: auto;
 	margin-left:2%;
