@@ -283,19 +283,20 @@
 						<td><input type="number" value="0" id="inv-num-#"></input></td>
 						<td><input type="text" value="item" id="inv-obj-#"></input></td>
 					</tr> 
-					Each new row must have an iterating #-->
-					<tr>
-						<td>#</td>
-						<td>Item</td>
-					</tr>
+					Each new row must have an iterating #
+					There is nothing stopping #/Item from being th instead-->
 					<tr>
 						<td colspan="2">
 							<input type="text" value="Gold!" id="inv-gold"></input>
 						</td>
 					</tr>
 					<tr>
+						<td>#</td>
+						<td>Item</td>
+					</tr>
+					<tr>
 						<td><input type="number" value="0" id="inv-num-1"></input></td>
-						<td><input type="text" value="item" id="inv-obj-1"></input></td>
+						<td><input type="text" value="Item" id="inv-obj-1"></input></td>
 					</tr>
 				</table></div>
 			</div>

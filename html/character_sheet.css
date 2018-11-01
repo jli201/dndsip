@@ -331,13 +331,13 @@ labels and text areas and tables, should all display vertical*/
 	/*height:40px;*/
 }
 
-/*first row (legend)*/
-#col3 #inventory-table tr:nth-child(1) {
+/*1st and 2nd row (legend)*/
+#col3 #inventory-table tr:nth-child(-n+2) {
 	border-bottom:2px solid black;
 }
 
-/*first row (legend)'s first col*/
-#col3 #inventory-table tr:nth-child(1) td {
+/*second row (legend)'s columns*/
+#col3 #inventory-table tr:nth-child(2) td {
 	padding: 5px;
 }
 
@@ -358,6 +358,7 @@ labels and text areas and tables, should all display vertical*/
 	padding:3px;
 	height: 30px;
 	box-sizing:border-box;
+	font-size:16px;
 }
 
 
