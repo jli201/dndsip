@@ -17,7 +17,6 @@
 <body>
 	<div id="namePlate">
 		<div id="innerbox">
-		<!--	<input style="height: 80%;" type="text" name="charname" placeholder="Character Name"> -->
 			<form id="nameform">
 				<label style="font-size: 14px;"> Player Name: </label>
 				<input type="text" placeholder="Player Name">
@@ -35,70 +34,123 @@
 		</div>
 	</div>
 	<div class="column">
-	
-		<!-- inspiration and proficiency bonus -->
-		<div id="insp-prof-background">
-			<div id="insp-prof"> 
-				<input for="inspiration" type="checkbox">
-				<label style="font-size: 20px">Inspiration</label>
-			</div>
-			<div id="insp-prof"> 
-				<input type="number">
-				<label style="font-size: 20px;">Proficiency Bonus</label>
-			</div>
-		</div>
 		
-		<!-- stats left column -->
 		<div id="stats">
-			<!-- stats boxes -->
-			<div id="statsboxLeftCol">
-				<h4> Strength </h4>
-				<input type="number">
-				<input type="number" style="width: 50px; margin-top: 2px;">
+
+			<div id="statsBoxFormat">
+				<!-- stats boxes -->
+				<div id="statsboxLeftCol">
+					<h4> Strength </h4>
+					<div id="strMod">str mod</div>
+					<input type="number">
+				</div>
+				<div id="statsboxLeftCol">
+					<h4> Dexterity </h4>
+					<div id="dexMod">dex mod</div>
+					<input type="number">
+				</div>
+				<div id="statsboxLeftCol">
+					<h4> Constitution </h4>
+					<div id="conMod">con mod</div>
+					<input type="number">
+				</div>
+				<div id="statsboxLeftCol">
+					<h4> Intelligence </h4>
+					<div id="intMod">int mod</div>
+					<input type="number">
+				</div>
+				<div id="statsboxLeftCol">
+					<h4> Wisdom </h4>
+					<div id="wisMod">wis mod</div>
+					<input type="number">
+				</div>
+				<div id="statsboxLeftCol">
+					<h4> Charisma </h4>
+					<div id="chaMod">cha mod</div>
+					<input type="number">
+				</div>
+
 			</div>
-			<div id="statsboxLeftCol">
-				<h4> Dexterity </h4>
-				<input type="number">
-				<input type="number" style="width: 50px; margin-top: 2px;">
+
+			<div id="insp-prof-st-skills">
+			
+			<!-- inspiration and proficiency bonus -->
+				<div id="insp-prof"> 
+					<input for="inspiration" type="checkbox">
+					<label id="inspiration">Inspiration</label>
+				</div>
+				<div id="insp-prof"> 
+					<input for="profBonus" type="number">
+					<label id="profBonus">Proficiency Bonus</label>
+				</div>
+
+				<!-- saving throws -->
+				<div id="savingThrowsBackground">
+					<div id="savingThrows">
+						<form id="ST-form">
+							<h4> Saving Throws </h4>
+							<input type="checkbox"> <input type="number"> Strength <br>
+							<input type="checkbox"> <input type="number"> Dexterity <br>
+							<input type="checkbox"> <input type="number"> Constitution <br>
+							<input type="checkbox"> <input type="number"> Intelligence <br>
+							<input type="checkbox"> <input type="number"> Wisdom <br>
+							<input type="checkbox"> <input type="number"> Charisma <br>
+						</form>
+					</div>
+				</div> 
+				
+				<div id="skillsBox">
+					<div id="skills"> 
+						<h4>Skills</h4>
+						<table id="skillsList">
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Acrobatics</td>
+								<td> <input type="checkbox"> <input type="number"> Animal Handling</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Arcana</td>
+								<td> <input type="checkbox"> <input type="number"> Athletics</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Deception</td>
+								<td> <input type="checkbox"> <input type="number"> History</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Insight</td>
+								<td> <input type="checkbox"> <input type="number"> Intimidation</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Investigation</td>
+								<td> <input type="checkbox"> <input type="number"> Medicine</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Nature</td>
+								<td> <input type="checkbox"> <input type="number"> Perception</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Performance</td>
+								<td> <input type="checkbox"> <input type="number"> Persuasion</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Religion</td>
+								<td> <input type="checkbox"> <input type="number"> Sleight of Hand</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Stealth</td>
+								<td> <input type="checkbox"> <input type="number"> Survival</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
 			</div>
-			<div id="statsboxLeftCol">
-				<h4> Constitution </h4>
-				<input type="number">
-				<input type="number" style="width: 50px; margin-top: 2px;">
-			</div>
-			<div id="statsboxLeftCol">
-				<h4> Intelligence </h4>
-				<input type="number">
-				<input type="number" style="width: 50px; margin-top: 2px;">
-			</div>
-			<div id="statsboxLeftCol">
-				<h4> Wisdom </h4>
-				<input type="number">
-				<input type="number" style="width: 50px; margin-top: 2px;">
-			</div>
-			<div id="statsboxLeftCol">
-				<h4> Charisma </h4>
-				<input type="number">
-				<input type="number" style="width: 50px; margin-top: 2px;">
-			</div>
+
 		</div>
 		
-		<!-- saving throws -->
-		<div id="savingThrowsBackground">
-			<div id="savingThrows">
-				<form id="ST-form">
-					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Strength <br>
-					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Dexterity <br>
-					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Constitution <br>
-					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Intelligence <br>
-					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Wisdom <br>
-					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Charisma <br>
-				</form>
-			</div>
-		</div>
 		
 		<div id="passiveWisdom">
-			<p>This is the last color in the color pallete that I had generated. I think it is neat too.</p>
+			<input for="profBonus" type="number">
+			<label id="profBonus">Passive Wisdom (Perception)</label>
 		</div>
 		
 		<!-- Other Proficiencies and Languages -->
