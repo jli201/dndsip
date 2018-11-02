@@ -1,5 +1,12 @@
 html{
-    background-color: #2EC4B6;
+    background-color: #2ec4b6;
+}
+
+#logout{
+    padding: 10px;
+    float: left;
+    display: inline-block;
+    background-color: #cbf3f0;
 }
 
 .heading_div{

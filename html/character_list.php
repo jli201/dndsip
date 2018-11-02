@@ -4,7 +4,7 @@
 		echo($_SESSION["user"]);
 	} else {
 		$_SESSION["notLoggedIn"] = True;
-		header("Location:index.php");
+		header("Location: index.php");
 	}
 ?>
 
@@ -17,7 +17,7 @@
 
     <script>
         $(document).ready(function() {
-            $('.charSelectBorder').click(function() {  
+            $('.charSelectBorder').click(function() {
                 $(this).toggleClass('charSelectBorderClicked');
                 });
             });
@@ -26,6 +26,9 @@
     </head>
 
     <body>
+	<div id="logout">
+		<a href="logout.php">Logout</a>
+	</div>
         <div class="heading_div">
             <h1 class="charHeadingBorder"> Characters:</h1>
 
