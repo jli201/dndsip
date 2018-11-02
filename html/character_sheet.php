@@ -111,142 +111,143 @@
 			</div>
 		</div>
 	</div>
+	
+<!--Middle Column-->
 	<div class="column">
-		<div class = "container">
-			<!--AC/Initiative/Speed Block -->
-			<div class = "third">
-				<div class = "imgTextOverlay">
-					<img class = "center" src="img/Sheild2.png"/>
-					<input type="sheildTextBox" placeholder="AC" style="width:30px; text-align: center;">
-					<div class = "imgTextBot">
-						<b>Armor<br>
-						Class</b>
-					</div>
+		<!--AC/Initiative/Speed Section-->
+		<div class = "middleColumnContainer">
+			<div class = "midColSection center midColThird">
+				<img class = "center" src="img/Sheild2.png" style="max-width: 95%; height:auto"/>
+			</div>
+			<div class = "midColSection midColThird">
+				<img class = "center" src="img/textBox.png" style="max-width: 95%; height:auto"/>
+			</div>
+			<div class = "midColSection midColThird">
+				<img class = "center" src="img/textBox.png" style="max-width: 95%; height:auto"/>
+			</div>
+		</div>
+
+		<!--Hp Block-->
+		<div class = "genericHpBox">
+			<div class = "middleColumnContainer">
+				<div class = "midColSection midColQuarter center">
+					<h6><font size = "-1"> Maximum Hp </font></h6>
+				</div>
+				<div class = "midColSection midCol3Quarter center">
+					<input style = "max-width: 85%">
 				</div>
 			</div>
-			<div class = "third">
-				<div class = "imgTextOverlay">
-					<img class = "center" src="img/TextBox.png"/>
-					<input type="speedBox" style="width:30px; text-align: center;">
-					<div class = "imgTextBot2">
-						<b>Initiative</b>
+			<div class = "midColSection center">
+				<input style = "max-width: 90%; text-align: center;>
+			</div>
+			<div class = "midColSection center" >
+				<h6><font size = "-1"> Current Hitpoints </font></h6>
+			</div>
+		</div>
+
+		<!--Temp HP Block-->
+		<div class = "genericHpBox">
+			<div class = "midColSection center">
+				<input style = "margin-top: 7%; max-width: 90%; text-align: center;">
+			</div>
+			<div class = "midColSection center">
+				<h6><font size = "-1"> Temporary Hitpoints </font></h6>
+			</div>
+		</div>
+
+		<!--Hit Dice and Saving Throws-->
+		<!--I referenced W3Schools to make this code-->
+		<div class= "middleColumnContainer">
+			<div class = "genericHpBox halvesBoxes" style = "margin-right: 1%;">
+				<div class = "middleColumnContainer">
+					<div class = "midColSection midColQuarter center">
+						<h6><font size = "-1"> Hit Dice </font></h6>
+					</div>
+					<div class = "midColSection midCol3Quarter center">
+						<input style = "max-width: 85%">
 					</div>
 				</div>
+				<div class = "midColSection center">
+					<input style = "max-width: 90%; text-align: center;">
+				</div>
+				<div class = "midColSection center">
+					<h6><font size = "-1"> Current Hit Dice </font></h6>
+				</div>
 			</div>
-			
-			<div class = "third">
-				<div class = "imgTextOverlay">
-					<img class = "center" src="img/TextBox.png"/>
-					<input type="speedBox" style="width:30px; text-align: center;">
-					<div class = "imgTextBot2">
-						<b>Speed</b>
+			<div class = "genericHpBox halvesBoxes">
+				<div class = "middleColumnContainer">
+					<div class = "midColSection halvesBoxes" style = "margin-top: 8%; margin-bottom: 4%">
+						Successes
+					</div>
+					<div class = "midColSection halvesBoxes right" style = "margin-top: 8%; margin-bottom: 4%">
+						<input type="checkbox">
+						<input type="checkbox">
+						<input type="checkbox">
+					</div>
+				</div>
+				<br>
+				<div class = "middleColumnContainer">
+					<div class = "midColSection halvesBoxes">
+						Failures
+					</div>
+					<div class = "midColSection halvesBoxes right">
+						<input type="checkbox">
+						<input type="checkbox">
+						<input type="checkbox">
 					</div>
 				</div>
 			</div>
 		</div>
-		<div id="stats2">
-			<!--HP Block-->
-			<div id="genericHpBox">
-				<div class = "container">
-					<div class = "quarter right">
-						<h6><font size = "-1"> Maximum Hp </font></h6>
-					</div>
-					<div class = "threequarters">
-						<input type="number" margin-top: 2px;>
-					</div>
-				</div>
-				<div class = "shortenAndCenter">
-					<input type="number" style="text-align: center;">
-				</div>
-				<div class = "center">
-					<h6><font size = "-1"> Current Hitpoints </font></h6>
-				</div>
+		<!--Weapons Table-->
+		<div class= "middleColumnContainer">
+			<div class = "midColWepBox">
+				<table id="weaponTable">
+					<tr>
+						<th>Name</th>
+						<th>Atk Bonus</th>
+						<th>Damage/Type</th>
+					</tr>
+					<tr>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+					</tr>
+					<tr>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+					</tr>
+				</table>
+				<input type = "button" value = "Add Row" onclick="weaponTableAddRow()">
+				<input type = "button" value = "Delete Row" onclick="weaponTableDeleteRow()">
 			</div>
-			<!--Temp HP Block-->
-			<div id="genericHpBox">
-				<br>
-				<br>
-				<div class="shortenAndCenter">
-					<input type="number" style="text-align: center;">
-				</div>
-				<div class = "center">
-					<h6><font size = "-1"> Temporary Hitpoints </font></h6>
-				</div>
-			</div>
-			<!--Hit Dice/Death Saves Block-->
-			<!--This I referenced W3Schools to make this code-->
-			<div class = "container">
-				<div class = "half">
-					<div class="container" id="genericHpBox">
-						<div class = "third right">
-							<h6><font size = "-1"> Hit Dice </font></h6>
-						</div>
-						<div class = "twothirds">
-							<input type="number" margin-top: 2px;>
-						</div>
-						<div class = "shortenAndCenter2">
-							<input type="number" style="text-align: center; margin-top: 2px;">
-						</div>
-						<div class="center">
-							<h6><font size = "-1"> Current Hit Dice </font></h6>
-						</div>
-					</div>
-				</div>
-				<div class = "half">
-					<div id="genericHpBox">
-						<br>
-						<div class = "container">
-							<div class = "halvesBoxes">
-								Successes
-							</div>
-							<div class = "halvesBoxes">
-								<form>
-									<input type="checkbox">
-									<input type="checkbox">
-									<input type="checkbox">
-							</div>
-							<div class = "halvesBoxes">
-							<br>
-								Failures
-							</div>
-							<div class = "halvesBoxes">
-								<form>
-								<br>
-									<input type="checkbox">
-									<input type="checkbox">
-									<input type="checkbox">
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Weapon/Attack Table -->
-				<div class = "shortenAndCenter">
-					<table id="weaponTable">
-						<tr>
-							<th>Name</th>
-							<th>Atk Bonus</th>
-							<th>Damage/Type</th>
-						</tr>
-						<tr>
-							<td><input></td>
-							<td><input></td>
-							<td><input></td>
-						</tr>
-						<tr>
-							<td><input></td>
-							<td><input></td>
-							<td><input></td>
-						</tr>
-					</table>
-					<button onclick="addRow()">Add Row</button>
-					<button onclick="deleteRow()">Delete Row</button>
-				</div>
+		</div>
+		<!--Spells Table-->
+		<div class= "middleColumnContainer">
+			<div class = "midColWepBox">
+				<table id="spellTable">
+					<tr>
+						<th>Spell</th>
+						<th>Level</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+					</tr>
+					<tr>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+					</tr>
+				</table>
+				<input type = "button" value = "Add Row" onclick="spellTableAddRow()">
+				<input type = "button" value = "Delete Row" onclick="spellTableDeleteRow()">
 			</div>
 		</div>
 	</div>
-
-
-
+	
 	<div class="column" id="col3">
 		<!-- Structure: Wrapper contains N boxes -->
 		<!-- Each box has a label and input/textarea -->

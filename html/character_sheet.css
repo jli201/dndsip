@@ -150,15 +150,47 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /*Middle Column CSS*/
-#genericHpBox {
-	display: block;
+.middleColumnContainer {
+	display: flex;
+	margin: auto;
+	justify-content: space-evenly;
+}
+.midColSection{
+	margin-left: 0.5%;
+	margin-right: 0.5%;
+	margin-bottom: 0.5%;
+	flex-grow: 1;
+	flex-shrink: 1;
+}
+.midColThird{
+	flex-basis: 30%;
+}
+.midCol2Third{
+	flex-basis: 60%;
+}
+.midColQuarter{
+	flex-basis: 22%;
+}
+.midCol3Quarter{
+	flex-basis: 66%;
+}
+.genericHpBox {
 	height: 11vh; 
 	float: center;
-	width: 100%;
-	margin: -2px;
-	margin-bottom: 8px;
 	background-color: white;
 	border: 2px black solid;
+	margin-bottom: 1%;
+}
+.midColWepBox {
+	height: 15vh;
+	overflow-y: scroll; 
+	float: center;
+	background-color: white;
+	border: 2px black solid;
+	margin-bottom: 1%;
+}
+.imgSizing{
+	max-width: 95%;
 }
 .shortenAndCenter{
 		width: 92.5%;
@@ -172,13 +204,11 @@ input[type=number]::-webkit-outer-spin-button {
 		margin-right: .5%;
 		text-align: center;
 }
-
 .halvesBoxes{
 	display: block;
 	padding: 1%;
-	margin: .5%;
 	float: left;
-	width: 47%;
+	width: 50%;
 	box-sizing: content-box;
 }
 
@@ -419,11 +449,23 @@ input[type=speedBox] {
 	left: 34px;
 	right: 0;
 }
-table{
+#weaponTable{
 		display: table;
 		border-collapse: separate;
 		border-spacing: 2px;
 		border-color: gray;
+		height: 11vh;
+		width: auto;
+		overflow: scroll;
+}
+#spellTable{
+	display: table;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: gray;
+	height: 11vh;
+	width: auto;
+	overflow: scroll;
 }
 /*End of Middle Colum CSS*/
 
