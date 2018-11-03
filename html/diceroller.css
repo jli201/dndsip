@@ -130,9 +130,13 @@ All non-logo elements are not displayed.*/
 /*Special submit box rule.*/
 #rollSubmit {
 	font-size: 18px;
+	cursor: default;
+	border:1px solid black;
+	background-color:#8f9491;
+	box-sizing: border-box;
 
 	/*Special anti-shift rule*/
-	float: right;
+	/*float: right;*/
 }
 
 /*clickable dice logo*/
