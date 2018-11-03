@@ -217,15 +217,17 @@ input[type=number]::-webkit-outer-spin-button {
 	flex-basis: 66%;
 }
 .genericHpBox {
-	height: 11vh; 
+	height: auto;
+	width: 100%;
 	float: center;
 	background-color: white;
 	border: 2px black solid;
 	margin-bottom: 1%;
 }
 .midColWepBox {
-	height: 15vh;
-	overflow-y: scroll; 
+	height: 23.5vh;
+	overflow-y: scroll;
+	overflow-x: hidden;
 	float: center;
 	background-color: white;
 	border: 2px black solid;
@@ -253,7 +255,6 @@ input[type=number]::-webkit-outer-spin-button {
 	width: 50%;
 	box-sizing: content-box;
 }
-
 
 /*End of Middle Colum CSS*/
 
@@ -458,11 +459,9 @@ Flex boxes are -made- to stretch.*/
 /*Auto margins idea from https://stackoverflow.com/questions/8508275/how-to-center-a-position-absolute-element*/
 .imgTextBot{
     position: absolute;
-    top: 66%;
-    margin-left: auto;
-	margin-right: auto;
-	left: 0;
-	right: 0;
+    top: 62%;
+	margin-left: 30%;
+	text-align: center;
 }
 .imgTextBot2{
 	position: absolute;
@@ -474,31 +473,46 @@ Flex boxes are -made- to stretch.*/
 }
 input[type=sheildTextBox] {
     background-color: #c1b8b8;
-	font-size: 25px;
+	font-size: 1.5vw;
 	position: absolute;
 	top: 20%;
 	margin-left: auto;
 	margin-right: auto;
-	left: 34px;
+	left: 22%;
 	right: 0;
 }
 input[type=speedBox] {
-	font-size: 25px;
+	background-color: #2EC4B6;
+	font-size: 1.5vw;
 	position: absolute;
 	top: 20%;
 	margin-left: auto;
 	margin-right: auto;
-	left: 34px;
+	left: 24%;
 	right: 0;
 }
 #weaponTable{
-		display: table;
-		border-collapse: separate;
-		border-spacing: 2px;
-		border-color: gray;
-		height: 11vh;
-		width: auto;
-		overflow: scroll;
+	display: table;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: gray;
+	height: 11vh;
+	width: auto;
+}
+#weaponTableHeader{
+	display: table;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: gray;
+	width: 100%;
+}
+.midColHeaderBox {
+	height: auto;
+	width: 100%;
+	float: center;
+	background-color: white;
+	border: 2px black solid;
+	margin-bottom: -2px;
 }
 #spellTable{
 	display: table;
@@ -507,7 +521,14 @@ input[type=speedBox] {
 	border-color: gray;
 	height: 11vh;
 	width: auto;
-	overflow: scroll;
+}
+#spellTableHeader{
+	display: table;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: gray;
+	text-align: center;
+	width: 100%;
 }
 /*End of Middle Colum CSS*/
 

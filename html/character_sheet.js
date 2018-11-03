@@ -5,11 +5,14 @@ function weaponTableAddRow() {
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
     var box1 = document.createElement("INPUT");
-    	box1.setAttribute("type", "text");
+        box1.setAttribute("type", "text");
+        box1.setAttribute("style","max-width: 85%; text-align: center")
     var box2 = document.createElement("INPUT");
-    	box2.setAttribute("type", "text");
+        box2.setAttribute("type", "text");
+        box2.setAttribute("style","max-width: 85%; text-align: center")
     var box3 = document.createElement("INPUT");
-    	box3.setAttribute("type", "text");
+        box3.setAttribute("type", "text");
+        box3.setAttribute("style","max-width: 85%; text-align: center")
     cell1.appendChild(box1);
     cell2.appendChild(box2);
     cell3.appendChild(box3);
@@ -28,11 +31,14 @@ function spellTableAddRow() {
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
     var box1 = document.createElement("INPUT");
-    	box1.setAttribute("type", "text");
+        box1.setAttribute("type", "text");
+        box1.setAttribute("style","max-width: 85%; text-align: center")
     var box2 = document.createElement("INPUT");
-    	box2.setAttribute("type", "text");
+        box2.setAttribute("type", "text");
+        box2.setAttribute("style","max-width: 47%; text-align: center")
     var box3 = document.createElement("INPUT");
-    	box3.setAttribute("type", "text");
+        box3.setAttribute("type", "text");
+        box3.setAttribute("style","max-width: 85%; text-align: center")
     cell1.appendChild(box1);
     cell2.appendChild(box2);
     cell3.appendChild(box3);

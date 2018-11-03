@@ -17,7 +17,6 @@
 <body>
 	<div id="namePlate">
 		<div id="innerbox">
-		<!--	<input style="height: 80%;" type="text" name="charname" placeholder="Character Name"> -->
 			<form id="nameform">
 				<label style="font-size: 14px;"> Player Name: </label>
 				<input type="text" placeholder="Player Name">
@@ -35,70 +34,123 @@
 		</div>
 	</div>
 	<div class="column">
-	
-		<!-- inspiration and proficiency bonus -->
-		<div id="insp-prof-background">
-			<div id="insp-prof"> 
-				<input for="inspiration" type="checkbox">
-				<label style="font-size: 20px">Inspiration</label>
-			</div>
-			<div id="insp-prof"> 
-				<input type="number">
-				<label style="font-size: 20px;">Proficiency Bonus</label>
-			</div>
-		</div>
 		
-		<!-- stats left column -->
 		<div id="stats">
-			<!-- stats boxes -->
-			<div id="statsboxLeftCol">
-				<h4> Strength </h4>
-				<input type="number">
-				<input type="number" style="width: 50px; margin-top: 2px;">
+
+			<div id="statsBoxFormat">
+				<!-- stats boxes -->
+				<div id="statsboxLeftCol">
+					<h4> Strength </h4>
+					<div id="strMod">str mod</div>
+					<input type="number">
+				</div>
+				<div id="statsboxLeftCol">
+					<h4> Dexterity </h4>
+					<div id="dexMod">dex mod</div>
+					<input type="number">
+				</div>
+				<div id="statsboxLeftCol">
+					<h4> Constitution </h4>
+					<div id="conMod">con mod</div>
+					<input type="number">
+				</div>
+				<div id="statsboxLeftCol">
+					<h4> Intelligence </h4>
+					<div id="intMod">int mod</div>
+					<input type="number">
+				</div>
+				<div id="statsboxLeftCol">
+					<h4> Wisdom </h4>
+					<div id="wisMod">wis mod</div>
+					<input type="number">
+				</div>
+				<div id="statsboxLeftCol">
+					<h4> Charisma </h4>
+					<div id="chaMod">cha mod</div>
+					<input type="number">
+				</div>
+
 			</div>
-			<div id="statsboxLeftCol">
-				<h4> Dexterity </h4>
-				<input type="number">
-				<input type="number" style="width: 50px; margin-top: 2px;">
+
+			<div id="insp-prof-st-skills">
+			
+			<!-- inspiration and proficiency bonus -->
+				<div id="insp-prof"> 
+					<input for="inspiration" type="checkbox">
+					<label id="inspiration">Inspiration</label>
+				</div>
+				<div id="insp-prof"> 
+					<input for="profBonus" type="number">
+					<label id="profBonus">Proficiency Bonus</label>
+				</div>
+
+				<!-- saving throws -->
+				<div id="savingThrowsBackground">
+					<div id="savingThrows">
+						<form id="ST-form">
+							<h4> Saving Throws </h4>
+							<input type="checkbox"> <input type="number"> Strength <br>
+							<input type="checkbox"> <input type="number"> Dexterity <br>
+							<input type="checkbox"> <input type="number"> Constitution <br>
+							<input type="checkbox"> <input type="number"> Intelligence <br>
+							<input type="checkbox"> <input type="number"> Wisdom <br>
+							<input type="checkbox"> <input type="number"> Charisma <br>
+						</form>
+					</div>
+				</div> 
+				
+				<div id="skillsBox">
+					<div id="skills"> 
+						<h4>Skills</h4>
+						<table id="skillsList">
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Acrobatics</td>
+								<td> <input type="checkbox"> <input type="number"> Animal Handling</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Arcana</td>
+								<td> <input type="checkbox"> <input type="number"> Athletics</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Deception</td>
+								<td> <input type="checkbox"> <input type="number"> History</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Insight</td>
+								<td> <input type="checkbox"> <input type="number"> Intimidation</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Investigation</td>
+								<td> <input type="checkbox"> <input type="number"> Medicine</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Nature</td>
+								<td> <input type="checkbox"> <input type="number"> Perception</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Performance</td>
+								<td> <input type="checkbox"> <input type="number"> Persuasion</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Religion</td>
+								<td> <input type="checkbox"> <input type="number"> Sleight of Hand</td>
+							</tr>
+							<tr>
+								<td> <input type="checkbox"> <input type="number"> Stealth</td>
+								<td> <input type="checkbox"> <input type="number"> Survival</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
 			</div>
-			<div id="statsboxLeftCol">
-				<h4> Constitution </h4>
-				<input type="number">
-				<input type="number" style="width: 50px; margin-top: 2px;">
-			</div>
-			<div id="statsboxLeftCol">
-				<h4> Intelligence </h4>
-				<input type="number">
-				<input type="number" style="width: 50px; margin-top: 2px;">
-			</div>
-			<div id="statsboxLeftCol">
-				<h4> Wisdom </h4>
-				<input type="number">
-				<input type="number" style="width: 50px; margin-top: 2px;">
-			</div>
-			<div id="statsboxLeftCol">
-				<h4> Charisma </h4>
-				<input type="number">
-				<input type="number" style="width: 50px; margin-top: 2px;">
-			</div>
+
 		</div>
 		
-		<!-- saving throws -->
-		<div id="savingThrowsBackground">
-			<div id="savingThrows">
-				<form id="ST-form">
-					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Strength <br>
-					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Dexterity <br>
-					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Constitution <br>
-					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Intelligence <br>
-					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Wisdom <br>
-					<input id="ST-form-checkbox" type="checkbox"> <input type="number" id="ST-form-spacing" style="width: 20px;"> Charisma <br>
-				</form>
-			</div>
-		</div>
 		
 		<div id="passiveWisdom">
-			<p>This is the last color in the color pallete that I had generated. I think it is neat too.</p>
+			<input for="profBonus" type="number">
+			<label id="profBonus">Passive Wisdom (Perception)</label>
 		</div>
 		
 		<!-- Other Proficiencies and Languages -->
@@ -117,69 +169,95 @@
 		<!--AC/Initiative/Speed Section-->
 		<div class = "middleColumnContainer">
 			<div class = "midColSection center midColThird">
-				<img class = "center" src="img/Sheild2.png" style="max-width: 95%; height:auto"/>
-			</div>
-			<div class = "midColSection midColThird">
-				<img class = "center" src="img/textBox.png" style="max-width: 95%; height:auto"/>
-			</div>
-			<div class = "midColSection midColThird">
-				<img class = "center" src="img/textBox.png" style="max-width: 95%; height:auto"/>
-			</div>
-		</div>
-
-		<!--Hp Block-->
-		<div class = "genericHpBox">
-			<div class = "middleColumnContainer">
-				<div class = "midColSection midColQuarter center">
-					<h6><font size = "-1"> Maximum Hp </font></h6>
-				</div>
-				<div class = "midColSection midCol3Quarter center">
-					<input style = "max-width: 85%">
+				<div class = "imgTextOverlay">
+					<img class = "center" src="img/Sheild2.png" style="max-width: 95%; height:auto"/>
+					<input type="sheildTextBox" placeholder="AC" style="width:2vw; text-align: center;">
 				</div>
 			</div>
-			<div class = "midColSection center">
-				<input style = "max-width: 90%; text-align: center;>
+			<div class = "midColSection midColThird">
+				<div class = "imgTextOverlay">
+					<img class = "center" src="img/textBox.png" style="max-width: 95%; height:auto"/>
+					<input type="speedBox" style="width:2vw; text-align: center;">
+					<div class = "imgTextBot2">
+						<b>Initiative</b>
+					</div>
+				</div>
 			</div>
-			<div class = "midColSection center" >
-				<h6><font size = "-1"> Current Hitpoints </font></h6>
+			<div class = "midColSection midColThird">
+				<div class = "imgTextOverlay">
+					<img class = "center" src="img/textBox.png" style="max-width: 95%; height:auto"/>
+					<input type="speedBox" style="width:2vw; text-align: center;">
+					<div class = "imgTextBot2">
+						<b>Speed</b>
+					</div>
+				</div>
 			</div>
 		</div>
-
-		<!--Temp HP Block-->
-		<div class = "genericHpBox">
-			<div class = "midColSection center">
-				<input style = "margin-top: 7%; max-width: 90%; text-align: center;">
+		
+		<div class= "middleColumnContainer">
+			<!--Hp Block-->
+			<div class = "genericHpBox" style = "margin-right: 1%;">
+				<div class = "middleColumnContainer">
+					<div class = "midColSection midColQuarter center">
+						<h6><font size = "-1"> Hp: </font></h6>
+					</div>
+					<div class = "midColSection midCol3Quarter center">
+						<div class = "middleColumnContainer">
+							<div class = "midColSection">
+								<input style = "max-width: 70%; margin-top: 5.5%; text-align: right;">
+							</div>
+							<div class = "midColSection center">
+								<h6>/</h6>
+							</div>
+							<div class = "midColSection">
+								<input style = "max-width: 70%; margin-top: 5.5%">
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class = "midColSection center">
-				<h6><font size = "-1"> Temporary Hitpoints </font></h6>
+
+			<!--Temp HP Block-->
+			<div class = "genericHpBox">
+				<div class = "middleColumnContainer">
+					<div class = "midColSection midColThird center">
+						<h6><font size = "-1"> Temp Hp: </font></h6>
+					</div>
+					<div class = "midColSection midCol2Third">
+						<input style = "max-width: 85%; margin-top: 5.5%">
+					</div>
+				</div>
 			</div>
 		</div>
-
 		<!--Hit Dice and Saving Throws-->
 		<!--I referenced W3Schools to make this code-->
 		<div class= "middleColumnContainer">
 			<div class = "genericHpBox halvesBoxes" style = "margin-right: 1%;">
 				<div class = "middleColumnContainer">
 					<div class = "midColSection midColQuarter center">
-						<h6><font size = "-1"> Hit Dice </font></h6>
+						<h6><font size = "-1"> Hit Dice: </font></h6>
 					</div>
 					<div class = "midColSection midCol3Quarter center">
-						<input style = "max-width: 85%">
+						<div class = "middleColumnContainer">
+							<div class = "midColSection">
+								<input style = "max-width: 70%; margin-top: 5.5%; text-align: right;">
+							</div>
+							<div class = "midColSection center">
+								<h6>/</h6>
+							</div>
+							<div class = "midColSection">
+								<input style = "max-width: 70%; margin-top: 5.5%">
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class = "midColSection center">
-					<input style = "max-width: 90%; text-align: center;">
-				</div>
-				<div class = "midColSection center">
-					<h6><font size = "-1"> Current Hit Dice </font></h6>
 				</div>
 			</div>
 			<div class = "genericHpBox halvesBoxes">
 				<div class = "middleColumnContainer">
-					<div class = "midColSection halvesBoxes" style = "margin-top: 8%; margin-bottom: 4%">
+					<div class = "midColSection halvesBoxes" style = "margin-bottom: -6%">
 						Successes
 					</div>
-					<div class = "midColSection halvesBoxes right" style = "margin-top: 8%; margin-bottom: 4%">
+					<div class = "midColSection halvesBoxes right" style = "margin-bottom: -6%">
 						<input type="checkbox">
 						<input type="checkbox">
 						<input type="checkbox">
@@ -200,12 +278,41 @@
 		</div>
 		<!--Weapons Table-->
 		<div class= "middleColumnContainer">
+			<div class = "midColHeaderBox">
+				<table id="weaponTableHeader">
+					<col width="30%">
+					<col width="30%">
+					<col width="30%">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Atk Bonus</th>
+							<th>Damage/Type</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+		<div class = "middleColumnContainer">
 			<div class = "midColWepBox">
 				<table id="weaponTable">
+					<col width="30%">
+					<col width="30%">
+					<col width="30%">
 					<tr>
-						<th>Name</th>
-						<th>Atk Bonus</th>
-						<th>Damage/Type</th>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+					</tr>
+					<tr>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+					</tr>
+					<tr>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
 					</tr>
 					<tr>
 						<td><input style = "max-width: 85%; text-align: center;"></td>
@@ -218,32 +325,61 @@
 						<td><input style = "max-width: 85%; text-align: center;"></td>
 					</tr>
 				</table>
-				<input type = "button" value = "Add Row" onclick="weaponTableAddRow()">
-				<input type = "button" value = "Delete Row" onclick="weaponTableDeleteRow()">
+				<input type = "button" value = "Add Attack" onclick="weaponTableAddRow()">
+				<input type = "button" value = "Delete Attack" onclick="weaponTableDeleteRow()">
 			</div>
 		</div>
 		<!--Spells Table-->
 		<div class= "middleColumnContainer">
+			<div class = "midColHeaderBox">
+				<table id="spellTableHeader">
+					<col width="30%">
+					<col width="10%">
+					<col width="50%">
+					<thead>
+						<tr>
+							<th>Spell</th>
+							<th>Lvl</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+		<div class= "middleColumnContainer">
 			<div class = "midColWepBox">
 				<table id="spellTable">
+					<col width="30%">
+					<col width="10%">
+					<col width="50%">
 					<tr>
-						<th>Spell</th>
-						<th>Level</th>
-						<th>Description</th>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 47%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
 					</tr>
 					<tr>
 						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 47%; text-align: center;"></td>
 						<td><input style = "max-width: 85%; text-align: center;"></td>
 					</tr>
 					<tr>
 						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 47%; text-align: center;"></td>
 						<td><input style = "max-width: 85%; text-align: center;"></td>
+					</tr>
+					<tr>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 47%; text-align: center;"></td>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+					</tr>
+					<tr>
+						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input style = "max-width: 47%; text-align: center;"></td>
 						<td><input style = "max-width: 85%; text-align: center;"></td>
 					</tr>
 				</table>
-				<input type = "button" value = "Add Row" onclick="spellTableAddRow()">
-				<input type = "button" value = "Delete Row" onclick="spellTableDeleteRow()">
+				<input type = "button" value = "Add Spell" onclick="spellTableAddRow()">
+				<input type = "button" value = "Delete Spell" onclick="spellTableDeleteRow()">
 			</div>
 		</div>
 	</div>
