@@ -18,18 +18,18 @@
 	<div id="namePlate">
 		<div id="innerbox">
 			<form id="nameform">
-				<label style="font-size: 14px;"> Player Name: </label>
-				<input type="text" placeholder="Player Name">
-				<label style="font-size: 14px;">Character Name: </label>
-				<input type="text" placeholder="Character Name">
-				<label style="font-size: 14px;"> Class & Level: </label>
-				<input type="text" placeholder="Class & Level">
-				<label style="font-size: 14px;"> Race: </label>
-				<input type="text" placeholder="Race">
-				<label style="font-size: 14px;"> Alignment: </label>
-				<input type="text" placeholder="Alignment">
-				<label style="font-size: 14px;"> Experience Points: </label>
-				<input type="number" placeholder="Experience Points">
+				<label for="pName" style="font-size: 14px;"> Player Name: </label>
+				<input id="pName" type="text" placeholder="Player Name">
+				<label for="cName" style="font-size: 14px;">Character Name: </label>
+				<input id="cName" type="text" placeholder="Character Name">
+				<label for="classAndLevel" style="font-size: 14px;"> Class & Level: </label>
+				<input id="classAndLevel" type="text" placeholder="Class & Level">
+				<label for="race" style="font-size: 14px;"> Race: </label>
+				<input id="race" type="text" placeholder="Race">
+				<label for="alignment" style="font-size: 14px;"> Alignment: </label>
+				<input id="alignment" type="text" placeholder="Alignment">
+				<label for="exp" style="font-size: 14px;"> Experience Points: </label>
+				<input id="exp" type="number" placeholder="Experience Points">
 			</form>
 		</div>
 	</div>
@@ -41,32 +41,32 @@
 				<!-- stats boxes -->
 				<div id="statsboxLeftCol">
 					<h4> Strength </h4>					
-					<input type="number">
+					<input id="strength" type="number">
 					<div id="strMod">str mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Dexterity </h4>
-					<input type="number">
+					<input id="dexterity" type="number">
 					<div id="dexMod">dex mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Constitution </h4>
-					<input type="number">
+					<input id="constitution" type="number">
 					<div id="conMod">con mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Intelligence </h4>
-					<input type="number">
+					<input id="intelligence" type="number">
 					<div id="intMod">int mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Wisdom </h4>
-					<input type="number">
+					<input id="wisdom" type="number">
 					<div id="wisMod">wis mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Charisma </h4>
-					<input type="number">
+					<input id="charisma" type="number">
 					<div id="chaMod">cha mod</div>
 				</div>
 
@@ -89,12 +89,12 @@
 					<div id="savingThrows">
 						<form id="ST-form">
 							<h4> Saving Throws </h4>
-							<input type="checkbox"> <input type="number"> Strength <br>
-							<input type="checkbox"> <input type="number"> Dexterity <br>
-							<input type="checkbox"> <input type="number"> Constitution <br>
-							<input type="checkbox"> <input type="number"> Intelligence <br>
-							<input type="checkbox"> <input type="number"> Wisdom <br>
-							<input type="checkbox"> <input type="number"> Charisma <br>
+							<input type="checkbox"> <input id="strengthSavingThrow" type="number"> Strength <br>
+							<input type="checkbox"> <input id="dexteriySavingThrow" type="number"> Dexterity <br>
+							<input type="checkbox"> <input id="constitutionSavingThrow" type="number"> Constitution <br>
+							<input type="checkbox"> <input id="intelligenceSavingThrow" type="number"> Intelligence <br>
+							<input type="checkbox"> <input id="savingThrowsWisdom" type="number"> Wisdom <br>
+							<input type="checkbox"> <input id="savingThrowsCharisma" type="number"> Charisma <br>
 						</form>
 					</div>
 				</div> 
@@ -102,10 +102,15 @@
 				<div id="skillsBox">
 					<div id="skills"> 
 						<h4>Skills</h4>
+						<div id="manualInputDiv">
+						 <div id="manualEntry"> <input type="checkbox"> Manual Entry
+							<span id="manualInputText">Manual Entry disables the automatic calculation of skills.  Checkboxes for proficiency and expertise do not do anything, and you instead enter your skills into text boxes.</span>
+						 </div>
+						</div>
 						<table id="skillsList">
 							<tr>
-								<td> <input type="checkbox"> <input type="number"> Acrobatics</td>
-								<td> <input type="checkbox"> <input type="number"> Animal Handling</td>
+								<td> <input type="checkbox"> <input id="acrobatics" type="number"> Acrobatics</td>
+								<td> <input type="checkbox"> <input id="animal" type="number"> Animal Handling</td>
 							</tr>
 							<tr>
 								<td> <input type="checkbox"> <input type="number"> Arcana</td>
