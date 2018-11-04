@@ -125,7 +125,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 #savingThrows { /*saving throws box sizing*/
 	display: block;
-	height: 25vh;
+	height: 24vh;
 	width: 100%;
 	border: 2px black solid;
 	background-color: #CBF3F0;
@@ -133,11 +133,12 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #ST-form { /*the form CSS for saving throws for styling later if needed*/
+	font-size: 78%;
 }
 
 #ST-form h4{
 	text-align: center; 
-	font-size: 100%;
+	font-size: 115%;
 	margin: 1%;
 }
 
@@ -153,12 +154,38 @@ input[type=number]::-webkit-outer-spin-button {
 
 #skillsBox {
 	display: flex;
-	height: 42vh;	
+	height: 43vh;	
 	width: 100%;
 	border: 2px black solid;
 	background-color: #CBF3F0;
 	margin: 1%;
 	font-size:small;
+}
+
+#skillsBox #manualInputDiv {
+	display: block;
+}
+
+#skillsBox #manualInputDiv input[type = "checkbox"] {
+	margin-left: 30%;
+}
+ 
+#manualEntry #manualInputText {
+    visibility: hidden;
+    width: 30vh;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+#manualEntry:hover #manualInputText {
+    visibility: visible;
 }
 
 #skillsBox h4 {
@@ -169,6 +196,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 #skillsList {
 	margin: auto;
+	font-size: 92%;
 }
 
 #skillsList tr {
