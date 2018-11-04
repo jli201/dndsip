@@ -276,6 +276,98 @@
 				</div>
 			</div>
 		</div>
+		<!-- Spell Slots -->
+		
+		<div class= "midColSpellSlotBox">
+			<div class = "middleColumnContainer" style = "margin-bottom: 5px">
+				<b><u>Spell Slots</u></b>
+			</div>
+			<div class = "middleColumnContainer">
+				<div class = "midColSection">
+					1st
+				</div>
+				<div class = "midColSection">
+					2nd
+				</div>
+				<div class = "midColSection">
+					3rd
+				</div>
+			</div>
+			<div class = "middleColumnContainer" style = "margin-bottom: 5px">
+				<div class = "midColSection">
+					<input style = "width: 15%">
+					/
+					<input style = "width: 15%">
+				</div>
+				<div class = "midColSection">
+					<input style = "width: 15%">
+					/
+					<input style = "width: 15%">
+				</div>
+				<div class = "midColSection">
+					<input style = "width: 15%">
+					/
+					<input style = "width: 15%">
+				</div>
+			</div>
+			<div class = "middleColumnContainer">
+				<div class = "midColSection">
+					4th
+				</div>
+				<div class = "midColSection">
+					5th
+				</div>
+				<div class = "midColSection">
+					6th
+				</div>
+			</div>
+			<div class = "middleColumnContainer" style = "margin-bottom: 5px">
+				<div class = "midColSection">
+					<input style = "width: 15%">
+					/
+					<input style = "width: 15%">
+				</div>
+				<div class = "midColSection">
+					<input style = "width: 15%">
+					/
+					<input style = "width: 15%">
+				</div>
+				<div class = "midColSection">
+					<input style = "width: 15%">
+					/
+					<input style = "width: 15%">
+				</div>
+			</div>
+			<div class = "middleColumnContainer">
+				<div class = "midColSection">
+					7th
+				</div>
+				<div class = "midColSection">
+					8th
+				</div>
+				<div class = "midColSection">
+					9th
+				</div>
+			</div>
+			<div class = "middleColumnContainer">
+				<div class = "midColSection">
+					<input style = "width: 15%">
+					/
+					<input style = "width: 15%">
+				</div>
+				<div class = "midColSection">
+					<input style = "width: 15%">
+					/
+					<input style = "width: 15%">
+				</div>
+				<div class = "midColSection">
+					<input style = "width: 15%">
+					/
+					<input style = "width: 15%">
+				</div>
+			</div>
+		</div>
+		
 		<!--Weapons Table-->
 		<div class= "middleColumnContainer">
 			<div class = "midColHeaderBox">
@@ -299,16 +391,6 @@
 					<col width="30%">
 					<col width="30%">
 					<col width="30%">
-					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-					</tr>
-					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-					</tr>
 					<tr>
 						<td><input style = "max-width: 85%; text-align: center;"></td>
 						<td><input style = "max-width: 85%; text-align: center;"></td>
@@ -367,23 +449,15 @@
 						<td><input style = "max-width: 47%; text-align: center;"></td>
 						<td><input style = "max-width: 85%; text-align: center;"></td>
 					</tr>
-					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 47%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-					</tr>
-					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 47%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-					</tr>
 				</table>
 				<input type = "button" value = "Add Spell" onclick="spellTableAddRow()">
 				<input type = "button" value = "Delete Spell" onclick="spellTableDeleteRow()">
 			</div>
 		</div>
 	</div>
-	
+<!--End of Middle Column-->
+
+<!--Right Column-->
 	<div class="column" id="col3">
 		<!-- Structure: Wrapper contains N boxes -->
 		<!-- Each box has a label and input/textarea -->

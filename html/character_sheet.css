@@ -229,8 +229,17 @@ input[type=number]::-webkit-outer-spin-button {
 	border: 2px black solid;
 	margin-bottom: 0.5%;
 }
+.midColSpellSlotBox {
+	height: auto;
+	width: 99%;
+	float: center;
+	text-align: center;
+	background-color: white;
+	border: 2px black solid;
+	margin-bottom: 0.5%;
+}
 .midColWepBox {
-	height: 13.5vw; /*23.5vh*/
+	height: 9vw; /*23.5vh*/
 	overflow-y: scroll;
 	overflow-x: hidden;
 	float: center;
