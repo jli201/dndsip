@@ -222,31 +222,16 @@ input[type=number]::-webkit-outer-spin-button {
 	float: center;
 	background-color: white;
 	border: 2px black solid;
-	margin-bottom: 1%;
+	margin-bottom: 0.5%;
 }
 .midColWepBox {
-	height: 23.5vh;
+	height: 13.5vw; /*23.5vh*/
 	overflow-y: scroll;
 	overflow-x: hidden;
 	float: center;
 	background-color: white;
 	border: 2px black solid;
 	margin-bottom: 1%;
-}
-.imgSizing{
-	max-width: 95%;
-}
-.shortenAndCenter{
-		width: 92.5%;
-		margin-left: .5%;
-		margin-right: .5%;
-		text-align: center;
-}
-.shortenAndCenter2{
-		width: 88%;
-		margin-left: .5%;
-		margin-right: .5%;
-		text-align: center;
 }
 .halvesBoxes{
 	display: block;

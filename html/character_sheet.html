@@ -196,7 +196,7 @@
 		
 		<div class= "middleColumnContainer">
 			<!--Hp Block-->
-			<div class = "genericHpBox" style = "margin-right: 1%;">
+			<div class = "genericHpBox" style = "margin-right: 0.5%;">
 				<div class = "middleColumnContainer">
 					<div class = "midColSection midColQuarter center">
 						<h6><font size = "-1"> Hp: </font></h6>
@@ -204,13 +204,13 @@
 					<div class = "midColSection midCol3Quarter center">
 						<div class = "middleColumnContainer">
 							<div class = "midColSection">
-								<input style = "max-width: 70%; margin-top: 5.5%; text-align: right;">
+								<input style = "max-width: 62%; margin-top: 5.5%; text-align: right; margin-left: 6%; margin-right: 2%">
 							</div>
 							<div class = "midColSection center">
 								<h6>/</h6>
 							</div>
 							<div class = "midColSection">
-								<input style = "max-width: 70%; margin-top: 5.5%">
+								<input style = "max-width: 62%; margin-top: 5.5%; margin-right: 6%">
 							</div>
 						</div>
 					</div>
@@ -224,7 +224,7 @@
 						<h6><font size = "-1"> Temp Hp: </font></h6>
 					</div>
 					<div class = "midColSection midCol2Third">
-						<input style = "max-width: 85%; margin-top: 5.5%">
+						<input style = "max-width: 80%; margin-top: 5.5%; margin-right: 5%">
 					</div>
 				</div>
 			</div>
@@ -232,7 +232,7 @@
 		<!--Hit Dice and Saving Throws-->
 		<!--I referenced W3Schools to make this code-->
 		<div class= "middleColumnContainer">
-			<div class = "genericHpBox halvesBoxes" style = "margin-right: 1%;">
+			<div class = "genericHpBox halvesBoxes" style = "margin-right: 0.5%;">
 				<div class = "middleColumnContainer">
 					<div class = "midColSection midColQuarter center">
 						<h6><font size = "-1"> Hit Dice: </font></h6>
@@ -240,13 +240,13 @@
 					<div class = "midColSection midCol3Quarter center">
 						<div class = "middleColumnContainer">
 							<div class = "midColSection">
-								<input style = "max-width: 70%; margin-top: 5.5%; text-align: right;">
+								<input style = "max-width: 66%; margin-top: 18%; text-align: right; margin-left: 2%; margin-right: 2%">
 							</div>
-							<div class = "midColSection center">
+							<div class = "midColSection center" style = "margin-top: 8%">
 								<h6>/</h6>
 							</div>
 							<div class = "midColSection">
-								<input style = "max-width: 70%; margin-top: 5.5%">
+								<input style = "max-width: 66%; margin-top: 18%; margin-right: 2%">
 							</div>
 						</div>
 					</div>
