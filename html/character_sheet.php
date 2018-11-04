@@ -75,7 +75,7 @@
 			<div id="insp-prof-st-skills">
 			
 			<!-- inspiration and proficiency bonus -->
-				<div id="insp-prof"> 
+				<div id="insp-prof" style="margin-top: 0;"> 
 					<input for="inspiration" type="checkbox">
 					<label id="inspiration">Inspiration</label>
 				</div>
