@@ -55,6 +55,7 @@ input[type=number]::-webkit-outer-spin-button {
 #insp-prof-st-skills {
 	height: 10vh;
 	margin: 1%;
+	margin-top: 0;
 }
 
 #insp-prof {
@@ -89,11 +90,12 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #statsboxLeftCol { /*stats box CSS for the left column*/
-	height: 11.6vh;
+	height: 12.2vh;
 	width: 100%;
 	background-color: #CBF3F0;
 	border: 2px black solid;
 	margin: 1%;
+	margin-top:0;
 }
 
 #statsboxLeftCol h4{
