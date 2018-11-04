@@ -40,34 +40,34 @@
 			<div id="statsBoxFormat">
 				<!-- stats boxes -->
 				<div id="statsboxLeftCol">
-					<h4> Strength </h4>
-					<div id="strMod">str mod</div>
+					<h4> Strength </h4>					
 					<input type="number">
+					<div id="strMod">str mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Dexterity </h4>
-					<div id="dexMod">dex mod</div>
 					<input type="number">
+					<div id="dexMod">dex mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Constitution </h4>
-					<div id="conMod">con mod</div>
 					<input type="number">
+					<div id="conMod">con mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Intelligence </h4>
-					<div id="intMod">int mod</div>
 					<input type="number">
+					<div id="intMod">int mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Wisdom </h4>
-					<div id="wisMod">wis mod</div>
 					<input type="number">
+					<div id="wisMod">wis mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Charisma </h4>
-					<div id="chaMod">cha mod</div>
 					<input type="number">
+					<div id="chaMod">cha mod</div>
 				</div>
 
 			</div>
