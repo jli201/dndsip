@@ -18,4 +18,4 @@ Goal: Help DMs track information and fluidly run combat scenarios with an initia
 
 Trello Scrum Board Link:https://trello.com/b/xBlrScyz/dndsip
 
-Google Drive: https://docs.google.com/spreadsheets/d/1vlR9tyQjozMe8ikQ8lL3fLJf4uK68z63pblMsoROV0Q/edit?usp=sharing
+Google Drive: https://drive.google.com/drive/folders/1xDwYZG41x6VYaVK8Evd_7sxZ7OI3UuWo?usp=sharing
