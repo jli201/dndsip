@@ -113,36 +113,36 @@
 								<td> <input type="checkbox"> <input id="animal" type="number"> Animal Handling</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input type="number"> Arcana</td>
-								<td> <input type="checkbox"> <input type="number"> Athletics</td>
+								<td> <input type="checkbox"> <input id="arcana" type="number"> Arcana</td>
+								<td> <input type="checkbox"> <input id="athletics" type="number"> Athletics</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input type="number"> Deception</td>
-								<td> <input type="checkbox"> <input type="number"> History</td>
+								<td> <input type="checkbox"> <input id="deception" type="number"> Deception</td>
+								<td> <input type="checkbox"> <input id="history" type="number"> History</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input type="number"> Insight</td>
-								<td> <input type="checkbox"> <input type="number"> Intimidation</td>
+								<td> <input type="checkbox"> <input id="insight" type="number"> Insight</td>
+								<td> <input type="checkbox"> <input id="intimidation type="number"> Intimidation</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input type="number"> Investigation</td>
-								<td> <input type="checkbox"> <input type="number"> Medicine</td>
+								<td> <input type="checkbox"> <input id="investigation" type="number"> Investigation</td>
+								<td> <input type="checkbox"> <input id="medicine" type="number"> Medicine</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input type="number"> Nature</td>
-								<td> <input type="checkbox"> <input type="number"> Perception</td>
+								<td> <input type="checkbox"> <input id="nature" type="number"> Nature</td>
+								<td> <input type="checkbox"> <input id="perception" type="number"> Perception</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input type="number"> Performance</td>
-								<td> <input type="checkbox"> <input type="number"> Persuasion</td>
+								<td> <input type="checkbox"> <input id="performance" type="number"> Performance</td>
+								<td> <input type="checkbox"> <input id="persuasion" type="number"> Persuasion</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input type="number"> Religion</td>
-								<td> <input type="checkbox"> <input type="number"> Sleight of Hand</td>
+								<td> <input type="checkbox"> <input id="religion" type="number"> Religion</td>
+								<td> <input type="checkbox"> <input id="sleight" type="number"> Sleight of Hand</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input type="number"> Stealth</td>
-								<td> <input type="checkbox"> <input type="number"> Survival</td>
+								<td> <input type="checkbox"> <input id="stealth" type="number"> Stealth</td>
+								<td> <input type="checkbox"> <input id="survival" type="number"> Survival</td>
 							</tr>
 						</table>
 					</div>
@@ -154,8 +154,8 @@
 		
 		
 		<div id="passiveWisdom">
-			<input for="profBonus" type="number">
-			<label id="profBonus">Passive Wisdom (Perception)</label>
+			<input for="passiveWisdom" type="number">
+			<label id="passiveWisdom">Passive Wisdom (Perception)</label>
 		</div>
 		
 		<!-- Other Proficiencies and Languages -->
