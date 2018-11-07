@@ -21,14 +21,7 @@
 	} else {
 		$findCharacters = "select * from BasicInfo where username='$username';";
 		$result = $conn->query($findCharacters);
-
-		//for each row: do the contents inside the while loop
-		//access the data in a particular column of a given row with $row['DATA_YOU_WANT']
-		while($row = $result->fetch_assoc()) {
-			//$row['level'];
-		}
 	}
-	$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -49,15 +42,38 @@
     </head>
 
     <body>
-	<div id="logout">
-		<a href="logout.php">Logout</a>
-	</div>
+        <div id="logout">
+            <a href="logout.php">Logout</a>
+        </div>
         <div class="heading_div">
             <h1 class="charHeadingBorder"> Characters:</h1>
-
         </div>
 
-        <div class="char_div">
+    <?php
+        //for each row: do the contents inside the while loop
+		//access the data in a particular column of a given row with $row['DATA_YOU_WANT']
+		while($row = $result->fetch_assoc()) {
+
+            //create the div for each character sheet and grab the respective values from the database
+            echo "<div class='char_div'>
+                    <div class='charSelectBorder'>
+                        <div class='char_info'>
+                            Level: <span class='numberCircle'> ".$row['level']." </span>
+                        </div>
+                        <div class='char_info'> Name: ".$row['characterName']."</div>
+                        <div class='char_info'> Race: ".$row['race']."</div>
+                        <div class='char_info'> Class: ".$row['class']."</div>
+                        <br>
+                    </div>
+                  </div>";
+			
+        }
+        $conn->close();
+    ?>
+
+        <!--This was for testing the divs before we had any data in our database, it is not needed anymore-->
+
+        <!-- <div class="char_div">
             <div class="charSelectBorder">
                 <div class="char_info">
                     Level:  <span class="numberCircle">13</span>
@@ -100,7 +116,7 @@
                 <div class="char_info"> Class: Mage</div>
                <br>
             </div>
-        </div>
+        </div> -->
 
         <div class="char_div">
             <div class="createChar">
