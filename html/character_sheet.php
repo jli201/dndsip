@@ -152,8 +152,7 @@
 
 		</div>
 		
-		
-		<div id="passiveWisdom">
+		<div id="passiveWisdomBox">
 			<input for="passiveWisdom" type="number">
 			<label id="passiveWisdom">Passive Wisdom (Perception)</label>
 		</div>

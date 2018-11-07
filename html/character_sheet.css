@@ -208,14 +208,14 @@ input[type=number]::-webkit-outer-spin-button {
 	width: 20px;
 }
 
-#passiveWisdom{
+#passiveWisdomBox{
 	display: block;
 	height: 6vh; 
 	background-color: #CBF3F0;
 	border: 2px black solid;
 }
 
-#passiveWisdom input{ /* for inspiration and proficiency bonus inputs*/
+#passiveWisdomBox input{ /* for inspiration and proficiency bonus inputs*/
 	width: 7%; 
 	height: 60%; 
 	margin-left: 20%;
