@@ -18,17 +18,22 @@
 	<div id="namePlate">
 		<div id="innerbox">
 			<form id="nameform">
-				<label for="pName" style="font-size: 14px;"> Player Name: </label>
+				<button> Save </button>
+				<button> Characters </button>
+				<button> Logout </button>
+				<label for="pName"> Player Name: </label>
 				<input id="pName" type="text" placeholder="Player Name">
-				<label for="cName" style="font-size: 14px;">Character Name: </label>
+				<label for="cName">Character Name: </label>
 				<input id="cName" type="text" placeholder="Character Name">
-				<label for="classAndLevel" style="font-size: 14px;"> Class & Level: </label>
-				<input id="classAndLevel" type="text" placeholder="Class & Level">
-				<label for="race" style="font-size: 14px;"> Race: </label>
+				<label for="class"> Class: </label>
+				<input id="class" type="text" placeholder="Class">
+				<label for="level"> Level: </label>
+				<input id="level" type="text" placeholder="Level">
+				<label for="race"> Race: </label>
 				<input id="race" type="text" placeholder="Race">
-				<label for="alignment" style="font-size: 14px;"> Alignment: </label>
+				<label for="alignment"> Alignment: </label>
 				<input id="alignment" type="text" placeholder="Alignment">
-				<label for="exp" style="font-size: 14px;"> Experience Points: </label>
+				<label for="exp"> Experience Points: </label>
 				<input id="exp" type="number" placeholder="Experience Points">
 			</form>
 		</div>
@@ -122,7 +127,7 @@
 							</tr>
 							<tr>
 								<td> <input type="checkbox"> <input id="insight" type="number"> Insight</td>
-								<td> <input type="checkbox"> <input id="intimidation type="number"> Intimidation</td>
+								<td> <input type="checkbox"> <input id="intimidation" type="number"> Intimidation</td>
 							</tr>
 							<tr>
 								<td> <input type="checkbox"> <input id="investigation" type="number"> Investigation</td>
