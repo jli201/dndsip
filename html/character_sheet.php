@@ -176,26 +176,40 @@
 <!--Middle Column-->
 	<div class="column">
 		<!--AC/Initiative/Speed Section-->
+
+		<!--
+		this section uses "middleColumnContainer" as a sort of wrapper, and works to sort of replace "container" from stupid.css
+		All code in the same "middleColumnContainer" will appear on the same line and be spaced evenly according to flexbox
+		On that note, flexbox is the main thing used for spacing in this section
+		-->
+
 		<div class = "middleColumnContainer">
+			<!--
+			All 3 boxes for AC/Init/Speed follow a simple formula: Picture then Input area then Bottom label (if any)
+			-->
+
+			<!--Box for Armor Class-->
 			<div class = "midColSection center midColThird">
 				<div class = "imgTextOverlay">
-					<img class = "center" src="img/Sheild2.png" style="max-width: 95%; height:auto"/>
-					<input type="sheildTextBox" placeholder="AC" style="width:2vw; text-align: center;">
+					<img class = "center midColImgSize" src="img/Sheild2.png"/>
+					<input name = "ac varchar(255)" type="sheildTextBox" style="width:2vw; text-align: center;" placeholder="AC">
 				</div>
 			</div>
+			<!--Box for Initiative-->
 			<div class = "midColSection midColThird">
 				<div class = "imgTextOverlay">
-					<img class = "center" src="img/textBox.png" style="max-width: 95%; height:auto"/>
-					<input type="speedBox" style="width:2vw; text-align: center;">
+					<img class = "center midColImgSize" src="img/textBox.png"/>
+					<input name = "initiative varchar(255)" type="speedBox" style="width:2vw; text-align: center;">
 					<div class = "imgTextBot2">
 						<b>Initiative</b>
 					</div>
 				</div>
 			</div>
+			<!--Box for Speed-->
 			<div class = "midColSection midColThird">
 				<div class = "imgTextOverlay">
-					<img class = "center" src="img/textBox.png" style="max-width: 95%; height:auto"/>
-					<input type="speedBox" style="width:2vw; text-align: center;">
+					<img class = "center midColImgSize" src="img/textBox.png"/>
+					<input name = "speed varchar(255)" type="speedBox" style="width:2vw; text-align: center;">
 					<div class = "imgTextBot2">
 						<b>Speed</b>
 					</div>
@@ -213,13 +227,13 @@
 					<div class = "midColSection midCol3Quarter center">
 						<div class = "middleColumnContainer">
 							<div class = "midColSection">
-								<input style = "max-width: 62%; margin-top: 5.5%; text-align: right; margin-left: 6%; margin-right: 2%">
+								<input name = "hpCurrent varchar(255)" style = "max-width: 62%; margin-top: 5.5%; text-align: right; margin-left: 6%; margin-right: 2%">
 							</div>
 							<div class = "midColSection center">
 								<h6>/</h6>
 							</div>
 							<div class = "midColSection">
-								<input style = "max-width: 62%; margin-top: 5.5%; margin-right: 6%">
+								<input name = "hpMax varchar(255)" style = "max-width: 62%; margin-top: 5.5%; margin-right: 6%">
 							</div>
 						</div>
 					</div>
@@ -233,7 +247,7 @@
 						<h6><font size = "-1"> Temp Hp: </font></h6>
 					</div>
 					<div class = "midColSection midCol2Third">
-						<input style = "max-width: 80%; margin-top: 5.5%; margin-right: 5%">
+						<input name = "tempHpCurrent varchar(255)" style = "max-width: 80%; margin-top: 5.5%; margin-right: 5%">
 					</div>
 				</div>
 			</div>
@@ -249,13 +263,13 @@
 					<div class = "midColSection midCol3Quarter center">
 						<div class = "middleColumnContainer">
 							<div class = "midColSection">
-								<input style = "max-width: 66%; margin-top: 18%; text-align: right; margin-left: 2%; margin-right: 2%">
+								<input name = "hitDiceCurrent varchar(255)" style = "max-width: 66%; margin-top: 18%; text-align: right; margin-left: 2%; margin-right: 2%">
 							</div>
 							<div class = "midColSection center" style = "margin-top: 8%">
 								<h6>/</h6>
 							</div>
 							<div class = "midColSection">
-								<input style = "max-width: 66%; margin-top: 18%; margin-right: 2%">
+								<input name = "hitDiceMax varchar(255)" style = "max-width: 66%; margin-top: 18%; margin-right: 2%">
 							</div>
 						</div>
 					</div>
@@ -267,9 +281,9 @@
 						Successes
 					</div>
 					<div class = "midColSection halvesBoxes right" style = "margin-bottom: -6%">
-						<input type="checkbox">
-						<input type="checkbox">
-						<input type="checkbox">
+						<input name = "deathSuccessOne varchar(255)" type="checkbox">
+						<input name = "deathSuccessTwo varchar(255)" type="checkbox">
+						<input name = "deathSuccessThree varchar(255)" type="checkbox">
 					</div>
 				</div>
 				<br>
@@ -278,9 +292,9 @@
 						Failures
 					</div>
 					<div class = "midColSection halvesBoxes right">
-						<input type="checkbox">
-						<input type="checkbox">
-						<input type="checkbox">
+						<input name = "deathFailOne varchar(255)" type="checkbox">
+						<input name = "deathFailTwo varchar(255)" type="checkbox">
+						<input name = "deathFailThree varchar(255)" type="checkbox">
 					</div>
 				</div>
 			</div>
@@ -304,19 +318,19 @@
 			</div>
 			<div class = "middleColumnContainer" style = "margin-bottom: 5px">
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "firstLevelCurrent varchar(255)" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "firstLevelMax varchar(255)" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "secondLevelCurrent varchar(255)" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "secondLevelMax" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "thirdLevelCurrent varchar(255)" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "thirdLevelMax varchar(255)" style = "width: 15%">
 				</div>
 			</div>
 			<div class = "middleColumnContainer">
@@ -332,19 +346,19 @@
 			</div>
 			<div class = "middleColumnContainer" style = "margin-bottom: 5px">
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "fourthLevelCurrent varchar(255)" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "fourthLevelMax varchar(255)" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "fifthLevelCurrent varchar(255)" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "fifthLevelMax varchar(255)" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "sixthLevelCurrent varchar(255)" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "sixthLevelMax varchar(255)" style = "width: 15%">
 				</div>
 			</div>
 			<div class = "middleColumnContainer">
@@ -360,19 +374,19 @@
 			</div>
 			<div class = "middleColumnContainer">
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "seventhLevelCurrent varchar(255)" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "seventhLevelMax varchar(255)" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "eighthLevelCurrent varchar(255)" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "eighthLevelMax varchar(255)" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "ninthLevelCurrent varchar(255)" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "ninthLevelMax varchar(255)" style = "width: 15%">
 				</div>
 			</div>
 		</div>
@@ -401,19 +415,19 @@
 					<col width="30%">
 					<col width="30%">
 					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon1Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon1AttackBonus varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon1Damage varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
 					</tr>
 					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon2Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon2AttackBonus varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon2Damage varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
 					</tr>
 					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon3Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon3AttackBonus varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon3Damage varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
 					</tr>
 				</table>
 				<input type = "button" value = "Add Attack" onclick="weaponTableAddRow()">

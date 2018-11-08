@@ -1,54 +1,74 @@
-function weaponTableAddRow() {
-    var table = document.getElementById("weaponTable");
-    var row = table.insertRow(table.rows.length);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    var box1 = document.createElement("INPUT");
-        box1.setAttribute("type", "text");
-        box1.setAttribute("style","max-width: 85%; text-align: center")
-    var box2 = document.createElement("INPUT");
-        box2.setAttribute("type", "text");
-        box2.setAttribute("style","max-width: 85%; text-align: center")
-    var box3 = document.createElement("INPUT");
-        box3.setAttribute("type", "text");
-        box3.setAttribute("style","max-width: 85%; text-align: center")
-    cell1.appendChild(box1);
-    cell2.appendChild(box2);
-    cell3.appendChild(box3);
-}
-function weaponTableDeleteRow() {
-	var table = document.getElementById("weaponTable");
-    if(table.rows.length > 2){
-    	table.deleteRow(table.rows.length - 1);
+/* Example of weapon table element
+    <tr>
+        <td><input name = "weapon#Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
+        <td><input name = "weapon#AttackBonus varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
+        <td><input name = "weapon#Damage varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
+    </tr>
+*/
+function weaponTableAddRow(){
+    var table = $('#weaponTable');
+
+    /*Since we want our weapons to span from 1-64, we add 1 to the numRows */
+    var numRows = table[0].rows.length + 1;
+
+    /*Only add rows if we are under 65 total rows, since we add 1 to the row number, we can make this limit 65*/
+    if(numRows < 65){
+        var markdown = '<tr>'+
+                            '<td><input name = "weapon' + numRows + 'Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
+                            '<td><input name = "weapon' + numRows + 'AttackBonus varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
+                            '<td><input name = "weapon' + numRows + 'Damage varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
+                        '</tr>';
+        $('#weaponTable tbody').append(markdown);
+        $('#weaponTable tr:last td:first input').focus();
     }
 }
 
-function spellTableAddRow() {
-    var table = document.getElementById("spellTable");
-    var row = table.insertRow(table.rows.length);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    var box1 = document.createElement("INPUT");
-        box1.setAttribute("type", "text");
-        box1.setAttribute("style","max-width: 85%; text-align: center")
-    var box2 = document.createElement("INPUT");
-        box2.setAttribute("type", "text");
-        box2.setAttribute("style","max-width: 47%; text-align: center")
-    var box3 = document.createElement("INPUT");
-        box3.setAttribute("type", "text");
-        box3.setAttribute("style","max-width: 85%; text-align: center")
-    cell1.appendChild(box1);
-    cell2.appendChild(box2);
-    cell3.appendChild(box3);
-}
-function spellTableDeleteRow() {
-	var table = document.getElementById("spellTable");
-    if(table.rows.length > 2){
-    	table.deleteRow(table.rows.length - 1);
+function weaponTableDeleteRow(){
+    var table = $('#weaponTable');
+    var numRows = table[0].rows.length;
+
+    /*We always want at least 1 row in the table*/
+    if(numRows > 1){
+        $('#weaponTable tr:last').remove();
     }
 }
+
+/*
+    Spell Table format
+    <tr>
+        <td><input name = "spell#Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
+        <td><input name = "spell#Level varchar(255)" type = "number" style = "max-width: 47%; text-align: center;"></td>
+        <td><input name = "spell#Description text" type = "text" style = "max-width: 85%; text-align: center;"></td>
+    </tr>
+*/
+
+function spellTableAddRow() {
+    var table = $('#spellTable');
+
+    /*Since we want our spells to span from 1-64, we add 1 to the numRows */
+    var numRows = table[0].rows.length + 1;
+
+    /*Only add rows if we are under 65 total rows, since we add 1 to the row number, we can make this limit 65*/
+    if(numRows < 65){
+        var markdown = '<tr>'+
+                            '<td><input name = "spell' + numRows + 'Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
+                            '<td><input name = "spell' + numRows + 'Level varchar(255)" type = "number" style = "max-width: 47%; text-align: center;"></td>'+
+                            '<td><input name = "spell' + numRows + 'Description text" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
+                        '</tr>';
+        $('#spellTable tbody').append(markdown);
+        $('#spellTable tr:last td:first input').focus();
+    }
+}
+function spellTableDeleteRow(){
+    var table = $('#spellTable');
+    var numRows = table[0].rows.length;
+
+    /*We always want at least 1 row in the table*/
+    if(numRows > 1){
+        $('#spellTable tr:last').remove();
+    }
+}
+
 /* 
 There are always at minimum two rows:
 A 'gold' row and the 'header' row. Don't delete those!
