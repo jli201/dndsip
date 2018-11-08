@@ -22,19 +22,19 @@
 				<button> Characters </button>
 				<button> Logout </button>
 				<label for="pName"> Player Name: </label>
-				<input id="pName" type="text" placeholder="Player Name">
+				<input name="playerName" id="pName" type="text" placeholder="Player Name">
 				<label for="cName">Character Name: </label>
-				<input id="cName" type="text" placeholder="Character Name">
+				<input name="characterName" id="cName" type="text" placeholder="Character Name">
 				<label for="class"> Class: </label>
-				<input id="class" type="text" placeholder="Class">
+				<input name="class" id="class" type="text" placeholder="Class">
 				<label for="level"> Level: </label>
-				<input id="level" type="text" placeholder="Level">
+				<input name="level" id="level" type="text" placeholder="Level">
 				<label for="race"> Race: </label>
-				<input id="race" type="text" placeholder="Race">
+				<input name="race" id="race" type="text" placeholder="Race">
 				<label for="alignment"> Alignment: </label>
-				<input id="alignment" type="text" placeholder="Alignment">
+				<input name="alignment" id="alignment" type="text" placeholder="Alignment">
 				<label for="exp"> Experience Points: </label>
-				<input id="exp" type="number" placeholder="Experience Points">
+				<input name="experiencePoints" id="exp" type="number" placeholder="Experience Points">
 			</form>
 		</div>
 	</div>
@@ -46,33 +46,33 @@
 				<!-- stats boxes -->
 				<div id="statsboxLeftCol">
 					<h4> Strength </h4>					
-					<input id="strength" type="number">
-					<div id="strMod">str mod</div>
+					<input name="strength" id="strength" type="number">
+					<div name="strengthMod" id="strMod">str mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Dexterity </h4>
-					<input id="dexterity" type="number">
-					<div id="dexMod">dex mod</div>
+					<input name="dexterity" id="dexterity" type="number">
+					<div name="dexterityMod" id="dexMod">dex mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Constitution </h4>
-					<input id="constitution" type="number">
-					<div id="conMod">con mod</div>
+					<input name="constitution" id="constitution" type="number">
+					<div name="constitutionMod" id="conMod">con mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Intelligence </h4>
-					<input id="intelligence" type="number">
-					<div id="intMod">int mod</div>
+					<input name="intelligence" id="intelligence" type="number">
+					<div name="intelligenceMod" id="intMod">int mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Wisdom </h4>
-					<input id="wisdom" type="number">
-					<div id="wisMod">wis mod</div>
+					<input name="wisdom" id="wisdom" type="number">
+					<div name="wisdomMod" id="wisMod">wis mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Charisma </h4>
-					<input id="charisma" type="number">
-					<div id="chaMod">cha mod</div>
+					<input name="charisma" id="charisma" type="number">
+					<div name="charismaMod" id="chaMod">cha mod</div>
 				</div>
 
 			</div>
@@ -82,11 +82,11 @@
 			<!-- inspiration and proficiency bonus -->
 				<div id="insp-prof" style="margin-top: 0;"> 
 					<input for="inspiration" type="checkbox">
-					<label id="inspiration">Inspiration</label>
+					<label name="inspiration" id="inspiration">Inspiration</label>
 				</div>
 				<div id="insp-prof"> 
 					<input for="profBonus" type="number">
-					<label id="profBonus">Proficiency Bonus</label>
+					<label name="proficiencyBonus" id="profBonus">Proficiency Bonus</label>
 				</div>
 
 				<!-- saving throws -->
@@ -94,12 +94,12 @@
 					<div id="savingThrows">
 						<form id="ST-form">
 							<h4> Saving Throws </h4>
-							<input type="checkbox"> <input id="strengthSavingThrow" type="number"> Strength <br>
-							<input type="checkbox"> <input id="dexteriySavingThrow" type="number"> Dexterity <br>
-							<input type="checkbox"> <input id="constitutionSavingThrow" type="number"> Constitution <br>
-							<input type="checkbox"> <input id="intelligenceSavingThrow" type="number"> Intelligence <br>
-							<input type="checkbox"> <input id="savingThrowsWisdom" type="number"> Wisdom <br>
-							<input type="checkbox"> <input id="savingThrowsCharisma" type="number"> Charisma <br>
+							<input type="checkbox"> <input name="strengthSavingThrow" id="strengthSavingThrow" type="number"> Strength <br>
+							<input type="checkbox"> <input name="dexteriySavingThrow" id="dexteriySavingThrow" type="number"> Dexterity <br>
+							<input type="checkbox"> <input name="constitutionSavingThrow" id="constitutionSavingThrow" type="number"> Constitution <br>
+							<input type="checkbox"> <input name="intelligenceSavingThrow" id="intelligenceSavingThrow" type="number"> Intelligence <br>
+							<input type="checkbox"> <input name="wisdomSavingThrow" id="wisdomSavingThrow" type="number"> Wisdom <br>
+							<input type="checkbox"> <input name="charismaSavingThrow" id="charismaSavingThrow" type="number"> Charisma <br>
 						</form>
 					</div>
 				</div> 
@@ -108,46 +108,46 @@
 					<div id="skills"> 
 						<h4>Skills</h4>
 						<div id="manualInputDiv">
-						 <div id="manualEntry"> <input type="checkbox"> Manual Entry
+						 <div id="manualEntry"> <input name="manualEntry" type="checkbox"> Manual Entry
 							<span id="manualInputText">Manual Entry disables the automatic calculation of skills.  Checkboxes for proficiency and expertise do not do anything, and you instead enter your skills into text boxes.</span>
 						 </div>
 						</div>
 						<table id="skillsList">
 							<tr>
-								<td> <input type="checkbox"> <input id="acrobatics" type="number"> Acrobatics</td>
-								<td> <input type="checkbox"> <input id="animal" type="number"> Animal Handling</td>
+								<td> <input type="checkbox"> <input name="acrobatics" id="acrobatics" type="number"> Acrobatics</td>
+								<td> <input type="checkbox"> <input name="animalHandling" id="animal" type="number"> Animal Handling</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="arcana" type="number"> Arcana</td>
-								<td> <input type="checkbox"> <input id="athletics" type="number"> Athletics</td>
+								<td> <input type="checkbox"> <input name="arcana" id="arcana" type="number"> Arcana</td>
+								<td> <input type="checkbox"> <input name="athletics" id="athletics" type="number"> Athletics</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="deception" type="number"> Deception</td>
-								<td> <input type="checkbox"> <input id="history" type="number"> History</td>
+								<td> <input type="checkbox"> <input name="deception" id="deception" type="number"> Deception</td>
+								<td> <input type="checkbox"> <input name="history" id="history" type="number"> History</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="insight" type="number"> Insight</td>
-								<td> <input type="checkbox"> <input id="intimidation" type="number"> Intimidation</td>
+								<td> <input type="checkbox"> <input name="insight" id="insight" type="number"> Insight</td>
+								<td> <input type="checkbox"> <input name="intimidation" id="intimidation" type="number"> Intimidation</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="investigation" type="number"> Investigation</td>
-								<td> <input type="checkbox"> <input id="medicine" type="number"> Medicine</td>
+								<td> <input type="checkbox"> <input name="investigation" id="investigation" type="number"> Investigation</td>
+								<td> <input type="checkbox"> <input name="medicine" id="medicine" type="number"> Medicine</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="nature" type="number"> Nature</td>
-								<td> <input type="checkbox"> <input id="perception" type="number"> Perception</td>
+								<td> <input type="checkbox"> <input name="nature" id="nature" type="number"> Nature</td>
+								<td> <input type="checkbox"> <input name="perception" id="perception" type="number"> Perception</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="performance" type="number"> Performance</td>
-								<td> <input type="checkbox"> <input id="persuasion" type="number"> Persuasion</td>
+								<td> <input type="checkbox"> <input name="performance" id="performance" type="number"> Performance</td>
+								<td> <input type="checkbox"> <input name="persuasion" id="persuasion" type="number"> Persuasion</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="religion" type="number"> Religion</td>
-								<td> <input type="checkbox"> <input id="sleight" type="number"> Sleight of Hand</td>
+								<td> <input type="checkbox"> <input name="religion" id="religion" type="number"> Religion</td>
+								<td> <input type="checkbox"> <input name="sleightOfHand" id="sleight" type="number"> Sleight of Hand</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="stealth" type="number"> Stealth</td>
-								<td> <input type="checkbox"> <input id="survival" type="number"> Survival</td>
+								<td> <input type="checkbox"> <input name="stealth" id="stealth" type="number"> Stealth</td>
+								<td> <input type="checkbox"> <input name="survival" id="survival" type="number"> Survival</td>
 							</tr>
 						</table>
 					</div>
@@ -159,7 +159,7 @@
 		
 		<div id="passiveWisdomBox">
 			<input for="passiveWisdom" type="number">
-			<label id="passiveWisdom">Passive Wisdom (Perception)</label>
+			<label name="passivePerception" id="passiveWisdom">Passive Wisdom (Perception)</label>
 		</div>
 		
 		<!-- Other Proficiencies and Languages -->
@@ -168,7 +168,7 @@
 			<label class="otherProfLanguagesHeading">Other Proficiencies & Languages</label>
 			</div>
 			<div>
-				<textarea class="profLanguagesInput"></textarea>
+				<textarea name="other" class="profLanguagesInput"></textarea>
 			</div>
 		</div>
 	</div>
