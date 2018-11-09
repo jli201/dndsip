@@ -130,3 +130,40 @@ function delInvRow() {
 
 }
 
+////////////////////////////////////////////
+////////   ON NAVIGATE AWAY   //////////////
+////////////////////////////////////////////
+//https://www.oodlestechnologies.com/blogs/Capture-Browser-Or-Tab-Close-Event-Jquery-Javascript
+//https://eureka.ykyuen.info/2011/02/22/jquery-javascript-capture-the-browser-or-tab-closed-event/
+
+//Note that browsers prevent alert, confirm, or prompt fxns on this event.
+//https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload
+var validEscape = false;
+
+function addValidUnloadEvents () {
+    //add special cases here
+    //e.g. if you hit refresh and you want to save, add:
+    /*$(document).on('keypress', function(e) {
+        if (e.keyCode == 116){ //F5
+            validNavigation = true;
+        }
+    });*/
+
+}
+
+//when the document loads, add all event triggers
+$(document).ready(function() {
+    addValidUnloadEvents();
+});
+
+//https://api.jquery.com/unload/
+$(window).on("beforeunload", function() {
+    console.log("Bye!")
+    if (validEscape) {
+        callUnloadEvent();
+    }
+});
+
+function callUnloadEvent () {
+    console.log("Valid unload event.");
+}
