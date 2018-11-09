@@ -496,26 +496,26 @@
 		<div class="personality-wrapper">
 			<div class="personality-box">
 				<label class="input-label">Traits</label>
-				<textarea class="input-field"></textarea>
+				<textarea name="traits" class="input-field"></textarea>
 			</div>
 			<div class="personality-box">
 				<label class="input-label">Ideals</label>
-				<textarea class="input-field"></textarea>
+				<textarea name="ideals" class="input-field"></textarea>
 			</div>
 			<div class="personality-box">
 				<label class="input-label">Bonds</label>
-				<textarea class="input-field"></textarea>
+				<textarea name="bonds" class="input-field"></textarea>
 			</div>
 			<div class="personality-box">
 				<label class="input-label">Flaws</label>
-				<textarea class="input-field"></textarea>
+				<textarea name="flaws" class="input-field"></textarea>
 			</div>
 		</div>
 		<!-- Features / Special Traits -->
 		<div class="features-traits-wrapper">
 			<div class="features-traits-box">
 				<label class="input-label">Features & Traits</label>
-				<textarea class="input-field"></textarea>
+				<textarea name="featuresAndTraits" class="input-field"></textarea>
 			</div>
 		</div>
 		<!-- Inventory Table -->
