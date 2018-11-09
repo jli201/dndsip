@@ -86,20 +86,21 @@ function addInvRow() {
     if (debug) console.log("Adding inventory row.");
     if (debug) console.log("Num rows is " + numRows);
 
-    // sanity check
-    if (numRows > 1000 ) {
-        if (debug) console.log("You don't need 1000+ inventory rows. Stop that.");
-        return;
-    }
-
     // CREATE MARKDOWN 
     // Remember, row 3 is the 1st numbered row. (only 2 rows = adding 1st row)
     numRows -= 1;
 
+    // sanity check
+    if (numRows > 96 ) {
+        if (debug) console.log("Only 96 inventory items allowed.");
+        return;
+    }
+
     // See table entry format in comments before function
-    var markdown = '<tr><td><input type="number" value="0" id="inv-num-' + numRows
-        + '"></input></td><td><input type="text" value="Item" id="inv-obj-' 
-        + numRows + '"></input></td></tr>';
+    var markdown = '<tr><td><input type="number" value="0" name="Item' + numRows 
+        + 'Name" id="inv-num-' + numRows
+        + '"></input></td><td><input type="text" value="Item" name="Item' + numRows
+        + 'Description" id="inv-obj-' + numRows + '"></input></td></tr>';
 
     // We will always have a tbody, because we have 2 default rows!
     // HTML adds a tbody if there is at least one tr, doesn't need to be explicit
