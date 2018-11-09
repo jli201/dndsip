@@ -13,8 +13,15 @@
 
   <script type = "text/javascript" src="character_sheet.js"></script>
 
+  <script>
+  $(document).ready(function(){
+    $('#diceroller').load("diceroller.html");
+  });
+  </script>
+
 </head>
 <body>
+	<div id="diceroller"></div>
 	<div id="namePlate">
 		<div id="innerbox">
 			<form id="nameform">
