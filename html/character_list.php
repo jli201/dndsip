@@ -21,14 +21,7 @@
 	} else {
 		$findCharacters = "select * from BasicInfo where username='$username';";
 		$result = $conn->query($findCharacters);
-
-		//for each row: do the contents inside the while loop
-		//access the data in a particular column of a given row with $row['DATA_YOU_WANT']
-		while($row = $result->fetch_assoc()) {
-			//$row['level'];
-		}
 	}
-	$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -49,15 +42,52 @@
     </head>
 
     <body>
-	<div id="logout">
-		<a href="logout.php">Logout</a>
-	</div>
+        <div id="logout">
+            <a href="logout.php">Logout</a>
+        </div>
         <div class="heading_div">
             <h1 class="charHeadingBorder"> Characters:</h1>
-
         </div>
 
-        <div class="char_div">
+    <!-- php to generate each character in the list -->
+    <?php
+        //for each row: create a div which displays info about the character
+        $characterNumber = 0;
+        while($row = $result->fetch_assoc()) {
+                $characterNumber = ++$characterNumber;
+                createDiv($characterNumber, $username, $row);
+            }
+        $conn->close();
+
+
+        /*
+        Purpose: Creates unique divs for each of the user's characters
+        Params:
+            -characterNumber: used to modify the name attribute of each character's details
+            -username: used to modify the name attribute of each character's details
+            -row: the row of the database which contains the info for a given character (iterated over by a calling loop)
+        Returns: Nothing
+        */
+        function createDiv($characterNumber, $username, $row) {
+            //echos a div onto the actual DOM
+            echo "<div class='char_div'>
+                    <div class='charSelectBorder'>
+                        <div name='".$username."level".$characterNumber."' class='char_info'>
+                            Level: <span class='numberCircle'> ".$row['level']." </span>
+                        </div>
+                        <div name='".$username."charName".$characterNumber."' class='char_info'> Name: ".$row['characterName']."</div>
+                        <div name='".$username."race".$characterNumber."' class='char_info'> Race: ".$row['race']."</div>
+                        <div name='".$username."class".$characterNumber."' class='char_info'> Class: ".$row['class']."</div>
+                        <br>
+                    </div>
+                  </div>";
+        }
+    ?>
+
+        <!--This was for testing the divs before we had any data in our database, it is not needed anymore.
+            Leaving it here incase I need to refer to it again-->
+
+        <!-- <div class="char_div">
             <div class="charSelectBorder">
                 <div class="char_info">
                     Level:  <span class="numberCircle">13</span>
@@ -100,7 +130,9 @@
                 <div class="char_info"> Class: Mage</div>
                <br>
             </div>
-        </div>
+        </div> -->
+        <!--This was for testing the divs before we had any data in our database, it is not needed anymore
+        Leaving it here incase I need to refer to it again-->
 
         <div class="char_div">
             <div class="createChar">
