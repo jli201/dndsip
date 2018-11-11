@@ -22,6 +22,7 @@
 </head>
 <body>
 	<div id="diceroller"></div>
+	<form id="characterSheet"> <!-- needs additional work. e.g. action tag -->
 	<div id="namePlate">
 		<div id="innerbox">
 			<form id="nameform">
@@ -549,7 +550,7 @@
 			</div>
 		</div>
 	</div>
-
+	</form> <!-- end 'characterSheet' form -->
 
 </body>
 </html>
