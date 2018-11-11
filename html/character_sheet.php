@@ -496,26 +496,26 @@
 		<div class="personality-wrapper">
 			<div class="personality-box">
 				<label class="input-label">Traits</label>
-				<textarea name="traits" class="input-field"></textarea>
+				<textarea name="traits" form="characterSheet" class="input-field"></textarea>
 			</div>
 			<div class="personality-box">
 				<label class="input-label">Ideals</label>
-				<textarea name="ideals" class="input-field"></textarea>
+				<textarea name="ideals" form="characterSheet" class="input-field"></textarea>
 			</div>
 			<div class="personality-box">
 				<label class="input-label">Bonds</label>
-				<textarea name="bonds" class="input-field"></textarea>
+				<textarea name="bonds" form="characterSheet" class="input-field"></textarea>
 			</div>
 			<div class="personality-box">
 				<label class="input-label">Flaws</label>
-				<textarea name="flaws" class="input-field"></textarea>
+				<textarea name="flaws" form="characterSheet" class="input-field"></textarea>
 			</div>
 		</div>
 		<!-- Features / Special Traits -->
 		<div class="features-traits-wrapper">
 			<div class="features-traits-box">
 				<label class="input-label">Features & Traits</label>
-				<textarea name="featuresAndTraits" class="input-field"></textarea>
+				<textarea name="featuresAndTraits" form="characterSheet" class="input-field"></textarea>
 			</div>
 		</div>
 		<!-- Inventory Table -->
@@ -533,7 +533,7 @@
 					If changing format, you must change the related js.-->
 					<tr>
 						<td colspan="2">
-							<input type="text" value="Gold!" id="inv-gold"></input>
+							<input type="text" placeholder="Gold!" name="gold" id="inv-gold"></input>
 						</td>
 					</tr>
 					<tr>

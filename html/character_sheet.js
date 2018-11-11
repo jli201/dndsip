@@ -98,7 +98,7 @@ function addInvRow() {
 
     // See table entry format in comments before function
     var markdown = '<tr><td><input type="number" value="0" name="Item' + numRows 
-        + 'Name" id="inv-num-' + numRows
+        + 'Quantity" id="inv-num-' + numRows
         + '"></input></td><td><input type="text" value="Item" name="Item' + numRows
         + 'Description" id="inv-obj-' + numRows + '"></input></td></tr>';
 
@@ -159,11 +159,13 @@ $(document).ready(function() {
 //https://api.jquery.com/unload/
 $(window).on("beforeunload", function() {
     console.log("Bye!")
-    if (validEscape) {
+    if (!validEscape) {
         callUnloadEvent();
     }
 });
 
+//requires form id is 'characterSheet'
 function callUnloadEvent () {
-    console.log("Valid unload event.");
+    console.log("Invalid unload event. Submitting form.");
+    $('#characterSheet').submit(); //submit the form
 }
