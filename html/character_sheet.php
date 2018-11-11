@@ -93,7 +93,7 @@
 					<label name="inspiration" id="inspiration">Inspiration</label>
 				</div>
 				<div id="insp-prof"> 
-					<input for="profBonus" type="number">
+					<input for="profBonus" id="proficiency" type="number">
 					<label name="proficiencyBonus" id="profBonus">Proficiency Bonus</label>
 				</div>
 
@@ -102,12 +102,12 @@
 					<div id="savingThrows">
 						<form id="ST-form">
 							<h4> Saving Throws </h4>
-							<input type="checkbox"> <input name="strengthSavingThrow" id="strengthSavingThrow" type="number"> Strength <br>
-							<input type="checkbox"> <input name="dexteriySavingThrow" id="dexteriySavingThrow" type="number"> Dexterity <br>
-							<input type="checkbox"> <input name="constitutionSavingThrow" id="constitutionSavingThrow" type="number"> Constitution <br>
-							<input type="checkbox"> <input name="intelligenceSavingThrow" id="intelligenceSavingThrow" type="number"> Intelligence <br>
-							<input type="checkbox"> <input name="wisdomSavingThrow" id="wisdomSavingThrow" type="number"> Wisdom <br>
-							<input type="checkbox"> <input name="charismaSavingThrow" id="charismaSavingThrow" type="number"> Charisma <br>
+							<input type="checkbox" id="strCheckbox"> <input name="strengthSavingThrow" id="strengthSavingThrow" type="number"> Strength <br>
+							<input type="checkbox" id="dexCheckbox"> <input name="dexteritySavingThrow" id="dexteritySavingThrow" type="number"> Dexterity <br>
+							<input type="checkbox" id="conCheckbox"> <input name="constitutionSavingThrow" id="constitutionSavingThrow" type="number"> Constitution <br>
+							<input type="checkbox" id="intCheckbox"> <input name="intelligenceSavingThrow" id="intelligenceSavingThrow" type="number"> Intelligence <br>
+							<input type="checkbox" id="wisCheckbox"> <input name="wisdomSavingThrow" id="wisdomSavingThrow" type="number"> Wisdom <br>
+							<input type="checkbox" id="chaCheckbox"> <input name="charismaSavingThrow" id="charismaSavingThrow" type="number"> Charisma <br>
 						</form>
 					</div>
 				</div> 
