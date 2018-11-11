@@ -130,6 +130,127 @@ function delInvRow() {
 
 }
 
+///////////////////////////////////////////////
+/////// UPDATE MOD VALUES           ///////////
+///////////////////////////////////////////////
+
+
+//populate one score
+function populateOneScore (scoreID, modID) {
+    var score = $('#' + scoreID).val();
+    var mod;
+    if ( score.length == 0 ) { //value unset
+        $('#' + modID).html("-");
+    }
+    else if (isNaN(score) ) { //somehow not a #
+        $('#' + modID).html("-");
+    }
+    else {
+        mod = Math.floor((score-10)/2); //Javascript doesn't have int division
+        $('#' + modID).html(mod);
+    }
+}
+
+//https://www.kirupa.com/html5/handling_events_for_many_elements.htm
+$(document).ready(function() {
+    
+    //stat scores
+    // statBoxParent.addEventListener("change", handleStatChange, false);
+    $('#statsBoxFormat').on('keyup', handleStatChange);
+
+    //saving throws
+    $('#ST-form').on('change', handleSavingThrowChange);
+    // $('#ST-form').on('keyup', handleSavingThrowChange);
+
+
+});
+
+
+function handleStatChange(e) {
+    if (e.target != e.currentTarget ) {
+        var score = e.target.id;
+        // console.log(score + " is changing.");
+        var shortform = score.substring(0, 3)
+        var mod = shortform + "Mod";
+        populateOneScore(score, mod);
+        //assumes checkbox ids are 'strCheckbox', 'dexCheckbox', etc.
+        populateOneSavingThrow(shortform, shortform + "Checkbox");
+
+    }
+    e.stopPropagation();
+}
+
+function getThrowFromShortform (shortform) {
+    var inputName;
+    switch(shortform) {
+        case "str":
+            inputName = "strengthSavingThrow";
+            break;
+        case "dex":
+            inputName = "dexteritySavingThrow";
+            break;
+        case "con":
+            inputName = "constitutionSavingThrow";
+            break;
+        case "int":
+            inputName = "intelligenceSavingThrow";
+            break;
+        case "wis":
+            inputName = "wisdomSavingThrow";
+            break;
+        case "cha":
+            inputName = "charismaSavingThrow";
+            break;
+        default:
+            inputName = "BadName."
+            console.log('Unknown case.');
+    }
+    return inputName;
+
+}
+
+//triggered by checkbox click
+function handleSavingThrowChange(e) {
+    if (e.target != e.currentTarget ) {
+        //find out if the triggering object is checkbox or number input
+        var type = $('#' + e.target.id).attr('type');
+        if (type != 'checkbox' ) {
+            return; //do nothing if you trigger a non-checkbox change
+        }
+        var shortform = (e.target.id).substring(0,3);
+        
+        populateOneSavingThrow(shortform, e.target.id);
+
+    }
+    e.stopPropagation();
+}
+
+function populateOneSavingThrow (shortform, checkboxID) {
+    var modID = shortform + "Mod";
+    var inputID = getThrowFromShortform(shortform);
+
+    var total = ($('#' + modID).html());
+        if (isNaN(total)) {
+            $('#' + inputID).val('-0');
+            return;
+        }
+        total *= 1; //parse as int
+        // console.log(total);
+        if ( $('#' + checkboxID).prop('checked') ) {
+            var prof = $('#proficiency').val();
+            // console.log('prof ' + prof );
+            if (prof.length == 0 ) { prof = 0; }
+            else prof *= 1;
+            total += prof;
+        }
+        // console.log(total);
+        $('#' + inputID).val(total);
+
+}
+
+//Skills to do.
+
+
 ////////////////////////////////////////////
 ////////   ON NAVIGATE AWAY   //////////////
 ////////////////////////////////////////////
@@ -169,3 +290,4 @@ function callUnloadEvent () {
     console.log("Invalid unload event. Submitting form.");
     $('#characterSheet').submit(); //submit the form
 }
+
