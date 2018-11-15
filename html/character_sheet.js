@@ -162,7 +162,9 @@ $(document).ready(function() {
     $('#ST-form').on('change', handleSavingThrowChange);
     // $('#ST-form').on('keyup', handleSavingThrowChange);
 
+    //skills
 
+    $('#skillsList').on('change', handleSkillProficiencyCheckBoxChange);
 });
 
 
@@ -170,12 +172,16 @@ function handleStatChange(e) {
     if (e.target != e.currentTarget ) {
         var score = e.target.id;
         // console.log(score + " is changing.");
-        var shortform = score.substring(0, 3)
+        var shortform = score.substring(0, 3);
         var mod = shortform + "Mod";
         populateOneScore(score, mod);
+
         //assumes checkbox ids are 'strCheckbox', 'dexCheckbox', etc.
         populateOneSavingThrow(shortform, shortform + "Checkbox");
 
+        if(skillHandler.manualCalculation == false){
+            populateOneSkillCatagory(shortform + "Mod", shortform + "Skill");
+        }
     }
     e.stopPropagation();
 }
@@ -220,7 +226,6 @@ function handleSavingThrowChange(e) {
         var shortform = (e.target.id).substring(0,3);
         
         populateOneSavingThrow(shortform, e.target.id);
-
     }
     e.stopPropagation();
 }
@@ -248,7 +253,119 @@ function populateOneSavingThrow (shortform, checkboxID) {
 
 }
 
-//Skills to do.
+//Skills and Proficiencies
+
+//This is to make the skill sheet readOnly by default
+window.onload = changeSkillInputFeildsWritability;
+
+//This object will carry any variables we need to handle skill changes
+var skillHandler = {
+
+    //A list of all skill input box id's
+    skills: ["acrobatics","animal","arcana","athletics","deception",
+        "history","insight","intimidation","investigation","medicine",
+        "nature","perception","performance","persuasion","religion",
+        "sleight", "stealth", "survival"],
+    
+    //checks if manual calculation is enabled or not
+    manualCalculation: false,
+
+    //Class tags used in html to determine what stat is associated with a skill
+    classTags: ["strSkill","dexSkill","conSkill","intSkill","wisSkill","chaSkill"],
+}
+
+//swaps skill calcuation from automatic to manual and vice versa
+function switchManualCalculation(){
+    skillHandler.manualCalculation = !skillHandler.manualCalculation;
+}
+
+function changeSkillInputFeildsWritability() {
+    if (skillHandler.manualCalculation == false) {
+        for(i = 0; i < skillHandler.skills.length; i++) {
+            document.getElementById(skillHandler.skills[i]).readOnly = true;
+        }
+    }else{
+        for(i = 0; i < skillHandler.skills.length; i++) {
+            document.getElementById(skillHandler.skills[i]).readOnly = false;
+        }
+    }
+}
+
+function handleSkillProficiencyCheckBoxChange(e) {
+    if (e.target != e.currentTarget ) {
+        //find out if the triggering object is checkbox or number input
+        var type = $('#' + e.target.id).attr('type');
+        if (type != 'checkbox' ) {
+            return; //do nothing if you trigger a non-checkbox change
+        }
+
+        //make a new string to get the skill name so we can check the input boxes
+        var skillString = (e.target.id);
+
+        //8 is the number of characters there are in "Checkbox" and we need to trim that to get the skill name
+        skillString =  skillString.substring(0, skillString.length - 8);
+        
+        //now we've found the input box associated with this checkbox
+        var skill = $('#' + skillString);
+
+        //Figure out what stat is associated with this skill and assign the first 3 letters to shortform
+        var shortform = "";
+        for(i = 0; i < skillHandler.classTags.length; i++){
+            if(skill.hasClass(skillHandler.classTags[i])){
+                shortform = skillHandler.classTags[i].substring(0,3);
+            }
+        }
+
+        //If for any reason the above didn't populate shortform, we abort 
+        if (shortform == ""){
+            return;
+        }
+        //finally, we call populateOneSkillCatagory again to update the results
+        if(skillHandler.manualCalculation == false){
+           populateOneSkillCatagory(shortform + "Mod", shortform + "Skill");
+        }
+    }
+    e.stopPropagation();
+}
+
+function populateOneSkillCatagory(modID, skillID) {
+    for(i = 0; i < skillHandler.skills.length; i++){
+
+        //Calculate base modifier of skill based on Score mod
+        var skillMod = ($('#' + modID).html());
+
+        //Change skillMod to integer
+        skillMod *= 1;
+
+        //jQuery for all html elements with id's listed as one of the skills in the skillHandler
+        var skill = $('#' + skillHandler.skills[i]);
+
+        //Make sure we're only bothering to look at a skill with the right stat associated with it
+        if(skill.hasClass(skillID)){
+
+            //jQuery for all html elements with id's listed as being a skill checkbox
+            var skillCheckbox = $('#' + skillHandler.skills[i] + "Checkbox");
+            if (skillCheckbox.prop('checked')){
+                var prof = $('#proficiency').val();
+                // console.log('prof ' + prof );
+                if (prof.length == 0 ) { prof = 0; }
+                else prof *= 1;
+                skillMod += prof;
+            }
+
+            //set input box value to mod
+            skill.val(skillMod);
+        }
+    }
+
+    /*if ( $('#' + "acrobaticsCheckbox").prop('checked') ) {
+        var prof = $('#proficiency').val();
+        if (prof.length == 0 ) { prof = 0; }
+        else prof *= 1;
+        skillMod += prof;
+    }*/
+
+}
 
 
 ////////////////////////////////////////////

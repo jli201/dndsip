@@ -116,46 +116,46 @@
 					<div id="skills"> 
 						<h4>Skills</h4>
 						<div id="manualInputDiv">
-						 <div id="manualEntry"> <input name="manualEntry" type="checkbox"> Manual Entry
+						 <div id="manualEntry"> <input name="manualEntry" type="checkbox" onclick="switchManualCalculation(), changeSkillInputFeildsWritability()"> Manual Entry
 							<span id="manualInputText">Manual Entry disables the automatic calculation of skills.  Checkboxes for proficiency and expertise do not do anything, and you instead enter your skills into text boxes.</span>
 						 </div>
 						</div>
 						<table id="skillsList">
 							<tr>
-								<td> <input type="checkbox"> <input name="acrobatics" id="acrobatics" type="number"> Acrobatics</td>
-								<td> <input type="checkbox"> <input name="animalHandling" id="animal" type="number"> Animal Handling</td>
+								<td> <input type="checkbox" id="acrobaticsCheckbox"> <input name="acrobatics" id="acrobatics" type="number" class="dexSkill"> Acrobatics</td>
+								<td> <input type="checkbox" id="animalCheckbox"> <input name="animalHandling" id="animal" type="number" class="wisSkill"> Animal Handling</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input name="arcana" id="arcana" type="number"> Arcana</td>
-								<td> <input type="checkbox"> <input name="athletics" id="athletics" type="number"> Athletics</td>
+								<td> <input type="checkbox" id="arcanaCheckbox"> <input name="arcana" id="arcana" type="number" class="intSkill"> Arcana</td>
+								<td> <input type="checkbox" id="athleticsCheckbox"> <input name="athletics" id="athletics" type="number" class="strSkill"> Athletics</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input name="deception" id="deception" type="number"> Deception</td>
-								<td> <input type="checkbox"> <input name="history" id="history" type="number"> History</td>
+								<td> <input type="checkbox" id="deceptionCheckbox"> <input name="deception" id="deception" type="number" class="chaSkill"> Deception</td>
+								<td> <input type="checkbox" id="historyCheckbox"> <input name="history" id="history" type="number" class="intSkill"> History</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input name="insight" id="insight" type="number"> Insight</td>
-								<td> <input type="checkbox"> <input name="intimidation" id="intimidation" type="number"> Intimidation</td>
+								<td> <input type="checkbox" id="insightCheckbox"> <input name="insight" id="insight" type="number" class="wisSkill"> Insight</td>
+								<td> <input type="checkbox" id="intimidationCheckbox"> <input name="intimidation" id="intimidation" type="number" class="chaSkill"> Intimidation</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input name="investigation" id="investigation" type="number"> Investigation</td>
-								<td> <input type="checkbox"> <input name="medicine" id="medicine" type="number"> Medicine</td>
+								<td> <input type="checkbox" id="investigationCheckbox"> <input name="investigation" id="investigation" type="number" class="intSkill"> Investigation</td>
+								<td> <input type="checkbox" id="medicineCheckbox"> <input name="medicine" id="medicine" type="number" class="wisSkill"> Medicine</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input name="nature" id="nature" type="number"> Nature</td>
-								<td> <input type="checkbox"> <input name="perception" id="perception" type="number"> Perception</td>
+								<td> <input type="checkbox" id="natureCheckbox"> <input name="nature" id="nature" type="number" class="intSkill"> Nature</td>
+								<td> <input type="checkbox" id="perceptionCheckbox"> <input name="perception" id="perception" type="number" class="wisSkill"> Perception</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input name="performance" id="performance" type="number"> Performance</td>
-								<td> <input type="checkbox"> <input name="persuasion" id="persuasion" type="number"> Persuasion</td>
+								<td> <input type="checkbox" id="performanceCheckbox"> <input name="performance" id="performance" type="number" class="chaSkill"> Performance</td>
+								<td> <input type="checkbox" id="persuasionCheckbox"> <input name="persuasion" id="persuasion" type="number" class="chaSkill"> Persuasion</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input name="religion" id="religion" type="number"> Religion</td>
-								<td> <input type="checkbox"> <input name="sleightOfHand" id="sleight" type="number"> Sleight of Hand</td>
+								<td> <input type="checkbox" id="religionCheckbox"> <input name="religion" id="religion" type="number" class="intSkill"> Religion</td>
+								<td> <input type="checkbox" id="sleightCheckbox"> <input name="sleightOfHand" id="sleight" type="number" class="dexSkill"> Sleight of Hand</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input name="stealth" id="stealth" type="number"> Stealth</td>
-								<td> <input type="checkbox"> <input name="survival" id="survival" type="number"> Survival</td>
+								<td> <input type="checkbox" id="stealthCheckbox"> <input name="stealth" id="stealth" type="number" class="dexSkill"> Stealth</td>
+								<td> <input type="checkbox" id="survivalCheckbox"> <input name="survival" id="survival" type="number" class="wisSkill"> Survival</td>
 							</tr>
 						</table>
 					</div>
