@@ -27,7 +27,9 @@
 		<div class="diceRollerElem"><textarea id="rollResult" readonly></textarea></div>
 
 		<!-- dice roll button -->
-		<div class="diceRollerElem" style="overflow:hidden;"><input type="submit" id="rollSubmit" value="Roll!" onclick="calculateRoll();"></div>
+		<!-- <div class="diceRollerElem" style="overflow:hidden;"><input type="submit" id="rollSubmit" value="Roll!" onclick="calculateRoll();"></div> -->
+
+		<div class="diceRollerElem" id="rollSubmit" onclick="calculateRoll();" style="overflow:hidden;">Roll!</div>
 
 		<!-- clickable d20 logo. Shifts to containing last roll result. -->
 		<div onclick="openClose()" id="dicelogo" class="diceRollerElem"></div>

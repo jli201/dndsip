@@ -1,3 +1,112 @@
+<?php
+	session_start();
+
+	//Global variables
+	$characterID = $_SESSION['characterID'];
+
+
+	/*
+	Checking to see if a user is logged in
+	and redirecting them to the login page if they are not
+	*/
+    if($_SESSION["user"]) {
+        $username = $_SESSION["user"];
+    } else {
+        $_SESSION["notLoggedIn"] = True;
+        header("Location: index.php");
+    }
+
+
+	//database credentials
+    $host = "localhost";
+    $dbuser = "mhypnaro";
+    $dbpassword = "CMPS115rjullig";
+    $dbname = "dndsip";
+
+
+    //establishing a connection to the database
+    $conn = new mysqli($host, $dbuser, $dbpassword, $dbname);
+    if (mysqli_connect_error()) {
+        echo ("Unable to connect to database!");
+    }
+	elseif($_SERVER["REQUEST_METHOD"] == "POST") {
+		putBasicInfo($conn, $characterID);
+	}
+    else {
+    	$basicInfo = getBasicInfo($conn, $characterID);
+    }
+
+
+    //closing the connection to the database
+    $conn->close();
+
+
+    /*
+    Purpose: Pareses input from forms to make it harder to hack us with SQL Injection Attacks.
+    Params:
+        -$data: The string to parse
+    Returns: Nothing
+    */
+    function parse_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+
+    /*
+	Purpose: Collects all the information from the basicInfo table of the database
+			 associated with a particular characterID and stores it in a variable for use.
+	Params:
+		-$conn: The open connection to the database to query against.
+		-$characterID: The id of the character to pull information for.
+	Returns: 
+		-$basicInfo: The row of the table which contains the data
+			-Each individual element can be accessed with $basicInfo['COLUMN_NAME']
+    */
+    function getBasicInfo($conn, $characterID) {
+	    $basicInfoQuery = "SELECT * FROM BasicInfo WHERE characterID='$characterID';";
+	    $basicInfoResult = $conn->query($basicInfoQuery);
+	    $basicInfo = $basicInfoResult->fetch_assoc();
+
+	    return $basicInfo;
+	}
+
+
+	/*
+	Purpose: Updates (saves / puts) the contents of the page associated with the basicInfo table
+			 into the database for the given charcterID.
+	Params:
+		-$conn: The open connection to the database to query against.
+		-$charcterID: The id of the character to update information for.
+	Returns:
+		Nothing
+	*/
+	function putBasicInfo($conn, $characterID) {
+		
+		$updatedPlayerName = parse_input($_POST['playerName']);
+		$updatedCharacterName = parse_input($_POST['characterName']);
+		$updatedClass = parse_input($_POST['class']);
+		$updatedLevel = parse_input($_POST['level']);
+		$updatedRace = parse_input($_POST['race']);
+		$updatedAlignment = parse_input($_POST['alignment']);
+		$updatedExperiencePoints = parse_input($_POST['experiencePoints']);
+
+		$updateBasicInfoQuery = "UPDATE BasicInfo SET
+								playerName='$updatedPlayerName',
+								characterName='$updatedCharacterName',
+								class='$updatedClass',
+								level='$updatedLevel',
+								race='$updatedRace',
+								alignment='$updatedAlignment',
+								experiencePoints='$updatedExperiencePoints'
+								WHERE characterID='$characterID';";
+
+		$conn->query($updateBasicInfoQuery);
+	}
+?>
+
 
 <!DOCTYPE html>
 <html>
@@ -13,28 +122,37 @@
 
   <script type = "text/javascript" src="character_sheet.js"></script>
 
+  <script>
+  $(document).ready(function(){
+    $('#diceroller').load("diceroller.html");
+  });
+  </script>
+
 </head>
 <body>
+	<div id="diceroller"></div>
+	<form id="characterSheet" method="post" action="<?php echo(htmlspecialchars($_SERVER["PHP_SELF"]));?>"> 
+	<!-- needs additional work. e.g. action tag -->
 	<div id="namePlate">
 		<div id="innerbox">
-			<form id="nameform">
-				<button> Save </button>
-				<button> Characters </button>
-				<button> Logout </button>
+			<form id="nameForm">
+				<button type="submit"> Save </button>
+				<button type="submit"> Characters </button>
+				<button type="submit"> Logout </button>
 				<label for="pName"> Player Name: </label>
-				<input id="pName" type="text" placeholder="Player Name">
+				<input name="playerName" id="pName" type="text" placeholder="Player Name" value="<?php echo($basicInfo['playerName']);?>">
 				<label for="cName">Character Name: </label>
-				<input id="cName" type="text" placeholder="Character Name">
+				<input name="characterName" id="cName" type="text" placeholder="Character Name" value="<?php echo($basicInfo['characterName']);?>">
 				<label for="class"> Class: </label>
-				<input id="class" type="text" placeholder="Class">
+				<input name="class" id="class" type="text" placeholder="Class" value="<?php echo($basicInfo['class']);?>">
 				<label for="level"> Level: </label>
-				<input id="level" type="text" placeholder="Level">
+				<input name="level" id="level" type="text" placeholder="Level" value="<?php echo($basicInfo['level']);?>">
 				<label for="race"> Race: </label>
-				<input id="race" type="text" placeholder="Race">
+				<input name="race" id="race" type="text" placeholder="Race" value="<?php echo($basicInfo['race']);?>">
 				<label for="alignment"> Alignment: </label>
-				<input id="alignment" type="text" placeholder="Alignment">
+				<input name="alignment" id="alignment" type="text" placeholder="Alignment" value="<?php echo($basicInfo['alignment']);?>">
 				<label for="exp"> Experience Points: </label>
-				<input id="exp" type="number" placeholder="Experience Points">
+				<input name="experiencePoints" id="exp" type="number" placeholder="Experience Points" value="<?php echo($basicInfo['experiencePoints']);?>">
 			</form>
 		</div>
 	</div>
@@ -46,33 +164,33 @@
 				<!-- stats boxes -->
 				<div id="statsboxLeftCol">
 					<h4> Strength </h4>					
-					<input id="strength" type="number">
-					<div id="strMod">str mod</div>
+					<input name="strength" id="strength" type="number">
+					<div name="strengthMod" id="strMod">str mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Dexterity </h4>
-					<input id="dexterity" type="number">
-					<div id="dexMod">dex mod</div>
+					<input name="dexterity" id="dexterity" type="number">
+					<div name="dexterityMod" id="dexMod">dex mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Constitution </h4>
-					<input id="constitution" type="number">
-					<div id="conMod">con mod</div>
+					<input name="constitution" id="constitution" type="number">
+					<div name="constitutionMod" id="conMod">con mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Intelligence </h4>
-					<input id="intelligence" type="number">
-					<div id="intMod">int mod</div>
+					<input name="intelligence" id="intelligence" type="number">
+					<div name="intelligenceMod" id="intMod">int mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Wisdom </h4>
-					<input id="wisdom" type="number">
-					<div id="wisMod">wis mod</div>
+					<input name="wisdom" id="wisdom" type="number">
+					<div name="wisdomMod" id="wisMod">wis mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Charisma </h4>
-					<input id="charisma" type="number">
-					<div id="chaMod">cha mod</div>
+					<input name="charisma" id="charisma" type="number">
+					<div name="charismaMod" id="chaMod">cha mod</div>
 				</div>
 
 			</div>
@@ -82,11 +200,11 @@
 			<!-- inspiration and proficiency bonus -->
 				<div id="insp-prof" style="margin-top: 0;"> 
 					<input for="inspiration" type="checkbox">
-					<label id="inspiration">Inspiration</label>
+					<label name="inspiration" id="inspiration">Inspiration</label>
 				</div>
 				<div id="insp-prof"> 
-					<input for="profBonus" type="number">
-					<label id="profBonus">Proficiency Bonus</label>
+					<input for="profBonus" id="proficiency" type="number">
+					<label name="proficiencyBonus" id="profBonus">Proficiency Bonus</label>
 				</div>
 
 				<!-- saving throws -->
@@ -94,12 +212,12 @@
 					<div id="savingThrows">
 						<form id="ST-form">
 							<h4> Saving Throws </h4>
-							<input type="checkbox"> <input id="strengthSavingThrow" type="number"> Strength <br>
-							<input type="checkbox"> <input id="dexteriySavingThrow" type="number"> Dexterity <br>
-							<input type="checkbox"> <input id="constitutionSavingThrow" type="number"> Constitution <br>
-							<input type="checkbox"> <input id="intelligenceSavingThrow" type="number"> Intelligence <br>
-							<input type="checkbox"> <input id="savingThrowsWisdom" type="number"> Wisdom <br>
-							<input type="checkbox"> <input id="savingThrowsCharisma" type="number"> Charisma <br>
+							<input type="checkbox" id="strCheckbox"> <input name="strengthSavingThrow" id="strengthSavingThrow" type="number"> Strength <br>
+							<input type="checkbox" id="dexCheckbox"> <input name="dexteritySavingThrow" id="dexteritySavingThrow" type="number"> Dexterity <br>
+							<input type="checkbox" id="conCheckbox"> <input name="constitutionSavingThrow" id="constitutionSavingThrow" type="number"> Constitution <br>
+							<input type="checkbox" id="intCheckbox"> <input name="intelligenceSavingThrow" id="intelligenceSavingThrow" type="number"> Intelligence <br>
+							<input type="checkbox" id="wisCheckbox"> <input name="wisdomSavingThrow" id="wisdomSavingThrow" type="number"> Wisdom <br>
+							<input type="checkbox" id="chaCheckbox"> <input name="charismaSavingThrow" id="charismaSavingThrow" type="number"> Charisma <br>
 						</form>
 					</div>
 				</div> 
@@ -108,46 +226,46 @@
 					<div id="skills"> 
 						<h4>Skills</h4>
 						<div id="manualInputDiv">
-						 <div id="manualEntry"> <input type="checkbox"> Manual Entry
+						 <div id="manualEntry"> <input name="manualEntry" type="checkbox" onclick="switchManualCalculation(), changeSkillInputFeildsWritability()"> Manual Entry
 							<span id="manualInputText">Manual Entry disables the automatic calculation of skills.  Checkboxes for proficiency and expertise do not do anything, and you instead enter your skills into text boxes.</span>
 						 </div>
 						</div>
 						<table id="skillsList">
 							<tr>
-								<td> <input type="checkbox"> <input id="acrobatics" type="number"> Acrobatics</td>
-								<td> <input type="checkbox"> <input id="animal" type="number"> Animal Handling</td>
+								<td> <input type="checkbox" id="acrobaticsCheckbox"> <input name="acrobatics" id="acrobatics" type="number" class="dexSkill"> Acrobatics</td>
+								<td> <input type="checkbox" id="animalCheckbox"> <input name="animalHandling" id="animal" type="number" class="wisSkill"> Animal Handling</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="arcana" type="number"> Arcana</td>
-								<td> <input type="checkbox"> <input id="athletics" type="number"> Athletics</td>
+								<td> <input type="checkbox" id="arcanaCheckbox"> <input name="arcana" id="arcana" type="number" class="intSkill"> Arcana</td>
+								<td> <input type="checkbox" id="athleticsCheckbox"> <input name="athletics" id="athletics" type="number" class="strSkill"> Athletics</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="deception" type="number"> Deception</td>
-								<td> <input type="checkbox"> <input id="history" type="number"> History</td>
+								<td> <input type="checkbox" id="deceptionCheckbox"> <input name="deception" id="deception" type="number" class="chaSkill"> Deception</td>
+								<td> <input type="checkbox" id="historyCheckbox"> <input name="history" id="history" type="number" class="intSkill"> History</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="insight" type="number"> Insight</td>
-								<td> <input type="checkbox"> <input id="intimidation" type="number"> Intimidation</td>
+								<td> <input type="checkbox" id="insightCheckbox"> <input name="insight" id="insight" type="number" class="wisSkill"> Insight</td>
+								<td> <input type="checkbox" id="intimidationCheckbox"> <input name="intimidation" id="intimidation" type="number" class="chaSkill"> Intimidation</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="investigation" type="number"> Investigation</td>
-								<td> <input type="checkbox"> <input id="medicine" type="number"> Medicine</td>
+								<td> <input type="checkbox" id="investigationCheckbox"> <input name="investigation" id="investigation" type="number" class="intSkill"> Investigation</td>
+								<td> <input type="checkbox" id="medicineCheckbox"> <input name="medicine" id="medicine" type="number" class="wisSkill"> Medicine</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="nature" type="number"> Nature</td>
-								<td> <input type="checkbox"> <input id="perception" type="number"> Perception</td>
+								<td> <input type="checkbox" id="natureCheckbox"> <input name="nature" id="nature" type="number" class="intSkill"> Nature</td>
+								<td> <input type="checkbox" id="perceptionCheckbox"> <input name="perception" id="perception" type="number" class="wisSkill"> Perception</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="performance" type="number"> Performance</td>
-								<td> <input type="checkbox"> <input id="persuasion" type="number"> Persuasion</td>
+								<td> <input type="checkbox" id="performanceCheckbox"> <input name="performance" id="performance" type="number" class="chaSkill"> Performance</td>
+								<td> <input type="checkbox" id="persuasionCheckbox"> <input name="persuasion" id="persuasion" type="number" class="chaSkill"> Persuasion</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="religion" type="number"> Religion</td>
-								<td> <input type="checkbox"> <input id="sleight" type="number"> Sleight of Hand</td>
+								<td> <input type="checkbox" id="religionCheckbox"> <input name="religion" id="religion" type="number" class="intSkill"> Religion</td>
+								<td> <input type="checkbox" id="sleightCheckbox"> <input name="sleightOfHand" id="sleight" type="number" class="dexSkill"> Sleight of Hand</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox"> <input id="stealth" type="number"> Stealth</td>
-								<td> <input type="checkbox"> <input id="survival" type="number"> Survival</td>
+								<td> <input type="checkbox" id="stealthCheckbox"> <input name="stealth" id="stealth" type="number" class="dexSkill"> Stealth</td>
+								<td> <input type="checkbox" id="survivalCheckbox"> <input name="survival" id="survival" type="number" class="wisSkill"> Survival</td>
 							</tr>
 						</table>
 					</div>
@@ -159,7 +277,7 @@
 		
 		<div id="passiveWisdomBox">
 			<input for="passiveWisdom" type="number">
-			<label id="passiveWisdom">Passive Wisdom (Perception)</label>
+			<label name="passivePerception" id="passiveWisdom">Passive Wisdom (Perception)</label>
 		</div>
 		
 		<!-- Other Proficiencies and Languages -->
@@ -168,7 +286,7 @@
 			<label class="otherProfLanguagesHeading">Other Proficiencies & Languages</label>
 			</div>
 			<div>
-				<textarea class="profLanguagesInput"></textarea>
+				<textarea name="other" class="profLanguagesInput"></textarea>
 			</div>
 		</div>
 	</div>
@@ -176,26 +294,40 @@
 <!--Middle Column-->
 	<div class="column">
 		<!--AC/Initiative/Speed Section-->
+
+		<!--
+		this section uses "middleColumnContainer" as a sort of wrapper, and works to sort of replace "container" from stupid.css
+		All code in the same "middleColumnContainer" will appear on the same line and be spaced evenly according to flexbox
+		On that note, flexbox is the main thing used for spacing in this section
+		-->
+
 		<div class = "middleColumnContainer">
+			<!--
+			All 3 boxes for AC/Init/Speed follow a simple formula: Picture then Input area then Bottom label (if any)
+			-->
+
+			<!--Box for Armor Class-->
 			<div class = "midColSection center midColThird">
 				<div class = "imgTextOverlay">
-					<img class = "center" src="img/Sheild2.png" style="max-width: 95%; height:auto"/>
-					<input type="sheildTextBox" placeholder="AC" style="width:2vw; text-align: center;">
+					<img class = "center midColImgSize" src="img/sheild2.png"/>
+					<input name = "ac" type="sheildTextBox" style="width:2vw; text-align: center;" placeholder="AC">
 				</div>
 			</div>
+			<!--Box for Initiative-->
 			<div class = "midColSection midColThird">
 				<div class = "imgTextOverlay">
-					<img class = "center" src="img/textBox.png" style="max-width: 95%; height:auto"/>
-					<input type="speedBox" style="width:2vw; text-align: center;">
+					<img class = "center midColImgSize" src="img/TextBox.png"/>
+					<input name = "initiative" type="speedBox" style="width:2vw; text-align: center;">
 					<div class = "imgTextBot2">
 						<b>Initiative</b>
 					</div>
 				</div>
 			</div>
+			<!--Box for Speed-->
 			<div class = "midColSection midColThird">
 				<div class = "imgTextOverlay">
-					<img class = "center" src="img/textBox.png" style="max-width: 95%; height:auto"/>
-					<input type="speedBox" style="width:2vw; text-align: center;">
+					<img class = "center midColImgSize" src="img/TextBox.png"/>
+					<input name = "speed" type="speedBox" style="width:2vw; text-align: center;">
 					<div class = "imgTextBot2">
 						<b>Speed</b>
 					</div>
@@ -213,13 +345,13 @@
 					<div class = "midColSection midCol3Quarter center">
 						<div class = "middleColumnContainer">
 							<div class = "midColSection">
-								<input style = "max-width: 62%; margin-top: 5.5%; text-align: right; margin-left: 6%; margin-right: 2%">
+								<input name = "hpCurrent" style = "max-width: 62%; margin-top: 5.5%; text-align: right; margin-left: 6%; margin-right: 2%">
 							</div>
 							<div class = "midColSection center">
 								<h6>/</h6>
 							</div>
 							<div class = "midColSection">
-								<input style = "max-width: 62%; margin-top: 5.5%; margin-right: 6%">
+								<input name = "hpMax" style = "max-width: 62%; margin-top: 5.5%; margin-right: 6%">
 							</div>
 						</div>
 					</div>
@@ -233,7 +365,7 @@
 						<h6><font size = "-1"> Temp Hp: </font></h6>
 					</div>
 					<div class = "midColSection midCol2Third">
-						<input style = "max-width: 80%; margin-top: 5.5%; margin-right: 5%">
+						<input name = "tempHpCurrent" style = "max-width: 80%; margin-top: 5.5%; margin-right: 5%">
 					</div>
 				</div>
 			</div>
@@ -249,13 +381,13 @@
 					<div class = "midColSection midCol3Quarter center">
 						<div class = "middleColumnContainer">
 							<div class = "midColSection">
-								<input style = "max-width: 66%; margin-top: 18%; text-align: right; margin-left: 2%; margin-right: 2%">
+								<input name = "hitDiceCurrent" style = "max-width: 66%; margin-top: 18%; text-align: right; margin-left: 2%; margin-right: 2%">
 							</div>
 							<div class = "midColSection center" style = "margin-top: 8%">
 								<h6>/</h6>
 							</div>
 							<div class = "midColSection">
-								<input style = "max-width: 66%; margin-top: 18%; margin-right: 2%">
+								<input name = "hitDiceMax" style = "max-width: 66%; margin-top: 18%; margin-right: 2%">
 							</div>
 						</div>
 					</div>
@@ -267,9 +399,9 @@
 						Successes
 					</div>
 					<div class = "midColSection halvesBoxes right" style = "margin-bottom: -6%">
-						<input type="checkbox">
-						<input type="checkbox">
-						<input type="checkbox">
+						<input name = "deathSuccessOne" type="checkbox">
+						<input name = "deathSuccessTwo" type="checkbox">
+						<input name = "deathSuccessThree" type="checkbox">
 					</div>
 				</div>
 				<br>
@@ -278,9 +410,9 @@
 						Failures
 					</div>
 					<div class = "midColSection halvesBoxes right">
-						<input type="checkbox">
-						<input type="checkbox">
-						<input type="checkbox">
+						<input name = "deathFailOne" type="checkbox">
+						<input name = "deathFailTwo" type="checkbox">
+						<input name = "deathFailThree" type="checkbox">
 					</div>
 				</div>
 			</div>
@@ -304,19 +436,19 @@
 			</div>
 			<div class = "middleColumnContainer" style = "margin-bottom: 5px">
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "firstLevelCurrent" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "firstLevelMax" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "secondLevelCurrent" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "secondLevelMax" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "thirdLevelCurrent" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "thirdLevelMax" style = "width: 15%">
 				</div>
 			</div>
 			<div class = "middleColumnContainer">
@@ -332,19 +464,19 @@
 			</div>
 			<div class = "middleColumnContainer" style = "margin-bottom: 5px">
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "fourthLevelCurrent" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "fourthLevelMax" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "fifthLevelCurrent" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "fifthLevelMax" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "sixthLevelCurrent" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "sixthLevelMax" style = "width: 15%">
 				</div>
 			</div>
 			<div class = "middleColumnContainer">
@@ -360,19 +492,19 @@
 			</div>
 			<div class = "middleColumnContainer">
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "seventhLevelCurrent" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "seventhLevelMax" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "eighthLevelCurrent" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "eighthLevelMax" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input style = "width: 15%">
+					<input name = "ninthLevelCurrent" style = "width: 15%">
 					/
-					<input style = "width: 15%">
+					<input name = "ninthLevelMax" style = "width: 15%">
 				</div>
 			</div>
 		</div>
@@ -401,19 +533,19 @@
 					<col width="30%">
 					<col width="30%">
 					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon1Name" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon1AttackBonus" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon1Damage" type = "text" style = "max-width: 85%; text-align: center;"></td>
 					</tr>
 					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon2Name" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon2AttackBonus" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon2Damage" type = "text" style = "max-width: 85%; text-align: center;"></td>
 					</tr>
 					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon3Name" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon3AttackBonus" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon3Damage" type = "text" style = "max-width: 85%; text-align: center;"></td>
 					</tr>
 				</table>
 				<input type = "button" value = "Add Attack" onclick="weaponTableAddRow()">
@@ -475,26 +607,26 @@
 		<div class="personality-wrapper">
 			<div class="personality-box">
 				<label class="input-label">Traits</label>
-				<textarea class="input-field"></textarea>
+				<textarea name="traits" form="characterSheet" class="input-field"></textarea>
 			</div>
 			<div class="personality-box">
 				<label class="input-label">Ideals</label>
-				<textarea class="input-field"></textarea>
+				<textarea name="ideals" form="characterSheet" class="input-field"></textarea>
 			</div>
 			<div class="personality-box">
 				<label class="input-label">Bonds</label>
-				<textarea class="input-field"></textarea>
+				<textarea name="bonds" form="characterSheet" class="input-field"></textarea>
 			</div>
 			<div class="personality-box">
 				<label class="input-label">Flaws</label>
-				<textarea class="input-field"></textarea>
+				<textarea name="flaws" form="characterSheet" class="input-field"></textarea>
 			</div>
 		</div>
 		<!-- Features / Special Traits -->
 		<div class="features-traits-wrapper">
 			<div class="features-traits-box">
 				<label class="input-label">Features & Traits</label>
-				<textarea class="input-field"></textarea>
+				<textarea name="featuresAndTraits" form="characterSheet" class="input-field"></textarea>
 			</div>
 		</div>
 		<!-- Inventory Table -->
@@ -512,7 +644,7 @@
 					If changing format, you must change the related js.-->
 					<tr>
 						<td colspan="2">
-							<input type="text" value="Gold!" id="inv-gold"></input>
+							<input type="text" placeholder="Gold!" name="gold" id="inv-gold"></input>
 						</td>
 					</tr>
 					<tr>
@@ -528,7 +660,7 @@
 			</div>
 		</div>
 	</div>
-
+	</form> <!-- end 'characterSheet' form -->
 
 </body>
 </html>

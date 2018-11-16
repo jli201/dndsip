@@ -508,6 +508,13 @@ Flex boxes are -made- to stretch.*/
 	left: 0;
 	right: 0;
 }
+
+/*used to space out top row images*/
+.midColImgSize{
+	max-width: 95%; 
+	height:auto;
+}
+
 input[type=sheildTextBox] {
     background-color: #c1b8b8;
 	font-size: 1.5vw;
@@ -518,6 +525,8 @@ input[type=sheildTextBox] {
 	left: 22%;
 	right: 0;
 }
+
+/*speedBox is used for both speed and initiative sections because they are identical*/
 input[type=speedBox] {
 	background-color: #2EC4B6;
 	font-size: 1.5vw;
@@ -550,6 +559,10 @@ input[type=speedBox] {
 	background-color: white;
 	border: 2px black solid;
 	margin-bottom: -2px;
+}
+/*input box size for spell slots*/
+.midColSpellSlotInput{
+	width: 15%
 }
 #spellTable{
 	display: table;
