@@ -1,5 +1,11 @@
 body{
-	background-color: #cbf3f0;
+	background-color: #8f9491;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
 
 #namePlate{
@@ -7,21 +13,600 @@ body{
 	padding: 1%;
 	margin: .5%;
 	height: 5vh;
-	background-color: #2ec4b6;
+	background-color: #2EC4B6;
+	box-sizing: content-box;
+}
+
+#innerbox {
+	display: flex;
+	flex-direction: row;
+	flex-basis: 30%;
+	justify-content: space-between;
+	background-color: #2EC4B6;
+	padding: 8px;
+	height: 66%;
+	box-sizing: content-box;
+}
+
+#nameform {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+#nameform button {
+	background-color: #CBF3F0;
+	color: black;
+}
+
+#nameform label {
+	margin-right: .2%;
+	margin-left: .5%;
+	font-size: 13px;
+}
+
+#nameform input {
+	padding: 2px;
+	width: 15vh;
 }
 
 .column{
 	display: block;
-	height: 89vh; 
+	height: 107vh; 
 	padding: 1%;
 	margin: .5%;
 	float: left;
 	width: 30.3333%;
-	background-color: #8f9491;
+	background-color: #2EC4B6;
+	box-sizing: content-box;
+	overflow: auto;
+}
+
+#insp-prof-st-skills {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 81vh;
+	margin: 1%;
+	margin-top: 0;
+}
+
+#insp-prof {
+	display: block;
+	height: 5vh; 
+	width: 100%;
+	margin: 1%;
+	background-color: #CBF3F0;
+	border: 2px black solid;
+}
+
+#insp-prof input{ /* for inspiration and proficiency bonus inputs*/
+	width: 20px; 
+	height: 20px; 
+	border-color: black;
+	padding: 2px;
+	margin-top: 6px;
+	margin-left: 20%;
 }
 
 #stats{
-	background-color: #2ec4b6;
-	padding: 5px;
-	height: 66%;
+	display: flex;
+	height: 82vh;
 }
+
+#statsBoxFormat {
+	display: flex;
+	height: 81vh;
+	flex-direction: column;
+	flex-basis: 32%;
+	justify-content: space-between;
+}
+
+#statsboxLeftCol { /*stats box CSS for the left column*/
+	height: 12.2vh;
+	width: 100%;
+	background-color: #CBF3F0;
+	border: 2px black solid;
+	margin: 1%;
+	margin-top:0;
+}
+
+#statsboxLeftCol h4{
+	display:block;
+	text-align: center; 
+	font-size: 115%;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+
+#statsboxLeftCol input{ 
+	display: block; 
+	margin: 1% auto;
+	padding: 1px;
+	height: 20%;
+	width: 30%; 
+	text-align: center;
+}
+
+#statsboxLeftCol div {
+	text-align: center;
+	font-size: 125%;
+}
+
+#savingThrows { /*saving throws box sizing*/
+	display: block;
+	height: 24vh;
+	width: 100%;
+	border: 2px black solid;
+	background-color: #CBF3F0;
+	margin: 1%;
+}
+
+#ST-form { /*the form CSS for saving throws for styling later if needed*/
+	font-size: 78%;
+}
+
+#ST-form h4{
+	text-align: center; 
+	font-size: 115%;
+	margin: 1%;
+}
+
+#ST-form input {
+	padding: 2px;
+	margin: 1%;
+	width: 20px;
+}
+
+#ST-form input[type = "checkbox"] {
+	margin-left: 20%;
+}
+
+#skillsBox {
+	display: flex;
+	height: 43vh;	
+	width: 100%;
+	border: 2px black solid;
+	background-color: #CBF3F0;
+	margin: 1%;
+	font-size:small;
+}
+
+#skillsBox #manualInputDiv {
+	display: block;
+}
+
+#skillsBox #manualInputDiv input[type = "checkbox"] {
+	margin-left: 30%;
+}
+ 
+#manualEntry #manualInputText {
+    visibility: hidden;
+    width: 30vh;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+#manualEntry:hover #manualInputText {
+    visibility: visible;
+}
+
+#skillsBox h4 {
+	text-align: center; 
+	font-size: 100%;
+	margin: 1%;
+}
+
+#skillsList {
+	margin: auto;
+	font-size: 92%;
+}
+
+#skillsList tr {
+	border-bottom-width: 0px;
+}
+
+#skillsList input {
+	padding: 2px;
+	width: 20px;
+}
+
+#passiveWisdomBox{
+	display: block;
+	height: 6vh; 
+	background-color: #CBF3F0;
+	border: 2px black solid;
+}
+
+#passiveWisdomBox input{ /* for inspiration and proficiency bonus inputs*/
+	width: 7%; 
+	height: 60%; 
+	margin-left: 20%;
+	border-color: black;
+	padding: 2px;
+	margin-top: 6px;
+}
+
+/*Middle Column CSS*/
+.middleColumnContainer {
+	display: flex;
+	margin: auto;
+	justify-content: space-evenly;
+}
+.midColSection{
+	margin-left: 0.5%;
+	margin-right: 0.5%;
+	margin-bottom: 0.5%;
+	flex-grow: 1;
+	flex-shrink: 1;
+}
+.midColThird{
+	flex-basis: 30%;
+}
+.midCol2Third{
+	flex-basis: 60%;
+}
+.midColQuarter{
+	flex-basis: 22%;
+}
+.midCol3Quarter{
+	flex-basis: 66%;
+}
+.genericHpBox {
+	height: auto;
+	width: 100%;
+	float: center;
+	background-color: white;
+	border: 2px black solid;
+	margin-bottom: 0.5%;
+}
+.midColSpellSlotBox {
+	height: auto;
+	width: 99%;
+	float: center;
+	text-align: center;
+	background-color: white;
+	border: 2px black solid;
+	margin-bottom: 0.5%;
+}
+.midColWepBox {
+	height: 9vw; /*23.5vh*/
+	overflow-y: scroll;
+	overflow-x: hidden;
+	float: center;
+	background-color: white;
+	border: 2px black solid;
+	margin-bottom: 1%;
+}
+.halvesBoxes{
+	display: block;
+	padding: 1%;
+	float: left;
+	width: 50%;
+	box-sizing: content-box;
+}
+
+/*End of Middle Colum CSS*/
+
+
+/* Third (Right) Column CSS Begin 
+References:
+Dark Green: #2EC4B6 (inner box);
+Light Green: #CBF3F0; (column box);
+Dark Gray: #8f9491; (Sub-box);
+
+Structure:
+Each section in a column has a wrapper, which contains N boxes;
+Each of N boxes has a label and some kind of input field (textarea, input, etc)
+1 Box is possible (features/traits, inventory), as is many (personality)
+
+Flexbox Guide: https://css-tricks.com/snippets/css/a-guide-to-flexbox/;
+*/
+
+#col3 {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+
+/*children of col3 (the wrappers)*/
+#col3 > div {
+	background-color: #2EC4B6;
+	border:2px solid black;
+	padding:2%;
+
+	/*as a container, generic*/
+	/*flex-basis needs to be done individually*/
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+
+/*this ensures vertical stacking for both label
+and text area
+Meaning: Col3's child (wrapper)'s child (box)'s children
+labels and text areas and tables, should all display vertical*/
+#col3 > div > div > * {
+	display: block;
+}
+
+/*generic text areas and labels*/
+#col3 .input-field {
+	box-sizing:border-box;
+
+	margin-left:2%;
+	margin-right:2%;
+
+	width:96%;
+	resize: none;
+}
+
+#col3 .input-label {
+	color: black;
+	font-size:14px;
+	text-align:center;
+
+	/*text-shadow:
+	-1px -1px 0 white,
+	-1px  1px 0 white,
+	 1px -1px 0 white,
+	 1px  1px 0 white;*/
+}
+
+
+/*Personality Elements*/
+
+#col3 .personality-wrapper {
+	/*as an item*/
+	flex-basis: 30%;
+
+}
+
+#col3 .personality-box {
+	flex-basis: 23%;
+	background-color:#CBF3F0;
+}
+
+#col3 .personality-box .input-field {
+	height:60%;
+}
+
+#col3 .personality-box .input-label {
+	height:30%;
+}
+
+/*Features/Traits*/
+
+#col3 .features-traits-wrapper {
+	flex-basis: 30%;
+}
+
+#col3 .features-traits-box {
+	flex-basis: 95%;
+	background-color:#CBF3F0;
+}
+
+#col3 .features-traits-box .input-field {
+	height:85%;
+}
+
+#col3 .features-traits-box .input-label {
+	height:10%;
+}
+
+
+/*Inventory*/
+
+/*We have to turn flex off for this.
+Otherwise, flex doesn't respect max-height.
+Flex boxes are -made- to stretch.*/
+#col3 .inventory-wrapper {
+	/*flex-basis: 30%;*/
+	height: 30%;
+	display: block;
+}
+
+#col3 .inventory-box {
+	/*flex-basis: 95%;*/
+	height: 100%;
+	background-color:#CBF3F0;
+}
+
+#col3 .inventory-box .input-label,
+#col3 .inventory-box .inv-buttons {
+	height:10%;
+	/*redundant for input-label, needed for inv buttons*/
+	text-align: center; 
+}
+
+/*Table styling.*/
+
+#col3 #inventory-table-wrapper {
+	height:76%;
+	max-height:76%;
+	width:96%;
+	overflow: auto;
+	margin-left:2%;
+	margin-right:2%;
+	margin-bottom:2%;
+}
+
+#col3 #inventory-table {
+	width:100%;
+	display:table;
+	background-color:white;
+}
+
+#col3 #inventory-table td {
+	border: 1px solid black;
+	padding: 0px;
+	/*height:40px;*/
+}
+
+/*1st and 2nd row (legend)*/
+#col3 #inventory-table tr:nth-child(-n+2) {
+	border-bottom:2px solid black;
+}
+
+/*second row (legend)'s columns*/
+#col3 #inventory-table tr:nth-child(2) td {
+	padding: 3px;
+}
+
+/*column 1*/
+#col3 #inventory-table td:nth-child(1) {
+	width:10%;
+	padding:0;
+	/*height:100%;*/
+}
+
+/*column 2*/
+#col3 #inventory-table td:nth-child(2) {
+	width:90%;
+}
+
+/*input stylings for input number in table*/
+#col3 #inventory-table input[type=number], #col3 #inventory-table input[type=text] {
+	padding:3px;
+	height: 30px;
+	box-sizing:border-box;
+	font-size:16px;
+}
+
+
+/* Third Column CSS End */
+
+#stats2{
+	background-color: #2EC4B6;
+	padding: 5px;
+}
+.imgTextOverlay {
+    position: relative;
+    text-align: center;
+}
+/*Auto margins idea from https://stackoverflow.com/questions/8508275/how-to-center-a-position-absolute-element*/
+.imgTextBot{
+    position: absolute;
+    top: 62%;
+	margin-left: 30%;
+	text-align: center;
+}
+.imgTextBot2{
+	position: absolute;
+    top: 80%;
+    margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+}
+
+/*used to space out top row images*/
+.midColImgSize{
+	max-width: 95%; 
+	height:auto;
+}
+
+input[type=sheildTextBox] {
+    background-color: #c1b8b8;
+	font-size: 1.5vw;
+	position: absolute;
+	top: 20%;
+	margin-left: auto;
+	margin-right: auto;
+	left: 22%;
+	right: 0;
+}
+
+/*speedBox is used for both speed and initiative sections because they are identical*/
+input[type=speedBox] {
+	background-color: #2EC4B6;
+	font-size: 1.5vw;
+	position: absolute;
+	top: 20%;
+	margin-left: auto;
+	margin-right: auto;
+	left: 24%;
+	right: 0;
+}
+#weaponTable{
+	display: table;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: gray;
+	height: 11vh;
+	width: auto;
+}
+#weaponTableHeader{
+	display: table;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: gray;
+	width: 100%;
+}
+.midColHeaderBox {
+	height: auto;
+	width: 100%;
+	float: center;
+	background-color: white;
+	border: 2px black solid;
+	margin-bottom: -2px;
+}
+/*input box size for spell slots*/
+.midColSpellSlotInput{
+	width: 15%
+}
+#spellTable{
+	display: table;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: gray;
+	height: 11vh;
+	width: auto;
+}
+#spellTableHeader{
+	display: table;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: gray;
+	text-align: center;
+	width: 100%;
+}
+/*End of Middle Colum CSS*/
+
+/* For Other Proficiences and Languages */
+#otherProfLanguagesWrapper{
+	border: 2px solid black;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 130px;
+	background-color: #CBF3F0;
+	
+}
+
+#otherProfLanguagesWrapper > div{
+	display: flex;
+	flex-direction: column;
+}
+
+#otherProfLanguagesWrapper .otherProfLanguagesHeading{
+	text-align: center;
+
+}
+.profLanguagesInput{
+	width: 92%;
+	margin-left: 2%;
+	resize: none;
+	height: 80px;
+
+}
+
+/* For Other Proficiences and Languages */
