@@ -1,3 +1,112 @@
+<?php
+	session_start();
+
+	//Global variables
+	$characterID = $_SESSION['characterID'];
+
+
+	/*
+	Checking to see if a user is logged in
+	and redirecting them to the login page if they are not
+	*/
+    if($_SESSION["user"]) {
+        $username = $_SESSION["user"];
+    } else {
+        $_SESSION["notLoggedIn"] = True;
+        header("Location: index.php");
+    }
+
+
+	//database credentials
+    $host = "localhost";
+    $dbuser = "mhypnaro";
+    $dbpassword = "CMPS115rjullig";
+    $dbname = "dndsip";
+
+
+    //establishing a connection to the database
+    $conn = new mysqli($host, $dbuser, $dbpassword, $dbname);
+    if (mysqli_connect_error()) {
+        echo ("Unable to connect to database!");
+    }
+	elseif($_SERVER["REQUEST_METHOD"] == "POST") {
+		putBasicInfo($conn, $characterID);
+	}
+    else {
+    	$basicInfo = getBasicInfo($conn, $characterID);
+    }
+
+
+    //closing the connection to the database
+    $conn->close();
+
+
+    /*
+    Purpose: Pareses input from forms to make it harder to hack us with SQL Injection Attacks.
+    Params:
+        -$data: The string to parse
+    Returns: Nothing
+    */
+    function parse_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+
+    /*
+	Purpose: Collects all the information from the basicInfo table of the database
+			 associated with a particular characterID and stores it in a variable for use.
+	Params:
+		-$conn: The open connection to the database to query against.
+		-$characterID: The id of the character to pull information for.
+	Returns: 
+		-$basicInfo: The row of the table which contains the data
+			-Each individual element can be accessed with $basicInfo['COLUMN_NAME']
+    */
+    function getBasicInfo($conn, $characterID) {
+	    $basicInfoQuery = "SELECT * FROM BasicInfo WHERE characterID='$characterID';";
+	    $basicInfoResult = $conn->query($basicInfoQuery);
+	    $basicInfo = $basicInfoResult->fetch_assoc();
+
+	    return $basicInfo;
+	}
+
+
+	/*
+	Purpose: Updates (saves / puts) the contents of the page associated with the basicInfo table
+			 into the database for the given charcterID.
+	Params:
+		-$conn: The open connection to the database to query against.
+		-$charcterID: The id of the character to update information for.
+	Returns:
+		Nothing
+	*/
+	function putBasicInfo($conn, $characterID) {
+		
+		$updatedPlayerName = parse_input($_POST['playerName']);
+		$updatedCharacterName = parse_input($_POST['characterName']);
+		$updatedClass = parse_input($_POST['class']);
+		$updatedLevel = parse_input($_POST['level']);
+		$updatedRace = parse_input($_POST['race']);
+		$updatedAlignment = parse_input($_POST['alignment']);
+		$updatedExperiencePoints = parse_input($_POST['experiencePoints']);
+
+		$updateBasicInfoQuery = "UPDATE BasicInfo SET
+								playerName='$updatedPlayerName',
+								characterName='$updatedCharacterName',
+								class='$updatedClass',
+								level='$updatedLevel',
+								race='$updatedRace',
+								alignment='$updatedAlignment',
+								experiencePoints='$updatedExperiencePoints'
+								WHERE characterID='$characterID';";
+
+		$conn->query($updateBasicInfoQuery);
+	}
+?>
+
 
 <!DOCTYPE html>
 <html>
@@ -22,27 +131,28 @@
 </head>
 <body>
 	<div id="diceroller"></div>
-	<form id="characterSheet"> <!-- needs additional work. e.g. action tag -->
+	<form id="characterSheet" method="post" action="<?php echo(htmlspecialchars($_SERVER["PHP_SELF"]));?>"> 
+	<!-- needs additional work. e.g. action tag -->
 	<div id="namePlate">
 		<div id="innerbox">
-			<form id="nameform">
-				<button> Save </button>
-				<button> Characters </button>
-				<button> Logout </button>
+			<form id="nameForm">
+				<button type="submit"> Save </button>
+				<button type="submit"> Characters </button>
+				<button type="submit"> Logout </button>
 				<label for="pName"> Player Name: </label>
-				<input name="playerName" id="pName" type="text" placeholder="Player Name">
+				<input name="playerName" id="pName" type="text" placeholder="Player Name" value="<?php echo($basicInfo['playerName']);?>">
 				<label for="cName">Character Name: </label>
-				<input name="characterName" id="cName" type="text" placeholder="Character Name">
+				<input name="characterName" id="cName" type="text" placeholder="Character Name" value="<?php echo($basicInfo['characterName']);?>">
 				<label for="class"> Class: </label>
-				<input name="class" id="class" type="text" placeholder="Class">
+				<input name="class" id="class" type="text" placeholder="Class" value="<?php echo($basicInfo['class']);?>">
 				<label for="level"> Level: </label>
-				<input name="level" id="level" type="text" placeholder="Level">
+				<input name="level" id="level" type="text" placeholder="Level" value="<?php echo($basicInfo['level']);?>">
 				<label for="race"> Race: </label>
-				<input name="race" id="race" type="text" placeholder="Race">
+				<input name="race" id="race" type="text" placeholder="Race" value="<?php echo($basicInfo['race']);?>">
 				<label for="alignment"> Alignment: </label>
-				<input name="alignment" id="alignment" type="text" placeholder="Alignment">
+				<input name="alignment" id="alignment" type="text" placeholder="Alignment" value="<?php echo($basicInfo['alignment']);?>">
 				<label for="exp"> Experience Points: </label>
-				<input name="experiencePoints" id="exp" type="number" placeholder="Experience Points">
+				<input name="experiencePoints" id="exp" type="number" placeholder="Experience Points" value="<?php echo($basicInfo['experiencePoints']);?>">
 			</form>
 		</div>
 	</div>
@@ -199,15 +309,15 @@
 			<!--Box for Armor Class-->
 			<div class = "midColSection center midColThird">
 				<div class = "imgTextOverlay">
-					<img class = "center midColImgSize" src="img/Sheild2.png"/>
-					<input name = "ac varchar(255)" type="sheildTextBox" style="width:2vw; text-align: center;" placeholder="AC">
+					<img class = "center midColImgSize" src="img/sheild2.png"/>
+					<input name = "ac" type="sheildTextBox" style="width:2vw; text-align: center;" placeholder="AC">
 				</div>
 			</div>
 			<!--Box for Initiative-->
 			<div class = "midColSection midColThird">
 				<div class = "imgTextOverlay">
-					<img class = "center midColImgSize" src="img/textBox.png"/>
-					<input name = "initiative varchar(255)" type="speedBox" style="width:2vw; text-align: center;">
+					<img class = "center midColImgSize" src="img/TextBox.png"/>
+					<input name = "initiative" type="speedBox" style="width:2vw; text-align: center;">
 					<div class = "imgTextBot2">
 						<b>Initiative</b>
 					</div>
@@ -216,8 +326,8 @@
 			<!--Box for Speed-->
 			<div class = "midColSection midColThird">
 				<div class = "imgTextOverlay">
-					<img class = "center midColImgSize" src="img/textBox.png"/>
-					<input name = "speed varchar(255)" type="speedBox" style="width:2vw; text-align: center;">
+					<img class = "center midColImgSize" src="img/TextBox.png"/>
+					<input name = "speed" type="speedBox" style="width:2vw; text-align: center;">
 					<div class = "imgTextBot2">
 						<b>Speed</b>
 					</div>
@@ -235,13 +345,13 @@
 					<div class = "midColSection midCol3Quarter center">
 						<div class = "middleColumnContainer">
 							<div class = "midColSection">
-								<input name = "hpCurrent varchar(255)" style = "max-width: 62%; margin-top: 5.5%; text-align: right; margin-left: 6%; margin-right: 2%">
+								<input name = "hpCurrent" style = "max-width: 62%; margin-top: 5.5%; text-align: right; margin-left: 6%; margin-right: 2%">
 							</div>
 							<div class = "midColSection center">
 								<h6>/</h6>
 							</div>
 							<div class = "midColSection">
-								<input name = "hpMax varchar(255)" style = "max-width: 62%; margin-top: 5.5%; margin-right: 6%">
+								<input name = "hpMax" style = "max-width: 62%; margin-top: 5.5%; margin-right: 6%">
 							</div>
 						</div>
 					</div>
@@ -255,7 +365,7 @@
 						<h6><font size = "-1"> Temp Hp: </font></h6>
 					</div>
 					<div class = "midColSection midCol2Third">
-						<input name = "tempHpCurrent varchar(255)" style = "max-width: 80%; margin-top: 5.5%; margin-right: 5%">
+						<input name = "tempHpCurrent" style = "max-width: 80%; margin-top: 5.5%; margin-right: 5%">
 					</div>
 				</div>
 			</div>
@@ -271,13 +381,13 @@
 					<div class = "midColSection midCol3Quarter center">
 						<div class = "middleColumnContainer">
 							<div class = "midColSection">
-								<input name = "hitDiceCurrent varchar(255)" style = "max-width: 66%; margin-top: 18%; text-align: right; margin-left: 2%; margin-right: 2%">
+								<input name = "hitDiceCurrent" style = "max-width: 66%; margin-top: 18%; text-align: right; margin-left: 2%; margin-right: 2%">
 							</div>
 							<div class = "midColSection center" style = "margin-top: 8%">
 								<h6>/</h6>
 							</div>
 							<div class = "midColSection">
-								<input name = "hitDiceMax varchar(255)" style = "max-width: 66%; margin-top: 18%; margin-right: 2%">
+								<input name = "hitDiceMax" style = "max-width: 66%; margin-top: 18%; margin-right: 2%">
 							</div>
 						</div>
 					</div>
@@ -289,9 +399,9 @@
 						Successes
 					</div>
 					<div class = "midColSection halvesBoxes right" style = "margin-bottom: -6%">
-						<input name = "deathSuccessOne varchar(255)" type="checkbox">
-						<input name = "deathSuccessTwo varchar(255)" type="checkbox">
-						<input name = "deathSuccessThree varchar(255)" type="checkbox">
+						<input name = "deathSuccessOne" type="checkbox">
+						<input name = "deathSuccessTwo" type="checkbox">
+						<input name = "deathSuccessThree" type="checkbox">
 					</div>
 				</div>
 				<br>
@@ -300,9 +410,9 @@
 						Failures
 					</div>
 					<div class = "midColSection halvesBoxes right">
-						<input name = "deathFailOne varchar(255)" type="checkbox">
-						<input name = "deathFailTwo varchar(255)" type="checkbox">
-						<input name = "deathFailThree varchar(255)" type="checkbox">
+						<input name = "deathFailOne" type="checkbox">
+						<input name = "deathFailTwo" type="checkbox">
+						<input name = "deathFailThree" type="checkbox">
 					</div>
 				</div>
 			</div>
@@ -326,19 +436,19 @@
 			</div>
 			<div class = "middleColumnContainer" style = "margin-bottom: 5px">
 				<div class = "midColSection">
-					<input name = "firstLevelCurrent varchar(255)" style = "width: 15%">
+					<input name = "firstLevelCurrent" style = "width: 15%">
 					/
-					<input name = "firstLevelMax varchar(255)" style = "width: 15%">
+					<input name = "firstLevelMax" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input name = "secondLevelCurrent varchar(255)" style = "width: 15%">
+					<input name = "secondLevelCurrent" style = "width: 15%">
 					/
 					<input name = "secondLevelMax" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input name = "thirdLevelCurrent varchar(255)" style = "width: 15%">
+					<input name = "thirdLevelCurrent" style = "width: 15%">
 					/
-					<input name = "thirdLevelMax varchar(255)" style = "width: 15%">
+					<input name = "thirdLevelMax" style = "width: 15%">
 				</div>
 			</div>
 			<div class = "middleColumnContainer">
@@ -354,19 +464,19 @@
 			</div>
 			<div class = "middleColumnContainer" style = "margin-bottom: 5px">
 				<div class = "midColSection">
-					<input name = "fourthLevelCurrent varchar(255)" style = "width: 15%">
+					<input name = "fourthLevelCurrent" style = "width: 15%">
 					/
-					<input name = "fourthLevelMax varchar(255)" style = "width: 15%">
+					<input name = "fourthLevelMax" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input name = "fifthLevelCurrent varchar(255)" style = "width: 15%">
+					<input name = "fifthLevelCurrent" style = "width: 15%">
 					/
-					<input name = "fifthLevelMax varchar(255)" style = "width: 15%">
+					<input name = "fifthLevelMax" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input name = "sixthLevelCurrent varchar(255)" style = "width: 15%">
+					<input name = "sixthLevelCurrent" style = "width: 15%">
 					/
-					<input name = "sixthLevelMax varchar(255)" style = "width: 15%">
+					<input name = "sixthLevelMax" style = "width: 15%">
 				</div>
 			</div>
 			<div class = "middleColumnContainer">
@@ -382,19 +492,19 @@
 			</div>
 			<div class = "middleColumnContainer">
 				<div class = "midColSection">
-					<input name = "seventhLevelCurrent varchar(255)" style = "width: 15%">
+					<input name = "seventhLevelCurrent" style = "width: 15%">
 					/
-					<input name = "seventhLevelMax varchar(255)" style = "width: 15%">
+					<input name = "seventhLevelMax" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input name = "eighthLevelCurrent varchar(255)" style = "width: 15%">
+					<input name = "eighthLevelCurrent" style = "width: 15%">
 					/
-					<input name = "eighthLevelMax varchar(255)" style = "width: 15%">
+					<input name = "eighthLevelMax" style = "width: 15%">
 				</div>
 				<div class = "midColSection">
-					<input name = "ninthLevelCurrent varchar(255)" style = "width: 15%">
+					<input name = "ninthLevelCurrent" style = "width: 15%">
 					/
-					<input name = "ninthLevelMax varchar(255)" style = "width: 15%">
+					<input name = "ninthLevelMax" style = "width: 15%">
 				</div>
 			</div>
 		</div>
@@ -423,19 +533,19 @@
 					<col width="30%">
 					<col width="30%">
 					<tr>
-						<td><input name = "weapon1Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon1AttackBonus varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon1Damage varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon1Name" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon1AttackBonus" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon1Damage" type = "text" style = "max-width: 85%; text-align: center;"></td>
 					</tr>
 					<tr>
-						<td><input name = "weapon2Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon2AttackBonus varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon2Damage varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon2Name" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon2AttackBonus" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon2Damage" type = "text" style = "max-width: 85%; text-align: center;"></td>
 					</tr>
 					<tr>
-						<td><input name = "weapon3Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon3AttackBonus varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon3Damage varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon3Name" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon3AttackBonus" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon3Damage" type = "text" style = "max-width: 85%; text-align: center;"></td>
 					</tr>
 				</table>
 				<input type = "button" value = "Add Attack" onclick="weaponTableAddRow()">
