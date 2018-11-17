@@ -28,24 +28,24 @@ input[type=number]::-webkit-outer-spin-button {
 	box-sizing: content-box;
 }
 
-#nameform {
+#nameForm {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 }
 
-#nameform button {
+#nameForm button {
 	background-color: #CBF3F0;
 	color: black;
 }
 
-#nameform label {
+#nameForm label {
 	margin-right: .2%;
 	margin-left: .5%;
 	font-size: 13px;
 }
 
-#nameform input {
+#nameForm input {
 	padding: 2px;
 	width: 15vh;
 }
@@ -140,6 +140,7 @@ input[type=number]::-webkit-outer-spin-button {
 	border: 2px black solid;
 	background-color: #CBF3F0;
 	margin: 1%;
+	overflow: auto;
 }
 
 #ST-form { /*the form CSS for saving throws for styling later if needed*/
@@ -170,6 +171,7 @@ input[type=number]::-webkit-outer-spin-button {
 	background-color: #CBF3F0;
 	margin: 1%;
 	font-size:small;
+	overflow: auto;
 }
 
 #skillsBox #manualInputDiv {
@@ -207,6 +209,7 @@ input[type=number]::-webkit-outer-spin-button {
 #skillsList {
 	margin: auto;
 	font-size: 92%;
+	white-space: nowrap;
 }
 
 #skillsList tr {
@@ -235,6 +238,11 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /*Middle Column CSS*/
+
+/*input box size for spell slots*/
+.midColSpellSlotInput input{
+	width: 15%;
+}
 .middleColumnContainer {
 	display: flex;
 	margin: auto;
@@ -537,6 +545,9 @@ input[type=speedBox] {
 	left: 24%;
 	right: 0;
 }
+#styleIdSpellSlot{
+	width: 15%;
+}
 #weaponTable{
 	display: table;
 	border-collapse: separate;
@@ -559,10 +570,6 @@ input[type=speedBox] {
 	background-color: white;
 	border: 2px black solid;
 	margin-bottom: -2px;
-}
-/*input box size for spell slots*/
-.midColSpellSlotInput{
-	width: 15%
 }
 #spellTable{
 	display: table;

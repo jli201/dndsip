@@ -163,7 +163,7 @@ $(document).ready(function() {
     // $('#ST-form').on('keyup', handleSavingThrowChange);
 
     //skills
-
+    $('#proficiency').on('change', handleProficiencyChange);
     $('#skillsList').on('change', handleSkillProficiencyCheckBoxChange);
 });
 
@@ -213,6 +213,19 @@ function getThrowFromShortform (shortform) {
     }
     return inputName;
 
+}
+
+function handleProficiencyChange(e){
+    for(i = 0; i < skillHandler.classTags.length; i++){
+        var shortform = skillHandler.classTags[i].substring(0,3);
+        console.log("Stat being changed: " + shortform);
+        //assumes checkbox ids are 'strCheckbox', 'dexCheckbox', etc.
+        populateOneSavingThrow(shortform, shortform + "Checkbox");
+
+        if(skillHandler.manualCalculation == false){
+            populateOneSkillCatagory(shortform + "Mod", shortform + "Skill");
+        }
+    }
 }
 
 //triggered by checkbox click
@@ -272,6 +285,9 @@ var skillHandler = {
 
     //Class tags used in html to determine what stat is associated with a skill
     classTags: ["strSkill","dexSkill","conSkill","intSkill","wisSkill","chaSkill"],
+
+    //Stat tags used for looping through all stats when needed
+    statShorthands: ["str","dex","con","int","wis","cha"],
 }
 
 //swaps skill calcuation from automatic to manual and vice versa
