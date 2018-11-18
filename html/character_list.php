@@ -1,7 +1,6 @@
 <?php
     session_start();
 
-
     //checking to see if a user is logged in
     if($_SESSION["user"]) {
         $username = $_SESSION["user"];
@@ -34,7 +33,7 @@
 
         if(isset($_POST['createCharacter'])) {
 			$characterID = parse_input($_POST['newCharacterID']) + 1;
-            createCharacter($characterID, $conn);
+            createCharacter($username, $characterID, $conn);
 
         } else {
             $characterID = $existingCharacter;
@@ -94,11 +93,12 @@
     Purpose: Adds a new character to the database with a unique character ID and associates
              it with a given user.
     Params:
+        -username: The username to associate with a characterID.
         -characterID: The id to add to the database.
         -conn: The open connection to the database to query against.
     Returns: Nothing.
     */
-    function createCharacter($characterID, $conn) {
+    function createCharacter($username, $characterID, $conn) {
         $newBasicInfo = "INSERT INTO BasicInfo (username, characterID) VALUES ('$username', '$characterID');";
        	$newStatsAndSkills = "INSERT INTO StatsAndSkills (characterID) VALUES ('$characterID');";
         $newMiddleColumn = "INSERT INTO MiddleColumn (characterID) VALUES ('$characterID');";
