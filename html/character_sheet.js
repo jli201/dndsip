@@ -74,8 +74,8 @@ There are always at minimum two rows:
 A 'gold' row and the 'header' row. Don't delete those!
 Inventory Table Entry Format:
 <tr>
-    <td><input type="number" value="0" id="inv-num-#"></input></td>
-    <td><input type="text" value="Item" id="inv-obj-#"></input></td>
+    <td><input type="number" value="0" name="Item#Quantity" id="inv-num-#"></input></td>
+    <td><input type="text" value="Item" name="Item#Description" id="inv-obj-#"></input></td>
 </tr> */
 function addInvRow() {
     var debug = false;
@@ -165,6 +165,13 @@ $(document).ready(function() {
     //skills
     $('#proficiency').on('change', handleProficiencyChange);
     $('#skillsList').on('change', handleSkillProficiencyCheckBoxChange);
+
+
+    //inventory.
+    console.log("Hello1.");
+    $('#inventory-table tbody').load("loadinv.php");
+
+
 });
 
 

@@ -637,8 +637,8 @@
 				<div id="inventory-table-wrapper"><table id="inventory-table">
 					<!-- Table Entry Format:
 					<tr>
-						<td><input type="number" value="0" id="inv-num-#"></input></td>
-						<td><input type="text" value="Item" id="inv-obj-#"></input></td>
+					    <td><input type="number" value="0" name="Item#Quantity" id="inv-num-#"></input></td>
+					    <td><input type="text" value="Item" name="Item#Description" id="inv-obj-#"></input></td>
 					</tr> 
 					Each new row must have an iterating # - check character_sheet.js
 					If changing format, you must change the related js.-->
