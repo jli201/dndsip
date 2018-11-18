@@ -224,8 +224,7 @@
 
 				<!-- saving throws -->
 				<div id="savingThrowsBackground">
-					<div id="savingThrows">
-						<form id="ST-form">
+					<div class="ST-form" id="savingThrows">
 							<h4> Saving Throws </h4>
 							<input type="checkbox" id="strCheckbox"> <input name="strengthSavingThrow" id="strengthSavingThrow" type="number"> Strength <br>
 							<input type="checkbox" id="dexCheckbox"> <input name="dexteritySavingThrow" id="dexteritySavingThrow" type="number"> Dexterity <br>
@@ -233,8 +232,6 @@
 							<input type="checkbox" id="intCheckbox"> <input name="intelligenceSavingThrow" id="intelligenceSavingThrow" type="number"> Intelligence <br>
 							<input type="checkbox" id="wisCheckbox"> <input name="wisdomSavingThrow" id="wisdomSavingThrow" type="number"> Wisdom <br>
 							<input type="checkbox" id="chaCheckbox"> <input name="charismaSavingThrow" id="charismaSavingThrow" type="number"> Charisma <br>
-						</form>
-					</div>
 				</div> 
 				
 				<div id="skillsBox">
