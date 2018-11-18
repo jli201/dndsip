@@ -143,23 +143,23 @@ input[type=number]::-webkit-outer-spin-button {
 	overflow: auto;
 }
 
-#ST-form { /*the form CSS for saving throws for styling later if needed*/
+.ST-form { /*the form CSS for saving throws for styling later if needed*/
 	font-size: 78%;
 }
 
-#ST-form h4{
+savingThrowsBackground .ST-form h4{
 	text-align: center; 
 	font-size: 115%;
 	margin: 1%;
 }
 
-#ST-form input {
+#savingThrowsBackground .ST-form input {
 	padding: 2px;
 	margin: 1%;
 	width: 20px;
 }
 
-#ST-form input[type = "checkbox"] {
+#savingThrowsBackground .ST-form input[type = "checkbox"] {
 	margin-left: 20%;
 }
 
