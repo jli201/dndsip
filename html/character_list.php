@@ -20,46 +20,49 @@
     //establishing a connection to the database
     $conn = new mysqli($host, $dbuser, $dbpassword, $dbname);
 
-
-    /*
-    When a button is clicked to use an exisiting character,
-    get the characterID and pass it to the next page.
-
-    When the user creates a new character, give that character
-    the next available characterID and pass it to the next page.
-    */
-    if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $existingCharacter = parse_input($_POST['characterID']);
-
-        if(isset($_POST['createCharacter'])) {
-			$characterID = parse_input($_POST['newCharacterID']) + 1;
-            createCharacter($username, $characterID, $conn);
-
-        } else {
-            $characterID = $existingCharacter;
-        }
-
-        $_SESSION['characterID'] = $characterID;
-        header("Location:character_sheet.php");
-    }
-
-
-    //finding all characters associated with a given username
     if (mysqli_connect_error()) {
         echo ("Unable to connect to database!");
-    } else {
-        $findCharacters = "SELECT * FROM BasicInfo WHERE username='$username';";
-        $result = $conn->query($findCharacters);
     }
 
+    else {
+        /*
+        Getting the last available characterID and incrementing it by one in case the
+        user wants to make a new character.
+        */
+        $tempResult = $conn->query("SELECT characterID FROM BasicInfo ORDER BY characterID DESC LIMIT 1;");
+        $temp = $tempResult->fetch_assoc();
+        $lastCharacterID = ($temp['characterID']);
 
-    /*
-    Getting the last available characterID and incrementing it by one in case the
-    user wants to make a new character.
-    */
-    $tempResult = $conn->query("SELECT characterID FROM BasicInfo ORDER BY characterID DESC LIMIT 1;");
-    $temp = $tempResult->fetch_assoc();
-    $lastCharacterID = ($temp['characterID']);
+        /*
+        When a button is clicked to use an exisiting character,
+        get the characterID and pass it to the next page.
+
+        When the user creates a new character, give that character
+        the next available characterID and pass it to the next page.
+        */
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            $existingCharacter = parse_input($_POST['characterID']);
+
+            //if create character is clicked
+            if(isset($_POST['createCharacter'])) {
+                $characterID = parse_input($_POST['newCharacterID']) + 1;
+                createCharacter($username, $characterID, $conn);
+
+            //if an exisiting character is opened
+            } else {
+                $characterID = $existingCharacter;
+            }
+            $_SESSION['characterID'] = $characterID;
+            header("Location:character_sheet.php");
+
+        } else {
+            //finding all characters associated with a given username
+            $findCharacters = "SELECT * FROM BasicInfo WHERE username='$username';";
+            $result = $conn->query($findCharacters);
+        }
+    }
+
+    $conn->close();
 
 
     /*
