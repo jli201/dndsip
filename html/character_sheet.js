@@ -223,15 +223,19 @@ function getThrowFromShortform (shortform) {
 }
 
 function handleProficiencyChange(e){
+	var i;
     for(i = 0; i < skillHandler.classTags.length; i++){
+		
         var shortform = skillHandler.classTags[i].substring(0,3);
         console.log("Stat being changed: " + shortform);
         //assumes checkbox ids are 'strCheckbox', 'dexCheckbox', etc.
         populateOneSavingThrow(shortform, shortform + "Checkbox");
-
+		
+		
         if(skillHandler.manualCalculation == false){
             populateOneSkillCatagory(shortform + "Mod", shortform + "Skill");
         }
+		
     }
 }
 
@@ -352,10 +356,15 @@ function handleSkillProficiencyCheckBoxChange(e) {
 }
 
 function populateOneSkillCatagory(modID, skillID) {
+	var i;
     for(i = 0; i < skillHandler.skills.length; i++){
 
         //Calculate base modifier of skill based on Score mod
         var skillMod = ($('#' + modID).html());
+		if (isNaN(skillMod) ) {
+			console.log(skillMod + " not set.");
+			continue;
+		}
 
         //Change skillMod to integer
         skillMod *= 1;
