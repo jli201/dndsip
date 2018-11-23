@@ -81,6 +81,23 @@
 
 
     /*
+    Purpose: Checks to see if a checkbox in the database has been check. If it has, then
+    		 set the checkbox calling this function to checked by adding "checked" into the
+    		 html.
+    Params:
+    	-$target: The checkbox to check
+    Returns: Nothing
+   	*/
+    function checkCheckBox($target){
+    	if (strcmp($target, 'on') == 0){
+    		echo('checked');
+    	}
+    }
+
+
+
+
+    /*
 	Purpose: Collects all the information from the basicInfo table of the database
 			 associated with a particular characterID and stores it in a variable for use.
 	Params:
@@ -99,7 +116,7 @@
 	}
 
 
-	//Same as above, except that it accesses the StatsAndSkills talbe
+	//Same as above, except that it accesses the StatsAndSkills table instead
 	function getStatsAndSkills($conn, $characterID) {
 		$statsAndSkillsQuery = "SELECT * FROM StatsAndSkills WHERE characterID='$characterID';";
 	    $statsAndSkillsResult = $conn->query($statsAndSkillsQuery);
@@ -108,7 +125,7 @@
 	    return $statsAndSkills;
 	}
 
-	//Same as above, except that it accesses the RightColumn talbe
+	//Same as above, except that it accesses the RightColumn table instead
 	function getRightColumn($conn, $characterID) {
 	    $rightColumnQuery = "SELECT * FROM RightColumn WHERE characterID='$characterID';";
 	    $rightColumnResult = $conn->query($rightColumnQuery);
@@ -118,47 +135,6 @@
 	}
 
 
-	function putRightColumn($conn, $characterID) {
-		$updatedTraits = parse_input($_POST['traits']);
-		$updatedIdeals = parse_input($_POST['ideals']);
-		$updatedBonds = parse_input($_POST['bonds']);
-		$updatedFlaws = parse_input($_POST['flaws']);
-		$updatedFeaturesAndTraits = parse_input($_POST['featuresAndTraits']);
-	
-		$updateRightColumnQuery = "UPDATE RightColumn SET
-									 traits='$updatedTraits',
-									 ideals='$updatedIdeals',
-									 bonds='$updatedBonds',
-									 flaws='$updatedFlaws',
-									 featuresAndTraits='$updatedFeaturesAndTraits'
-									 WHERE characterID='$characterID';";
-		$conn->query($updateRightColumnQuery);
-	}
-
-
-	function putStatsAndSkills($conn, $characterID) {
-		$updatedStrength = parse_input($_POST['strength']);
-		$updatedDexterity = parse_input($_POST['dexterity']);
-		$updatedConstitution = parse_input($_POST['constitution']);
-		$updatedIntelligence = parse_input($_POST['intelligence']);
-		$updatedWisdom = parse_input($_POST['wisdom']);
-		$updatedCharisma = parse_input($_POST['charisma']);
-		$updatedProficiencyBonus = parse_input($_POST['proficiencyBonus']);
-		$updatedOther = parse_input($_POST['other']);
-
-		$updateStatsAndSkillsQuery = "UPDATE StatsAndSkills SET
-									 strength='$updatedStrength',
-									 dexterity='$updatedDexterity',
-									 constitution='$updatedConstitution',
-									 intelligence='$updatedIntelligence',
-									 wisdom='$updatedWisdom',
-									 charisma='$updatedCharisma',
-									 proficiencyBonus='$updatedProficiencyBonus',
-									 other='$updatedOther'
-									 WHERE characterID='$characterID';";
-
-		$conn->query($updateStatsAndSkillsQuery);
-	}
 
 
 	/*
@@ -190,6 +166,98 @@
 								WHERE characterID='$characterID';";
 
 		$conn->query($updateBasicInfoQuery);
+	}
+
+	//Same as above, except that it accesses the RightColumn table instead
+	function putRightColumn($conn, $characterID) {
+		$updatedTraits = parse_input($_POST['traits']);
+		$updatedIdeals = parse_input($_POST['ideals']);
+		$updatedBonds = parse_input($_POST['bonds']);
+		$updatedFlaws = parse_input($_POST['flaws']);
+		$updatedFeaturesAndTraits = parse_input($_POST['featuresAndTraits']);
+	
+		$updateRightColumnQuery = "UPDATE RightColumn SET
+									 traits='$updatedTraits',
+									 ideals='$updatedIdeals',
+									 bonds='$updatedBonds',
+									 flaws='$updatedFlaws',
+									 featuresAndTraits='$updatedFeaturesAndTraits'
+									 WHERE characterID='$characterID';";
+		$conn->query($updateRightColumnQuery);
+	}
+
+	//Same as above, except that it accesses the StatsAndSkills table instead
+	function putStatsAndSkills($conn, $characterID) {
+		$updatedStrength = parse_input($_POST['strength']);
+		$updatedDexterity = parse_input($_POST['dexterity']);
+		$updatedConstitution = parse_input($_POST['constitution']);
+		$updatedIntelligence = parse_input($_POST['intelligence']);
+		$updatedWisdom = parse_input($_POST['wisdom']);
+		$updatedCharisma = parse_input($_POST['charisma']);
+
+		$updatedInspiration = parse_input($_POST['inspiration']);
+		$updatedProficiencyBonus = parse_input($_POST['proficiencyBonus']);
+		$updatedManualEntry = parse_input($_POST['manualEntry']);
+
+		$updatedAcrobaticsProficient = parse_input($_POST['acrobaticsProficient']);
+		$updatedArcanaProficient = parse_input($_POST['arcanaProficient']);
+		$updatedDeceptionProficient = parse_input($_POST['deceptionProficient']);
+		$updatedInsightProficient = parse_input($_POST['insightProficient']);
+		$updatedInvestigationProficient = parse_input($_POST['investigationProficient']);
+		$updatedNatureProficient = parse_input($_POST['natureProficient']);
+		$updatedPerformanceProficient = parse_input($_POST['performanceProficient']);
+		$updatedReligionProficient = parse_input($_POST['religionProficient']);
+		$updatedStealthProficient = parse_input($_POST['stealthProficient']);
+		$updatedAnimalHandlingProficient = parse_input($_POST['animalHandlingProficient']);
+		$updatedAthleticsProficient = parse_input($_POST['athleticsProficient']);
+		$updatedHistoryProficient = parse_input($_POST['historyProficient']);
+		$updatedIntimidationProficient = parse_input($_POST['intimidationProficient']);
+		$updatedMedicineProficient = parse_input($_POST['medicineProficient']);
+		$updatedPerceptionProficient = parse_input($_POST['perceptionProficient']);
+		$updatedPersuasionProficient = parse_input($_POST['persuasionProficient']);
+		$updatedSleightOfHandProficient = parse_input($_POST['sleightOfHandProficient']);
+		$updatedSurvivalProficient = parse_input($_POST['survivalProficient']);
+
+
+		$updatedPassivePerception = parse_input($_POST['passivePerception']);
+		$updatedOther = parse_input($_POST['other']);
+
+		$updateStatsAndSkillsQuery = "UPDATE StatsAndSkills SET
+									 strength='$updatedStrength',
+									 dexterity='$updatedDexterity',
+									 constitution='$updatedConstitution',
+									 intelligence='$updatedIntelligence',
+									 wisdom='$updatedWisdom',
+									 charisma='$updatedCharisma',
+									 
+									 inspiration='$updatedInspiration',
+									 proficiencyBonus='$updatedProficiencyBonus',
+									 manualEntry='$updatedManualEntry',
+
+									 acrobaticsProficient='$updatedAcrobaticsProficient',
+									 arcanaProficient='$updatedArcanaProficient',
+									 deceptionProficient='$updatedDeceptionProficient',
+									 insightProficient='$updatedInsightProficient',
+									 investigationProficient='$updatedInvestigationProficient',
+									 natureProficient='$updatedNatureProficient',
+									 performanceProficient='$updatedPerformanceProficient',
+									 religionProficient='$updatedReligionProficient',
+									 stealthProficient='$updatedStealthProficient',
+									 animalHandlingProficient='$updatedAnimalHandlingProficient',
+									 athleticsProficient='$updatedAthleticsProficient',
+									 historyProficient='$updatedHistoryProficient',
+									 intimidationProficient='$updatedIntimidationProficient',
+									 medicineProficient='$updatedMedicineProficient',
+									 perceptionProficient='$updatedPerceptionProficient',
+									 persuasionProficient='$updatedPersuasionProficient',
+									 sleightOfHandProficient='$updatedSleightOfHandProficient',
+									 survivalProficient='$updatedSleightOfHandProficient',
+
+									 passivePerception='$updatedPassivePerception',
+									 other='$updatedOther'
+									 WHERE characterID='$characterID';";
+
+		$conn->query($updateStatsAndSkillsQuery);
 	}
 ?>
 
@@ -283,8 +351,8 @@
 			
 			<!-- inspiration and proficiency bonus -->
 				<div id="insp-prof" style="margin-top: 0;"> 
-					<input for="inspiration" type="checkbox">
-					<label name="inspiration" id="inspiration">Inspiration</label>
+					<input for="inspiration" name="inspiration" type="checkbox" <?php echo(checkCheckBox($statsAndSkills['inspiration']));?>>
+					<label id="inspiration">Inspiration</label>
 				</div>
 				<div id="insp-prof"> 
 					<input name="proficiencyBonus" id="proficiency" type="number" value="<?php echo($statsAndSkills['proficiencyBonus']);?>">
@@ -308,46 +376,99 @@
 					<div id="skills"> 
 						<h4>Skills</h4>
 						<div id="manualInputDiv">
-						 <div id="manualEntry"> <input name="manualEntry" type="checkbox" onclick="switchManualCalculation(), changeSkillInputFeildsWritability()"> Manual Entry
+						 <div id="manualEntry"> <input name="manualEntry" type="checkbox" onclick="switchManualCalculation(), changeSkillInputFeildsWritability()" <?php echo(checkCheckBox($statsAndSkills['manualEntry']));?>> Manual Entry
 							<span id="manualInputText">Manual Entry disables the automatic calculation of skills. Checkboxes for skill proficiency also have no effect.</span>
 						 </div>
 						</div>
 						<table id="skillsList">
 							<tr>
-								<td> <input type="checkbox" id="acrobaticsCheckbox"> <input name="acrobatics" id="acrobatics" type="number" class="dexSkill"> Acrobatics</td>
-								<td> <input type="checkbox" id="animalCheckbox"> <input name="animalHandling" id="animal" type="number" class="wisSkill"> Animal Handling</td>
+								<td> 
+									<input type="checkbox" id="acrobaticsCheckbox" name="acrobaticsProficient" <?php echo(checkCheckBox($statsAndSkills['acrobaticsProficient']));?>> 
+									<input name="acrobatics" id="acrobatics" type="number" class="dexSkill"> Acrobatics
+								</td>
+								<td>
+									<input type="checkbox" id="animalCheckbox" name="animalHandlingProficient" <?php echo(checkCheckBox($statsAndSkills['animalHandlingProficient']));?>>
+									<input name="animalHandling" id="animal" type="number" class="wisSkill"> Animal Handling</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox" id="arcanaCheckbox"> <input name="arcana" id="arcana" type="number" class="intSkill"> Arcana</td>
-								<td> <input type="checkbox" id="athleticsCheckbox"> <input name="athletics" id="athletics" type="number" class="strSkill"> Athletics</td>
+								<td> 
+									<input type="checkbox" id="arcanaCheckbox" name="arcanaProficient" <?php echo(checkCheckBox($statsAndSkills['arcanaProficient']));?>>
+									<input name="arcana" id="arcana" type="number" class="intSkill"> Arcana
+								</td>
+								<td>
+									<input type="checkbox" id="athleticsCheckbox" name="athleticsProficient" <?php echo(checkCheckBox($statsAndSkills['athleticsProficient']));?>>
+									<input name="athletics" id="athletics" type="number" class="strSkill"> Athletics
+								</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox" id="deceptionCheckbox"> <input name="deception" id="deception" type="number" class="chaSkill"> Deception</td>
-								<td> <input type="checkbox" id="historyCheckbox"> <input name="history" id="history" type="number" class="intSkill"> History</td>
+								<td>
+									<input type="checkbox" id="deceptionCheckbox" name="deceptionProficient" <?php echo(checkCheckBox($statsAndSkills['deceptionProficient']));?>>
+									<input name="deception" id="deception" type="number" class="chaSkill"> Deception
+								</td>
+								<td>
+									<input type="checkbox" id="historyCheckbox" name="historyProficient" <?php echo(checkCheckBox($statsAndSkills['historyProficient']));?>>
+									<input name="history" id="history" type="number" class="intSkill"> History
+								</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox" id="insightCheckbox"> <input name="insight" id="insight" type="number" class="wisSkill"> Insight</td>
-								<td> <input type="checkbox" id="intimidationCheckbox"> <input name="intimidation" id="intimidation" type="number" class="chaSkill"> Intimidation</td>
+								<td>
+									<input type="checkbox" id="insightCheckbox" name="insightProficient" <?php echo(checkCheckBox($statsAndSkills['insightProficient']));?>>
+									<input name="insight" id="insight" type="number" class="wisSkill"> Insight
+								</td>
+								<td>
+									<input type="checkbox" id="intimidationCheckbox" name="intimidationProficient" <?php echo(checkCheckBox($statsAndSkills['intimidationProficient']));?>>
+									<input name="intimidation" id="intimidation" type="number" class="chaSkill"> Intimidation
+								</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox" id="investigationCheckbox"> <input name="investigation" id="investigation" type="number" class="intSkill"> Investigation</td>
-								<td> <input type="checkbox" id="medicineCheckbox"> <input name="medicine" id="medicine" type="number" class="wisSkill"> Medicine</td>
+								<td>
+									<input type="checkbox" id="investigationCheckbox" name="investigationProficient" <?php echo(checkCheckBox($statsAndSkills['investigationProficient']));?>>
+									<input name="investigation" id="investigation" type="number" class="intSkill"> Investigation
+								</td>
+								<td>
+									<input type="checkbox" id="medicineCheckbox" name="medicineProficient" <?php echo(checkCheckBox($statsAndSkills['medicineProficient']));?>>
+									<input name="medicine" id="medicine" type="number" class="wisSkill"> Medicine
+								</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox" id="natureCheckbox"> <input name="nature" id="nature" type="number" class="intSkill"> Nature</td>
-								<td> <input type="checkbox" id="perceptionCheckbox"> <input name="perception" id="perception" type="number" class="wisSkill"> Perception</td>
+								<td>
+									<input type="checkbox" id="natureCheckbox" name="natureProficient" <?php echo(checkCheckBox($statsAndSkills['natureProficient']));?>>
+									<input name="nature" id="nature" type="number" class="intSkill"> Nature
+								</td>
+								<td>
+									<input type="checkbox" id="perceptionCheckbox" name="perceptionProficient" <?php echo(checkCheckBox($statsAndSkills['perceptionProficient']));?>>
+									<input name="perception" id="perception" type="number" class="wisSkill"> Perception
+								</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox" id="performanceCheckbox"> <input name="performance" id="performance" type="number" class="chaSkill"> Performance</td>
-								<td> <input type="checkbox" id="persuasionCheckbox"> <input name="persuasion" id="persuasion" type="number" class="chaSkill"> Persuasion</td>
+								<td>
+									<input type="checkbox" id="performanceCheckbox" name="performanceProficient" <?php echo(checkCheckBox($statsAndSkills['performanceProficient']));?>>
+									<input name="performance" id="performance" type="number" class="chaSkill"> Performance
+								</td>
+								<td>
+									<input type="checkbox" id="persuasionCheckbox" name="persuasionProficient" <?php echo(checkCheckBox($statsAndSkills['persuasionProficient']));?>>
+									<input name="persuasion" id="persuasion" type="number" class="chaSkill"> Persuasion
+								</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox" id="religionCheckbox"> <input name="religion" id="religion" type="number" class="intSkill"> Religion</td>
-								<td> <input type="checkbox" id="sleightCheckbox"> <input name="sleightOfHand" id="sleight" type="number" class="dexSkill"> Sleight of Hand</td>
+								<td>
+									<input type="checkbox" id="religionCheckbox" name="religionProficient" <?php echo(checkCheckBox($statsAndSkills['religionProficient']));?>>
+									<input name="religion" id="religion" type="number" class="intSkill"> Religion
+								</td>
+								<td>
+									<input type="checkbox" id="sleightCheckbox" name="sleightOfHandProficient" <?php echo(checkCheckBox($statsAndSkills['sleightOfHandProficient']));?>>
+									<input name="sleightOfHand" id="sleight" type="number" class="dexSkill"> Sleight of Hand
+								</td>
 							</tr>
 							<tr>
-								<td> <input type="checkbox" id="stealthCheckbox"> <input name="stealth" id="stealth" type="number" class="dexSkill"> Stealth</td>
-								<td> <input type="checkbox" id="survivalCheckbox"> <input name="survival" id="survival" type="number" class="wisSkill"> Survival</td>
+								<td>
+									<input type="checkbox" id="stealthCheckbox" name="stealthProficient" <?php echo(checkCheckBox($statsAndSkills['stealthProficient']));?>>
+									<input name="stealth" id="stealth" type="number" class="dexSkill"> Stealth
+								</td>
+								<td>
+									<input type="checkbox" id="survivalCheckbox" name="survivalProficient" <?php echo(checkCheckBox($statsAndSkills['survivalProficient']));?>>
+									<input name="survival" id="survival" type="number" class="wisSkill"> Survival
+								</td>
 							</tr>
 						</table>
 					</div>
@@ -358,7 +479,7 @@
 		</div>
 		
 		<div id="passiveWisdomBox">
-			<input for="passiveWisdom" type="number">
+			<input for="passiveWisdom" name="passivePerception" type="number" value="<?php echo($statsAndSkills['passivePerception']);?>">
 			<label name="passivePerception" id="passiveWisdom">Passive Wisdom (Perception)</label>
 		</div>
 		
