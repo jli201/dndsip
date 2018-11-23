@@ -31,14 +31,16 @@
     }
 
 
-    /*
-	When the form is submit, check to see what button was clicked.
-	Regardless of what button was clicked, save the form data.
-    */
 	else {
+		 /*
+		When the form is submit, check to see what button was clicked.
+		Regardless of what button was clicked, save the form data.
+    	*/
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			//saving the character sheet
 			putBasicInfo($conn, $characterID);
+			putStatsAndSkills($conn, $characterID);
+			putRightColumn($conn, $characterID);
 
 			//if we hit the "Characters" button
 			if(isset($_POST['backToCharacters'])) {
@@ -50,8 +52,13 @@
 			}
 		}
 
-		//Loading the basic info if they clicked save
+		/*
+		Loading the page saved data regardless of whether we hit save
+		or we load the page for the first time
+		*/
 		$basicInfo = getBasicInfo($conn, $characterID);
+		$statsAndSkills = getStatsAndSkills($conn, $characterID);
+		$rightColumn = getRightColumn($conn, $characterID);
 	}
 
 
@@ -89,6 +96,68 @@
 	    $basicInfo = $basicInfoResult->fetch_assoc();
 
 	    return $basicInfo;
+	}
+
+
+	//Same as above, except that it accesses the StatsAndSkills talbe
+	function getStatsAndSkills($conn, $characterID) {
+		$statsAndSkillsQuery = "SELECT * FROM StatsAndSkills WHERE characterID='$characterID';";
+	    $statsAndSkillsResult = $conn->query($statsAndSkillsQuery);
+	    $statsAndSkills = $statsAndSkillsResult->fetch_assoc();
+
+	    return $statsAndSkills;
+	}
+
+	//Same as above, except that it accesses the RightColumn talbe
+	function getRightColumn($conn, $characterID) {
+	    $rightColumnQuery = "SELECT * FROM RightColumn WHERE characterID='$characterID';";
+	    $rightColumnResult = $conn->query($rightColumnQuery);
+	    $rightColumn = $rightColumnResult->fetch_assoc();
+
+	    return $rightColumn;
+	}
+
+
+	function putRightColumn($conn, $characterID) {
+		$updatedTraits = parse_input($_POST['traits']);
+		$updatedIdeals = parse_input($_POST['ideals']);
+		$updatedBonds = parse_input($_POST['bonds']);
+		$updatedFlaws = parse_input($_POST['flaws']);
+		$updatedFeaturesAndTraits = parse_input($_POST['featuresAndTraits']);
+	
+		$updateRightColumnQuery = "UPDATE RightColumn SET
+									 traits='$updatedTraits',
+									 ideals='$updatedIdeals',
+									 bonds='$updatedBonds',
+									 flaws='$updatedFlaws',
+									 featuresAndTraits='$updatedFeaturesAndTraits'
+									 WHERE characterID='$characterID';";
+		$conn->query($updateRightColumnQuery);
+	}
+
+
+	function putStatsAndSkills($conn, $characterID) {
+		$updatedStrength = parse_input($_POST['strength']);
+		$updatedDexterity = parse_input($_POST['dexterity']);
+		$updatedConstitution = parse_input($_POST['constitution']);
+		$updatedIntelligence = parse_input($_POST['intelligence']);
+		$updatedWisdom = parse_input($_POST['wisdom']);
+		$updatedCharisma = parse_input($_POST['charisma']);
+		$updatedProficiencyBonus = parse_input($_POST['proficiencyBonus']);
+		$updatedOther = parse_input($_POST['other']);
+
+		$updateStatsAndSkillsQuery = "UPDATE StatsAndSkills SET
+									 strength='$updatedStrength',
+									 dexterity='$updatedDexterity',
+									 constitution='$updatedConstitution',
+									 intelligence='$updatedIntelligence',
+									 wisdom='$updatedWisdom',
+									 charisma='$updatedCharisma',
+									 proficiencyBonus='$updatedProficiencyBonus',
+									 other='$updatedOther'
+									 WHERE characterID='$characterID';";
+
+		$conn->query($updateStatsAndSkillsQuery);
 	}
 
 
@@ -179,32 +248,32 @@
 				<!-- stats boxes -->
 				<div id="statsboxLeftCol">
 					<h4> Strength </h4>					
-					<input name="strength" id="strength" type="number">
+					<input name="strength" id="strength" type="number" value="<?php echo($statsAndSkills['strength']);?>">
 					<div name="strengthMod" id="strMod">str mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Dexterity </h4>
-					<input name="dexterity" id="dexterity" type="number">
+					<input name="dexterity" id="dexterity" type="number" value="<?php echo($statsAndSkills['dexterity']);?>">
 					<div name="dexterityMod" id="dexMod">dex mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Constitution </h4>
-					<input name="constitution" id="constitution" type="number">
+					<input name="constitution" id="constitution" type="number" value="<?php echo($statsAndSkills['constitution']);?>">
 					<div name="constitutionMod" id="conMod">con mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Intelligence </h4>
-					<input name="intelligence" id="intelligence" type="number">
+					<input name="intelligence" id="intelligence" type="number" value="<?php echo($statsAndSkills['intelligence']);?>">
 					<div name="intelligenceMod" id="intMod">int mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Wisdom </h4>
-					<input name="wisdom" id="wisdom" type="number">
+					<input name="wisdom" id="wisdom" type="number" value="<?php echo($statsAndSkills['wisdom']);?>">
 					<div name="wisdomMod" id="wisMod">wis mod</div>
 				</div>
 				<div id="statsboxLeftCol">
 					<h4> Charisma </h4>
-					<input name="charisma" id="charisma" type="number">
+					<input name="charisma" id="charisma" type="number" value="<?php echo($statsAndSkills['charisma']);?>">
 					<div name="charismaMod" id="chaMod">cha mod</div>
 				</div>
 
@@ -218,20 +287,21 @@
 					<label name="inspiration" id="inspiration">Inspiration</label>
 				</div>
 				<div id="insp-prof"> 
-					<input for="profBonus" id="proficiency" type="number">
-					<label name="proficiencyBonus" id="profBonus">Proficiency Bonus</label>
+					<input name="proficiencyBonus" id="proficiency" type="number" value="<?php echo($statsAndSkills['proficiencyBonus']);?>">
+					<label id="profBonus">Proficiency Bonus</label>
 				</div>
 
 				<!-- saving throws -->
 				<div id="savingThrowsBackground">
-					<div class="ST-form" id="savingThrows">
-							<h4> Saving Throws </h4>
-							<input type="checkbox" id="strCheckbox"> <input name="strengthSavingThrow" id="strengthSavingThrow" type="number"> Strength <br>
-							<input type="checkbox" id="dexCheckbox"> <input name="dexteritySavingThrow" id="dexteritySavingThrow" type="number"> Dexterity <br>
-							<input type="checkbox" id="conCheckbox"> <input name="constitutionSavingThrow" id="constitutionSavingThrow" type="number"> Constitution <br>
-							<input type="checkbox" id="intCheckbox"> <input name="intelligenceSavingThrow" id="intelligenceSavingThrow" type="number"> Intelligence <br>
-							<input type="checkbox" id="wisCheckbox"> <input name="wisdomSavingThrow" id="wisdomSavingThrow" type="number"> Wisdom <br>
-							<input type="checkbox" id="chaCheckbox"> <input name="charismaSavingThrow" id="charismaSavingThrow" type="number"> Charisma <br>
+					<div id="savingThrows" class="ST-form">
+						<h4> Saving Throws </h4>
+						<input type="checkbox" id="strCheckbox"> <input name="strengthSavingThrow" id="strengthSavingThrow" type="number"> Strength <br>
+						<input type="checkbox" id="dexCheckbox"> <input name="dexteritySavingThrow" id="dexteritySavingThrow" type="number"> Dexterity <br>
+						<input type="checkbox" id="conCheckbox"> <input name="constitutionSavingThrow" id="constitutionSavingThrow" type="number"> Constitution <br>
+						<input type="checkbox" id="intCheckbox"> <input name="intelligenceSavingThrow" id="intelligenceSavingThrow" type="number"> Intelligence <br>
+						<input type="checkbox" id="wisCheckbox"> <input name="wisdomSavingThrow" id="wisdomSavingThrow" type="number"> Wisdom <br>
+						<input type="checkbox" id="chaCheckbox"> <input name="charismaSavingThrow" id="charismaSavingThrow" type="number"> Charisma <br>
+					</div>
 				</div> 
 				
 				<div id="skillsBox">
@@ -239,7 +309,7 @@
 						<h4>Skills</h4>
 						<div id="manualInputDiv">
 						 <div id="manualEntry"> <input name="manualEntry" type="checkbox" onclick="switchManualCalculation(), changeSkillInputFeildsWritability()"> Manual Entry
-							<span id="manualInputText">Manual Entry disables the automatic calculation of skills.  Checkboxes for proficiency and expertise do not do anything, and you instead enter your skills into text boxes.</span>
+							<span id="manualInputText">Manual Entry disables the automatic calculation of skills. Checkboxes for skill proficiency also have no effect.</span>
 						 </div>
 						</div>
 						<table id="skillsList">
@@ -298,7 +368,7 @@
 			<label class="otherProfLanguagesHeading">Other Proficiencies & Languages</label>
 			</div>
 			<div>
-				<textarea name="other" class="profLanguagesInput"></textarea>
+				<textarea name="other" form="characterSheet" class="profLanguagesInput"><?php echo($statsAndSkills['other']);?></textarea>
 			</div>
 		</div>
 	</div>
@@ -619,26 +689,26 @@
 		<div class="personality-wrapper">
 			<div class="personality-box">
 				<label class="input-label">Traits</label>
-				<textarea name="traits" form="characterSheet" class="input-field"></textarea>
+				<textarea name="traits" form="characterSheet" class="input-field"><?php echo($rightColumn['traits']);?></textarea>
 			</div>
 			<div class="personality-box">
 				<label class="input-label">Ideals</label>
-				<textarea name="ideals" form="characterSheet" class="input-field"></textarea>
+				<textarea name="ideals" form="characterSheet" class="input-field"><?php echo($rightColumn['ideals']);?></textarea>
 			</div>
 			<div class="personality-box">
 				<label class="input-label">Bonds</label>
-				<textarea name="bonds" form="characterSheet" class="input-field"></textarea>
+				<textarea name="bonds" form="characterSheet" class="input-field"><?php echo($rightColumn['bonds']);?></textarea>
 			</div>
 			<div class="personality-box">
 				<label class="input-label">Flaws</label>
-				<textarea name="flaws" form="characterSheet" class="input-field"></textarea>
+				<textarea name="flaws" form="characterSheet" class="input-field"><?php echo($rightColumn['flaws']);?></textarea>
 			</div>
 		</div>
 		<!-- Features / Special Traits -->
 		<div class="features-traits-wrapper">
 			<div class="features-traits-box">
 				<label class="input-label">Features & Traits</label>
-				<textarea name="featuresAndTraits" form="characterSheet" class="input-field"></textarea>
+				<textarea name="featuresAndTraits" form="characterSheet" class="input-field"><?php echo($rightColumn['featuresAndTraits']);?></textarea>
 			</div>
 		</div>
 		<!-- Inventory Table -->

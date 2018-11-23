@@ -1,3 +1,32 @@
+$(document).ready(function() {
+    
+    //stat scores
+    // statBoxParent.addEventListener("change", handleStatChange, false);
+    $('#statsBoxFormat').on('keyup', handleStatChange);
+    $('#strength').trigger('keyup');
+    $('#dexterity').trigger('keyup');
+    $('#constitution').trigger('keyup');
+    $('#intelligence').trigger('keyup');
+    $('#wisdom').trigger('keyup');
+    $('#charisma').trigger('keyup');
+
+    //saving throws
+    $('#ST-form').on('change', handleSavingThrowChange);
+    // $('#ST-form').on('keyup', handleSavingThrowChange);
+
+    //skills
+    $('#proficiency').on('change', handleProficiencyChange);
+    $('#skillsList').on('change', handleSkillProficiencyCheckBoxChange);
+
+
+    //inventory.
+    console.log("Hello1.");
+    $('#inventory-table tbody').load("loadinv.php");
+
+
+});
+
+
 /* Example of weapon table element
     <tr>
         <td><input name = "weapon#Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
@@ -97,9 +126,9 @@ function addInvRow() {
     }
 
     // See table entry format in comments before function
-    var markdown = '<tr><td><input type="number" value="0" name="Item' + numRows 
+    var markdown = '<tr><td><input type="number" placeholder="0" name="Item' + numRows 
         + 'Quantity" id="inv-num-' + numRows
-        + '"></input></td><td><input type="text" value="Item" name="Item' + numRows
+        + '"></input></td><td><input type="text" placeholder="Item" name="Item' + numRows
         + 'Description" id="inv-obj-' + numRows + '"></input></td></tr>';
 
     // We will always have a tbody, because we have 2 default rows!
@@ -150,29 +179,6 @@ function populateOneScore (scoreID, modID) {
         $('#' + modID).html(mod);
     }
 }
-
-//https://www.kirupa.com/html5/handling_events_for_many_elements.htm
-$(document).ready(function() {
-    
-    //stat scores
-    // statBoxParent.addEventListener("change", handleStatChange, false);
-    $('#statsBoxFormat').on('keyup', handleStatChange);
-
-    //saving throws
-    $('#ST-form').on('change', handleSavingThrowChange);
-    // $('#ST-form').on('keyup', handleSavingThrowChange);
-
-    //skills
-    $('#proficiency').on('change', handleProficiencyChange);
-    $('#skillsList').on('change', handleSkillProficiencyCheckBoxChange);
-
-
-    //inventory.
-    console.log("Hello1.");
-    $('#inventory-table tbody').load("loadinv.php");
-
-
-});
 
 
 function handleStatChange(e) {
