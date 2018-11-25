@@ -40,6 +40,7 @@
 			//saving the character sheet
 			putBasicInfo($conn, $characterID);
 			putStatsAndSkills($conn, $characterID);
+			putMiddleColumn($conn, $characterID);
 			putRightColumn($conn, $characterID);
 
 			//if we hit the "Characters" button
@@ -58,6 +59,9 @@
 		*/
 		$basicInfo = getBasicInfo($conn, $characterID);
 		$statsAndSkills = getStatsAndSkills($conn, $characterID);
+		$middleColumn = getMiddleColumn($conn, $characterID);
+		$weapons = getWeapons($conn, $characterID);
+		$numberOfWeapons = getNumberOfWeapons($weapons);
 		$rightColumn = getRightColumn($conn, $characterID);
 	}
 
@@ -94,11 +98,28 @@
     	}
     }
 
+    /*
+    Purpose: Gets the number of weapons in the database so we know how many to load onto the page.
+    Params:
+    	-$weapons: The table row we are looking at
+    Returns:
+    	-$numberOfWeapons: The number of weapons in $weapons
+    */
+    function getNumberOfWeapons($weapons) {
+    	$numberOfWeapons = 0;
+    	for ($i = 0; $i < 65; $i++) {
+    		if ($weapons['weapon' . $i . 'Name']) {
+    			++$numberOfWeapons;
+    		}
+    	}
+    	return $numberOfWeapons;
+    }
+
 
 
 
     /*
-	Purpose: Collects all the information from the basicInfo table of the database
+	Purpose: Collects all the information from the BasicInfo table of the database
 			 associated with a particular characterID and stores it in a variable for use.
 	Params:
 		-$conn: The open connection to the database to query against.
@@ -125,6 +146,25 @@
 	    return $statsAndSkills;
 	}
 
+	//Same as above, except that it accesses the MiddleColumn table instead
+	function getMiddleColumn($conn, $characterID) {
+		$middleColumnQuery = "SELECT * FROM MiddleColumn WHERE characterID='$characterID';";
+	    $middleColumnResult = $conn->query($middleColumnQuery);
+	    $middleColumn = $middleColumnResult->fetch_assoc();
+
+	    return $middleColumn;
+	}
+
+
+	//Same as above, except that it accesses the Weapons table instead
+	function getWeapons($conn, $characterID) {
+	    $weaponsQuery = "SELECT * FROM Weapons WHERE characterID='$characterID';";
+	    $weaponsResult = $conn->query($weaponsQuery);
+	    $weapons = $weaponsResult->fetch_assoc();
+
+	    return $weapons;
+	}
+
 	//Same as above, except that it accesses the RightColumn table instead
 	function getRightColumn($conn, $characterID) {
 	    $rightColumnQuery = "SELECT * FROM RightColumn WHERE characterID='$characterID';";
@@ -133,7 +173,6 @@
 
 	    return $rightColumn;
 	}
-
 
 
 
@@ -168,24 +207,6 @@
 		$conn->query($updateBasicInfoQuery);
 	}
 
-	//Same as above, except that it accesses the RightColumn table instead
-	function putRightColumn($conn, $characterID) {
-		$updatedTraits = parse_input($_POST['traits']);
-		$updatedIdeals = parse_input($_POST['ideals']);
-		$updatedBonds = parse_input($_POST['bonds']);
-		$updatedFlaws = parse_input($_POST['flaws']);
-		$updatedFeaturesAndTraits = parse_input($_POST['featuresAndTraits']);
-	
-		$updateRightColumnQuery = "UPDATE RightColumn SET
-									 traits='$updatedTraits',
-									 ideals='$updatedIdeals',
-									 bonds='$updatedBonds',
-									 flaws='$updatedFlaws',
-									 featuresAndTraits='$updatedFeaturesAndTraits'
-									 WHERE characterID='$characterID';";
-		$conn->query($updateRightColumnQuery);
-	}
-
 	//Same as above, except that it accesses the StatsAndSkills table instead
 	function putStatsAndSkills($conn, $characterID) {
 		$updatedStrength = parse_input($_POST['strength']);
@@ -194,6 +215,13 @@
 		$updatedIntelligence = parse_input($_POST['intelligence']);
 		$updatedWisdom = parse_input($_POST['wisdom']);
 		$updatedCharisma = parse_input($_POST['charisma']);
+
+		$updatedStrengthProficient = parse_input($_POST['strengthProficient']);
+		$updatedDexterityProficient = parse_input($_POST['dexterityProficient']);
+		$updatedConstitutionProficient = parse_input($_POST['constitutionProficient']);
+		$updatedIntelligenceProficient = parse_input($_POST['intelligenceProficient']);
+		$updatedWisdomProficient = parse_input($_POST['wisdomProficient']);
+		$updatedCharismaProficient = parse_input($_POST['charismaProficient']);
 
 		$updatedInspiration = parse_input($_POST['inspiration']);
 		$updatedProficiencyBonus = parse_input($_POST['proficiencyBonus']);
@@ -234,6 +262,13 @@
 									 proficiencyBonus='$updatedProficiencyBonus',
 									 manualEntry='$updatedManualEntry',
 
+									 strengthProficient='$updatedStrengthProficient',
+									 dexterityProficient='$updatedDexterityProficient',
+									 constitutionProficient='$updatedConstitutionProficient',
+									 intelligenceProficient='$updatedIntelligenceProficient',
+									 wisdomProficient='$updatedWisdomProficient',
+									 charismaProficient='$updatedCharismaProficient',
+
 									 acrobaticsProficient='$updatedAcrobaticsProficient',
 									 arcanaProficient='$updatedArcanaProficient',
 									 deceptionProficient='$updatedDeceptionProficient',
@@ -258,6 +293,104 @@
 									 WHERE characterID='$characterID';";
 
 		$conn->query($updateStatsAndSkillsQuery);
+	}
+
+	function putMiddleColumn($conn, $characterID) {
+		$updatedAC = parse_input($_POST['ac']);
+		$udpatedInitiative = parse_input($_POST['initiative']);
+		$updatedSpeed = parse_input($_POST['speed']);
+		$updatedHPCurrent = parse_input($_POST['hpCurrent']);
+		$updatedHPMax = parse_input($_POST['hpMax']);
+		$updatedTempHP = parse_input($_POST['tempHp']);
+		$updatedHitDiceCurrent = parse_input($_POST['hitDiceCurrent']);
+		$updatedHitDiceMax = parse_input($_POST['hitDiceMax']);
+
+		$updatedDeathSuccessOne = parse_input($_POST['deathSuccessOne']);
+		$updatedDeathSuccessTwo = parse_input($_POST['deathSuccessTwo']);
+		$updatedDeathSuccessThree = parse_input($_POST['deathSuccessThree']);
+		$updatedDeathFailOne = parse_input($_POST['deathFailOne']);
+		$updatedDeathFailTwo = parse_input($_POST['deathFailTwo']);
+		$updatedDeathFailThree = parse_input($_POST['deathFailThree']);
+
+		$updatedFirstLevelCurrent = parse_input($_POST['firstLevelCurrent']);
+		$updatedSecondLevelCurrent = parse_input($_POST['secondLevelCurrent']);
+		$updatedThirdLevelCurrent = parse_input($_POST['thirdLevelCurrent']);
+		$updatedFourthLevelCurrent = parse_input($_POST['fourthLevelCurrent']);
+		$updatedFifthLevelCurrent = parse_input($_POST['fifthLevelCurrent']);
+		$updatedSixthLevelCurrent = parse_input($_POST['sixthLevelCurrent']);
+		$updatedSeventhLevelCurrent = parse_input($_POST['seventhLevelCurrent']);
+		$updatedEighthLevelCurrent = parse_input($_POST['eighthLevelCurrent']);
+		$updatedNinthLevelCurrent = parse_input($_POST['ninthLevelCurrent']);
+
+		$udpatedFirstLevelMax = parse_input($_POST['firstLevelMax']);
+		$udpatedSecondLevelMax = parse_input($_POST['secondLevelMax']);
+		$udpatedThirdLevelMax = parse_input($_POST['thirdLevelMax']);
+		$udpatedFourthLevelMax = parse_input($_POST['fourthLevelMax']);
+		$udpatedFifthLevelMax = parse_input($_POST['fifthLevelMax']);
+		$udpatedSixthLevelMax = parse_input($_POST['sixthLevelMax']);
+		$udpatedSeventhLevelMax = parse_input($_POST['seventhLevelMax']);
+		$udpatedEighthLevelMax = parse_input($_POST['eighthLevelMax']);
+		$udpatedNinthLevelMax = parse_input($_POST['ninthLevelMax']);
+
+		$updateMiddleColumnQuery = "UPDATE MiddleColumn SET
+
+									ac='$updatedAC',
+									initiative='$udpatedInitiative',
+									speed='$updatedSpeed',
+									hpCurrent='$updatedHPCurrent',
+									hpMax='$updatedHPMax',
+									tempHp='$updatedTempHP',
+									hitDiceCurrent='$updatedHitDiceCurrent',
+									hitDiceMax='$updatedHitDiceMax',
+
+									deathSuccessOne='$updatedDeathSuccessOne',
+									deathSuccessTwo='$updatedDeathSuccessTwo',
+									deathSuccessThree='$updatedDeathSuccessThree',
+									deathFailOne='$updatedDeathFailOne',
+									deathFailTwo='$updatedDeathFailTwo',
+									deathFailThree='$updatedDeathFailThree',
+
+									firstLevelCurrent='$updatedFirstLevelCurrent',
+									secondLevelCurrent='$updatedSecondLevelCurrent',
+									thirdLevelCurrent='$updatedThirdLevelCurrent',
+									fourthLevelCurrent='$updatedFourthLevelCurrent',
+									fifthLevelCurrent='$updatedFifthLevelCurrent',
+									sixthLevelCurrent='$updatedSixthLevelCurrent',
+									seventhLevelCurrent='$updatedSeventhLevelCurrent',
+									eighthLevelCurrent='$updatedEighthLevelCurrent',
+									ninthLevelCurrent='$updatedNinthLevelCurrent',
+
+									firstLevelMax='$udpatedFirstLevelMax',
+									secondLevelMax='$udpatedSecondLevelMax',
+									thirdLevelMax='$udpatedThirdLevelMax',
+									fourthLevelMax='$udpatedFourthLevelMax',
+									fifthLevelMax='$udpatedFifthLevelMax',
+									sixthLevelMax='$udpatedSixthLevelMax',
+									seventhLevelMax='$udpatedSeventhLevelMax',
+									eighthLevelMax='$udpatedEighthLevelMax',
+									ninthLevelMax='$udpatedNinthLevelMax'
+
+									where characterID='$characterID';";
+
+		$conn->query($updateMiddleColumnQuery);
+	}
+
+	//Same as above, except that it accesses the RightColumn table instead
+	function putRightColumn($conn, $characterID) {
+		$updatedTraits = parse_input($_POST['traits']);
+		$updatedIdeals = parse_input($_POST['ideals']);
+		$updatedBonds = parse_input($_POST['bonds']);
+		$updatedFlaws = parse_input($_POST['flaws']);
+		$updatedFeaturesAndTraits = parse_input($_POST['featuresAndTraits']);
+	
+		$updateRightColumnQuery = "UPDATE RightColumn SET
+									 traits='$updatedTraits',
+									 ideals='$updatedIdeals',
+									 bonds='$updatedBonds',
+									 flaws='$updatedFlaws',
+									 featuresAndTraits='$updatedFeaturesAndTraits'
+									 WHERE characterID='$characterID';";
+		$conn->query($updateRightColumnQuery);
 	}
 ?>
 
@@ -363,12 +496,24 @@
 				<div id="savingThrowsBackground">
 					<div id="savingThrows" class="ST-form">
 						<h4> Saving Throws </h4>
-						<input type="checkbox" id="strCheckbox"> <input name="strengthSavingThrow" id="strengthSavingThrow" type="number"> Strength <br>
-						<input type="checkbox" id="dexCheckbox"> <input name="dexteritySavingThrow" id="dexteritySavingThrow" type="number"> Dexterity <br>
-						<input type="checkbox" id="conCheckbox"> <input name="constitutionSavingThrow" id="constitutionSavingThrow" type="number"> Constitution <br>
-						<input type="checkbox" id="intCheckbox"> <input name="intelligenceSavingThrow" id="intelligenceSavingThrow" type="number"> Intelligence <br>
-						<input type="checkbox" id="wisCheckbox"> <input name="wisdomSavingThrow" id="wisdomSavingThrow" type="number"> Wisdom <br>
-						<input type="checkbox" id="chaCheckbox"> <input name="charismaSavingThrow" id="charismaSavingThrow" type="number"> Charisma <br>
+						<input type="checkbox" id="strCheckbox" name="strengthProficient" <?php echo(checkCheckBox($statsAndSkills['strengthProficient']));?>>
+						<input name="strengthSavingThrow" id="strengthSavingThrow" type="number"> Strength
+						<br>
+						<input type="checkbox" id="dexCheckbox" name="dexterityProficient" <?php echo(checkCheckBox($statsAndSkills['dexterityProficient']));?>>
+						<input name="dexteritySavingThrow" id="dexteritySavingThrow" type="number"> Dexterity 
+						<br>
+						<input type="checkbox" id="conCheckbox" name="constitutionProficient" <?php echo(checkCheckBox($statsAndSkills['constitutionProficient']));?>>
+						<input name="constitutionSavingThrow" id="constitutionSavingThrow" type="number"> Constitution
+						<br>
+						<input type="checkbox" id="intCheckbox" name="intelligenceProficient" <?php echo(checkCheckBox($statsAndSkills['intelligenceProficient']));?>>
+						<input name="intelligenceSavingThrow" id="intelligenceSavingThrow" type="number"> Intelligence
+						<br>
+						<input type="checkbox" id="wisCheckbox" name="wisdomProficient" <?php echo(checkCheckBox($statsAndSkills['wisdomProficient']));?>>
+						<input name="wisdomSavingThrow" id="wisdomSavingThrow" type="number"> Wisdom
+						<br>
+						<input type="checkbox" id="chaCheckbox" name="charismaProficient" <?php echo(checkCheckBox($statsAndSkills['charismaProficient']));?>> 
+						<input name="charismaSavingThrow" id="charismaSavingThrow" type="number"> Charisma
+						<br>
 					</div>
 				</div> 
 				
@@ -513,14 +658,14 @@
 			<div class = "midColSection center midColThird">
 				<div class = "imgTextOverlay">
 					<img class = "center midColImgSize" src="img/sheild2.png"/>
-					<input name = "ac" type="sheildTextBox" style="width:2vw; text-align: center;" placeholder="AC">
+					<input name = "ac" type="sheildTextBox" style="width:2vw; text-align: center;" placeholder="AC" value="<?php echo($middleColumn['ac']);?>">
 				</div>
 			</div>
 			<!--Box for Initiative-->
 			<div class = "midColSection midColThird">
 				<div class = "imgTextOverlay">
 					<img class = "center midColImgSize" src="img/TextBox.png"/>
-					<input name = "initiative" type="speedBox" style="width:2vw; text-align: center;">
+					<input name = "initiative" type="speedBox" style="width:2vw; text-align: center;" value="<?php echo($middleColumn['initiative']);?>">
 					<div class = "imgTextBot2">
 						<b>Initiative</b>
 					</div>
@@ -530,7 +675,7 @@
 			<div class = "midColSection midColThird">
 				<div class = "imgTextOverlay">
 					<img class = "center midColImgSize" src="img/TextBox.png"/>
-					<input name = "speed" type="speedBox" style="width:2vw; text-align: center;">
+					<input name = "speed" type="speedBox" style="width:2vw; text-align: center;" value="<?php echo($middleColumn['speed']);?>">
 					<div class = "imgTextBot2">
 						<b>Speed</b>
 					</div>
@@ -548,13 +693,13 @@
 					<div class = "midColSection midCol3Quarter center">
 						<div class = "middleColumnContainer">
 							<div class = "midColSection">
-								<input name = "hpCurrent" style = "max-width: 62%; margin-top: 5.5%; text-align: right; margin-left: 6%; margin-right: 2%">
+								<input name = "hpCurrent" style = "max-width: 62%; margin-top: 5.5%; text-align: right; margin-left: 6%; margin-right: 2%" value="<?php echo($middleColumn['hpCurrent']);?>">
 							</div>
 							<div class = "midColSection center">
 								<h6>/</h6>
 							</div>
 							<div class = "midColSection">
-								<input name = "hpMax" style = "max-width: 62%; margin-top: 5.5%; margin-right: 6%">
+								<input name = "hpMax" style = "max-width: 62%; margin-top: 5.5%; margin-right: 6%" value="<?php echo($middleColumn['hpMax']);?>">
 							</div>
 						</div>
 					</div>
@@ -568,7 +713,7 @@
 						<h6><font size = "-1"> Temp Hp: </font></h6>
 					</div>
 					<div class = "midColSection midCol2Third">
-						<input name = "tempHpCurrent" style = "max-width: 80%; margin-top: 5.5%; margin-right: 5%">
+						<input name = "tempHp" style = "max-width: 80%; margin-top: 5.5%; margin-right: 5%" value="<?php echo($middleColumn['tempHp']);?>">
 					</div>
 				</div>
 			</div>
@@ -584,13 +729,13 @@
 					<div class = "midColSection midCol3Quarter center">
 						<div class = "middleColumnContainer">
 							<div class = "midColSection">
-								<input name = "hitDiceCurrent" style = "max-width: 66%; margin-top: 18%; text-align: right; margin-left: 2%; margin-right: 2%">
+								<input name = "hitDiceCurrent" style = "max-width: 66%; margin-top: 18%; text-align: right; margin-left: 2%; margin-right: 2%" value="<?php echo($middleColumn['hitDiceCurrent']);?>">
 							</div>
 							<div class = "midColSection center" style = "margin-top: 8%">
 								<h6>/</h6>
 							</div>
 							<div class = "midColSection">
-								<input name = "hitDiceMax" style = "max-width: 66%; margin-top: 18%; margin-right: 2%">
+								<input name = "hitDiceMax" style = "max-width: 66%; margin-top: 18%; margin-right: 2%" value="<?php echo($middleColumn['hitDiceMax']);?>">
 							</div>
 						</div>
 					</div>
@@ -602,9 +747,9 @@
 						Successes
 					</div>
 					<div class = "midColSection halvesBoxes right" style = "margin-bottom: -6%">
-						<input name = "deathSuccessOne" type="checkbox">
-						<input name = "deathSuccessTwo" type="checkbox">
-						<input name = "deathSuccessThree" type="checkbox">
+						<input name = "deathSuccessOne" type="checkbox" <?php echo(checkCheckBox($middleColumn['deathSuccessOne']));?>>
+						<input name = "deathSuccessTwo" type="checkbox" <?php echo(checkCheckBox($middleColumn['deathSuccessTwo']));?>>
+						<input name = "deathSuccessThree" type="checkbox" <?php echo(checkCheckBox($middleColumn['deathSuccessThree']));?>>
 					</div>
 				</div>
 				<br>
@@ -613,9 +758,9 @@
 						Failures
 					</div>
 					<div class = "midColSection halvesBoxes right">
-						<input name = "deathFailOne" type="checkbox">
-						<input name = "deathFailTwo" type="checkbox">
-						<input name = "deathFailThree" type="checkbox">
+						<input name = "deathFailOne" type="checkbox" <?php echo(checkCheckBox($middleColumn['deathFailOne']));?>>
+						<input name = "deathFailTwo" type="checkbox" <?php echo(checkCheckBox($middleColumn['deathFailTwo']));?>>
+						<input name = "deathFailThree" type="checkbox" <?php echo(checkCheckBox($middleColumn['deathFailThree']));?>>
 					</div>
 				</div>
 			</div>
@@ -639,19 +784,19 @@
 			</div>
 			<div class = "middleColumnContainer" style = "margin-bottom: 5px">
 				<div class = "midColSection">
-					<input name = "firstLevelCurrent" style = "width: 15%">
+					<input name = "firstLevelCurrent" style = "width: 15%" value="<?php echo($middleColumn['firstLevelCurrent']);?>">
 					/
-					<input name = "firstLevelMax" style = "width: 15%">
+					<input name = "firstLevelMax" style = "width: 15%" value="<?php echo($middleColumn['firstLevelMax']);?>">
 				</div>
 				<div class = "midColSection">
-					<input name = "secondLevelCurrent" style = "width: 15%">
+					<input name = "secondLevelCurrent" style = "width: 15%" value="<?php echo($middleColumn['secondLevelCurrent']);?>">
 					/
-					<input name = "secondLevelMax" style = "width: 15%">
+					<input name = "secondLevelMax" style = "width: 15%" value="<?php echo($middleColumn['secondLevelMax']);?>">
 				</div>
 				<div class = "midColSection">
-					<input name = "thirdLevelCurrent" style = "width: 15%">
+					<input name = "thirdLevelCurrent" style = "width: 15%" value="<?php echo($middleColumn['thirdLevelCurrent']);?>">
 					/
-					<input name = "thirdLevelMax" style = "width: 15%">
+					<input name = "thirdLevelMax" style = "width: 15%" value="<?php echo($middleColumn['thirdLevelMax']);?>">
 				</div>
 			</div>
 			<div class = "middleColumnContainer">
@@ -667,19 +812,19 @@
 			</div>
 			<div class = "middleColumnContainer" style = "margin-bottom: 5px">
 				<div class = "midColSection">
-					<input name = "fourthLevelCurrent" style = "width: 15%">
+					<input name = "fourthLevelCurrent" style = "width: 15%" value="<?php echo($middleColumn['fourthLevelCurrent']);?>">
 					/
-					<input name = "fourthLevelMax" style = "width: 15%">
+					<input name = "fourthLevelMax" style = "width: 15%" value="<?php echo($middleColumn['fourthLevelMax']);?>">
 				</div>
 				<div class = "midColSection">
-					<input name = "fifthLevelCurrent" style = "width: 15%">
+					<input name = "fifthLevelCurrent" style = "width: 15%" value="<?php echo($middleColumn['fifthLevelCurrent']);?>">
 					/
-					<input name = "fifthLevelMax" style = "width: 15%">
+					<input name = "fifthLevelMax" style = "width: 15%" value="<?php echo($middleColumn['fifthLevelMax']);?>">
 				</div>
 				<div class = "midColSection">
-					<input name = "sixthLevelCurrent" style = "width: 15%">
+					<input name = "sixthLevelCurrent" style = "width: 15%" value="<?php echo($middleColumn['sixthLevelCurrent']);?>">
 					/
-					<input name = "sixthLevelMax" style = "width: 15%">
+					<input name = "sixthLevelMax" style = "width: 15%" value="<?php echo($middleColumn['sixthLevelMax']);?>">
 				</div>
 			</div>
 			<div class = "middleColumnContainer">
@@ -695,19 +840,19 @@
 			</div>
 			<div class = "middleColumnContainer">
 				<div class = "midColSection">
-					<input name = "seventhLevelCurrent" style = "width: 15%">
+					<input name = "seventhLevelCurrent" style = "width: 15%" value="<?php echo($middleColumn['seventhLevelCurrent']);?>">
 					/
-					<input name = "seventhLevelMax" style = "width: 15%">
+					<input name = "seventhLevelMax" style = "width: 15%" value="<?php echo($middleColumn['seventhLevelMax']);?>">
 				</div>
 				<div class = "midColSection">
-					<input name = "eighthLevelCurrent" style = "width: 15%">
+					<input name = "eighthLevelCurrent" style = "width: 15%" value="<?php echo($middleColumn['eighthLevelCurrent']);?>">
 					/
-					<input name = "eighthLevelMax" style = "width: 15%">
+					<input name = "eighthLevelMax" style = "width: 15%" value="<?php echo($middleColumn['eighthLevelMax']);?>">
 				</div>
 				<div class = "midColSection">
-					<input name = "ninthLevelCurrent" style = "width: 15%">
+					<input name = "ninthLevelCurrent" style = "width: 15%" value="<?php echo($middleColumn['ninthLevelCurrent']);?>">
 					/
-					<input name = "ninthLevelMax" style = "width: 15%">
+					<input name = "ninthLevelMax" style = "width: 15%" value="<?php echo($middleColumn['ninthLevelMax']);?>">
 				</div>
 			</div>
 		</div>
@@ -736,23 +881,30 @@
 					<col width="30%">
 					<col width="30%">
 					<tr>
-						<td><input name = "weapon1Name" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon1AttackBonus" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon1Damage" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td>
+							<input name = "weapon1Name" type = "text" style = "max-width: 85%; text-align: center;" value="<?php echo($weapons['weapon1Name']);?>">
+						</td>
+						<td>
+							<input name = "weapon1AttackBonus" type = "text" style = "max-width: 85%; text-align: center;" value="<?php echo($weapons['weapon1AttackBonus']);?>">
+						</td>
+						<td>
+							<input name = "weapon1Damage" type = "text" style = "max-width: 85%; text-align: center;" value="<?php echo($weapons['weapon1Damage']);?>">
+						</td>
 					</tr>
 					<tr>
-						<td><input name = "weapon2Name" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon2AttackBonus" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon2Damage" type = "text" style = "max-width: 85%; text-align: center;"></td>
-					</tr>
-					<tr>
-						<td><input name = "weapon3Name" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon3AttackBonus" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon3Damage" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td>
+							<input name = "weapon2Name" type = "text" style = "max-width: 85%; text-align: center;" value="<?php echo($weapons['weapon2Name']);?>">
+						</td>
+						<td>
+							<input name = "weapon2AttackBonus" type = "text" style = "max-width: 85%; text-align: center;" value="<?php echo($weapons['weapon2AttackBonus']);?>">
+						</td>
+						<td>
+							<input name = "weapon2Damage" type = "text" style = "max-width: 85%; text-align: center;" value="<?php echo($weapons['weapon2Damage']);?>">
+						</td>
 					</tr>
 				</table>
-				<input type = "button" value = "Add Attack" onclick="weaponTableAddRow()">
-				<input type = "button" value = "Delete Attack" onclick="weaponTableDeleteRow()">
+				<input type = "button" value = "Add Weapon" style = "margin-left: 5px;" onclick="weaponTableAddRow()">
+				<input type = "button" value = "Delete Weapon" onclick="weaponTableDeleteRow()">
 			</div>
 		</div>
 		<!--Spells Table-->
@@ -788,13 +940,8 @@
 						<td><input style = "max-width: 47%; text-align: center;"></td>
 						<td><input style = "max-width: 85%; text-align: center;"></td>
 					</tr>
-					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 47%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-					</tr>
 				</table>
-				<input type = "button" value = "Add Spell" onclick="spellTableAddRow()">
+				<input type = "button" value = "Add Spell" style="margin-left: 5px;" onclick="spellTableAddRow()">
 				<input type = "button" value = "Delete Spell" onclick="spellTableDeleteRow()">
 			</div>
 		</div>
