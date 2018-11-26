@@ -1,3 +1,4 @@
+
 <?php
 	session_start();
 
@@ -29,12 +30,30 @@
     if (mysqli_connect_error()) {
         echo ("Unable to connect to database!");
     }
-	elseif($_SERVER["REQUEST_METHOD"] == "POST") {
-		putBasicInfo($conn, $characterID);
+
+
+    /*
+	When the form is submit, check to see what button was clicked.
+	Regardless of what button was clicked, save the form data.
+    */
+	else {
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			//saving the character sheet
+			putBasicInfo($conn, $characterID);
+
+			//if we hit the "Characters" button
+			if(isset($_POST['backToCharacters'])) {
+				header("Location: character_list.php");
+			
+			//if we hit the "Logout" button
+			} elseif(isset($_POST['logout'])) {
+				header("Location: logout.php");
+			}
+		}
+
+		//Loading the basic info if they clicked save
+		$basicInfo = getBasicInfo($conn, $characterID);
 	}
-    else {
-    	$basicInfo = getBasicInfo($conn, $characterID);
-    }
 
 
     //closing the connection to the database
@@ -84,7 +103,6 @@
 		Nothing
 	*/
 	function putBasicInfo($conn, $characterID) {
-		
 		$updatedPlayerName = parse_input($_POST['playerName']);
 		$updatedCharacterName = parse_input($_POST['characterName']);
 		$updatedClass = parse_input($_POST['class']);
@@ -135,25 +153,23 @@
 	<!-- needs additional work. e.g. action tag -->
 	<div id="namePlate">
 		<div id="innerbox">
-			<form id="nameForm">
-				<button type="submit"> Save </button>
-				<button type="submit"> Characters </button>
-				<button type="submit"> Logout </button>
-				<label for="pName"> Player Name: </label>
-				<input name="playerName" id="pName" type="text" placeholder="Player Name" value="<?php echo($basicInfo['playerName']);?>">
-				<label for="cName">Character Name: </label>
-				<input name="characterName" id="cName" type="text" placeholder="Character Name" value="<?php echo($basicInfo['characterName']);?>">
-				<label for="class"> Class: </label>
-				<input name="class" id="class" type="text" placeholder="Class" value="<?php echo($basicInfo['class']);?>">
-				<label for="level"> Level: </label>
-				<input name="level" id="level" type="text" placeholder="Level" value="<?php echo($basicInfo['level']);?>">
-				<label for="race"> Race: </label>
-				<input name="race" id="race" type="text" placeholder="Race" value="<?php echo($basicInfo['race']);?>">
-				<label for="alignment"> Alignment: </label>
-				<input name="alignment" id="alignment" type="text" placeholder="Alignment" value="<?php echo($basicInfo['alignment']);?>">
-				<label for="exp"> Experience Points: </label>
-				<input name="experiencePoints" id="exp" type="number" placeholder="Experience Points" value="<?php echo($basicInfo['experiencePoints']);?>">
-			</form>
+			<button type="submit" name="save"> Save </button>
+			<button type="submit" name="backToCharacters"> Characters </button>
+			<button type="submit" name="logout"> Logout </button>
+			<label for="pName"> Player Name: </label>
+			<input name="playerName" id="pName" type="text" placeholder="Player Name" value="<?php echo($basicInfo['playerName']);?>">
+			<label for="cName">Character Name: </label>
+			<input name="characterName" id="cName" type="text" placeholder="Character Name" value="<?php echo($basicInfo['characterName']);?>">
+			<label for="class"> Class: </label>
+			<input name="class" id="class" type="text" placeholder="Class" value="<?php echo($basicInfo['class']);?>">
+			<label for="level"> Level: </label>
+			<input name="level" id="level" type="text" placeholder="Level" value="<?php echo($basicInfo['level']);?>">
+			<label for="race"> Race: </label>
+			<input name="race" id="race" type="text" placeholder="Race" value="<?php echo($basicInfo['race']);?>">
+			<label for="alignment"> Alignment: </label>
+			<input name="alignment" id="alignment" type="text" placeholder="Alignment" value="<?php echo($basicInfo['alignment']);?>">
+			<label for="exp"> Experience Points: </label>
+			<input name="experiencePoints" id="exp" type="number" placeholder="Experience Points" value="<?php echo($basicInfo['experiencePoints']);?>">
 		</div>
 	</div>
 	<div class="column">
@@ -209,8 +225,7 @@
 
 				<!-- saving throws -->
 				<div id="savingThrowsBackground">
-					<div id="savingThrows">
-						<form id="ST-form">
+					<div class="ST-form" id="savingThrows">
 							<h4> Saving Throws </h4>
 							<input type="checkbox" id="strCheckbox"> <input name="strengthSavingThrow" id="strengthSavingThrow" type="number"> Strength <br>
 							<input type="checkbox" id="dexCheckbox"> <input name="dexteritySavingThrow" id="dexteritySavingThrow" type="number"> Dexterity <br>
@@ -218,8 +233,6 @@
 							<input type="checkbox" id="intCheckbox"> <input name="intelligenceSavingThrow" id="intelligenceSavingThrow" type="number"> Intelligence <br>
 							<input type="checkbox" id="wisCheckbox"> <input name="wisdomSavingThrow" id="wisdomSavingThrow" type="number"> Wisdom <br>
 							<input type="checkbox" id="chaCheckbox"> <input name="charismaSavingThrow" id="charismaSavingThrow" type="number"> Charisma <br>
-						</form>
-					</div>
 				</div> 
 				
 				<div id="skillsBox">
@@ -617,8 +630,8 @@
 				<div id="inventory-table-wrapper"><table id="inventory-table">
 					<!-- Table Entry Format:
 					<tr>
-						<td><input type="number" value="0" id="inv-num-#"></input></td>
-						<td><input type="text" value="Item" id="inv-obj-#"></input></td>
+					    <td><input type="number" value="0" name="Item#Quantity" id="inv-num-#"></input></td>
+					    <td><input type="text" value="Item" name="Item#Description" id="inv-obj-#"></input></td>
 					</tr> 
 					Each new row must have an iterating # - check character_sheet.js
 					If changing format, you must change the related js.-->

@@ -74,8 +74,8 @@ There are always at minimum two rows:
 A 'gold' row and the 'header' row. Don't delete those!
 Inventory Table Entry Format:
 <tr>
-    <td><input type="number" value="0" id="inv-num-#"></input></td>
-    <td><input type="text" value="Item" id="inv-obj-#"></input></td>
+    <td><input type="number" value="0" name="Item#Quantity" id="inv-num-#"></input></td>
+    <td><input type="text" value="Item" name="Item#Description" id="inv-obj-#"></input></td>
 </tr> */
 function addInvRow() {
     var debug = false;
@@ -165,6 +165,13 @@ $(document).ready(function() {
     //skills
     $('#proficiency').on('change', handleProficiencyChange);
     $('#skillsList').on('change', handleSkillProficiencyCheckBoxChange);
+
+
+    //inventory.
+    console.log("Hello1.");
+    $('#inventory-table tbody').load("loadinv.php");
+
+
 });
 
 
@@ -218,14 +225,17 @@ function getThrowFromShortform (shortform) {
 function handleProficiencyChange(e){
     var i;
     for(i = 0; i < skillHandler.classTags.length; i++){
+		
         var shortform = skillHandler.classTags[i].substring(0,3);
         console.log("Stat being changed: " + shortform);
         //assumes checkbox ids are 'strCheckbox', 'dexCheckbox', etc.
         populateOneSavingThrow(shortform, shortform + "Checkbox");
-
+		
+		
         if(skillHandler.manualCalculation == false){
             populateOneSkillCatagory(shortform + "Mod", shortform + "Skill");
         }
+		
     }
 }
 
@@ -346,10 +356,15 @@ function handleSkillProficiencyCheckBoxChange(e) {
 }
 
 function populateOneSkillCatagory(modID, skillID) {
+	var i;
     for(i = 0; i < skillHandler.skills.length; i++){
 
         //Calculate base modifier of skill based on Score mod
         var skillMod = ($('#' + modID).html());
+		if (isNaN(skillMod) ) {
+			console.log(skillMod + " not set.");
+			continue;
+		}
 
         //Change skillMod to integer
         skillMod *= 1;
