@@ -42,6 +42,7 @@
 			putStatsAndSkills($conn, $characterID);
 			putMiddleColumn($conn, $characterID);
 			putRightColumn($conn, $characterID);
+			putWeapons($conn, $characterID);
 
 			//if we hit the "Characters" button
 			if(isset($_POST['backToCharacters'])) {
@@ -69,6 +70,11 @@
     //closing the connection to the database
     $conn->close();
 
+
+
+    /*
+    Helper functions
+    */
 
     /*
     Purpose: Pareses input from forms to make it harder to hack us with SQL Injection Attacks.
@@ -115,8 +121,34 @@
     	return $numberOfWeapons;
     }
 
+    /*
+    Purpose: Loads an additional weapon row from the database onto the page.
+    Params:
+    	-$rowNumber: Determines what element from the database to load and properly
+    				 assigns a name to the elements created in the page
+    Returns: Nothing.
+    */
+    function addWeaponRow($rowNumber, $weapons) {
+    	echo(
+			"<tr>
+				<td>
+					<input name='weapon".$rowNumber."Name' type='text' style='max-width: 85%; text-align: center;' value='".$weapons['weapon'.$rowNumber.'Name']."'>
+				</td>
+				<td>
+					<input name='weapon".$rowNumber."AttackBonus' type='text' style='max-width: 85%; text-align: center;' value='".$weapons['weapon'.$rowNumber.'AttackBonus']."'>
+				</td>
+				<td>
+					<input name='weapon".$rowNumber."Damage' type='text' style='max-width: 85%; text-align: center;' value='".$weapons['weapon'.$rowNumber.'Damage']."'>
+				</td>
+			</tr>"
+			);
+    }
 
 
+
+    /*
+	Data Retrieval
+    */
 
     /*
 	Purpose: Collects all the information from the BasicInfo table of the database
@@ -175,6 +207,10 @@
 	}
 
 
+
+	/*
+	Data upload
+	*/
 
 	/*
 	Purpose: Updates (saves / puts) the contents of the page associated with the basicInfo table
@@ -391,6 +427,28 @@
 									 featuresAndTraits='$updatedFeaturesAndTraits'
 									 WHERE characterID='$characterID';";
 		$conn->query($updateRightColumnQuery);
+	}
+
+	//Loads the weapons into the database by first checking to see which weapons are even populated
+	function putWeapons($conn, $characterID) {
+		$atLeastOneWeapon = False;
+		$updateWeaponsQuery = "UPDATE Weapons SET";
+		for($i = 1; $i <= 64; $i++) {
+			if (parse_input($_POST['weapon'.$i.'Name'])) {
+				$updateWeaponsQuery =
+				$updateWeaponsQuery . " weapon" . $i . "Name='" . parse_input($_POST['weapon'.$i.'Name']) .
+				"', weapon" . $i . "AttackBonus='" . parse_input($_POST['weapon'.$i.'AttackBonus']) .
+				"', weapon" . $i . "Damage='" . parse_input($_POST['weapon'.$i.'Damage']) . "',";
+			} else {
+				$updateWeaponsQuery =
+				$updateWeaponsQuery . " weapon" . $i . "Name='', weapon" . $i . "AttackBonus='', weapon" . $i . "Damage='',";
+			}
+		}
+		if(strlen($updateWeaponsQuery) != 0) {
+			$updateWeaponsQuery = substr($updateWeaponsQuery, 0, -1);
+			$updateWeaponsQuery = $updateWeaponsQuery . " WHERE characterID='" . $characterID . "';";
+			$conn->query($updateWeaponsQuery);
+		}
 	}
 ?>
 
@@ -902,6 +960,13 @@
 							<input name = "weapon2Damage" type = "text" style = "max-width: 85%; text-align: center;" value="<?php echo($weapons['weapon2Damage']);?>">
 						</td>
 					</tr>
+					<?php
+						if ($numberOfWeapons > 2) {
+							for($i = 3; $i <=$numberOfWeapons; $i++){
+								addWeaponRow($i, $weapons);
+							}
+						}
+					?>
 				</table>
 				<input type = "button" value = "Add Weapon" style = "margin-left: 5px;" onclick="weaponTableAddRow()">
 				<input type = "button" value = "Delete Weapon" onclick="weaponTableDeleteRow()">

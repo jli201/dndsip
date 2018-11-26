@@ -10,8 +10,6 @@ $(document).ready(function() {
     $('#wisdom').trigger('keyup');
     $('#charisma').trigger('keyup');
 
-    loadWeapons($('#numberOfWeapons').attr('value'));
-
     //saving throws
     $('#ST-form').on('change', handleSavingThrowChange);
     // $('#ST-form').on('keyup', handleSavingThrowChange);
@@ -26,52 +24,6 @@ $(document).ready(function() {
 
 
 });
-
-/*
-    Purpose: Loads the weapons from the database into the weapons table if it is
-             over two weapons.
-    Params:
-        -numberOfWeapons: The amount of weapons that the user has in the database.
-    Returns: Nothing.
-*/
-function loadWeapons(numberOfWeapons) {
-    if(numberOfWeapons > 2) {
-        for(var i = 3; i <= numberOfWeapons; i++) {
-            weaponTableAddExistingRow(i);
-        }
-    }   
-    else {
-        console.log("Only two weapons.");
-        return;
-    } 
-}
-
-/*
-    Purpose: Adds a row to the weapons table from the Database and loads the appropriate values into it.
-    Params:
-        -rowNumber: Used to load the right row of the table and assign it the correct name.
-    Returns: Nothing.
-*/
-function weaponTableAddExistingRow(rowNumber) {
-    var newRow = '<tr>'
-                        + '<td>' +
-                            '<input name="weapon' + rowNumber + 'Name" type="text" style="max-width: 85%; text-align: center;"' +
-                            'value="<?php echo[$weapons[\'weapon' + rowNumber + 'Name\']);?>">'
-                        + '</td>'
-                        + '<td>' +
-                            '<input name="weapon' + rowNumber + 'AttackBonus" type="text" style="max-width: 85%; text-align: center;"' +
-                            'value="<?php echo[$weapons[\'weapon' + rowNumber + 'AttackBonus\']);?>">'
-                        + '</td>'
-                        + '<td>' +
-                            '<input name="weapon' + rowNumber + 'Damage" type="text" style="max-width: 85%; text-align: center;"' +
-                            'value="<?php echo[$weapons[\'weapon' + rowNumber + 'Damage\']);?>">'
-                        + '</td>'
-                    '</tr>';
-    
-    console.log(newRow);
-    $('#weaponTable tr:last').after(newRow);
-    return;
-}
 
 
 /* Example of weapon table element
