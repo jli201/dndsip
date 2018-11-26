@@ -14,9 +14,9 @@ function weaponTableAddRow(){
     /*Only add rows if we are under 65 total rows, since we add 1 to the row number, we can make this limit 65*/
     if(numRows < 65){
         var markdown = '<tr>'+
-                            '<td><input name = "weapon' + numRows + 'Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
-                            '<td><input name = "weapon' + numRows + 'AttackBonus varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
-                            '<td><input name = "weapon' + numRows + 'Damage varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
+                            '<td><input name = "weapon' + numRows + 'Name" type = "wepColGeneral"></td>'+
+                            '<td><input name = "weapon' + numRows + 'AttackBonus" type = "wepColGeneral"></td>'+
+                            '<td><input name = "weapon' + numRows + 'Damage" type = "wepColGeneral"></td>'+
                         '</tr>';
         $('#weaponTable tbody').append(markdown);
         $('#weaponTable tr:last td:first input').focus();
@@ -51,9 +51,9 @@ function spellTableAddRow() {
     /*Only add rows if we are under 65 total rows, since we add 1 to the row number, we can make this limit 65*/
     if(numRows < 65){
         var markdown = '<tr>'+
-                            '<td><input name = "spell' + numRows + 'Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
-                            '<td><input name = "spell' + numRows + 'Level varchar(255)" type = "number" style = "max-width: 47%; text-align: center;"></td>'+
-                            '<td><input name = "spell' + numRows + 'Description text" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
+                            '<td><input name = "spell' + numRows + 'Name" type = "spellColGeneral"></td>'+
+                            '<td><input name = "spell' + numRows + 'Level" type = "spellColMiddle"></td>'+
+                            '<td><input name = "spell' + numRows + 'Description" type = "spellColGeneral"></td>'+
                         '</tr>';
         $('#spellTable tbody').append(markdown);
         $('#spellTable tr:last td:first input').focus();
@@ -216,6 +216,7 @@ function getThrowFromShortform (shortform) {
 }
 
 function handleProficiencyChange(e){
+    var i;
     for(i = 0; i < skillHandler.classTags.length; i++){
         var shortform = skillHandler.classTags[i].substring(0,3);
         console.log("Stat being changed: " + shortform);

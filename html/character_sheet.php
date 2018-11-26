@@ -292,7 +292,7 @@
 	</div>
 	
 <!--Middle Column-->
-	<div class="column">
+<div class="column">
 		<!--AC/Initiative/Speed Section-->
 
 		<!--
@@ -310,7 +310,7 @@
 			<div class = "midColSection center midColThird">
 				<div class = "imgTextOverlay">
 					<img class = "center midColImgSize" src="img/sheild2.png"/>
-					<input name = "ac" type="sheildTextBox" style="width:2vw; text-align: center;" placeholder="AC">
+					<input name = "ac" type="sheildTextBox" placeholder="AC">
 				</div>
 			</div>
 			<!--Box for Initiative-->
@@ -345,13 +345,13 @@
 					<div class = "midColSection midCol3Quarter center">
 						<div class = "middleColumnContainer">
 							<div class = "midColSection">
-								<input name = "hpCurrent" style = "max-width: 62%; margin-top: 5.5%; text-align: right; margin-left: 6%; margin-right: 2%">
+								<input name = "hpCurrent" id = "hpInput1">
 							</div>
 							<div class = "midColSection center">
 								<h6>/</h6>
 							</div>
 							<div class = "midColSection">
-								<input name = "hpMax" style = "max-width: 62%; margin-top: 5.5%; margin-right: 6%">
+								<input name = "hpMax" id = "hpInput2">
 							</div>
 						</div>
 					</div>
@@ -436,19 +436,19 @@
 			</div>
 			<div class = "middleColumnContainer" style = "margin-bottom: 5px">
 				<div class = "midColSection">
-					<input name = "firstLevelCurrent" style = "width: 15%">
+					<input name = "firstLevelCurrent" type = "spellSlotInput">
 					/
-					<input name = "firstLevelMax" style = "width: 15%">
+					<input name = "firstLevelMax" type = "spellSlotInput">
 				</div>
 				<div class = "midColSection">
-					<input name = "secondLevelCurrent" style = "width: 15%">
+					<input name = "secondLevelCurrent" type = "spellSlotInput">
 					/
-					<input name = "secondLevelMax" style = "width: 15%">
+					<input name = "secondLevelMax" type = "spellSlotInput">
 				</div>
 				<div class = "midColSection">
-					<input name = "thirdLevelCurrent" style = "width: 15%">
+					<input name = "thirdLevelCurrent" type = "spellSlotInput">
 					/
-					<input name = "thirdLevelMax" style = "width: 15%">
+					<input name = "thirdLevelMax" type = "spellSlotInput">
 				</div>
 			</div>
 			<div class = "middleColumnContainer">
@@ -464,19 +464,19 @@
 			</div>
 			<div class = "middleColumnContainer" style = "margin-bottom: 5px">
 				<div class = "midColSection">
-					<input name = "fourthLevelCurrent" style = "width: 15%">
+					<input name = "fourthLevelCurrent" type = "spellSlotInput">
 					/
-					<input name = "fourthLevelMax" style = "width: 15%">
+					<input name = "fourthLevelMax" type = "spellSlotInput">
 				</div>
 				<div class = "midColSection">
-					<input name = "fifthLevelCurrent" style = "width: 15%">
+					<input name = "fifthLevelCurrent" type = "spellSlotInput">
 					/
-					<input name = "fifthLevelMax" style = "width: 15%">
+					<input name = "fifthLevelMax" type = "spellSlotInput">
 				</div>
 				<div class = "midColSection">
-					<input name = "sixthLevelCurrent" style = "width: 15%">
+					<input name = "sixthLevelCurrent" type = "spellSlotInput">
 					/
-					<input name = "sixthLevelMax" style = "width: 15%">
+					<input name = "sixthLevelMax" type = "spellSlotInput">
 				</div>
 			</div>
 			<div class = "middleColumnContainer">
@@ -492,19 +492,19 @@
 			</div>
 			<div class = "middleColumnContainer">
 				<div class = "midColSection">
-					<input name = "seventhLevelCurrent" style = "width: 15%">
+					<input name = "seventhLevelCurrent" type = "spellSlotInput">
 					/
-					<input name = "seventhLevelMax" style = "width: 15%">
+					<input name = "seventhLevelMax" type = "spellSlotInput">
 				</div>
 				<div class = "midColSection">
-					<input name = "eighthLevelCurrent" style = "width: 15%">
+					<input name = "eighthLevelCurrent" type = "spellSlotInput">
 					/
-					<input name = "eighthLevelMax" style = "width: 15%">
+					<input name = "eighthLevelMax" type = "spellSlotInput">
 				</div>
 				<div class = "midColSection">
-					<input name = "ninthLevelCurrent" style = "width: 15%">
+					<input name = "ninthLevelCurrent" type = "spellSlotInput">
 					/
-					<input name = "ninthLevelMax" style = "width: 15%">
+					<input name = "ninthLevelMax" type = "spellSlotInput">
 				</div>
 			</div>
 		</div>
@@ -533,19 +533,9 @@
 					<col width="30%">
 					<col width="30%">
 					<tr>
-						<td><input name = "weapon1Name" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon1AttackBonus" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon1Damage" type = "text" style = "max-width: 85%; text-align: center;"></td>
-					</tr>
-					<tr>
-						<td><input name = "weapon2Name" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon2AttackBonus" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon2Damage" type = "text" style = "max-width: 85%; text-align: center;"></td>
-					</tr>
-					<tr>
-						<td><input name = "weapon3Name" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon3AttackBonus" type = "text" style = "max-width: 85%; text-align: center;"></td>
-						<td><input name = "weapon3Damage" type = "text" style = "max-width: 85%; text-align: center;"></td>
+						<td><input name = "weapon1Name" type = "wepColGeneral"></td>
+						<td><input name = "weapon1AttackBonus" type = "wepColGeneral"></td>
+						<td><input name = "weapon1Damage" type = "wepColGeneral"></td>
 					</tr>
 				</table>
 				<input type = "button" value = "Add Attack" onclick="weaponTableAddRow()">
@@ -576,19 +566,9 @@
 					<col width="10%">
 					<col width="50%">
 					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 47%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-					</tr>
-					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 47%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-					</tr>
-					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 47%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td><input type = "spellColGeneral"></td>
+						<td><input type = "spellColMiddle"></td>
+						<td><input type = "spellColGeneral"></td>
 					</tr>
 				</table>
 				<input type = "button" value = "Add Spell" onclick="spellTableAddRow()">

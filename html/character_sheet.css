@@ -532,6 +532,8 @@ input[type=sheildTextBox] {
 	margin-right: auto;
 	left: 22%;
 	right: 0;
+	max-width:2vw; 
+	text-align: center;
 }
 
 /*speedBox is used for both speed and initiative sections because they are identical*/
@@ -545,6 +547,23 @@ input[type=speedBox] {
 	left: 24%;
 	right: 0;
 }
+
+input[type=spellSlotInput]{
+	max-width: 15%;
+}
+
+#hpInput1 {
+	max-width: 62%; 
+	margin-top: 5.5%; 
+	text-align: right; 
+	margin-left: 6%; 
+	margin-right: 2%;
+}
+#hpInput2 {
+	max-width: 62%; 
+	margin-top: 5.5%; 
+	margin-right: 6%;
+}
 #styleIdSpellSlot{
 	width: 15%;
 }
@@ -555,6 +574,18 @@ input[type=speedBox] {
 	border-color: gray;
 	height: 11vh;
 	width: auto;
+}
+input[type=wepColGeneral]{
+	max-width: 85%; 
+	text-align: center;
+}
+input[type=spellColGeneral]{
+	max-width: 85%;
+	text-align: center;
+}
+input[type=spellColMiddle]{
+	max-width: 47%;
+	text-align: center;
 }
 #weaponTableHeader{
 	display: table;
