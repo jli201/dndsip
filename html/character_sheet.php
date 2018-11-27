@@ -44,6 +44,7 @@
 			putRightColumn($conn, $characterID);
 			putWeapons($conn, $characterID);
 			putSpells($conn, $characterID);
+			putItems($conn, $characterID);
 
 			//if we hit the "Characters" button
 			if(isset($_POST['backToCharacters'])) {
@@ -67,6 +68,8 @@
 		$spells = getSpells($conn, $characterID);
 		$numberOfSpells = getNumberOfSpells($spells);
 		$rightColumn = getRightColumn($conn, $characterID);
+		$items = getItems($conn, $characterID);
+		$numberOfItems = getNumberOfItems($items);
 	}
 
 
@@ -126,7 +129,7 @@
     }
 
 
-    //Same as above, except that it is being done for the spells table instead
+    //Same as above, except that it is being done for the spells table instead.
     function getNumberOfSpells($spells) {
     	$numberOfSpells = 0;
     	for ($i = 0; $i < 65; $i++) {
@@ -135,6 +138,18 @@
     		}
     	}
     	return $numberOfSpells;
+    }
+
+
+    //Same as above, except that it is being done for the items table instead.
+    function getNumberOfItems($items) {
+    	$numberOfItems = 0;
+    	for ($i = 1; $i <= 96; $i++) {
+    		if ($items['item' . $i . 'Quantity']) {
+    			++$numberOfItems;
+    		}
+    	}
+    	return $numberOfItems;
     }
 
 
@@ -162,6 +177,35 @@
     }
 
 
+    //Same as above except that it pulls data from the Spells table of the database.
+    function addSpellRow($rowNumber, $spells) {
+    	echo(
+    		"<tr>
+				<td>
+					<input name='spell".$rowNumber."Name' type='text' style='max-width: 85%; text-align: center;' value='".$spells['spell'.$rowNumber.'Name']."'>
+				</td>
+				<td>
+					<input name='spell".$rowNumber."Level' type='text' style='max-width: 85%; text-align: center;' value='".$spells['spell'.$rowNumber.'Level']."'>
+				</td>
+				<td>
+					<input name='spell".$rowNumber."Description' type='text' style='max-width: 85%; text-align: center;' value='".$spells['spell'.$rowNumber.'Description']."'>
+				</td>
+			</tr>"
+    	);
+    }
+
+
+    //Same as above except that it pulls data from the Items table of the database.
+    function addItemRow($rowNumber, $items) {
+    	echo(
+    		"<tr>
+			    <td><input name='item".$rowNumber."Quantity' type='number' value='".$items['item'.$rowNumber.'Quantity']."'></input></td>
+			    <td><input name='item".$rowNumber."Description' type='text' value='".$items['item'.$rowNumber.'Description']."'></input></td>
+			</tr>"
+    	);
+    }
+
+
 
     /*
 	Data Retrieval
@@ -186,7 +230,7 @@
 	}
 
 
-	//Same as above, except that it accesses the StatsAndSkills table instead
+	//Same as above, except that it accesses the StatsAndSkills table of the database instead.
 	function getStatsAndSkills($conn, $characterID) {
 		$statsAndSkillsQuery = "SELECT * FROM StatsAndSkills WHERE characterID='$characterID';";
 	    $statsAndSkillsResult = $conn->query($statsAndSkillsQuery);
@@ -195,7 +239,7 @@
 	    return $statsAndSkills;
 	}
 
-	//Same as above, except that it accesses the MiddleColumn table instead
+	//Same as above, except that it accesses the MiddleColumn table of the database instead.
 	function getMiddleColumn($conn, $characterID) {
 		$middleColumnQuery = "SELECT * FROM MiddleColumn WHERE characterID='$characterID';";
 	    $middleColumnResult = $conn->query($middleColumnQuery);
@@ -205,7 +249,7 @@
 	}
 
 
-	//Same as above, except that it accesses the Weapons table instead
+	//Same as above, except that it accesses the Weapons table of the database instead.
 	function getWeapons($conn, $characterID) {
 	    $weaponsQuery = "SELECT * FROM Weapons WHERE characterID='$characterID';";
 	    $weaponsResult = $conn->query($weaponsQuery);
@@ -215,7 +259,7 @@
 	}
 
 
-	//Same as above, except that it accesses the Spells table instead
+	//Same as above, except that it accesses the Spells table of the database instead.
 	function getSpells($conn, $characterID) {
 	    $spellsQuery = "SELECT * FROM Spells WHERE characterID='$characterID';";
 	    $spellsResult = $conn->query($spellsQuery);
@@ -225,7 +269,7 @@
 	}
 
 
-	//Same as above, except that it accesses the RightColumn table instead
+	//Same as above, except that it accesses the RightColumn table of the database instead.
 	function getRightColumn($conn, $characterID) {
 	    $rightColumnQuery = "SELECT * FROM RightColumn WHERE characterID='$characterID';";
 	    $rightColumnResult = $conn->query($rightColumnQuery);
@@ -233,6 +277,16 @@
 
 	    return $rightColumn;
 	}
+
+
+	//Same as above, except that it accesses the Inventory table of the database instead.
+	function getItems($conn, $characterID) {
+	    $itemsQuery = "SELECT * FROM Inventory WHERE characterID='$characterID';";
+	    $itemsResult = $conn->query($itemsQuery);
+	    $items = $itemsResult->fetch_assoc();
+
+	    return $items;
+	 }
 
 
 
@@ -501,6 +555,27 @@
 			$updateSpellsQuery = substr($updateSpellsQuery, 0, -1);
 			$updateSpellsQuery = $updateSpellsQuery . " WHERE characterID='" . $characterID . "';";
 			$conn->query($updateSpellsQuery);
+		}
+	}
+
+
+	//Loads the items into the database by first checking to see which items are even populated
+	function putItems($conn, $characterID) {
+		$updateItemsQuery = "UPDATE Inventory SET gold='" . parse_input($_POST['gold']) . "',";
+		for($i = 1; $i <= 96; $i++) {
+			if (parse_input($_POST['item'.$i.'Quantity']) && parse_input($_POST['item'.$i.'Description'])) {
+				$updateItemsQuery =
+				$updateItemsQuery . " item" . $i . "Quantity='" . parse_input($_POST['item'.$i.'Quantity']) .
+				"', item" . $i . "Description='" . parse_input($_POST['item'.$i.'Description']) . "',";
+			} else {
+				$updateItemsQuery =
+				$updateItemsQuery . " item" . $i . "Quantity='', item" . $i . "Description='',";
+			}
+		}
+		if(strlen($updateItemsQuery) != 0) {
+			$updateItemsQuery = substr($updateItemsQuery, 0, -1);
+			$updateItemsQuery = $updateItemsQuery . " WHERE characterID='" . $characterID . "';";
+			$conn->query($updateItemsQuery);
 		}
 	}
 ?>
@@ -1014,6 +1089,7 @@
 						</td>
 					</tr>
 					<?php
+						//loading all weapons beyond the first two from the database
 						if ($numberOfWeapons > 2) {
 							for($i = 3; $i <=$numberOfWeapons; $i++){
 								addWeaponRow($i, $weapons);
@@ -1070,6 +1146,14 @@
 							<input name="spell2Description" type="text" style="max-width: 85%; text-align: center;" value="<?php echo($spells['spell2Description']);?>">
 						</td>
 					</tr>
+					<?php
+						//loading all spells beyond the first two from the database
+						if ($numberOfSpells > 2) {
+							for($i = 3; $i <=$numberOfSpells; $i++){
+								addSpellRow($i, $spells);
+							}
+						}
+					?>
 				</table>
 				<input type = "button" value = "Add Spell" style="margin-left: 5px;" onclick="spellTableAddRow()">
 				<input type = "button" value = "Delete Spell" onclick="spellTableDeleteRow()">
@@ -1118,13 +1202,21 @@
 					<table id="inventory-table">
 						<tr>
 							<td colspan="2">
-								<input type="text" placeholder="Gold!" name="gold" id="inv-gold" value="<?php echo($inventory['gold']);?>">
+								<input type="text" style="text-align: center;" placeholder="Gold!" name="gold" id="inv-gold" value="<?php echo($inventory['gold']);?>">
 							</td>
 						</tr>
 						<tr>
 							<td>Amnt.</td>
 							<td style="text-align: center;">Item Name & Description</td>
 						</tr>
+						<?php 
+							//loading all items from the database
+							if ($numberOfItems > 0) {
+								for($i = 1; $i <=$numberOfItems; $i++){
+									addItemRow($i, $items);
+								}
+							}
+						?>
 					</table>
 				</div>
 
