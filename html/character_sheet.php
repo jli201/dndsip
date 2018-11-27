@@ -43,6 +43,7 @@
 			putMiddleColumn($conn, $characterID);
 			putRightColumn($conn, $characterID);
 			putWeapons($conn, $characterID);
+			putSpells($conn, $characterID);
 
 			//if we hit the "Characters" button
 			if(isset($_POST['backToCharacters'])) {
@@ -63,6 +64,8 @@
 		$middleColumn = getMiddleColumn($conn, $characterID);
 		$weapons = getWeapons($conn, $characterID);
 		$numberOfWeapons = getNumberOfWeapons($weapons);
+		$spells = getSpells($conn, $characterID);
+		$numberOfSpells = getNumberOfSpells($spells);
 		$rightColumn = getRightColumn($conn, $characterID);
 	}
 
@@ -104,6 +107,7 @@
     	}
     }
 
+
     /*
     Purpose: Gets the number of weapons in the database so we know how many to load onto the page.
     Params:
@@ -120,6 +124,19 @@
     	}
     	return $numberOfWeapons;
     }
+
+
+    //Same as above, except that it is being done for the spells table instead
+    function getNumberOfSpells($spells) {
+    	$numberOfSpells = 0;
+    	for ($i = 0; $i < 65; $i++) {
+    		if ($spells['spell' . $i . 'Name']) {
+    			++$numberOfSpells;
+    		}
+    	}
+    	return $numberOfSpells;
+    }
+
 
     /*
     Purpose: Loads an additional weapon row from the database onto the page.
@@ -197,6 +214,17 @@
 	    return $weapons;
 	}
 
+
+	//Same as above, except that it accesses the Spells table instead
+	function getSpells($conn, $characterID) {
+	    $spellsQuery = "SELECT * FROM Spells WHERE characterID='$characterID';";
+	    $spellsResult = $conn->query($spellsQuery);
+	    $spells = $spellsResult->fetch_assoc();
+
+	    return $spells;
+	}
+
+
 	//Same as above, except that it accesses the RightColumn table instead
 	function getRightColumn($conn, $characterID) {
 	    $rightColumnQuery = "SELECT * FROM RightColumn WHERE characterID='$characterID';";
@@ -242,6 +270,7 @@
 
 		$conn->query($updateBasicInfoQuery);
 	}
+
 
 	//Same as above, except that it accesses the StatsAndSkills table instead
 	function putStatsAndSkills($conn, $characterID) {
@@ -331,6 +360,7 @@
 		$conn->query($updateStatsAndSkillsQuery);
 	}
 
+
 	function putMiddleColumn($conn, $characterID) {
 		$updatedAC = parse_input($_POST['ac']);
 		$udpatedInitiative = parse_input($_POST['initiative']);
@@ -411,6 +441,7 @@
 		$conn->query($updateMiddleColumnQuery);
 	}
 
+
 	//Same as above, except that it accesses the RightColumn table instead
 	function putRightColumn($conn, $characterID) {
 		$updatedTraits = parse_input($_POST['traits']);
@@ -429,9 +460,9 @@
 		$conn->query($updateRightColumnQuery);
 	}
 
+
 	//Loads the weapons into the database by first checking to see which weapons are even populated
 	function putWeapons($conn, $characterID) {
-		$atLeastOneWeapon = False;
 		$updateWeaponsQuery = "UPDATE Weapons SET";
 		for($i = 1; $i <= 64; $i++) {
 			if (parse_input($_POST['weapon'.$i.'Name'])) {
@@ -448,6 +479,28 @@
 			$updateWeaponsQuery = substr($updateWeaponsQuery, 0, -1);
 			$updateWeaponsQuery = $updateWeaponsQuery . " WHERE characterID='" . $characterID . "';";
 			$conn->query($updateWeaponsQuery);
+		}
+	}
+
+
+	//Loads the spells into the database by first checking to see which spells are even populated
+	function putSpells($conn, $characterID) {
+		$updateSpellsQuery = "UPDATE Spells SET";
+		for($i = 1; $i <= 64; $i++) {
+			if (parse_input($_POST['spell'.$i.'Name'])) {
+				$updateSpellsQuery =
+				$updateSpellsQuery . " spell" . $i . "Name='" . parse_input($_POST['spell'.$i.'Name']) .
+				"', spell" . $i . "Level='" . parse_input($_POST['spell'.$i.'Level']) .
+				"', spell" . $i . "Description='" . parse_input($_POST['spell'.$i.'Description']) . "',";
+			} else {
+				$updateSpellsQuery =
+				$updateSpellsQuery . " spell" . $i . "Name='', spell" . $i . "Level='', spell" . $i . "Description='',";
+			}
+		}
+		if(strlen($updateSpellsQuery) != 0) {
+			$updateSpellsQuery = substr($updateSpellsQuery, 0, -1);
+			$updateSpellsQuery = $updateSpellsQuery . " WHERE characterID='" . $characterID . "';";
+			$conn->query($updateSpellsQuery);
 		}
 	}
 ?>
@@ -996,14 +1049,26 @@
 					<col width="10%">
 					<col width="50%">
 					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 47%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td>
+							<input name="spell1Name" type="text" style="max-width: 85%; text-align: center;" value="<?php echo($spells['spell1Name']);?>">
+						</td>
+						<td>
+							<input name="spell1Level" type="number" style="max-width: 47%; text-align: center;" value="<?php echo($spells['spell1Level']);?>">
+						</td>
+						<td>
+							<input name="spell1Description" type="text" style="max-width: 85%; text-align: center;" value="<?php echo($spells['spell1Description']);?>">
+						</td>
 					</tr>
 					<tr>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
-						<td><input style = "max-width: 47%; text-align: center;"></td>
-						<td><input style = "max-width: 85%; text-align: center;"></td>
+						<td>
+							<input name="spell2Name" type="text" style="max-width: 85%; text-align: center;" value="<?php echo($spells['spell2Name']);?>">
+						</td>
+						<td>
+							<input name="spell2Level" type="number" style="max-width: 47%; text-align: center;" value="<?php echo($spells['spell2Level']);?>">
+						</td>
+						<td>
+							<input name="spell2Description" type="text" style="max-width: 85%; text-align: center;" value="<?php echo($spells['spell2Description']);?>">
+						</td>
 					</tr>
 				</table>
 				<input type = "button" value = "Add Spell" style="margin-left: 5px;" onclick="spellTableAddRow()">
@@ -1049,24 +1114,19 @@
 			<div class="inventory-box">
 				<label class="input-label">Inventory</label>
 				
-				<div id="inventory-table-wrapper"><table id="inventory-table">
-					<!-- Table Entry Format:
-					<tr>
-					    <td><input type="number" value="0" name="Item#Quantity" id="inv-num-#"></input></td>
-					    <td><input type="text" value="Item" name="Item#Description" id="inv-obj-#"></input></td>
-					</tr> 
-					Each new row must have an iterating # - check character_sheet.js
-					If changing format, you must change the related js.-->
-					<tr>
-						<td colspan="2">
-							<input type="text" placeholder="Gold!" name="gold" id="inv-gold"></input>
-						</td>
-					</tr>
-					<tr>
-						<td>#</td>
-						<td>Item</td>
-					</tr>
-				</table></div>
+				<div id="inventory-table-wrapper">
+					<table id="inventory-table">
+						<tr>
+							<td colspan="2">
+								<input type="text" placeholder="Gold!" name="gold" id="inv-gold" value="<?php echo($inventory['gold']);?>">
+							</td>
+						</tr>
+						<tr>
+							<td>Amnt.</td>
+							<td style="text-align: center;">Item Name & Description</td>
+						</tr>
+					</table>
+				</div>
 
 				<div class="inv-buttons">
 					<input type="button" onclick="addInvRow()" value="+"></input>
@@ -1076,6 +1136,5 @@
 		</div>
 	</div>
 	</form> <!-- end 'characterSheet' form -->
-
 </body>
 </html>

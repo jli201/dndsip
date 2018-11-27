@@ -80,9 +80,9 @@ function spellTableAddRow() {
     /*Only add rows if we are under 65 total rows, since we add 1 to the row number, we can make this limit 65*/
     if(numRows < 65){
         var markdown = '<tr>'+
-                            '<td><input name = "spell' + numRows + 'Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
-                            '<td><input name = "spell' + numRows + 'Level varchar(255)" type = "number" style = "max-width: 47%; text-align: center;"></td>'+
-                            '<td><input name = "spell' + numRows + 'Description text" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
+                            '<td><input name = "spell' + numRows + 'Name" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
+                            '<td><input name = "spell' + numRows + 'Level" type = "number" style = "max-width: 47%; text-align: center;"></td>'+
+                            '<td><input name = "spell' + numRows + 'Description" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
                         '</tr>';
         $('#spellTable tbody').append(markdown);
         $('#spellTable tr:last td:first input').focus();
@@ -103,8 +103,8 @@ There are always at minimum two rows:
 A 'gold' row and the 'header' row. Don't delete those!
 Inventory Table Entry Format:
 <tr>
-    <td><input type="number" value="0" name="Item#Quantity" id="inv-num-#"></input></td>
-    <td><input type="text" value="Item" name="Item#Description" id="inv-obj-#"></input></td>
+    <td><input type="number" value="0" name="item#Quantity" id="inv-num-#"></input></td>
+    <td><input type="text" value="Item" name="item#Description" id="inv-obj-#"></input></td>
 </tr> */
 function addInvRow() {
     var debug = false;
@@ -126,9 +126,9 @@ function addInvRow() {
     }
 
     // See table entry format in comments before function
-    var markdown = '<tr><td><input type="number" placeholder="0" name="Item' + numRows 
+    var markdown = '<tr><td><input type="number" name="item' + numRows 
         + 'Quantity" id="inv-num-' + numRows
-        + '"></input></td><td><input type="text" placeholder="Item" name="Item' + numRows
+        + '"></input></td><td><input type="text" name="item' + numRows
         + 'Description" id="inv-obj-' + numRows + '"></input></td></tr>';
 
     // We will always have a tbody, because we have 2 default rows!
