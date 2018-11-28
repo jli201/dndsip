@@ -1,8 +1,36 @@
+$(document).ready(function() {
+    
+    //stat scores
+    // statBoxParent.addEventListener("change", handleStatChange, false);
+    $('#statsBoxFormat').on('keyup', handleStatChange);
+    $('#strength').trigger('keyup');
+    $('#dexterity').trigger('keyup');
+    $('#constitution').trigger('keyup');
+    $('#intelligence').trigger('keyup');
+    $('#wisdom').trigger('keyup');
+    $('#charisma').trigger('keyup');
+
+    //saving throws
+    $('.ST-form').on('change', handleSavingThrowChange);
+    // $('#ST-form').on('keyup', handleSavingThrowChange);
+
+    //skills
+    $('#proficiency').on('change', handleProficiencyChange);
+    $('#skillsList').on('change', handleSkillProficiencyCheckBoxChange);
+
+
+    //inventory
+    $('#inventory-table tbody').load("loadinv.php");
+
+
+});
+
+
 /* Example of weapon table element
     <tr>
-        <td><input name = "weapon#Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
-        <td><input name = "weapon#AttackBonus varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
-        <td><input name = "weapon#Damage varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>
+        <td><input name = "weapon#Name" type = "text" style = "max-width: 85%; text-align: center;"></td>
+        <td><input name = "weapon#AttackBonus" type = "text" style = "max-width: 85%; text-align: center;"></td>
+        <td><input name = "weapon#Damage" type = "text" style = "max-width: 85%; text-align: center;"></td>
     </tr>
 */
 function weaponTableAddRow(){
@@ -14,14 +42,15 @@ function weaponTableAddRow(){
     /*Only add rows if we are under 65 total rows, since we add 1 to the row number, we can make this limit 65*/
     if(numRows < 65){
         var markdown = '<tr>'+
-                            '<td><input name = "weapon' + numRows + 'Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
-                            '<td><input name = "weapon' + numRows + 'AttackBonus varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
-                            '<td><input name = "weapon' + numRows + 'Damage varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
+                            '<td><input name = "weapon' + numRows + 'Name" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
+                            '<td><input name = "weapon' + numRows + 'AttackBonus" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
+                            '<td><input name = "weapon' + numRows + 'Damage" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
                         '</tr>';
         $('#weaponTable tbody').append(markdown);
         $('#weaponTable tr:last td:first input').focus();
     }
 }
+
 
 function weaponTableDeleteRow(){
     var table = $('#weaponTable');
@@ -51,9 +80,9 @@ function spellTableAddRow() {
     /*Only add rows if we are under 65 total rows, since we add 1 to the row number, we can make this limit 65*/
     if(numRows < 65){
         var markdown = '<tr>'+
-                            '<td><input name = "spell' + numRows + 'Name varchar(255)" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
-                            '<td><input name = "spell' + numRows + 'Level varchar(255)" type = "number" style = "max-width: 47%; text-align: center;"></td>'+
-                            '<td><input name = "spell' + numRows + 'Description text" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
+                            '<td><input name = "spell' + numRows + 'Name" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
+                            '<td><input name = "spell' + numRows + 'Level" type = "number" style = "max-width: 47%; text-align: center;"></td>'+
+                            '<td><input name = "spell' + numRows + 'Description" type = "text" style = "max-width: 85%; text-align: center;"></td>'+
                         '</tr>';
         $('#spellTable tbody').append(markdown);
         $('#spellTable tr:last td:first input').focus();
@@ -74,8 +103,8 @@ There are always at minimum two rows:
 A 'gold' row and the 'header' row. Don't delete those!
 Inventory Table Entry Format:
 <tr>
-    <td><input type="number" value="0" id="inv-num-#"></input></td>
-    <td><input type="text" value="Item" id="inv-obj-#"></input></td>
+    <td><input type="number" value="0" name="item#Quantity" id="inv-num-#"></input></td>
+    <td><input type="text" value="Item" name="item#Description" id="inv-obj-#"></input></td>
 </tr> */
 function addInvRow() {
     var debug = false;
@@ -97,9 +126,9 @@ function addInvRow() {
     }
 
     // See table entry format in comments before function
-    var markdown = '<tr><td><input type="number" value="0" name="Item' + numRows 
+    var markdown = '<tr><td><input type="number" name="item' + numRows 
         + 'Quantity" id="inv-num-' + numRows
-        + '"></input></td><td><input type="text" value="Item" name="Item' + numRows
+        + '"></input></td><td><input type="text" name="item' + numRows
         + 'Description" id="inv-obj-' + numRows + '"></input></td></tr>';
 
     // We will always have a tbody, because we have 2 default rows!
@@ -151,22 +180,6 @@ function populateOneScore (scoreID, modID) {
     }
 }
 
-//https://www.kirupa.com/html5/handling_events_for_many_elements.htm
-$(document).ready(function() {
-    
-    //stat scores
-    // statBoxParent.addEventListener("change", handleStatChange, false);
-    $('#statsBoxFormat').on('keyup', handleStatChange);
-
-    //saving throws
-    $('#ST-form').on('change', handleSavingThrowChange);
-    // $('#ST-form').on('keyup', handleSavingThrowChange);
-
-    //skills
-
-    $('#skillsList').on('change', handleSkillProficiencyCheckBoxChange);
-});
-
 
 function handleStatChange(e) {
     if (e.target != e.currentTarget ) {
@@ -213,6 +226,20 @@ function getThrowFromShortform (shortform) {
     }
     return inputName;
 
+}
+
+function handleProficiencyChange(e){
+    var i;
+    for(i = 0; i < skillHandler.classTags.length; i++){
+        var shortform = skillHandler.classTags[i].substring(0,3);
+        console.log("Stat being changed: " + shortform);
+        //assumes checkbox ids are 'strCheckbox', 'dexCheckbox', etc.
+        populateOneSavingThrow(shortform, shortform + "Checkbox");
+
+        if(skillHandler.manualCalculation == false){
+            populateOneSkillCatagory(shortform + "Mod", shortform + "Skill");
+        }
+    }
 }
 
 //triggered by checkbox click
@@ -272,6 +299,9 @@ var skillHandler = {
 
     //Class tags used in html to determine what stat is associated with a skill
     classTags: ["strSkill","dexSkill","conSkill","intSkill","wisSkill","chaSkill"],
+
+    //Stat tags used for looping through all stats when needed
+    statShorthands: ["str","dex","con","int","wis","cha"],
 }
 
 //swaps skill calcuation from automatic to manual and vice versa
@@ -281,11 +311,11 @@ function switchManualCalculation(){
 
 function changeSkillInputFeildsWritability() {
     if (skillHandler.manualCalculation == false) {
-        for(i = 0; i < skillHandler.skills.length; i++) {
+        for(var i = 0; i < skillHandler.skills.length; i++) {
             document.getElementById(skillHandler.skills[i]).readOnly = true;
         }
     }else{
-        for(i = 0; i < skillHandler.skills.length; i++) {
+        for(var i = 0; i < skillHandler.skills.length; i++) {
             document.getElementById(skillHandler.skills[i]).readOnly = false;
         }
     }
@@ -310,6 +340,7 @@ function handleSkillProficiencyCheckBoxChange(e) {
 
         //Figure out what stat is associated with this skill and assign the first 3 letters to shortform
         var shortform = "";
+        var i;
         for(i = 0; i < skillHandler.classTags.length; i++){
             if(skill.hasClass(skillHandler.classTags[i])){
                 shortform = skillHandler.classTags[i].substring(0,3);
@@ -329,7 +360,7 @@ function handleSkillProficiencyCheckBoxChange(e) {
 }
 
 function populateOneSkillCatagory(modID, skillID) {
-    for(i = 0; i < skillHandler.skills.length; i++){
+    for(var i = 0; i < skillHandler.skills.length; i++){
 
         //Calculate base modifier of skill based on Score mod
         var skillMod = ($('#' + modID).html());
@@ -407,4 +438,3 @@ function callUnloadEvent () {
     console.log("Invalid unload event. Submitting form.");
     $('#characterSheet').submit(); //submit the form
 }
-
