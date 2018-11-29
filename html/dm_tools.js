@@ -86,10 +86,18 @@ class TurnOrder {
 		var i;
 		for (i = 0; i < this.turns.length; i++ ) {
 			str += "(" + this.turns[i].cname + ": " 
-				+ this.turns[i].roll + ") ";
+				+ this.turns[i].roll;
+				if (this.turns[i].ally) str += " <ally>";
+				else str += " <enemy>";
+				str += ") ";
 		}
 		// console.log(str);
 		return str;
+	}
+
+	//returns queue to external. breaks separation.
+	returnQueue () {
+		return this.turns;
 	}
 
 }
@@ -99,7 +107,7 @@ class TurnOrder {
 function addTurn() {
 	var cname = $('#initNewTurnName').val();
 	var roll = $('#initNewTurnRoll').val();
-	var ally = $('#initNewTurnEnemy').prop("checked");
+	var ally = !($('#initNewTurnEnemy').prop("checked"));
 
 	// console.log(cname + " " + roll + " " + ally);
 	if (cname.length == 0 || roll.length == 0 ) { //values not entered
@@ -109,14 +117,43 @@ function addTurn() {
 
 	turnList.enqueue(cname, roll, ally);
 	console.log(turnList.dumpQueue());
+
+	pasteOrder();
 }
 
 
 
 
 // re-sort DOM after making an adjustment.
-function sort() {
+function pasteOrder() {
 	console.log("Sorting.");
+	deleteAllTurns();
+	var i;
+	var list = turnList.returnQueue();
+	for (i = 0; i < list.length; i++ ) {
+		$('#initTurnOrder').append(createTurnHTML(
+			list[i].cname, list[i].roll, list[i].ally));
+	}
+}
+
+// DOM only
+function deleteAllTurns () {
+	console.log("Clearing all turns");
+	($('.turn').slice(1)).remove();
+}
+
+/*<div class="turn" ally="true">
+	<div class="turnChName">Character Name</div>
+	<div class="turnRoll">Roll</div>
+	<div class="deleteTurnButton">-</div>
+</div>
+*/
+function createTurnHTML (cname, roll, ally) {
+	var htmlstr = '<div class="turn" ally="' + ally;
+	htmlstr += '"><div class="turnChName">' + cname;
+	htmlstr += '</div><div class="turnRoll">'+ roll;
+	htmlstr += '</div><div class="deleteTurnButton">-</div></div>';
+	return htmlstr;
 }
 
 // VARIABLE DECLARATIONS
