@@ -53,13 +53,36 @@ body {
 }
 
 
-
-
 #initNewTurnName, #initNewTurnRoll, #initNewTurnAdd {
 	height:30px;
 	font-size:18px;
 
 }
+
+/*NEXT TURN & HEADER BOX*/
+
+#initHeader {
+	font-size:18px;
+	/*text-align: center;*/
+	line-height:26px;
+}
+
+#initTrackerName {
+	margin-left:35%;
+	font-weight:bold;
+}
+
+
+#initNextTurn {
+	float:right;
+	font-size:18px;
+
+}
+
+
+
+
+/*NEW TURN BOX*/
 
 #initNewTurnName {
 	width:60%;
@@ -68,9 +91,6 @@ body {
 #initNewTurnRoll {
 	width:15%;
 }
-
-
-
 
 #initNewTurnEnemyBox {
 	/*so position absolute can be used on children*/

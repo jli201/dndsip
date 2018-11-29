@@ -22,9 +22,15 @@
 
 		<!-- INIT TRACKER -->
 		<div id="initTrackerWrapper" class="column">
-			<div id="initHeader">INIT TRACKER [>]</div>
+			<div id="initHeader">
+				<span id="initTrackerName">INIT TRACKER</span>
+				<input type="button" id="initNextTurn" value="Next Turn >">
+			</div>
+
 			<div id="initCurrentTurn">CURRENT TURN STUFF</div>
+
 			<div id="initFutureTurns">FUTURE TURNS HERE</div>
+
 			<div id="initNewTurn">
 				<input type="text" id="initNewTurnName" placeholder="Character Name">
 				<input type="number" id="initNewTurnRoll" placeholder="Roll">
