@@ -24,7 +24,7 @@
 		<div id="initTrackerWrapper" class="column">
 			<div id="initHeader">
 				<span id="initTrackerName">INIT TRACKER</span>
-				<input type="button" id="initNextTurn" value="Next Turn >">
+				<input type="button" id="initNextTurn" value="Next Turn >" onClick="nextTurn()">
 			</div>
 
 			<div id="initTurnOrder">

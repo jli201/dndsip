@@ -54,15 +54,14 @@ class TurnOrder {
 	//delete the element that clicked its delete button
 	//https://www.w3schools.com/jsref/jsref_splice.asp - splice.
 	// ally status doesn't matter
-	findDelete(cname, roll) {
+	findDelete(cname, roll, ally) {
 		var i;
 		for (i = 0; i < this.turns.length; i++ ) {
 			if (cname == this.turns[i].cname) {
-				if (roll == this.turns[i].roll) {
+				if (roll == this.turns[i].roll && ally == this.turns[i].ally) {
 					this.turns.splice(i, 1); //delete that element
-					return i; //you done
-				} //else continue if only char name matches
-				//(ie if you have Goblin and Goblin with rolls of 12 and 19, this will fix that case) 
+					return true; //you done, all 3 match (if you return 'i', treated as 'false' if i = 0)
+				}
 			}
 		}
 		return false; //you didn't find the specified pair.
@@ -102,6 +101,8 @@ class TurnOrder {
 
 }
 
+/////// END CLASS SPEC ///////
+
 // Functions for interaction with queue.
 
 function addTurn() {
@@ -116,17 +117,51 @@ function addTurn() {
 	}
 
 	turnList.enqueue(cname, roll, ally);
-	console.log(turnList.dumpQueue());
+	// console.log(turnList.dumpQueue());
 
 	pasteOrder();
 }
 
+//called with an html element
+function removeTurn(element) {
+	console.log(element);
+	var html = element;
+	var cname, roll, ally;
+	var children = html.children;
+	//first, get the values of this element.
+	//https://www.w3schools.com/jsref/dom_obj_all.asp
+	// console.log(children[0].innerHTML);
+	cname = children[0].innerHTML;
+	// console.log(children[1].innerHTML);
+	roll = children[1].innerHTML;
+	roll = Number(roll);
+	if (isNaN(roll)) {
+		console.log ("roll value not a number.");
+		return false;
+	}
+	// console.log(html.getAttribute("ally"));
+	ally = html.getAttribute("ally");
+	ally = ally == "true" ? true : false; //convert to boolean
 
+
+	// console.log("Trying to delete " + cname + " with roll " + roll + " and ally status " + ally);
+	//then, remove this from the queue.
+	var result = turnList.findDelete(cname, roll, ally);
+	if (result == false) {
+		console.log("findDelete didn't find value.");
+	} 
+
+	//then reprint queue
+	pasteOrder();
+
+	// console.log(turnList.dumpQueue());
+
+}
 
 
 // re-sort DOM after making an adjustment.
 function pasteOrder() {
-	console.log("Sorting.");
+	// console.log("Sorting.");
 	deleteAllTurns();
 	var i;
 	var list = turnList.returnQueue();
@@ -136,24 +171,35 @@ function pasteOrder() {
 	}
 }
 
-// DOM only
-function deleteAllTurns () {
-	console.log("Clearing all turns");
-	($('.turn').slice(1)).remove();
-}
-
+// Creates one turn html
 /*<div class="turn" ally="true">
 	<div class="turnChName">Character Name</div>
 	<div class="turnRoll">Roll</div>
-	<div class="deleteTurnButton">-</div>
+	<div class="deleteTurnButton" onclick="removeTurn(this.parentNode)">-</div>
 </div>
 */
 function createTurnHTML (cname, roll, ally) {
 	var htmlstr = '<div class="turn" ally="' + ally;
 	htmlstr += '"><div class="turnChName">' + cname;
 	htmlstr += '</div><div class="turnRoll">'+ roll;
-	htmlstr += '</div><div class="deleteTurnButton">-</div></div>';
+	htmlstr += '</div><div class="deleteTurnButton" onclick="removeTurn(this.parentNode)">-</div></div>';
 	return htmlstr;
+}
+
+// DOM only - deletes all turns
+function deleteAllTurns () {
+	// console.log("Clearing all turns");
+	($('.turn').slice(1)).remove();
+}
+
+//moves turn to back.
+function nextTurn () {
+	var html = $('.turn').slice(1);
+	// console.log(html[0]);
+	var elem = html[0];
+	// console.log(elem.outerHTML);
+	$('#initTurnOrder').append(elem.outerHTML);
+	elem.remove();
 }
 
 // VARIABLE DECLARATIONS
