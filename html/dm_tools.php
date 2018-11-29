@@ -16,10 +16,33 @@
 
 	</head>
 	<body>
+		<!-- placeholder to load dice roller -->
 		<div id="diceroller"></div>
 		<div id="pagetitle">DM TOOLS</div>
-		<div id="initTrackerWrapper" class="column">a</div>
-		<div id="notesWrapper" class="column">a</div>
+
+		<!-- INIT TRACKER -->
+		<div id="initTrackerWrapper" class="column">
+			<div id="initHeader">INIT TRACKER [>]</div>
+			<div id="initCurrentTurn">CURRENT TURN STUFF</div>
+			<div id="initFutureTurns">FUTURE TURNS HERE</div>
+			<div id="initNewTurn">
+				<input type="text" id="initNewTurnName" placeholder="Character Name">
+				<input type="number" id="initNewTurnRoll" placeholder="Roll">
+				<div id="initNewTurnEnemyBox">
+					<label id="initEnemyText" for="initNewTurnEnemy">Enemy?</label>
+					<input type="checkbox" id="initNewTurnEnemy">
+				</div>
+				<input type="button" id="initNewTurnAdd" value="Add"></input>
+
+			</div>
+		</div>
+
+		<!-- DM NOTES -->
+		<div id="notesWrapper" class="column">
+			This space is reserved for the notes section.
+			<textarea id="dmNotes">This is for notes.</textarea>
+
+		</div>
 
 	</body>
 </html>

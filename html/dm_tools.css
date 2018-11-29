@@ -20,19 +20,94 @@ body {
 }
 
 .column {
+	/*sizing*/
 	background-color: #2EC4B6;
 	display: inline-block;
 	margin-left: 1%;
 	height: 87vh;
+	float:left;
 
+	/*content*/
 	padding:5px;
 	box-sizing: border-box;
+	overflow-y:auto;
+	overflow-x:hidden;
+
+
 }
+
+/*INIT TRACKER*/
 
 #initTrackerWrapper {
 	width:38%;
 }
 
+#initTrackerWrapper > * {
+	display: block;
+	width:100%;
+	background-color:#CBF3F0;
+	margin-top:2%;
+
+	padding:5px 2px 5px 2px;
+	box-sizing: border-box;
+}
+
+
+
+
+#initNewTurnName, #initNewTurnRoll, #initNewTurnAdd {
+	height:30px;
+	font-size:18px;
+
+}
+
+#initNewTurnName {
+	width:60%;
+}
+
+#initNewTurnRoll {
+	width:15%;
+}
+
+
+
+
+#initNewTurnEnemyBox {
+	/*so position absolute can be used on children*/
+	position:relative;
+
+	display:inline-block;
+	width:10%;
+	text-align:center;
+	margin-right:5px;
+}
+
+#initNewTurnEnemy {
+	position: relative;
+	top:10px;
+}
+
+#initEnemyText {
+	position: absolute;
+	top:-5px;
+	left:0px;
+}
+
+#initNewTurnAdd {
+	width:10%;
+	float:right;
+	margin-right:5px;
+}
+
+
+
+/*DM NOTES*/
+
 #notesWrapper {
 	width:59%;
 }
+
+#dmNotes {
+	display:block;
+}
+
