@@ -80,6 +80,32 @@ body {
 }
 
 
+/* TURNS BOX */
+
+#initTurnOrder {
+	text-align: center;
+}
+
+#initTurnOrder * {
+	box-sizing: border-box;
+}
+
+#initTurnOrder .turnlabel {
+	border: 2px solid black;
+	width:100%;
+	line-height:20px;
+	font-size:16px;
+}
+
+
+#initTurnOrder .turn {
+	text-align: left;
+	background-color: #F9F9F9;
+	height:50px;
+	line-height:50px;
+	font-size:30px;
+}
+
 
 
 /*NEW TURN BOX*/

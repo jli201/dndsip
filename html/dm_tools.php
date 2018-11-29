@@ -27,9 +27,12 @@
 				<input type="button" id="initNextTurn" value="Next Turn >">
 			</div>
 
-			<div id="initCurrentTurn">CURRENT TURN STUFF</div>
+			<div id="initTurnOrder">
+				<div id="initCurrentTurnText" class="turnlabel">CURRENT TURN:</div>
+				<div class="turn">this is a turn</div>
+				<div id="initNextTurnText" class="turnlabel">NEXT TURNS:</div>
 
-			<div id="initFutureTurns">FUTURE TURNS HERE</div>
+			</div>
 
 			<div id="initNewTurn">
 				<input type="text" id="initNewTurnName" placeholder="Character Name">
