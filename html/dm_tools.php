@@ -29,7 +29,11 @@
 
 			<div id="initTurnOrder">
 				<div id="initCurrentTurnText" class="turnlabel">CURRENT TURN:</div>
-				<div class="turn">this is a turn</div>
+				<div class="turn" ally="true">
+					<div class="turnChName">Character Name</div>
+					<div class="turnRoll">Roll</div>
+					<div class="deleteTurnButton">-</div>
+				</div>
 				<div id="initNextTurnText" class="turnlabel">NEXT TURNS:</div>
 
 			</div>
@@ -41,7 +45,7 @@
 					<label id="initEnemyText" for="initNewTurnEnemy">Enemy?</label>
 					<input type="checkbox" id="initNewTurnEnemy">
 				</div>
-				<input type="button" id="initNewTurnAdd" value="Add"></input>
+				<input type="button" id="initNewTurnAdd" value="Add" onclick="addTurn()"></input>
 
 			</div>
 		</div>
