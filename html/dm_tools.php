@@ -64,7 +64,14 @@
 	<body>
 		<!-- placeholder to load dice roller -->
 		<div id="diceroller"></div>
-		<div id="pagetitle">DM TOOLS</div>
+		<div id="dmtoolsHeader">
+			<div class="buttonholder">
+				<button type="submit" class="navbutton" name="save"> Save </button>
+				<button type="submit" class="navbutton" name="backToCharacters"> Characters </button>
+				<button type="submit" class="navbutton" name="logout"> Logout </button>
+			</div>
+			<div id="pagetitle">DM TOOLS</div>
+		</div>
 
 		<!-- INIT TRACKER -->
 		<div id="initTrackerWrapper" class="column">
