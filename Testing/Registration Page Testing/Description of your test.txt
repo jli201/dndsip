@@ -1,4 +1,4 @@
-Uses Selenium Web Driver for testing and Google Chrome Driver.
+Uses Selenium Web Driver for testing and Google Chrome Driver. More information can be found in the folder "Selenium Installation Guide"
 
 Basic tests for when a User creates an account.
   -Checks to see if "password" and "confirm password" are equal.
