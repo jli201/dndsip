@@ -66,7 +66,10 @@
 		<!-- DM NOTES -->
 		<div id="notesWrapper" class="column">
 			<div id="notesBox">
-				<textarea id="dmNotes">This is for notes.</textarea> <!-- what's pasted here gets pasted in result-->
+				<textarea id="dmNotes">#This is for notes.
+##And smaller headings.
+
+_Notes are really great._</textarea> <!-- what's pasted here gets pasted in result-->
 			</div>
 
 		</div>
