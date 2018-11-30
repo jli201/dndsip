@@ -75,11 +75,11 @@
 
 			<div id="initTurnOrder">
 				<div id="initCurrentTurnText" class="turnlabel">CURRENT TURN:</div>
-				<div class="turn" ally="true">
+				<!-- <div class="turn" ally="true">
 					<div class="turnChName">Character Name</div>
 					<div class="turnRoll">Roll</div>
 					<div class="deleteTurnButton">-</div>
-				</div>
+				</div> -->
 				<div id="initNextTurnText" class="turnlabel">NEXT TURNS:</div>
 
 			</div>

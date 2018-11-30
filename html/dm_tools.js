@@ -85,6 +85,10 @@ class TurnOrder {
 		return this.turns.length == 0; //true if 0, false otherwise
 	}
 
+	size() {
+		return this.turns.length;
+	}
+
 
 	// PRINT 
 	dumpQueue () {
@@ -175,7 +179,18 @@ function pasteOrder() {
 	deleteAllTurns();
 	var i;
 	var list = turnList.returnQueue();
-	for (i = 0; i < list.length; i++ ) {
+	var size = turnList.size(); //same as list.length;
+	if (size == 0) {
+		return; //no turns.
+	}
+	$('#initCurrentTurnText').after(createTurnHTML(
+		list[0].cname, list[0].roll, list[0].ally));
+
+	if (size < 2) {
+		return;
+	}
+
+	for (i = 1; i < list.length; i++ ) {
 		$('#initTurnOrder').append(createTurnHTML(
 			list[i].cname, list[i].roll, list[i].ally));
 	}
@@ -199,16 +214,28 @@ function createTurnHTML (cname, roll, ally) {
 // DOM only - deletes all turns
 function deleteAllTurns () {
 	// console.log("Clearing all turns");
-	($('.turn').slice(1)).remove();
+	$('.turn').remove();
 }
 
 //moves turn to back.
 function nextTurn () {
-	var html = $('.turn').slice(1);
+	if (turnList.size() <= 1 ) {
+		return; //you don't need to do anything if you only have 1 turn
+	}
+	//move the top element to the bottom.
+	//move the 2nd element into 'current turn' space.
+
+	//move top element to bottom
+	var html = $('.turn');
 	// console.log(html[0]);
 	var elem = html[0];
 	// console.log(elem.outerHTML);
 	$('#initTurnOrder').append(elem.outerHTML);
+	elem.remove();
+
+	//move new 'top' element to top.
+	var elem = html[1];
+	$('#initCurrentTurnText').after(elem.outerHTML);
 	elem.remove();
 }
 

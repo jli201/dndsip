@@ -93,6 +93,11 @@ body {
 	box-sizing: border-box;
 }
 
+#initTurnOrder .turn:nth-child(2) {
+	border-width:2px;
+	border-color:dodgerblue;
+}
+
 #initTurnOrder .turnlabel {
 	border: 2px solid black;
 	width:100%;
