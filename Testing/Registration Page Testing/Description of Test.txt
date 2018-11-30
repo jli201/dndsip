@@ -5,3 +5,9 @@ Basic tests for when a User creates an account.
   -Checks to see if Password is between 6 and 30 characters.
   -Checks to see if Username is between 6 and 30 characters.
   -Checks to see if the account is successfully registered.
+
+If all tests pass, the output in the console should be:
+    Passwords Do Not Match Test: PASS
+    Password Too Short Test: PASS
+    Username Too Short Test: PASS
+    Successful Acount Registration Test: PASS
