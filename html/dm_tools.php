@@ -69,6 +69,7 @@
 		<!-- MARKDOWN EDITOR STUFF  -->
 		<!-- https://lab.lepture.com/editor/ -->
 		<!-- https://ourcodeworld.com/articles/read/359/top-7-best-markdown-editors-javascript-and-jquery-plugins -->
+		<!-- https://github.com/lepture/editor -->
 		<link rel="stylesheet" href="http://lab.lepture.com/editor/editor.css" />
 		<script type="text/javascript" src="http://lab.lepture.com/editor/editor.js"></script>
 		<script type="text/javascript" src="http://lab.lepture.com/editor/marked.js"></script>

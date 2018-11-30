@@ -1,5 +1,5 @@
 var editor = new Editor({
-    element: document.getElementById("myTextArea")
+    element: document.getElementById("dmNotes")
 });
 
 $(document).ready(function() {
