@@ -1,3 +1,36 @@
+<?php
+	session_start();
+    //checking to see if a user is logged in
+
+    if($_SESSION["user"]) {
+        $username = $_SESSION["user"];
+    } else {
+        $_SESSION["notLoggedIn"] = True;
+        header("Location: index.php");
+    }
+
+    $host = "localhost";
+    $dbuser = "mhypnaro";
+    $dbpassword = "CMPS115rjullig";
+    $dbname = "dndsip";
+    //establishing a connection to the database
+    $conn = new mysqli($host, $dbuser, $dbpassword, $dbname);
+    if (mysqli_connect_error()) {
+        echo ("Unable to connect to database!");
+    }
+	else {
+		$dmNotes = getdmNotes($username);
+    }
+
+    function getdmNotes($username) {
+    	$dmNotesQuery = "SELECT * FROM DMTools WHERE username='$username';";
+    	$dmNotesResult = $conn->query($dmNotesQuery);
+    	$dmNotes = $dmNotesResult->fetch_assoc();
+
+    	return $getdmNotes;
+    }
+?>
+
 <html>
 	<head>
 		<title>DNDSIP: DM TOOLS</title>
@@ -66,10 +99,7 @@
 		<!-- DM NOTES -->
 		<div id="notesWrapper" class="column">
 			<div id="notesBox">
-				<textarea id="dmNotes">#This is for notes.
-##And smaller headings.
-
-_Notes are really great._</textarea> <!-- what's pasted here gets pasted in result-->
+				<textarea name="dmNotes" id="dmNotes" value="<?php echo($dmNotes['DMNotes']);?>"></textarea> <!-- what's pasted here gets pasted in result-->
 			</div>
 
 		</div>
