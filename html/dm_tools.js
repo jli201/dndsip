@@ -176,7 +176,7 @@ function addTurn() {
 //get the cname, roll, and ally value of the 1st turn.
 //if fail (no 1st turn), return "false" instead of object
 //if pass, return TurnElement object.
-function getFirstTurn() {
+function getCurrentTurn() {
 	if (turnList.isEmpty()) {
 		console.log("Empty queue, trying to get 1st turn of nothing.");
 		return false;
