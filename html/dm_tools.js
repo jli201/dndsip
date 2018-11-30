@@ -127,6 +127,9 @@ function addTurn() {
 	// console.log(turnList.dumpQueue());
 
 	pasteOrder();
+
+	// focus on char name for next character
+	$('#initNewTurnName').focus();
 }
 
 //called with an html element

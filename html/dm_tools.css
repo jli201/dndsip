@@ -40,6 +40,7 @@ body {
 
 #initTrackerWrapper {
 	width:38%;
+	position: relative;
 }
 
 #initTrackerWrapper > * {
@@ -84,6 +85,8 @@ body {
 
 #initTurnOrder {
 	text-align: center;
+	overflow-y: auto;
+	max-height:88%;
 }
 
 #initTurnOrder * {
@@ -163,6 +166,12 @@ body {
 
 
 /*NEW TURN BOX*/
+
+#initNewTurn {
+	position: absolute;
+	bottom: 5px;
+	width: 98%;
+}
 
 #initNewTurnName {
 	width:60%;
