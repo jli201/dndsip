@@ -23,6 +23,30 @@ class TurnElement {
 }
 
 // class functions should be agnostic of dom.
+/* FUNCTIONS
+enqueue - adds a TurnElement to queue, priority highest roll.
+	requires cname, roll, ally
+
+dequeue - removes the front-most element of queue, returns fail string if empty queue.
+
+findDelete - removes a TurnElement from queue.
+	requires cname, roll, ally
+
+findIndex - gets index of a TurnElement from queue (like 'find')
+	requires cname, roll, ally
+
+front - returns front TurnElement in queue, returns fail string if empty.
+
+isEmpty - returns true/false boolean based on if queue is empty
+
+size - returns size of internal queue (# of elements)
+
+dumpQueue - returns a string-based representation of the internal queue
+	Each element is formatted as "(CHARACTER NAME: ROLLVALUE <ALLY/ENEMY>)"
+
+returnQueue - returns the internal queue.
+
+*/
 class TurnOrder {
 
 	constructor() {
@@ -72,6 +96,19 @@ class TurnOrder {
 			}
 		}
 		return false; //you didn't find the specified pair.
+	}
+
+	//same as finddelete, but no delete & returns index, -1 on fail (instead of false)
+	findIndex(cname, roll, ally) {
+		var i;
+		for (i = 0; i < this.turns.length; i++ ) {
+			if (cname == this.turns[i].cname) {
+				if (roll == this.turns[i].roll && ally == this.turns[i].ally) {
+					return i; //you done, all 3 match (if you return 'i', treated as 'false' if i = 0)
+				}
+			}
+		}
+		return -1; //you didn't find the specified pair.
 	}
 
 	front () {
@@ -136,12 +173,30 @@ function addTurn() {
 	$('#initNewTurnName').focus();
 }
 
-//called with an html element
-function removeTurn(element) {
-	console.log(element);
-	var html = element;
+//get the cname, roll, and ally value of the 1st turn.
+//if fail (no 1st turn), return "false" instead of object
+//if pass, return TurnElement object.
+function getFirstTurn() {
+	if (turnList.isEmpty()) {
+		console.log("Empty queue, trying to get 1st turn of nothing.");
+		return false;
+	}
+
+	var element = $('.turn')[0];
+	// console.log(element);
+	var turn = parseTurn(element);
+	if (turn == false) {
+		return false;
+	}
+	return turn;
+
+}
+
+//returns cname, roll, ally off an element as an obj.
+//assumes element exists. up to calling function.
+function parseTurn(element) {
 	var cname, roll, ally;
-	var children = html.children;
+	var children = element.children;
 	//first, get the values of this element.
 	//https://www.w3schools.com/jsref/dom_obj_all.asp
 	// console.log(children[0].innerHTML);
@@ -154,16 +209,32 @@ function removeTurn(element) {
 		return false;
 	}
 	// console.log(html.getAttribute("ally"));
-	ally = html.getAttribute("ally");
+	ally = element.getAttribute("ally");
 	ally = ally == "true" ? true : false; //convert to boolean
 
+	// return an object
+	return {
+		cname: cname,
+		roll: roll,
+		ally: ally
+	};
 
-	// console.log("Trying to delete " + cname + " with roll " + roll + " and ally status " + ally);
+}
+
+//called with an html element
+function removeTurn(element) {
+	// console.log(element);
+	//get values for this element.
+	var turn = parseTurn(element); //returns cname, roll, ally in an obj
+	if (turn == false) {
+		return false; //parseturn failed.
+	}
+	
 	//then, remove this from the queue.
-	var result = turnList.findDelete(cname, roll, ally);
+	var result = turnList.findDelete(turn.cname, turn.roll, turn.ally);
 	if (result == false) {
 		console.log("findDelete didn't find value.");
-	} 
+	}
 
 	//then reprint queue
 	pasteOrder();
@@ -174,7 +245,7 @@ function removeTurn(element) {
 
 
 // re-sort DOM after making an adjustment.
-function pasteOrder() {
+function pasteOrder(index = 0) {
 	// console.log("Sorting.");
 	deleteAllTurns();
 	var i;
@@ -237,6 +308,7 @@ function nextTurn () {
 	var elem = html[1];
 	$('#initCurrentTurnText').after(elem.outerHTML);
 	elem.remove();
+
 }
 
 // VARIABLE DECLARATIONS
