@@ -19,6 +19,30 @@
         echo ("Unable to connect to database!");
     }
 	else {
+
+		/*
+		When the form is submit, check to see what button was clicked.
+		Regardless of what button was clicked, save the form data.
+    	*/
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			//saving the dm notes data
+
+			// TODO
+			//editor.codemirror.getValue() to get pure text w/ markdown
+			//with linebreaks & #**__, other symbols, etc.
+			
+
+			//if we hit the "Characters" button
+			if(isset($_POST['backToCharacters'])) {
+				header("Location: character_list.php");
+			
+			//if we hit the "Logout" button
+			} elseif(isset($_POST['logout'])) {
+				header("Location: logout.php");
+			}
+		}
+
+		// loading saved data
 		$dmNotes = getdmNotes($username);
     }
 
