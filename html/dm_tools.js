@@ -166,8 +166,26 @@ function addTurn() {
 
 	turnList.enqueue(cname, roll, ally);
 	// console.log(turnList.dumpQueue());
+	//if no turns have been taken, ignore 'currentTurn can't be stolen' check
+	if (firstTurn) { 
+		pasteOrder();
+		return true;
+	}
 
-	pasteOrder();
+	//now that you have enqueued... get current turn
+	turn = getCurrentTurn();
+	if (turn == false && turnList.size() == 1) {
+		// you are adding the 1st turn.
+		pasteOrder(0); //index 0, no inversions.
+	} //something else is weird.
+	else if (turn == false ) {
+		console.log("getCurrentTurn failed. Cannot add turn to init list.");
+		return false;
+	}
+
+	var index = turnList.findIndex(turn.cname, turn.roll, turn.ally); //get index of turn in queue
+
+	pasteOrder(index);
 
 	// focus on char name for next character
 	$('#initNewTurnName').focus();
@@ -182,7 +200,14 @@ function getCurrentTurn() {
 		return false;
 	}
 
-	var element = $('.turn')[0];
+	var element = $('.turn');
+
+	if (element.length == 0) { //there are no turns in the DOM
+		return false; //we want this return case. not error.
+	}
+
+	element = element[0];
+
 	// console.log(element);
 	var turn = parseTurn(element);
 	if (turn == false) {
@@ -224,11 +249,24 @@ function parseTurn(element) {
 //called with an html element
 function removeTurn(element) {
 	// console.log(element);
+	var index;
 	//get values for this element.
 	var turn = parseTurn(element); //returns cname, roll, ally in an obj
 	if (turn == false) {
 		return false; //parseturn failed.
 	}
+
+	var curTurn = getCurrentTurn();
+	if (curTurn == false) {
+		// no current turn, meaningless.
+		return false;
+	}
+
+	//also the case of deleting current turn
+	if (curTurn.roll >= turn.roll ) { //deleting 3, current turn is 5.
+		index = turnList.findIndex(curTurn.cname, curTurn.roll, curTurn.ally);
+	}
+
 	
 	//then, remove this from the queue.
 	var result = turnList.findDelete(turn.cname, turn.roll, turn.ally);
@@ -236,8 +274,12 @@ function removeTurn(element) {
 		console.log("findDelete didn't find value.");
 	}
 
-	//then reprint queue
-	pasteOrder();
+	if (curTurn.roll < turn.roll ) { //deleting 12, current turn is 5.
+		index = turnList.findIndex(curTurn.cname, curTurn.roll, curTurn.ally);
+	}
+
+	//then reprint queue based on index of curTurn in queue.
+	pasteOrder(index);
 
 	// console.log(turnList.dumpQueue());
 
@@ -245,15 +287,28 @@ function removeTurn(element) {
 
 
 // re-sort DOM after making an adjustment.
+//the index represents the 'current turn'
 function pasteOrder(index = 0) {
 	// console.log("Sorting.");
 	deleteAllTurns();
 	var i;
 	var list = turnList.returnQueue();
 	var size = turnList.size(); //same as list.length;
+
 	if (size == 0) {
 		return; //no turns.
 	}
+	// size is at least 1. escapes size 0, index 0 case.
+	if (index >= size ) { //out of bounds errors...
+		console.log("Index larger than size of queue in pasteOrder.");
+		return false;
+	}
+
+	var list1 = list.slice(index, list.length); //index to end
+	var list2 = list.slice(0, index); //(0,0) returns empty array.
+	list = list1.concat(list2); //flip
+
+
 	$('#initCurrentTurnText').after(createTurnHTML(
 		list[0].cname, list[0].roll, list[0].ally));
 
@@ -293,6 +348,7 @@ function nextTurn () {
 	if (turnList.size() <= 1 ) {
 		return; //you don't need to do anything if you only have 1 turn
 	}
+	firstTurn = false;
 	//move the top element to the bottom.
 	//move the 2nd element into 'current turn' space.
 
@@ -314,6 +370,7 @@ function nextTurn () {
 // VARIABLE DECLARATIONS
 
 turnList = new TurnOrder();
+firstTurn = true; //has a turn gone by? set to false 1st time 'nextTurn' called
 
 
 // Put other stuff below this?

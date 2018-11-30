@@ -1,5 +1,5 @@
 <?php
-	/*session_start();
+	session_start();
     //checking to see if a user is logged in
 
     if($_SESSION["user"]) {
@@ -23,7 +23,7 @@
 		/*
 		When the form is submit, check to see what button was clicked.
 		Regardless of what button was clicked, save the form data.
-    	/
+    	*/
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			//saving the dm notes data
 
@@ -52,7 +52,7 @@
     	$dmNotes = $dmNotesResult->fetch_assoc();
 
     	return $getdmNotes;
-    }*/
+    }
 ?>
 
 <html>
