@@ -1,16 +1,7 @@
-Selinium installation guide and basic program starts at 
-1 hour 36 minutes
-https://www.youtube.com/watch?v=5FUdrBq-WFo
+Uses Selenium Web Driver for testing and Google Chrome Driver.
 
-the links from the video
-
-the selenium web drivers are from here import them as external jars into
-your IDE
-https://selenium-release.storage.googleapis.com/index.html?path=3.9/
-
-you need the google chrome driver or whatever browser you want to run from
-here scroll down to the third party drivers
-https://www.seleniumhq.org/download/
-
-i use eclipse for a java IDE but im pretty sure you can use any ide as 
-long as the programing language is compatible with selenium
+Basic tests for when a User creates an account.
+  -Checks to see if "password" and "confirm password" are equal.
+  -Checks to see if Password is between 6 and 30 characters.
+  -Checks to see if Username is between 6 and 30 characters.
+  -Checks to see if the account is successfully registered.
