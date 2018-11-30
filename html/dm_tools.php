@@ -7,7 +7,20 @@
 
 		<!-- JQUERY & JS -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		
+
+		<!-- MARKDOWN EDITOR STUFF  -->
+		<!-- https://lab.lepture.com/editor/ -->
+		<!-- https://ourcodeworld.com/articles/read/359/top-7-best-markdown-editors-javascript-and-jquery-plugins -->
+		<link rel="stylesheet" href="http://lab.lepture.com/editor/editor.css" />
+		<script type="text/javascript" src="http://lab.lepture.com/editor/editor.js"></script>
+		<script type="text/javascript" src="http://lab.lepture.com/editor/marked.js"></script>
+
+
+		<!-- Load personal script last. -->
 		<script src="dm_tools.js"></script>
+
+
 		<script>
 	  	$(document).ready(function(){
 		    $('#diceroller').load("diceroller.html");
@@ -52,8 +65,9 @@
 
 		<!-- DM NOTES -->
 		<div id="notesWrapper" class="column">
-			This space is reserved for the notes section.
-			<textarea id="dmNotes">This is for notes.</textarea>
+			<div id="notesBox">
+				<textarea id="dmNotes">This is for notes.</textarea> <!-- what's pasted here gets pasted in result-->
+			</div>
 
 		</div>
 

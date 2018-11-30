@@ -1,5 +1,12 @@
+var editor = new Editor({
+    element: document.getElementById("myTextArea")
+});
+
 $(document).ready(function() {
 	console.log("Welcome to DM Tools!");
+
+	// Load text editor.
+	editor.render();
 });
 
 

@@ -207,6 +207,15 @@ body {
 	width:59%;
 }
 
+#notesBox {
+	background-color: #CBF3F0;
+}
+
+/*hack to change size*/
+#notesBox .CodeMirror {
+	height:90%;
+}
+
 #dmNotes {
 	display:block;
 }
