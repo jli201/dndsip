@@ -1,0 +1,14 @@
+Uses Selenium Web Driver for testing and Google Chrome Driver. More information can be found in the folder "Selenium Installation Guide"
+
+Basic tests for logging in to an existing user account
+  -Checks to see if username and password are in database.
+  -Checks to see if user is redirected character selection page upon successful login
+
+If all tests pass, the output in the console should be:
+    Invalid Password 1 Test: PASS
+    Invalid Password 2 Test: PASS
+    Invalid Password 3 Test: PASS
+    Invalid Username 1 Test: PASS
+    Invalid Username 2 Test: PASS
+    Invalid Username 3 Test: PASS
+    Successful Login Test: PASS
