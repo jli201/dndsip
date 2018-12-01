@@ -7,6 +7,7 @@ $(document).ready(function() {
 
 	// Load text editor.
 	editor.render();
+
 });
 
 

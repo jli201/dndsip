@@ -1,7 +1,8 @@
 <?php
 	session_start();
+    
     //checking to see if a user is logged in
-
+	$username = "";
     if($_SESSION["user"]) {
         $username = $_SESSION["user"];
     } else {
@@ -9,26 +10,51 @@
         header("Location: index.php");
     }
 
+    //establishing a connection to the database
     $host = "localhost";
     $dbuser = "mhypnaro";
     $dbpassword = "CMPS115rjullig";
     $dbname = "dndsip";
-    //establishing a connection to the database
     $conn = new mysqli($host, $dbuser, $dbpassword, $dbname);
+
     if (mysqli_connect_error()) {
         echo ("Unable to connect to database!");
     }
 	else {
-		$dmNotes = getdmNotes($username);
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			putdmNotes($username, $conn);
+
+			//if we hit the "Characters" button
+			if(isset($_POST['backToCharacters'])) {
+				header("Location: character_list.php");
+			
+			//if we hit the "Logout" button
+			} elseif(isset($_POST['logout'])) {
+				header("Location: logout.php");
+			}
+		}
+		//if we hit save or are loading the page for the first time, load the dmNotes.
+		$dmNotes = getdmNotes($username, $conn);
     }
 
-    function getdmNotes($username) {
-    	$dmNotesQuery = "SELECT * FROM DMTools WHERE username='$username';";
+
+
+    function getdmNotes($username, $conn) {
+    	$dmNotesQuery = "SELECT * FROM DMNotes WHERE username='$username';";
     	$dmNotesResult = $conn->query($dmNotesQuery);
     	$dmNotes = $dmNotesResult->fetch_assoc();
 
-    	return $getdmNotes;
+    	return $dmNotes;
     }
+
+    function putdmNotes($username, $conn) {
+    	$updatedDmNotes = $_POST['dmNotes'];
+		$updateDmNotesQuery = "UPDATE DMNotes SET DMNotes='$updatedDmNotes' where username='$username';";
+
+		$conn->query($updateDmNotesQuery);
+    }
+
+    $conn->close();
 ?>
 
 <html>
@@ -45,9 +71,9 @@
 		<!-- MARKDOWN EDITOR STUFF  -->
 		<!-- https://lab.lepture.com/editor/ -->
 		<!-- https://ourcodeworld.com/articles/read/359/top-7-best-markdown-editors-javascript-and-jquery-plugins -->
-		<link rel="stylesheet" href="http://lab.lepture.com/editor/editor.css" />
-		<script type="text/javascript" src="http://lab.lepture.com/editor/editor.js"></script>
-		<script type="text/javascript" src="http://lab.lepture.com/editor/marked.js"></script>
+		<link rel="stylesheet" href="https://lab.lepture.com/editor/editor.css" />
+		<script type="text/javascript" src="https://lab.lepture.com/editor/editor.js"></script>
+		<script type="text/javascript" src="https://lab.lepture.com/editor/marked.js"></script>
 
 
 		<!-- Load personal script last. -->
@@ -62,11 +88,12 @@
 
 	</head>
 	<body>
+		<form id="dmNotesForm" method="post" action="<?php echo($_SERVER['PHP_SELF']);?>">
 		<!-- placeholder to load dice roller -->
 		<div id="diceroller"></div>
 		<div id="dmtoolsHeader">
 			<div class="buttonholder">
-				<button type="submit" class="navbutton" name="save"> Save </button>
+				<button type="submit" class="navbutton" name="save" > Save </button>
 				<button type="submit" class="navbutton" name="backToCharacters"> Characters </button>
 				<button type="submit" class="navbutton" name="logout"> Logout </button>
 			</div>
@@ -106,10 +133,9 @@
 		<!-- DM NOTES -->
 		<div id="notesWrapper" class="column">
 			<div id="notesBox">
-				<textarea name="dmNotes" id="dmNotes" value="<?php echo($dmNotes['DMNotes']);?>"></textarea> <!-- what's pasted here gets pasted in result-->
+				<textarea class="codemirror-textarea" id="dmNotes" name="dmNotes"><?php echo($dmNotes['DMNotes']);?></textarea>
 			</div>
-
 		</div>
-
+		</form>
 	</body>
 </html>
