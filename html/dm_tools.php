@@ -33,8 +33,9 @@
 				header("Location: logout.php");
 			}
 		}
-		//if we hit save or are loading the page for the first time, load the dmNotes.
-		$dmNotes = getdmNotes($username, $conn);
+
+		// loading saved data
+		$dmNotes = getdmNotes($username);
     }
 
 
@@ -71,9 +72,10 @@
 		<!-- MARKDOWN EDITOR STUFF  -->
 		<!-- https://lab.lepture.com/editor/ -->
 		<!-- https://ourcodeworld.com/articles/read/359/top-7-best-markdown-editors-javascript-and-jquery-plugins -->
-		<link rel="stylesheet" href="https://lab.lepture.com/editor/editor.css" />
-		<script type="text/javascript" src="https://lab.lepture.com/editor/editor.js"></script>
-		<script type="text/javascript" src="https://lab.lepture.com/editor/marked.js"></script>
+		<!-- https://github.com/lepture/editor -->
+		<link rel="stylesheet" href="http://lab.lepture.com/editor/editor.css" />
+		<script type="text/javascript" src="http://lab.lepture.com/editor/editor.js"></script>
+		<script type="text/javascript" src="http://lab.lepture.com/editor/marked.js"></script>
 
 
 		<!-- Load personal script last. -->
