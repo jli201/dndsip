@@ -51,9 +51,12 @@ public class diceRollerTest {
 	public void testDiceRoller(String[] diceAmount, String[] diceType, String[] mod) {
 		for (int i = 0; i < diceAmount.length; i++) {
 			//the next 4 lines fills in the diceroller and clicks roll
-			driver.findElement(By.id("numdice")).sendKeys(Keys.chord(Keys.CONTROL, "a"), diceAmount[i]);
-			driver.findElement(By.id("typedice")).sendKeys(Keys.chord(Keys.CONTROL, "a"), diceType[i]);
-			driver.findElement(By.id("modval")).sendKeys(Keys.chord(Keys.CONTROL, "a"), mod[i]);
+			driver.findElement(By.id("numdice")).clear();
+			driver.findElement(By.id("numdice")).sendKeys(diceAmount[i]);
+			driver.findElement(By.id("typedice")).clear();
+			driver.findElement(By.id("typedice")).sendKeys(diceType[i]);
+			driver.findElement(By.id("modval")).clear();
+			driver.findElement(By.id("modval")).sendKeys(mod[i]);
 			driver.findElement(By.id("rollSubmit")).click();
 			//checks result to see if its between the max and min
 			int result = Integer.parseInt(driver.findElement(By.id("rollResult")).getAttribute("value"));
@@ -61,7 +64,7 @@ public class diceRollerTest {
 			System.out.println("Highest Possible Roll: " + ((Integer.parseInt(diceType[i]) * Integer.parseInt(diceAmount[i])) + Integer.parseInt(mod[i])) +
 							"   Lowest Possible Roll: " + (Integer.parseInt(mod[i])) + 
 							"   Result: " + result);
-			boolean testResultBoolean= ((result < ((Integer.parseInt(diceType[i]) * Integer.parseInt(diceAmount[i])) + Integer.parseInt(mod[i]))) && (result > Integer.parseInt(mod[i])));
+			boolean testResultBoolean= ((result <= ((Integer.parseInt(diceType[i]) * Integer.parseInt(diceAmount[i])) + Integer.parseInt(mod[i]))) && (result >= Integer.parseInt(mod[i])));
 			String testResult = "fail";
 			if (testResultBoolean) {
 				testResult = "pass";

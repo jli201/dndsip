@@ -53,8 +53,10 @@ public class DM_Tools_Selenium {
 				driver.findElement(By.id("initNewTurnEnemy")).click();
 			}
 			else {
-				driver.findElement(By.id("initNewTurnName")).sendKeys(Keys.chord(Keys.CONTROL, "a"), names[i]);
-				driver.findElement(By.id("initNewTurnRoll")).sendKeys(Keys.chord(Keys.CONTROL, "a"), rolls[i]);
+				driver.findElement(By.id("initNewTurnName")).clear();
+				driver.findElement(By.id("initNewTurnName")).sendKeys(names[i]);
+				driver.findElement(By.id("initNewTurnRoll")).clear();
+				driver.findElement(By.id("initNewTurnRoll")).sendKeys(rolls[i]);
 				driver.findElement(By.id("initNewTurnAdd")).click();
 			}
 		}
@@ -88,6 +90,7 @@ public class DM_Tools_Selenium {
 				testResult = "pass";
 			}
 			System.out.println("Next Turn Test(3 clicks): " + testResult + "\n");
+			//start of testing full rotation in this case 7 clicks
 			System.out.println("Clicking next turn 7 times full rotation");
 			for (int i = 0; i < 7; i++ ) {
 				Thread.sleep(500);
