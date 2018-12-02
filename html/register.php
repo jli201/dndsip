@@ -25,7 +25,7 @@
 			$host = "localhost";
 			$dbuser = "mhypnaro";
 			$dbpassword = "CMPS115rjullig";
-			$dbname = "test_database";
+			$dbname = "dndsip";
 
 			//establishing a connection to the database
 			$conn = new mysqli($host, $dbuser, $dbpassword, $dbname);
@@ -36,8 +36,9 @@
 
 				//checking if the form has any errors and then uploading to the database if it doesn't
 				if (checkInput($username, $password, $confirmPassword, $conn)) {
-					$newUser = "INSERT INTO Users values ('$username', '$password')";
-					if ($conn->query($newUser)){
+					$newUser = "INSERT INTO Login values ('$username', '$password')";
+					$newDM = "INSERT INTO DMNotes (username) values ('$username');";
+					if ($conn->query($newUser) && $conn->query($newDM)){
 						$_SESSION["accountCreated"] = True;
 						header("Location:index.php");
 					} else {
@@ -55,7 +56,7 @@
 					if (strlen($password) < 6 || strlen($password) > 30) {
 						$submitError = "Password must be between 6 and 30 characters.";
 					}
-					$result = $conn->query("SELECT * FROM Users WHERE Username='$username'");
+					$result = $conn->query("SELECT * FROM Login WHERE Username='$username'");
 					if ($result->num_rows) {
 						$submitError = "That username is already taken.";
 					}
@@ -76,7 +77,7 @@
 		function checkInput($user, $pass, $confirmPass, $conn) {
 			$userLength = strlen($user);
 			$passLength = strlen($pass);
-			$checkDuplicate = "SELECT * FROM Users WHERE Username='$user'";
+			$checkDuplicate = "SELECT * FROM Login WHERE Username='$user'";
 			if ($userLength < 6 || $userLength > 30) {
 				return false;
 			}

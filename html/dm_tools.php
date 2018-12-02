@@ -21,6 +21,7 @@
         echo ("Unable to connect to database!");
     }
 	else {
+		//if we click a button
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			putdmNotes($username, $conn);
 
@@ -33,13 +34,20 @@
 				header("Location: logout.php");
 			}
 		}
-
-		// loading saved data
-		$dmNotes = getdmNotes($username);
+		//if we hit save or are loading the page for the first time, load the dmNotes.
+		$dmNotes = getdmNotes($username, $conn);
     }
 
 
-
+    /*
+    Purpose: Loads the DM Notes from the DMNotes table of the database into the textbox of the page.
+    Parameters:
+    	-$username: The username to pull notes for
+    	-$conn: The connection to the database to query against
+    Returns:
+    	-$dmNotes: A reference to the database table for the particular user that we can iterate through to display data
+    			   on the page.
+    */
     function getdmNotes($username, $conn) {
     	$dmNotesQuery = "SELECT * FROM DMNotes WHERE username='$username';";
     	$dmNotesResult = $conn->query($dmNotesQuery);
@@ -48,6 +56,14 @@
     	return $dmNotes;
     }
 
+
+    /*
+    Purpose: Save the DM Notes on the page to the DMNotes table of the database.
+    Parameters:
+    	-$username: The username to save the notes for
+    	-$conn: The connection to the database to query against.
+    Returns: Nothing
+    */
     function putdmNotes($username, $conn) {
     	$updatedDmNotes = $_POST['dmNotes'];
 		$updateDmNotesQuery = "UPDATE DMNotes SET DMNotes='$updatedDmNotes' where username='$username';";
@@ -72,10 +88,9 @@
 		<!-- MARKDOWN EDITOR STUFF  -->
 		<!-- https://lab.lepture.com/editor/ -->
 		<!-- https://ourcodeworld.com/articles/read/359/top-7-best-markdown-editors-javascript-and-jquery-plugins -->
-		<!-- https://github.com/lepture/editor -->
-		<link rel="stylesheet" href="http://lab.lepture.com/editor/editor.css" />
-		<script type="text/javascript" src="http://lab.lepture.com/editor/editor.js"></script>
-		<script type="text/javascript" src="http://lab.lepture.com/editor/marked.js"></script>
+		<link rel="stylesheet" href="https://lab.lepture.com/editor/editor.css" />
+		<script type="text/javascript" src="https://lab.lepture.com/editor/editor.js"></script>
+		<script type="text/javascript" src="https://lab.lepture.com/editor/marked.js"></script>
 
 
 		<!-- Load personal script last. -->
@@ -99,24 +114,24 @@
 				<button type="submit" class="navbutton" name="backToCharacters"> Characters </button>
 				<button type="submit" class="navbutton" name="logout"> Logout </button>
 			</div>
-			<div id="pagetitle">DM TOOLS</div>
+			<div id="pagetitle">DM Tools</div>
 		</div>
 
 		<!-- INIT TRACKER -->
 		<div id="initTrackerWrapper" class="column">
 			<div id="initHeader">
-				<span id="initTrackerName">INIT TRACKER</span>
+				<span id="initTrackerName">Turn Tracker</span>
 				<input type="button" id="initNextTurn" value="Next Turn >" onClick="nextTurn()">
 			</div>
 
 			<div id="initTurnOrder">
-				<div id="initCurrentTurnText" class="turnlabel">CURRENT TURN:</div>
+				<div id="initCurrentTurnText" class="turnlabel">Current Turn:</div>
 				<!-- <div class="turn" ally="true">
 					<div class="turnChName">Character Name</div>
 					<div class="turnRoll">Roll</div>
 					<div class="deleteTurnButton">-</div>
 				</div> -->
-				<div id="initNextTurnText" class="turnlabel">NEXT TURNS:</div>
+				<div id="initNextTurnText" class="turnlabel">Next Turn:</div>
 
 			</div>
 

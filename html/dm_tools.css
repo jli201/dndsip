@@ -97,8 +97,9 @@ body {
 }
 
 #initTrackerName {
-	margin-left:35%;
-	font-weight:bold;
+	text-align: center;
+	font-weight: bold;
+	padding-left: 40%;
 }
 
 

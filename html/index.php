@@ -21,14 +21,14 @@
 		$host = "localhost";
 		$dbuser = "mhypnaro";
 		$dbpassword = "CMPS115rjullig";
-		$dbname = "test_database";
+		$dbname = "dndsip";
 
 		//establishing a connection to the database
 		$conn = new mysqli($host, $dbuser, $dbpassword, $dbname);
 		if (mysqli_connect_error()) {
 			echo ("Unable to connect to database!");
 		} else {
-			$checkLogin = "SELECT * FROM Users WHERE Username='$username' AND Password='$password'";
+			$checkLogin = "SELECT * FROM Login WHERE Username='$username' AND Password='$password'";
 			$result = $conn->query($checkLogin);
 			if($result->num_rows) {
 				$_SESSION["user"] = $username;
