@@ -139,7 +139,6 @@ class TurnOrder {
 				else str += " <enemy>";
 				str += ") ";
 		}
-		// console.log(str);
 		return str;
 	}
 
@@ -159,14 +158,12 @@ function addTurn() {
 	var roll = $('#initNewTurnRoll').val();
 	var ally = !($('#initNewTurnEnemy').prop("checked"));
 
-	// console.log(cname + " " + roll + " " + ally);
 	if (cname.length == 0 || roll.length == 0 ) { //values not entered
 		console.log("Some values not inputted.");
 		return;
 	}
 
 	turnList.enqueue(cname, roll, ally);
-	// console.log(turnList.dumpQueue());
 	//if no turns have been taken, ignore 'currentTurn can't be stolen' check
 	if (firstTurn) { 
 		pasteOrder();
@@ -209,7 +206,6 @@ function getCurrentTurn() {
 
 	element = element[0];
 
-	// console.log(element);
 	var turn = parseTurn(element);
 	if (turn == false) {
 		return false;
@@ -225,16 +221,13 @@ function parseTurn(element) {
 	var children = element.children;
 	//first, get the values of this element.
 	//https://www.w3schools.com/jsref/dom_obj_all.asp
-	// console.log(children[0].innerHTML);
 	cname = children[0].innerHTML;
-	// console.log(children[1].innerHTML);
 	roll = children[1].innerHTML;
 	roll = Number(roll);
 	if (isNaN(roll)) {
 		console.log ("roll value not a number.");
 		return false;
 	}
-	// console.log(html.getAttribute("ally"));
 	ally = element.getAttribute("ally");
 	ally = ally == "true" ? true : false; //convert to boolean
 
@@ -281,9 +274,6 @@ function removeTurn(element) {
 
 	//then reprint queue based on index of curTurn in queue.
 	pasteOrder(index);
-
-	// console.log(turnList.dumpQueue());
-
 }
 
 
@@ -340,7 +330,6 @@ function createTurnHTML (cname, roll, ally) {
 
 // DOM only - deletes all turns
 function deleteAllTurns () {
-	// console.log("Clearing all turns");
 	$('.turn').remove();
 }
 
@@ -355,9 +344,7 @@ function nextTurn () {
 
 	//move top element to bottom
 	var html = $('.turn');
-	// console.log(html[0]);
 	var elem = html[0];
-	// console.log(elem.outerHTML);
 	$('#initTurnOrder').append(elem.outerHTML);
 	elem.remove();
 
@@ -372,6 +359,3 @@ function nextTurn () {
 
 turnList = new TurnOrder();
 firstTurn = true; //has a turn gone by? set to false 1st time 'nextTurn' called
-
-
-// Put other stuff below this?
