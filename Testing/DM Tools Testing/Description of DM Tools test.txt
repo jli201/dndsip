@@ -1,0 +1,22 @@
+Uses Selenium Web Driver for testing and Google Chrome Driver. More information can be found in the folder "Selenium Installation Guide"
+
+Basic tests for testing the spinning buffer and turn Tracker
+  -Checks if player/enemies can be added
+  -Checks a couple of clicks on next turn working correctly
+  -Checks for a full rotation
+
+If all tests pass, the output in the console should be:
+    Filling turn tracker
+    Filled Turn Tracker: pass
+
+    Clicking next turn 3 times
+    4th player/enemy is Marion Deshoulières 6
+    Current player/enemy is Marion Deshoulières 6
+    Next Turn Test(3 clicks): pass
+
+    Clicking next turn 7 times full rotation
+    Current player/enemy is Marion Deshoulières 6
+    Next Turn Test 7 clicks(full rotation): pass
+
+    Clearing turn tracker
+    Cleared Turn Tracker: pass

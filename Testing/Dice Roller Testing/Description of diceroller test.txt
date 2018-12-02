@@ -1,0 +1,25 @@
+Uses Selenium Web Driver for testing and Google Chrome Driver. More information can be found in the folder "Selenium Installation Guide"
+
+Basic tests for testing the Dice Roller
+  -Checks functionality of the diceroller
+
+If all tests pass, the output in the console should be:
+    Dice Type: 20   Dice Amount: 1   Mod: 0
+    Highest Possible Roll: 20   Lowest Possible Roll: 0   Result: 10
+    Dice Roll Test 1: pass
+
+    Dice Type: 6   Dice Amount: 1   Mod: 2
+    Highest Possible Roll: 8   Lowest Possible Roll: 2   Result: 3
+    Dice Roll Test 2: pass
+
+    Dice Type: 4   Dice Amount: 2   Mod: 1
+    Highest Possible Roll: 9   Lowest Possible Roll: 1   Result: 7
+    Dice Roll Test 3: pass
+
+    Dice Type: 8   Dice Amount: 3   Mod: -1
+    Highest Possible Roll: 23   Lowest Possible Roll: -1   Result: 8
+    Dice Roll Test 4: pass
+
+    Dice Type: 4   Dice Amount: 4   Mod: -4
+    Highest Possible Roll: 12   Lowest Possible Roll: -4   Result: 5
+    Dice Roll Test 5: pass
