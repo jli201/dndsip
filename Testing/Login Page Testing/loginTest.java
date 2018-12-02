@@ -13,7 +13,7 @@ public class loginTest {
 	String errorTxt = "Invalid username or password.";
 
 	
-	
+	//starts the Google Chrome Browser
 	public void invokeBrowser() {
 		try {
 			System.setProperty("webdriver.chrome.driver" , "//Users//jensen//Selenium//Selenium//chromedriver");
@@ -29,10 +29,10 @@ public class loginTest {
 			
 		}
 	}
-	
+	//The login test function
 	public void tryLogin() {
 		
-		//wrong password, right username
+		//inserts wrong password, right username
 		driver.findElement(By.name("username")).sendKeys("jensen");
 		driver.findElement(By.name("password")).sendKeys("123456");
 		driver.findElement(By.id("submit")).click();
@@ -46,7 +46,7 @@ public class loginTest {
 		}
 		
 		
-		//wrong password, right username
+		//inserts wrong password, right username
 		driver.findElement(By.name("username")).sendKeys("jensen");
 		driver.findElement(By.name("password")).sendKeys("123");
 		driver.findElement(By.id("submit")).click();
@@ -60,7 +60,7 @@ public class loginTest {
 		}
 		
 		
-		//wrong password, right username
+		//inserts wrong password, right username
 		driver.findElement(By.name("username")).sendKeys("jensen");
 		driver.findElement(By.name("password")).sendKeys("abcdefg");
 		driver.findElement(By.id("submit")).click();
@@ -77,7 +77,7 @@ public class loginTest {
 		
 		
 		
-		//right password, wrong username
+		//inserts right password, wrong username
 		driver.findElement(By.name("username")).sendKeys("jensenn");
 		driver.findElement(By.name("password")).sendKeys("password");
 		driver.findElement(By.id("submit")).click();
@@ -89,7 +89,7 @@ public class loginTest {
 		else {
 			System.out.println("Invalid Username 1 Test: FAIL");
 		}
-		//right password, wrong username
+		//inserts right password, wrong username
 		driver.findElement(By.name("username")).sendKeys("j");
 		driver.findElement(By.name("password")).sendKeys("password");
 		driver.findElement(By.id("submit")).click();
@@ -141,7 +141,7 @@ public class loginTest {
 	
 
 	
-
+	//creates new object of loginTest and calls the two functions
 	public static void main(String[] args) {
 		loginTest myObj = new loginTest();
 		myObj.invokeBrowser();
