@@ -1,0 +1,264 @@
+body {
+	background-color: #8f9491;
+	margin:0;
+	padding:0;
+}
+
+#dmtoolsHeader {
+	position:relative;
+}
+
+#dmtoolsHeader .buttonholder {
+	float: left;
+	background-color: #2EC4B6;
+	display:inline-block;
+
+	/*width:10%;*/
+	margin-left:1%;
+	margin-top:1%;
+	padding:10px;
+}
+
+#dmtoolsHeader .navbutton {
+    padding: 0.5em 1em;
+    margin: 0 0.5em 0.5em 0;
+    display: inline-block;
+    background-color: #26a69a;
+    color: white;
+    border: 0;
+}
+
+
+#pagetitle {
+	display: inline-block;
+	padding: 1%;
+	margin: .5%;
+	height: 5vh;
+	background-color: #2EC4B6;
+	box-sizing: content-box;
+
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    border: 3px solid #CBF3F0;
+    border-radius: 50px;
+
+    margin-left:20%;
+    width:30%;
+}
+
+.column {
+	/*sizing*/
+	background-color: #2EC4B6;
+	display: inline-block;
+	margin-left: 1%;
+	height: 87vh;
+	float:left;
+
+	/*content*/
+	padding:5px;
+	box-sizing: border-box;
+	overflow-y:auto;
+	overflow-x:hidden;
+
+
+}
+
+/*INIT TRACKER*/
+
+#initTrackerWrapper {
+	width:38%;
+	position: relative;
+}
+
+#initTrackerWrapper > * {
+	display: block;
+	width:100%;
+	background-color:#CBF3F0;
+	margin-top:2%;
+
+	padding:5px 2px 5px 2px;
+	box-sizing: border-box;
+}
+
+
+#initNewTurnName, #initNewTurnRoll, #initNewTurnAdd {
+	height:30px;
+	font-size:18px;
+
+}
+
+/*NEXT TURN & HEADER BOX*/
+
+#initHeader {
+	font-size:18px;
+	/*text-align: center;*/
+	line-height:26px;
+}
+
+#initTrackerName {
+	margin-left:35%;
+	font-weight:bold;
+}
+
+
+#initNextTurn {
+	float:right;
+	font-size:18px;
+
+}
+
+
+/* TURNS BOX */
+
+#initTurnOrder {
+	text-align: center;
+	overflow-y: auto;
+	max-height:88%;
+}
+
+#initTurnOrder * {
+	box-sizing: border-box;
+}
+
+#initTurnOrder .turn:nth-child(2) {
+	border-width:2px;
+	border-color:dodgerblue;
+}
+
+#initTurnOrder .turnlabel {
+	border: 2px solid black;
+	width:100%;
+	line-height:20px;
+	font-size:16px;
+	margin-top:2px;
+	margin-bottom: 2px;
+}
+
+
+#initTurnOrder .turn {
+	text-align: left;
+	background-color: #F9F9F9;
+	height:50px;
+	line-height:50px;
+	font-size:30px;
+	padding-left: 5px;
+
+	overflow:hidden;
+	border: 1px solid black;
+
+}
+
+#initTurnOrder .turn[ally="true"] {
+	background-color: lightgreen;
+}
+
+#initTurnOrder .turn[ally="false"] {
+	background-color: rgba(255, 56, 56, .5);
+}
+
+
+#initTurnOrder .turn > div {
+	display: inline-block;
+}
+
+#initTurnOrder .turnChName {
+	width: 65%;
+}
+
+#initTurnOrder .turnRoll {
+	width: 20%;
+	text-align: right;
+}
+
+#initTurnOrder .deleteTurnButton {
+	/*make circle*/
+	height:40px;
+	width:40px;
+	border-radius:20px;
+	border:2px solid black;
+	background-color: rgba(255, 100, 100);
+
+
+	line-height:25px;
+	font-size:50px;
+	font-weight: bold;
+	text-align:center;
+	color: white;
+	
+	
+	float: right;
+	margin-top:5px;
+	margin-bottom:5px;
+	margin-right:5px;
+
+	cursor: pointer;
+}
+
+
+
+
+/*NEW TURN BOX*/
+
+#initNewTurn {
+	position: absolute;
+	bottom: 5px;
+	width: 98%;
+}
+
+#initNewTurnName {
+	width:60%;
+}
+
+#initNewTurnRoll {
+	width:15%;
+}
+
+#initNewTurnEnemyBox {
+	/*so position absolute can be used on children*/
+	position:relative;
+
+	display:inline-block;
+	width:10%;
+	text-align:center;
+	margin-right:5px;
+}
+
+#initNewTurnEnemy {
+	position: relative;
+	top:10px;
+}
+
+#initEnemyText {
+	position: absolute;
+	top:-5px;
+	left:0px;
+}
+
+#initNewTurnAdd {
+	width:10%;
+	float:right;
+	margin-right:5px;
+}
+
+
+
+/*DM NOTES*/
+
+#notesWrapper {
+	width:59%;
+}
+
+#notesBox {
+	background-color: #CBF3F0;
+}
+
+/*hack to change size*/
+#notesBox .CodeMirror {
+	height:90%;
+}
+
+#dmNotes {
+	display:block;
+}
+
