@@ -1,7 +1,5 @@
-package ga.dndsip.selenium.statModifiers;
+package char_sheet_Selenium;
 import java.util.concurrent.TimeUnit;
-import java.util.Random;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -10,18 +8,30 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class STAT_MODS_SELENIUM {
+public class CharSheetSelenium {
 	
 	WebDriver driver;
 	
 	//Set this as true if you want the test data to give more detail than: "type = this, pass/fail"
 	boolean verboseTests = false;
 	
+	//Set this as true if you only want to see tests that failed be printed to the console
+	boolean onlyDisplayFailedTests = false;
+	
+	//make a list of characters, this is a global variable that's set in driveByPlayerCharactersToCharacterSheet
+	List<WebElement> characters;
+
+	//The index of the character page we're testing on. This is a global variable that's set in driveByPlayerCharactersToCharacterSheet
+	int testSheetIndex = 0;
+	
+	
+	//This is the account name we'll be logging onto
+	String accountName = "jensen";
 	
 	//This funciton is used to set up the google chrome driver and navagate to dndsip.ga
 	public void invokeBrowser() {
 		try {
-			System.setProperty("webdriver.chrome.driver", "C:\\Users\\Connor\\Desktop\\Selenium\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "D:\\Selenium\\chromedriver.exe");
 			driver = new ChromeDriver();
 			driver.manage().deleteAllCookies();
 			driver.manage().window().maximize();
@@ -40,7 +50,7 @@ public class STAT_MODS_SELENIUM {
 		
 		try {
 			//Find username box and enter username
-			driver.findElement(By.name("username")).sendKeys("jensen");
+			driver.findElement(By.name("username")).sendKeys(accountName);
 			
 			//Find password box and enter password
 			driver.findElement(By.name("password")).sendKeys("password");
@@ -57,11 +67,14 @@ public class STAT_MODS_SELENIUM {
 	public void driveByPlayerCharactersToCharacterSheet() {
 		
 		try {
-			//make a list of characters
+			//set characters global variable
 			List<WebElement> characters = driver.findElements(By.className("characterSelectButton"));
 
+			//set testSheetIndex global variable 
+			testSheetIndex = characters.size()-1;
+			
 			//Go to the last character sheet and click it
-			characters.get(characters.size()-1).click();
+			characters.get(testSheetIndex).click();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,6 +88,9 @@ public class STAT_MODS_SELENIUM {
 	//This is a simple function that adds 2 strings together
 	public String add2Strings(String input, String modifier) {
 		try {
+			if(input == "-" || input == "-0" || input == "") {
+				return input;
+			}
 			String sum = "";
 			
 			//convert everything to an int, then add them
@@ -93,48 +109,78 @@ public class STAT_MODS_SELENIUM {
 	
 	//There were a lot of instances where we needed to increment/decrement the proficiency by 1, so this is a shorthand function
 	public void changeProficiency(String inputProficiency, String mod) {
-		//Proficiency = CurrentProficiency + mod
-		inputProficiency = add2Strings(inputProficiency, mod);
-		
-		//clear current proficiency
-		driver.findElement(By.id("proficiency")).clear();
-		
-		//set new proficiency
-		driver.findElement(By.id("proficiency")).sendKeys(inputProficiency);
-	}
-	//Get the input proficiency of charSheet. If this element isn't set, set it to 2
-	public String getInputProficiency() {
-		String inputProficiency = driver.findElement(By.id("proficiency")).getAttribute("value");
-		if(inputProficiency.equals("")) {
-			inputProficiency = "2";
+		try {
+			//Proficiency = CurrentProficiency + mod
+			inputProficiency = add2Strings(inputProficiency, mod);
+			
+			//clear current proficiency
 			driver.findElement(By.id("proficiency")).clear();
-			driver.findElement(By.id("proficiency")).sendKeys("2");
+			
+			//set new proficiency
+			driver.findElement(By.id("proficiency")).sendKeys(inputProficiency);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return inputProficiency;
 	}
 	
-	public void printTestOutput(String testTitle, String result, String inputTested, String inputValue, String expectedValue) {
-		//Some pretty looking error checking
-		if(verboseTests) {
-			System.out.println(testTitle + ":");
-			System.out.println("   inputStat = " + inputTested + ", inputValue = " + inputValue + ", expectedValue = " + expectedValue +":");
-			System.out.println("   result: " + result);
-		}else {
-			System.out.println(testTitle + ", " + inputTested + ": " + result);
+	//Get the input proficiency of charSheet. If this element isn't set, set it to 2
+	public String getInputProficiency() {
+		try {
+			String inputProficiency = driver.findElement(By.id("proficiency")).getAttribute("value");
+			if(inputProficiency.equals("")) {
+				inputProficiency = "2";
+				driver.findElement(By.id("proficiency")).clear();
+				driver.findElement(By.id("proficiency")).sendKeys("2");
+			}
+			return inputProficiency;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "";
 		}
+	}
+	
+	//Some pretty looking error checking, this function displays the output of tests
+	public void printTestOutput(String testTitle, String result, String inputTested, String inputValue, String expectedValue) {
+		try {
+			
+			//If we only want to see failed tests and we're given one that passed, just leave
+			if(onlyDisplayFailedTests == true) {
+				if(result == "pass")
+					return;
+			}
+			
+			//This is where the test printing happens. We can have simple or verbose tests
+			if(verboseTests) {
+				System.out.println(testTitle + ":");
+				System.out.println("   inputStat = " + inputTested + ", inputValue = " + inputValue + ", expectedValue = " + expectedValue +":");
+				System.out.println("   result: " + result);
+			}else {
+				System.out.println(testTitle + ", " + inputTested + ": " + result);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void saveAndLeave() {
+		//save the page
+		driver.findElement(By.name("save")).click();
+		
+		//Leave character page
+		driver.findElement(By.name("backToCharacters")).click();
 	}
 	
 	//This function saves the page, backs out, and then goes back in so a function can check if the page was loaded correctly
 	public void saveAndReload() {
 		try {
-			//save the page
-			driver.findElement(By.name("save")).click();
-			
-			//Leave character page
-			driver.findElement(By.name("backToCharacters")).click();
-			
+			//save page and leave
+			saveAndLeave();
 			//Go back to same character sheet
 			driveByPlayerCharactersToCharacterSheet();
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -170,7 +216,6 @@ public class STAT_MODS_SELENIUM {
 			
 			//get the value we're testing for
 			testValue = driver.findElement(By.id(inputModifier)).getText();
-			
 			//See how well we did
 			if(testValue.equals(expectedValue))
 				return "pass";
@@ -226,25 +271,34 @@ public class STAT_MODS_SELENIUM {
 	}
 	
 	public void testDriverTestOneSavingThrow(String inputStat, String inputValue, String expectedValue){
-		String result = "";
-		
-		//Test Saving throw without proficiency
-			result = testOneSavingThrowWithProficiency(inputStat, inputValue, expectedValue);
+		try {
+			String result = "";
 			
-			//Some pretty looking error checking
-			printTestOutput("Saving Throw w/o proficiency", result, inputStat, inputValue, expectedValue);
-		
-		//Test Saving throw with proficiency
-			result = testOneSavingThrowWithoutProficiency(inputStat, inputValue, expectedValue);
+			//When an input is empty or improper, Saving throws should be -0
+			if(expectedValue == "-") {
+				expectedValue = "-0";
+			}
+			//Test Saving throw without proficiency
+				result = testOneSavingThrowWithoutProficiency(inputStat, inputValue, expectedValue);
+				
+				//Some pretty looking error checking
+				printTestOutput("Saving Throw w/o proficiency", result, inputStat, inputValue, expectedValue);
 			
-			//Some pretty looking error checking
-			printTestOutput("Saving Throw w/ proficiency", result, inputStat, inputValue, expectedValue);
-			
-		//Test Saving throw proficiency change
-			result = testOneSavingThrowProficiencyChange(inputStat, inputValue, expectedValue);
-			
-			//Some pretty looking error checking
-			printTestOutput("Saving Throw proficiency change", result, inputStat, inputValue, expectedValue);
+			//Test Saving throw with proficiency
+				result = testOneSavingThrowWithProficiency(inputStat, inputValue, expectedValue);
+				
+				//Some pretty looking error checking
+				printTestOutput("Saving Throw w/ proficiency", result, inputStat, inputValue, expectedValue);
+				
+			//Test Saving throw proficiency change
+				result = testOneSavingThrowProficiencyChange(inputStat, inputValue, expectedValue);
+				
+				//Some pretty looking error checking
+				printTestOutput("Saving Throw proficiency change", result, inputStat, inputValue, expectedValue);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public String testOneSavingThrowWithProficiency(String inputStat, String inputValue, String expectedValue) {
@@ -341,12 +395,18 @@ public class STAT_MODS_SELENIUM {
 		driver.findElement(By.id(inputStat)).sendKeys(inputValue);
 		
 		if(testOneSavingThrowProficiencyChangeHelper(inputStat, expectedValue) == "pass") {
+			
 			//get the current proficiency modifier and add 1. Then set the proficiency to this new number
 				//get current proficiency modifier
 				String inputProficiency = getInputProficiency();
 				
 				//add 1 to the proficiency
 				changeProficiency(inputProficiency, "1");
+				
+				//click somewhere else on the page so the input refreshes
+				driver.findElement(By.id(inputStat)).click();
+				
+				//click somewhere else on the page. This allows the page to update the new proficiency values
 		
 			//now that we've added 1 to the proficiency
 			if(testOneSavingThrowProficiencyChangeHelper(inputStat, expectedValue) == "pass") {
@@ -430,7 +490,10 @@ public class STAT_MODS_SELENIUM {
 				
 				//add 1 to the proficiency
 				changeProficiency(inputProficiency, "1");
-			
+				
+				//click somewhere else on the page so the input refreshes
+				driver.findElement(By.id(inputSkill)).click();
+				
 			//now that we've added 1 to the proficiency
 			if(testOneSkillWithProficiency(inputSkill, inputValue, expectedValue) == "pass") {
 				//This is just a little clean-up bit where we set the proficiency mod back to what it was before
@@ -543,16 +606,16 @@ public class STAT_MODS_SELENIUM {
 			String loadedTestValue;
 			
 			//Clear any field that we're going put inputs in
-			driver.findElement(By.id(inputStat)).clear();
+			driver.findElement(By.name(inputStat)).clear();
 			
 			//input the value we're using to test
-			driver.findElement(By.id(inputStat)).sendKeys(inputValue);
+			driver.findElement(By.name(inputStat)).sendKeys(inputValue);
 			
 			//check if data was saved
 			saveAndReload();
 			
 			//get the value of the skill we're testing for
-			loadedTestValue = driver.findElement(By.id(inputStat)).getAttribute("value");
+			loadedTestValue = driver.findElement(By.name(inputStat)).getAttribute("value");
 			
 			//Test if we loaded the same value we put in
 			if(inputValue.equals(loadedTestValue))
@@ -566,12 +629,140 @@ public class STAT_MODS_SELENIUM {
 		}
 	}
 	
+	//This code is used to test text boxes like character flaws and names.
+	public String saveTestOneTextBox(String textBox, String inputValue) {
+		try {
+			//A variable we'll need later to check loaded value vs input value
+			String loadedTestValue;
+			
+			//Clear any field that we're going put inputs in
+			driver.findElement(By.name(textBox)).clear();
+			
+			//input the value we're using to test
+			driver.findElement(By.name(textBox)).sendKeys(inputValue);
+			
+			//check if data was saved
+			saveAndReload();
+			
+			//get the value of the skill we're testing for
+			loadedTestValue = driver.findElement(By.name(textBox)).getAttribute("value");
+			
+			//Test if we loaded the same value we put in
+			if(inputValue.equals(loadedTestValue))
+				return "pass";
+			else
+				return "fail";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "fail";
+		}
+	}
+	
+	public String saveTestOneCheckBox(String checkBoxName, boolean checked) {	
+		//name our checkbox something so it's easy to access
+		WebElement checkBox = driver.findElement(By.id(checkBoxName));
+		
+		//if the checkbox isn't in the state we want it to be currently, then change it
+		if(checkBox.isSelected() != checked)
+			checkBox.click();
+		
+		//save the page and come back
+		saveAndReload();
+		
+		//aquire our loaded checkbox value
+		checkBox = driver.findElement(By.id(checkBoxName));
+		
+		//see if we got the result we wanted
+		if(checkBox.isSelected() == checked)
+			return "pass";
+		else
+			return "fail";
+	}
+	
+	//This class is extreamly complicated, and is unlikely to be finished due to time constraints
+	public String saveTestOneDisplayedCharacterValue(String externalDisplay, String externalOutput, String inputBox, String inputValue) {
+		
+		//A variable we'll need later to check loaded value vs input value
+		String loadedTestValue;
+		
+		//Clear any field that we're going put inputs in
+		driver.findElement(By.name(inputBox)).clear();
+		
+		//input the value we're using to test
+		driver.findElement(By.name(inputBox)).sendKeys(inputValue);
+		
+		//check if data was saved
+		saveAndLeave();
+		
+		//We're now on the character List page!
+		
+			//
+		
+		//get the value of the skill we're testing for
+		loadedTestValue = driver.findElement(By.name(inputBox)).getAttribute("value");
+		
+		if(inputValue.equals(loadedTestValue))
+			return "pass";
+		else
+			return "fail";
+	}
+	//This function is identical to the above one, but uses names and not ids. Unfortunately I can't find a better way to do this due to time constraints
+	public String saveTestOneCheckBoxName(String checkBoxName, boolean checked) {	
+		//name our checkbox something so it's easy to access
+		WebElement checkBox = driver.findElement(By.name(checkBoxName));
+		
+		//if the checkbox isn't in the state we want it to be currently, then change it
+		if(checkBox.isSelected() != checked)
+			checkBox.click();
+		
+		//save the page and come back
+		saveAndReload();
+		
+		//aquire our loaded checkbox value
+		checkBox = driver.findElement(By.name(checkBoxName));
+		
+		//see if we got the result we wanted
+		if(checkBox.isSelected() == checked)
+			return "pass";
+		else
+			return "fail";
+	}
+	
+	public void testDriverTopColumn(String[] inputValues) {
+		//These elements were meant to check the values displayed, but they are unable to be used to time constraints
+			String[] displayedCharacterValues = {"characterName", "class", "level", "race"};
+			String[] displayedCharacterValuesNameElements = {"charName", "class", "level", "race"};
+		String[] otherCharacterValues = {"playerName", "alignment", "experiencePoints"};
+		String result;
+		
+		//We have to seperate displayed character values from the other top column values because these ones are displayed on the character list page
+		for(String charValue : displayedCharacterValues) {
+			for(String inputValue : inputValues) {
+				result = saveTestOneTextBox(charValue, inputValue);
+				printTestOutput("Displayed Top Column", result, charValue, inputValue, inputValue);
+			}
+		}
+		for(String charValue : otherCharacterValues) {
+			for(String inputValue : inputValues) {
+				result = saveTestOneTextBox(charValue, inputValue);
+				printTestOutput("Top Column", result, charValue, inputValue, inputValue);
+			}
+		}
+	}
+	
 	public void testDriverTestStatsSaveAndLoad(String[] inputValues) {
-		//We'll use this to recieve pass/fail from the tests
+		//We'll use this to receive pass/fail from the tests
 		String result;
 		
 		//This string contains the values for all the stats we want to check
-		String[] inputStats = {"strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"};
+		String[] inputStats = {"strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma",
+				"passivePerception", "ac", "initiative", "speed", "hpCurrent", "hpMax", "tempHp", 
+				"hitDiceCurrent", "hitDiceMax", "firstLevelCurrent", "firstLevelMax", "secondLevelCurrent",
+				"secondLevelMax", "thirdLevelCurrent", "thirdLevelMax", "fourthLevelCurrent", 
+				"fourthLevelMax", "fifthLevelCurrent", "fifthLevelMax", "sixthLevelCurrent", "sixthLevelMax",
+				"seventhLevelCurrent", "seventhLevelMax", "eighthLevelCurrent", "eighthLevelMax", 
+				"ninthLevelCurrent", "ninthLevelMax"};
 		
 		//Here we loop through all the stats, performing tests on them
 		for(int i = 0; i < inputStats.length; i++) {
@@ -585,7 +776,64 @@ public class STAT_MODS_SELENIUM {
 				printTestOutput("Stat save/load test", result, inputStats[i], inputValues[j], inputValues[j]);
 			}
 		}
+	}
+	
+	public void testDriverTextBox(String[] inputValues) {
+		//We'll use this to receive pass/fail from the tests
+		String result;
 		
+		//This string contains the values for all the stats we want to check
+		String[] inputBoxes = {"other", "traits", "ideals", "bonds", "flaws", "featuresAndTraits"};
+		
+		//Here we loop through all the stats, performing tests on them
+		for(int i = 0; i < inputBoxes.length; i++) {
+			
+			//Here we loop through all the input values we want to test for each stat
+			for(int j = 0; j < inputValues.length; j++) {
+				
+				//Test saving/loading our stats
+				result = saveTestOneTextBox(inputBoxes[i], inputValues[j]);
+				//print some pretty error logging
+				printTestOutput("TextBoxes save/load test", result, inputBoxes[i], inputValues[j], inputValues[j]);
+			}
+		}
+		
+	}
+	
+	public void testDriverCheckBoxes() {
+		String result;
+		//this is for testing
+		boolean[] testValues = {true, false};
+		//this is for printing errors
+		String[] testPrinting = {"true", "false"};
+		
+		
+		String[] checkBoxesIds = {
+				"strCheckbox", "dexCheckbox", "conCheckbox", "intCheckbox", "wisCheckbox", "chaCheckbox",
+				"acrobaticsCheckbox", "animalCheckbox", "arcanaCheckbox","athleticsCheckbox","deceptionCheckbox",
+				"historyCheckbox","insightCheckbox","intimidationCheckbox","investigationCheckbox","medicineCheckbox",
+				"natureCheckbox","perceptionCheckbox","performanceCheckbox","persuasionCheckbox","religionCheckbox",
+				"sleightCheckbox","stealthCheckbox","survivalCheckbox"};
+		
+		String[] checkBoxesNames = {
+				"inspiration", "manualEntry", "deathSuccessOne", "deathSuccessTwo", "deathSuccessThree",
+				"deathFailOne", "deathFailTwo", "deathFailThree"
+		};
+		
+		//iterate true/false for all checkboxes
+		for(int i = 0; i < checkBoxesIds.length; i++) {
+			for(int j = 0; j < testValues.length; j++) {
+				result = saveTestOneCheckBox(checkBoxesIds[i], testValues[j]);
+				printTestOutput("Checkbox test", result, checkBoxesIds[i], testPrinting[j], testPrinting[j]);
+			}
+		}
+		
+		for(int i = 0; i < checkBoxesNames.length; i++) {
+			for(int j = 0; j < testValues.length; j++) {
+				result = saveTestOneCheckBoxName(checkBoxesNames[i], testValues[j]);
+				printTestOutput("Checkbox test", result, checkBoxesNames[i], testPrinting[j], testPrinting[j]);
+			}
+		}
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -593,7 +841,7 @@ public class STAT_MODS_SELENIUM {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public static void main(String[] args) {
-		STAT_MODS_SELENIUM myObj = new STAT_MODS_SELENIUM();
+		CharSheetSelenium myObj = new CharSheetSelenium();
 		
 		//First, set up the browser and go to dndsip.ga
 		myObj.invokeBrowser();
@@ -605,9 +853,38 @@ public class STAT_MODS_SELENIUM {
 		myObj.driveByPlayerCharactersToCharacterSheet();
 		
 		//start testing
-		String[] inputValues = {"19", "abc", "2.5", "-2"}; //{"18", "7", "abc", "2.5", "-2", "11"};
-		String[] expectedValues = {"4", "-", "-4", "-6"}; //{"4", "-2", "-", "-4", "-6", "0"};
-		myObj.testDriverStatsAndModifiers(inputValues, expectedValues);
-		myObj.testDriverTestStatsSaveAndLoad(inputValues);
+		String[] inputValuesStatsAndModifiers = {"18", "7","-2", "11"}; //{"", "18", "7", "abc", "2.5", "-2", "11"};
+		String[] expectedValuesStatsAndModifiers = {"4", "-2","-6", "0"}; //{"", "4", "-2", "-", "-4", "-6", "0"};
+		String[] inputValuesTextBoxes = { "", "Short Input", 
+		"Mid input: kinda Middle of the road kinda Middle of the road kinda Middle of the road kinda Middle of the road"
+		+"kinda Middle of the road kinda Middle of the road kinda Middle of the road kinda Middle of the road kinda Middle of the road"
+		+"kinda Middle of the road kinda Middle of the road kinda Middle of the road kinda Middle of the road kinda Middle of the road"
+		+"kinda Middle of the road kinda Middle of the road kinda Middle of the road kinda Middle of the road kinda Middle of the road",  
+		"Long input: really long input really long input really long input really long input really long input really long input"
+		+"really long input really long input really long input really long input really long input really long input"
+		+"really long input really long input really long input really long input really long input really long input"
+		+"really long input really long input really long input really long input really long input really long input"
+		+"really long input really long input really long input really long input really long input really long input"
+		+"really long input really long input really long input really long input really long input really long input"
+		+"really long input really long input really long input really long input really long input really long input"
+		+"really long input really long input really long input really long input really long input really long input"
+		+"really long input really long input really long input really long input really long input really long input"
+		+"really long input really long input really long input really long input really long input really long input"
+		+"really long input really long input really long input really long input really long input really long input"
+		+"really long input really long input really long input really long input really long input really long input"
+		+"really long input really long input really long input really long input really long input really long input"
+		+"really long input really long input really long input really long input really long input really long input"
+		+"really long input really long input really long input really long input really long input really long input"
+		+"really long input really long input really long input really long input really long input really long input",
+		"231321", "#$^^%#Q#RFSDFF"
+		};
+
+		
+		myObj.testDriverStatsAndModifiers(inputValuesStatsAndModifiers, expectedValuesStatsAndModifiers);
+		myObj.testDriverTestStatsSaveAndLoad(inputValuesStatsAndModifiers);
+		myObj.testDriverTextBox(inputValuesTextBoxes);
+		myObj.testDriverTopColumn(inputValuesTextBoxes);
+		myObj.testDriverCheckBoxes();
+		
 	}
 }
