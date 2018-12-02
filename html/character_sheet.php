@@ -618,7 +618,7 @@
 			<label for="class"> Class: </label>
 			<input name="class" id="class" type="text" placeholder="Class" value="<?php echo($basicInfo['class']);?>">
 			<label for="level"> Level: </label>
-			<input name="level" id="level" type="text" placeholder="Level" value="<?php echo($basicInfo['level']);?>">
+			<input name="level" id="level" type="number" placeholder="Level" value="<?php echo($basicInfo['level']);?>">
 			<label for="race"> Race: </label>
 			<input name="race" id="race" type="text" placeholder="Race" value="<?php echo($basicInfo['race']);?>">
 			<label for="alignment"> Alignment: </label>
