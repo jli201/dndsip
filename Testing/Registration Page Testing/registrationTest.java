@@ -14,12 +14,10 @@ import  java.sql.SQLException;
 
 public class registrationTest {
 	
-	WebDriver driver;
+WebDriver driver;
 	
 //Failed attempt at trying to connect mysql database with JDBC	
 //	Connection connection = null; 
-	
-//	
 //	public void connectToDB() {
 //		try {
 //			//Register the Drive
@@ -43,8 +41,7 @@ public class registrationTest {
 //				}
 //				catch(SQLException e) {
 //					System.out.println("Failed to close connection: " + e);
-//					e.printStackTrace();
-//					
+//					e.printStackTrace();	
 //				}
 //			}
 //		}
@@ -56,7 +53,7 @@ public class registrationTest {
 	String usernameTooShort = "Username must be between 6 and 30 characters.";
 	String createdAccountText = "New account registered. Login below.";
 	
-	
+	//Launches Google Chrome
 	public void invokeBrowser() {
 		try {
 			System.setProperty("webdriver.chrome.driver" , "//Users//jensen//Selenium//Selenium//chromedriver");
@@ -73,19 +70,9 @@ public class registrationTest {
 		}
 	}
 	
-	public void login() {
-		driver.findElement(By.name("username")).sendKeys("jensen");
-		driver.findElement(By.name("password")).sendKeys("password");
-//		driver.findElement(By.id("submit")).click();
-//		driver.findElement(By.xpath("/html/body/div[4]/div/form/button")).click();
-//		driver.findElement(By.name("featuresAndTraits")).sendKeys("\nTesting with Selenium!");
-//		driver.findElement(By.name("save")).click();
-//		
-	}
-	
+	//Tests the Registration Page
 	public void signUp() {
 		try {
-			
 			//diff passwords for confirm
 			driver.findElement(By.id("register")).click();
 			driver.findElement(By.name("username")).sendKeys("tester1");
@@ -166,7 +153,7 @@ public class registrationTest {
 		}
 	}
 	
-
+	//creates new registrationTest object and calls the two functions
 	public static void main(String[] args) {
 		registrationTest myObj = new registrationTest();
 		myObj.invokeBrowser();
