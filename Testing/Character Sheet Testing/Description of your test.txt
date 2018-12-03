@@ -1,1 +1,28 @@
-To be filled in
+Uses Selenium Web Driver for testing and Google Chrome Driver. More information can be found in the folder "Selenium Installation Guide"
+
+Basic Tests for automated form filling
+  -Checks if generated stat modifiers are correct
+  -Checks if stat modifiers are being added to saving throws and skills
+  -Checks if proficiency is being calculated correctly
+  
+Basic Tests for saving and loading page
+  -Puts test values in all input feilds and attempts to save the page, then load it.
+  
+
+Testing client has multiple modes of testing: standard, verbose, and "only show failures". If all tests pass in normal mode, the output in the console should be enormous:
+  Modifier test, strength: pass
+  Saving Throw w/o proficiency: pass
+  Saving throw w/ proficiency: pass
+  .....
+  Stat save/load test, strength: pass
+  ....
+This is why the "only show failures" option exists. If enabled, the output for all tests passing should be nothing.
+
+Known bugs/oddities:
+  All tests have minimal error handling, so while testing an illegal input is encouraged for bug checking, doing so will require the developer to manually watch the machine work, and check for the web page's behavior.
+  
+  For some reason, all tests relating to the "constitution" stat slow to a crawl, though the tests will function normally other than the fact that they're slow. Testing speeds back up immediately after tests on the constitution stat are finished. This behavior has been observed across all computers.
+  
+  Due to time constraints, there are no tests for the weapons, spells, or inventory tables.
+  
+  Due to time constraints, the tests for top column will check if the values are saving/loading to the character sheet, but not if they're being displayed on the character selection list.
