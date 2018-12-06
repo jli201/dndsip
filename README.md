@@ -1,21 +1,7 @@
-D&D Companion Web App
+# dndsip.ga V 1.0.0
 
+### *Simple, Intuitive, Paperless*
 
-Michael Hypnarowski: Product Owner
-Allan Wong: Developer
-Connor (Robert Sanders): Developer
-Jensen Li: Developer
-Viren Singh: Initial Scrum Master (, Developer)
+Developed by Michael Hypnarowski, Viren Singh, Jensen Li, Allan Wong, and Robert "Connor" Sanders for CMPS 115 at the University of California Santa Cruz.
 
-
-
-Problem: Current D&D web apps are often clunky, non-intuitive, and hard to use.
-
-Goal: Create a Simple, Intuitive, Paperless (SIP) web app that lets players create and save character sheets as well as roll dice.
-
-Goal: Help DMs track information and fluidly run combat scenarios with an initiative tracker and note-taking space.
-
-
-Trello Scrum Board Link:https://trello.com/b/xBlrScyz/dndsip
-
-Google Drive: https://drive.google.com/drive/folders/1xDwYZG41x6VYaVK8Evd_7sxZ7OI3UuWo?usp=sharing
+This project is now officially complete for the purposes of our time in the CMPS 115 course, however changes or updates may be made to the project in the future.
